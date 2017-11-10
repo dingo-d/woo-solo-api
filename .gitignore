@@ -1,0 +1,15 @@
+# Project dev files
+/vendor/
+/node_modules/
+
+# Project build folder
+/build/
+
+# Vagrantfile
+Vagrantfile
+
+# Test install files
+/bin/
+
+# Build files
+/build/
