@@ -5,9 +5,10 @@
  * @link       https://madebydenis.com
  * @since      1.0.0
  *
- * @package    Solo_Api_Woocommerce_Integration
- * @subpackage Solo_Api_Woocommerce_Integration/includes
+ * @package    Solo_Api_Woocommerce_Integration\Includes
  */
+
+namespace Solo_Api_Woocommerce_Integration\Includes;
 
 /**
  * Fired during plugin activation.
@@ -15,8 +16,7 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Solo_Api_Woocommerce_Integration
- * @subpackage Solo_Api_Woocommerce_Integration/includes
+ * @package    Solo_Api_Woocommerce_Integration\Includes
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
 class Solo_Api_Woocommerce_Integration_Activator {
@@ -34,11 +34,11 @@ class Solo_Api_Woocommerce_Integration_Activator {
     if ( ! current_user_can( 'activate_plugins' ) ) {
       // Deactivate the plugin.
       deactivate_plugins( plugin_basename( __FILE__ ) );
-      
+
       $error_message = esc_html__( 'You do not have proper authorization to activate a plugin!', 'solo-api-woocommerce-integration' );
       die( $error_message );
     }
-     
+
     if ( ! class_exists( 'WooCommerce' ) ) {
       // Deactivate the plugin.
       deactivate_plugins( plugin_basename( __FILE__ ) );

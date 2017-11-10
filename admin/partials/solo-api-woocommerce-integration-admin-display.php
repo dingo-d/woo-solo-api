@@ -8,11 +8,9 @@
  * @since      1.0.0
  *
  * @package    Solo_Api_Woocommerce_Integration
- * @subpackage Solo_Api_Woocommerce_Integration/admin/partials
  */
 
 ?>
-
 <div class="wrap solo-api-options">
   <h1><?php esc_html_e( 'Solo API settings', 'solo-api-woocommerce-integration' ); ?></h1>
   <form method="post" action="options.php">
@@ -38,39 +36,39 @@
             <div class="option">
               <label for="solo_api_measure" class="subtitle"><?php esc_html_e( 'Unit measure - select the default measure in your shop (e.g. piece, hour, m^3 etc.)', 'solo-api-woocommerce-integration' ); ?></label>
               <select name="solo_api_measure" id="solo_api_measure">
-                <option value="1" <?php selected( '1', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( '-', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="2" <?php selected( '2', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'piece', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="3" <?php selected( '3', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'hour', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="4" <?php selected( '4', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'year', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="5" <?php selected( '5', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'km', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="6" <?php selected( '6', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'litre', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="7" <?php selected( '7', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'kg', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="8" <?php selected( '8', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'kWh', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="9" <?php selected( '9', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'm³', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="10" <?php selected( '10', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'tonne', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="11" <?php selected( '11', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'm²', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="12" <?php selected( '12', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'm', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="13" <?php selected( '13', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'day', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="14" <?php selected( '14', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'month', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="15" <?php selected( '15', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'night', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="16" <?php selected( '16', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'card', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="17" <?php selected( '17', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'account', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="18" <?php selected( '18', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'pair', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="19" <?php selected( '19', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'ml', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="20" <?php selected( '20', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'pax', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="21" <?php selected( '21', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'room', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="22" <?php selected( '22', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'appartmant', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="23" <?php selected( '23', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'term', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="24" <?php selected( '24', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'set', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="25" <?php selected( '25', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'package', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="26" <?php selected( '26', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'point', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="27" <?php selected( '27', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'service', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="28" <?php selected( '28', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'pal', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="29" <?php selected( '29', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'kont', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="30" <?php selected( '30', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'čl', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="31" <?php selected( '31', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'tis', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="32" <?php selected( '32', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'sec', 'solo-api-woocommerce-integration'); ?></option>
-                <option value="33" <?php selected( '33', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'min', 'solo-api-woocommerce-integration'); ?></option>
+                <option value="1" <?php selected( '1', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( '-', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="2" <?php selected( '2', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'piece', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="3" <?php selected( '3', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'hour', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="4" <?php selected( '4', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'year', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="5" <?php selected( '5', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'km', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="6" <?php selected( '6', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'litre', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="7" <?php selected( '7', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'kg', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="8" <?php selected( '8', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'kWh', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="9" <?php selected( '9', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'm³', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="10" <?php selected( '10', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'tonne', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="11" <?php selected( '11', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'm²', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="12" <?php selected( '12', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'm', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="13" <?php selected( '13', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'day', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="14" <?php selected( '14', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'month', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="15" <?php selected( '15', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'night', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="16" <?php selected( '16', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'card', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="17" <?php selected( '17', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'account', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="18" <?php selected( '18', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'pair', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="19" <?php selected( '19', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'ml', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="20" <?php selected( '20', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'pax', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="21" <?php selected( '21', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'room', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="22" <?php selected( '22', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'appartmant', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="23" <?php selected( '23', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'term', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="24" <?php selected( '24', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'set', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="25" <?php selected( '25', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'package', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="26" <?php selected( '26', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'point', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="27" <?php selected( '27', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'service', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="28" <?php selected( '28', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'pal', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="29" <?php selected( '29', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'kont', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="30" <?php selected( '30', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'čl', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="31" <?php selected( '31', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'tis', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="32" <?php selected( '32', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'sec', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="33" <?php selected( '33', get_option( 'solo_api_measure' ), true ); ?>><?php esc_html_e( 'min', 'solo-api-woocommerce-integration' ); ?></option>
               </select>
             </div>
             <div class="option">

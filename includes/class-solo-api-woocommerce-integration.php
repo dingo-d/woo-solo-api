@@ -8,22 +8,17 @@
  * @link       https://madebydenis.com
  * @since      1.0.0
  *
- * @package    Solo_Api_Woocommerce_Integration
- * @subpackage Solo_Api_Woocommerce_Integration/includes
+ * @package    Solo_Api_Woocommerce_Integration\Includes
  */
+
+namespace Solo_Api_Woocommerce_Integration\Includes;
+use Solo_Api_Woocommerce_Integration\Admin as Admin;
 
 /**
  * The core plugin class.
  *
- * This is used to define internationalization, admin-specific hooks, and
- * public-facing site hooks.
- *
- * Also maintains the unique identifier of this plugin as well as the current
- * version of the plugin.
- *
  * @since      1.0.0
- * @package    Solo_Api_Woocommerce_Integration
- * @subpackage Solo_Api_Woocommerce_Integration/includes
+ * @package    Solo_Api_Woocommerce_Integration\Includes
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
 class Solo_Api_Woocommerce_Integration {
@@ -66,27 +61,24 @@ class Solo_Api_Woocommerce_Integration {
    * @since    1.0.0
    */
   public function __construct() {
-    if ( defined( 'PLUGIN_VERSION' ) ) {
-      $this->version = PLUGIN_VERSION;
+    if ( defined( 'SAWI_PLUGIN_VERSION' ) ) {
+      $this->version = SAWI_PLUGIN_VERSION;
     } else {
       $this->version = '1.0.0';
     }
-    $this->plugin_name = 'solo-api-woocommerce-integration';
+
+    if ( defined( 'SAWI_PLUGIN_NAME' ) ) {
+      $this->plugin_name = SAWI_PLUGIN_NAME;
+    } else {
+      $this->plugin_name = 'solo-api-woocommerce-integration';
+    }
 
     $this->load_dependencies();
     $this->set_locale();
     $this->define_admin_hooks();
   }
-
   /**
    * Load the required dependencies for this plugin.
-   *
-   * Include the following files that make up the plugin:
-   *
-   * - Solo_Api_Woocommerce_Integration_Loader. Orchestrates the hooks of the plugin.
-   * - Solo_Api_Woocommerce_Integration_i18n. Defines internationalization functionality.
-   * - Solo_Api_Woocommerce_Integration_Admin. Defines all hooks for the admin area.
-   * - Solo_Api_Woocommerce_Integration_Public. Defines all hooks for the public side of the site.
    *
    * Create an instance of the loader which will be used to register the hooks
    * with WordPress.
@@ -95,23 +87,6 @@ class Solo_Api_Woocommerce_Integration {
    * @access   private
    */
   private function load_dependencies() {
-    /**
-     * The class responsible for orchestrating the actions and filters of the
-     * core plugin.
-     */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-solo-api-woocommerce-integration-loader.php';
-
-    /**
-     * The class responsible for defining internationalization functionality
-     * of the plugin.
-     */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-solo-api-woocommerce-integration-i18n.php';
-
-    /**
-     * The class responsible for defining all actions that occur in the admin area.
-     */
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-solo-api-woocommerce-integration-admin.php';
-
     $this->loader = new Solo_Api_Woocommerce_Integration_Loader();
   }
 
@@ -138,15 +113,16 @@ class Solo_Api_Woocommerce_Integration {
    * @access   private
    */
   private function define_admin_hooks() {
-    $plugin_admin = new Solo_Api_Woocommerce_Integration_Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_admin = new Admin\Solo_Api_Woocommerce_Integration_Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_solo_api_request = new Admin\Solo_Api_Woocommerce_Integration_Request( $this->get_plugin_name(), $this->get_version() );
 
+    $this->loader->add_action( 'woocommerce_email_order_details', $plugin_solo_api_request, 'solo_api_send_api_request' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
     $this->loader->add_action( 'admin_init', $plugin_admin, 'register_plugin_settings' );
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_options_page' );
     $this->loader->add_action( 'plugin_action_links_solo-api-woocommerce-integration/solo-api-woocommerce-integration.php', $plugin_admin, 'add_action_links' );
     $this->loader->add_action( 'wp_mail_from_name', $plugin_admin, 'solo_api_mail_from_name' );
-    $this->loader->add_action( 'woocommerce_email_order_details', $plugin_admin, 'solo_api_send_api_request' );
     if ( get_option( 'solo_api_enable_pin' ) ) {
       $this->loader->add_action( 'woocommerce_checkout_fields', $plugin_admin, 'add_pin_field' );
       $this->loader->add_action( 'woocommerce_admin_order_data_after_shipping_address', $plugin_admin, 'checkout_field_display_admin_order_meta' );
