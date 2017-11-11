@@ -93,7 +93,7 @@
               </select>
             </div>
             <div class="option">
-              <label for="solo_api_currency" class="subtitle"><?php esc_html_e( 'Languages', 'solo-api-woocommerce-integration' ); ?></label>
+              <label for="solo_api_currency" class="subtitle"><?php esc_html_e( 'Currency', 'solo-api-woocommerce-integration' ); ?></label>
               <select name="solo_api_currency" id="solo_api_currency">
                 <option value="1" <?php selected( '1', get_option( 'solo_api_currency' ), true ); ?>><?php esc_html_e( 'HRK - kn', 'solo-api-woocommerce-integration' ); ?></option>
                 <option value="2" <?php selected( '2', get_option( 'solo_api_currency' ), true ); ?>><?php esc_html_e( 'AUD - $', 'solo-api-woocommerce-integration' ); ?></option>
@@ -119,6 +119,10 @@
                 <option value="racun" <?php selected( 'racun', get_option( 'solo_api_bill_offer' ), true ); ?>><?php esc_html_e( 'Invoice', 'solo-api-woocommerce-integration' ); ?></option>
               </select>
             </div>
+            <div class="option">
+              <label for="solo_api_fiscalization" class="subtitle"><?php esc_html_e( 'Check if you want the invoice to be fiscalized. Fiscalization certificate must be added in the SOLO options.', 'solo-api-woocommerce-integration' ); ?></label>
+              <input type="checkbox" name="solo_api_fiscalization" id="solo_api_fiscalization" value=1 <?php checked( '1', get_option( 'solo_api_fiscalization' ), true ); ?>>
+            </div>
           </div>
           <div class="right">
             <div class="option">
@@ -142,7 +146,7 @@
               </select>
             </div>
             <div class="option">
-              <label for="solo_api_recipe_type" class="subtitle"><?php esc_html_e( 'Type of reciepe', 'solo-api-woocommerce-integration' ); ?></label>
+              <label for="solo_api_recipe_type" class="subtitle"><?php esc_html_e( 'Type of reciepe (only works with reciepe, not with offer)', 'solo-api-woocommerce-integration' ); ?></label>
               <select name="solo_api_recipe_type" id="solo_api_recipe_type">
                 <option value="1" <?php selected( '1', get_option( 'solo_api_recipe_type' ), true ); ?>><?php esc_html_e( 'R', 'solo-api-woocommerce-integration' ); ?></option>
                 <option value="2" <?php selected( '2', get_option( 'solo_api_recipe_type' ), true ); ?>><?php esc_html_e( 'R1', 'solo-api-woocommerce-integration' ); ?></option>
@@ -150,6 +154,18 @@
                 <option value="4" <?php selected( '4', get_option( 'solo_api_recipe_type' ), true ); ?>><?php esc_html_e( 'No label', 'solo-api-woocommerce-integration' ); ?></option>
                 <option value="5" <?php selected( '5', get_option( 'solo_api_recipe_type' ), true ); ?>><?php esc_html_e( 'In advance', 'solo-api-woocommerce-integration' ); ?></option>
               </select>
+            </div>
+            <div class="option">
+              <label for="solo_api_due_date" class="subtitle"><?php esc_html_e( 'Invoice/Offer due date', 'solo-api-woocommerce-integration' ); ?></label>
+              <select name="solo_api_due_date" id="solo_api_due_date">
+                <option value="1" <?php selected( '1', get_option( 'solo_api_due_date' ), true ); ?>><?php esc_html_e( '1 week', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="2" <?php selected( '2', get_option( 'solo_api_due_date' ), true ); ?>><?php esc_html_e( '2 weeks', 'solo-api-woocommerce-integration' ); ?></option>
+                <option value="3" <?php selected( '3', get_option( 'solo_api_due_date' ), true ); ?>><?php esc_html_e( '3 weeks', 'solo-api-woocommerce-integration' ); ?></option>
+              </select>
+            </div>
+            <div class="option">
+              <label for="solo_api_currency_rate" class="subtitle"><?php printf( '%s <a href="https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista" target="_blank" rel="noopener noreferrer">%s</a> %s', esc_html__( 'You can check the currency rate at', 'solo-api-woocommerce-integration' ), esc_html__( 'Croatian National Bank', 'solo-api-woocommerce-integration' ), esc_html__( 'to see the current currency rates. If the currency is HRK leave the field blank, for other currencies 6 decimals is the limit.', 'solo-api-woocommerce-integration' ) ); ?></label>
+              <input type="text" id="solo_api_currency_rate" name="solo_api_currency_rate" value="<?php echo esc_attr( get_option( 'solo_api_currency_rate' ) ); ?>">
             </div>
           </div>
         </div>
@@ -171,6 +187,9 @@
         <div id="tab4" class="tab-content">
           <div class="option">
             <label for="solo_api_enable_pin" class="subtitle"><input type="checkbox" id="solo_api_enable_pin" name="solo_api_enable_pin" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_enable_pin' ) ) , true ); ?>><?php esc_html_e( 'Enable the PIN field on the billing and shipping in the checkout.', 'solo-api-woocommerce-integration' ); ?></label>
+          </div>
+          <div class="option">
+            <label for="solo_api_enable_iban" class="subtitle"><input type="checkbox" id="solo_api_enable_iban" name="solo_api_enable_iban" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_enable_iban' ) ) , true ); ?>><?php esc_html_e( 'Enable the IBAN field on the billing and shipping in the checkout.', 'solo-api-woocommerce-integration' ); ?></label>
           </div>
         </div>
       </div>

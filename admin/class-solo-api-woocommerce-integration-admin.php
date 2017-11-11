@@ -88,14 +88,44 @@ class Solo_Api_Woocommerce_Integration_Admin {
   }
 
   /**
+   * Include additional WooCommerce checkout fields for shipping and billing
+   *
+   * Add International Bank Account Number (IBAN) in the checkout fields.
+   *
+   * @param array $fields Billing and shipping fields.
+   * @since 1.0.0
+   */
+  public function add_iban_field( $fields ) {
+    $fields['shipping']['shipping_iban_number'] = array(
+        'label'       => esc_html__( 'IBAN number', 'solo-api-woocommerce-integration' ),
+        'placeholder' => _x( 'HR12345678901234567890', 'placeholder', 'solo-api-woocommerce-integration' ),
+        'required'    => false,
+        'class'       => array( 'form-row-wide' ),
+        'clear'       => true,
+    );
+
+    $fields['billing']['billing_iban_number'] = array(
+        'label'       => esc_html__( 'IBAN number', 'solo-api-woocommerce-integration' ),
+        'placeholder' => _x( 'HR12345678901234567890', 'placeholder', 'solo-api-woocommerce-integration' ),
+        'required'    => false,
+        'class'       => array( 'form-row-wide' ),
+        'clear'       => true,
+    );
+
+    return $fields;
+  }
+
+  /**
    * Add the display field on the order edit page
    *
    * @param object $order Order object.
    * @return void
    */
   public function checkout_field_display_admin_order_meta( $order ) {
-    $shipping_pin = get_post_meta( $order->get_id(), '_shipping_pin_number', true );
-    $billing_pin  = get_post_meta( $order->get_id(), '_billing_pin_number', true );
+    $shipping_pin  = get_post_meta( $order->get_id(), '_shipping_pin_number', true );
+    $billing_pin   = get_post_meta( $order->get_id(), '_billing_pin_number', true );
+    $shipping_iban = get_post_meta( $order->get_id(), '_shipping_iban_number', true );
+    $billing_iban  = get_post_meta( $order->get_id(), '_billing_iban_number', true );
 
     if ( ! empty( $shipping_pin ) ) {
       echo '<p><strong> ' . esc_html__( 'Customer shipping PIN number', 'solo-api-woocommerce-integration' ) . ' :</strong> ' . esc_html( $shipping_pin ) . '</p>';
@@ -103,6 +133,14 @@ class Solo_Api_Woocommerce_Integration_Admin {
 
     if ( ! empty( $billing_pin ) ) {
       echo '<p><strong> ' . esc_html__( 'Customer billing PIN number', 'solo-api-woocommerce-integration' ) . ' :</strong> ' . esc_html( $billing_pin ) . '</p>';
+    }
+
+    if ( ! empty( $shipping_iban ) ) {
+      echo '<p><strong> ' . esc_html__( 'Customer shipping IBAN number', 'solo-api-woocommerce-integration' ) . ' :</strong> ' . esc_html( $shipping_iban ) . '</p>';
+    }
+
+    if ( ! empty( $billing_iban ) ) {
+      echo '<p><strong> ' . esc_html__( 'Customer billing IBAN number', 'solo-api-woocommerce-integration' ) . ' :</strong> ' . esc_html( $billing_iban ) . '</p>';
     }
   }
 
@@ -126,6 +164,10 @@ class Solo_Api_Woocommerce_Integration_Admin {
     register_setting( 'solo-api-settings-group', 'solo_api_message' );
     register_setting( 'solo-api-settings-group', 'solo_api_change_mail_from' );
     register_setting( 'solo-api-settings-group', 'solo_api_enable_pin' );
+    register_setting( 'solo-api-settings-group', 'solo_api_enable_iban' );
+    register_setting( 'solo-api-settings-group', 'solo_api_currency_rate' );
+    register_setting( 'solo-api-settings-group', 'solo_api_fiscalization' );
+    register_setting( 'solo-api-settings-group', 'solo_api_due_date' );
   }
 
   /**

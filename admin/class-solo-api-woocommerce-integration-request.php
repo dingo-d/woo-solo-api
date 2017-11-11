@@ -74,41 +74,58 @@ class Solo_Api_Woocommerce_Integration_Request {
     $order_data = $order->get_data(); // The Order data.
 
     // Options.
-    $solo_api_token        = get_option( 'solo_api_token' );
-    $solo_api_measure      = get_option( 'solo_api_measure' );
-    $solo_api_payment_type = get_option( 'solo_api_payment_type' );
-    $solo_api_languages    = get_option( 'solo_api_languages' );
-    $solo_api_currency     = get_option( 'solo_api_currency' );
-    $solo_api_bill_offer   = get_option( 'solo_api_bill_offer' );
-    $solo_api_service_type = get_option( 'solo_api_service_type' );
-    $solo_api_show_taxes   = get_option( 'solo_api_show_taxes' );
-    $solo_api_tax_rate     = get_option( 'solo_api_tax_rate' );
-    $solo_api_recipe_type  = get_option( 'solo_api_recipe_type' );
-    $solo_api_mail_title   = get_option( 'solo_api_mail_title' );
-    $solo_api_message      = get_option( 'solo_api_message' );
+    $solo_api_token         = get_option( 'solo_api_token' );
+    $solo_api_measure       = get_option( 'solo_api_measure' );
+    $solo_api_payment_type  = get_option( 'solo_api_payment_type' );
+    $solo_api_languages     = get_option( 'solo_api_languages' );
+    $solo_api_currency      = get_option( 'solo_api_currency' );
+    $solo_api_bill_type     = get_option( 'solo_api_bill_offer' );
+    $solo_api_service_type  = get_option( 'solo_api_service_type' );
+    $solo_api_show_taxes    = get_option( 'solo_api_show_taxes' );
+    $solo_api_tax_rate      = get_option( 'solo_api_tax_rate' );
+    $solo_api_recipe_type   = get_option( 'solo_api_recipe_type' );
+    $solo_api_mail_title    = get_option( 'solo_api_mail_title' );
+    $solo_api_message       = get_option( 'solo_api_message' );
+    $solo_api_currency_rate = get_option( 'solo_api_currency_rate' );
+    $solo_api_fiscalization = get_option( 'solo_api_fiscalization' );
+    $solo_api_due_date      = get_option( 'solo_api_due_date' );
 
-    $url = 'https://api.solo.com.hr/' . $solo_api_bill_offer;
+    $url = 'https://api.solo.com.hr/' . $solo_api_bill_type;
 
     // OVISNO O RAČUNU ILI PONUDI MAKNUTI NEKE STVARI IZ API CALLA!
+    // ponuda nema tip_racuna, datum_isporuke i fiskalizaciju
 
     // Check if billing or shipping.
+    $field = 'shipping';
+
     if ( ( isset( $order_data['billing']['first_name'] ) && $order_data['billing']['first_name'] !== '' ) ) {
       $field = 'billing';
-    } else {
-      $field = 'shipping';
     }
 
-    $first_name = ( isset( $order_data[ $field ]['first_name'] ) && $order_data[ $field ]['first_name'] !== '' ) ? $order_data[ $field ]['first_name'] : '';
-    $last_name  = ( isset( $order_data[ $field ]['last_name'] ) && $order_data[ $field ]['last_name'] !== '' ) ? $order_data[ $field ]['last_name'] : '';
-    $address_1  = ( isset( $order_data[ $field ]['address_1'] ) && $order_data[ $field ]['address_1'] !== '' ) ? $order_data[ $field ]['address_1'] : '';
-    $address_2  = ( isset( $order_data[ $field ]['address_2'] ) && $order_data[ $field ]['address_2'] !== '' ) ? $order_data[ $field ]['address_2'] : '';
-    $city       = ( isset( $order_data[ $field ]['city'] ) && $order_data[ $field ]['city'] !== '' ) ? $order_data[ $field ]['city'] : '';
-    $state      = ( isset( $order_data[ $field ]['state'] ) && $order_data[ $field ]['state'] !== '' ) ? $order_data[ $field ]['state'] : '';
-    $country    = ( isset( $order_data[ $field ]['country'] ) && $order_data[ $field ]['country'] !== '' ) ? $order_data[ $field ]['country'] : '';
-    $postcode   = ( isset( $order_data[ $field ]['postcode'] ) && $order_data[ $field ]['postcode'] !== '' ) ? $order_data[ $field ]['postcode'] : '';
-    $email      = ( isset( $order_data[ $field ]['email'] ) && $order_data[ $field ]['email'] !== '' ) ? $order_data[ $field ]['email'] : '';
-    $phone      = ( isset( $order_data[ $field ]['phone'] ) && $order_data[ $field ]['phone'] !== '' ) ? $order_data[ $field ]['phone'] : '';
-    $company    = ( isset( $order_data[ $field ]['company'] ) && $order_data[ $field ]['company'] !== '' ) ? $order_data[ $field ]['company'] : '';
+    $first_name  = ( isset( $order_data[ $field ]['first_name'] ) && $order_data[ $field ]['first_name'] !== '' ) ? $order_data[ $field ]['first_name'] : '';
+    $last_name   = ( isset( $order_data[ $field ]['last_name'] ) && $order_data[ $field ]['last_name'] !== '' ) ? $order_data[ $field ]['last_name'] : '';
+    $address_1   = ( isset( $order_data[ $field ]['address_1'] ) && $order_data[ $field ]['address_1'] !== '' ) ? $order_data[ $field ]['address_1'] : '';
+    $address_2   = ( isset( $order_data[ $field ]['address_2'] ) && $order_data[ $field ]['address_2'] !== '' ) ? $order_data[ $field ]['address_2'] : '';
+    $city        = ( isset( $order_data[ $field ]['city'] ) && $order_data[ $field ]['city'] !== '' ) ? $order_data[ $field ]['city'] : '';
+    $state       = ( isset( $order_data[ $field ]['state'] ) && $order_data[ $field ]['state'] !== '' ) ? $order_data[ $field ]['state'] : '';
+    $country     = ( isset( $order_data[ $field ]['country'] ) && $order_data[ $field ]['country'] !== '' ) ? $order_data[ $field ]['country'] : '';
+    $postcode    = ( isset( $order_data[ $field ]['postcode'] ) && $order_data[ $field ]['postcode'] !== '' ) ? $order_data[ $field ]['postcode'] : '';
+    $email       = ( isset( $order_data[ $field ]['email'] ) && $order_data[ $field ]['email'] !== '' ) ? $order_data[ $field ]['email'] : '';
+    $phone       = ( isset( $order_data[ $field ]['phone'] ) && $order_data[ $field ]['phone'] !== '' ) ? $order_data[ $field ]['phone'] : '';
+    $company     = ( isset( $order_data[ $field ]['company'] ) && $order_data[ $field ]['company'] !== '' ) ? $order_data[ $field ]['company'] : '';
+
+    // PIN and IBAN are meta fields.
+    $pin_number  = wc_get_order_item_meta( $order_id, 'shipping_pin_number', true );
+    $iban_number = wc_get_order_item_meta( $order_id, 'shipping_iban_number', true );
+
+    if ( $field === 'billing' ) {
+      $pin_number  = wc_get_order_item_meta( $order_id, 'billing_pin_number', true );
+      $iban_number = wc_get_order_item_meta( $order_id, 'billing_iban_number', true );
+    }
+
+    // error_log( print_r( $order_data, true ) );
+    // error_log( print_r( $pin_number, true ) ); // NE RADI!?!?
+    // error_log( print_r( $iban_number, true ) );
 
     $order_buyer = $first_name . ' ' . $last_name;
 
@@ -126,7 +143,15 @@ class Solo_Api_Woocommerce_Integration_Request {
       }
     }
 
-    $post_url = $url . '?token=' . $solo_api_token . '&tip_usluge=' . $solo_api_service_type . '&prikazi_porez=' . $solo_api_show_taxes . '&tip_racuna=' . $solo_api_recipe_type . '&kupac_naziv=' . $order_buyer . '&kupac_adresa=' . $order_address;
+    $post_url = $url . '?token=' . $solo_api_token . '&tip_usluge=' . $solo_api_service_type . '&prikazi_porez=' . $solo_api_show_taxes . '&kupac_naziv=' . $order_buyer . '&kupac_adresa=' . $order_address;
+
+    if ( $solo_api_bill_type === 'racun' ) {
+      $post_url .= '&tip_racuna=' . $solo_api_recipe_type;
+    }
+
+    if ( ! empty( $pin_number ) ) {
+      $post_url .= '&kupac_oib=' . $pin_number;
+    }
 
     // Individual order.
     $item_no = 1;
@@ -153,82 +178,113 @@ class Solo_Api_Woocommerce_Integration_Request {
 
     $customer_note = ( isset( $order->data['customer_note'] ) && '' !== $order->data['customer_note'] ) ? $order->data['customer_note'] : '';
 
-    $due_date = date( 'Y-m-d', strtotime( '+1 week' ) );
+    switch ( $solo_api_due_date ) {
+      case '2':
+        $due_date = date( 'Y-m-d', strtotime( '+2 weeks' ) );
+        break;
+      case '3':
+        $due_date = date( 'Y-m-d', strtotime( '+3 weeks' ) );
+        break;
+      default:
+        $due_date = date( 'Y-m-d', strtotime( '+1 week' ) );
+    }
 
-    $post_url .= '&nacin_placanja=' . $solo_api_payment_type . '&rok_placanja=' . $due_date . '&napomene=' . $customer_note . '&fiskalizacija=0';
-    // FISKALIZACIJA OPCIJA.
+    $post_url .= '&nacin_placanja=' . $solo_api_payment_type . '&rok_placanja=' . $due_date . '&napomene=' . $customer_note;
+
+    if ( ! empty( $iban_number ) ) {
+      $post_url .= '&iban=' . $iban_number;
+    }
+
+    if ( $solo_api_bill_type === 'ponuda' ) {
+      $post_url .= '&jezik_ponude=' . $solo_api_languages;
+    } else {
+      $post_url .= '&jezik_racuna=' . $solo_api_languages;
+    }
+
+    if ( ! empty( $solo_api_currency_rate ) ) {
+      $num = (float) str_replace( ',', '.', $solo_api_currency_rate );
+      $post_url .= '&tecaj=' . str_replace( '.', ',', round( $num, 6 ) );
+    }
+
+    if ( $solo_api_bill_type === 'racun' ) {
+      if ( intval( $solo_api_fiscalization ) === 1 ) {
+        $post_url .= '&fiskalizacija=1';
+      } else {
+        $post_url .= '&fiskalizacija=0';
+      }
+    }
 
     error_log( print_r( 'URL', true) );
-    error_log( print_r( $post_url, true) );
+    error_log( print_r( ess_url( $post_url ), true) );
 
     $method_executed = false;
 
     /**
      * For more info go to: https://solo.com.hr/api-dokumentacija/izrada-racuna
      */
-    $response = wp_remote_post( $post_url );
+    // $response = wp_remote_post( $post_url );
 
-    if ( is_wp_error( $response ) ) {
-      $error_code = wp_remote_retrieve_response_code( $response );
-      $error_message = wp_remote_retrieve_response_message( $response );
-      return new WP_Error( $error_code, $error_message );
-    }
+    // if ( is_wp_error( $response ) ) {
+    //   $error_code = wp_remote_retrieve_response_code( $response );
+    //   $error_message = wp_remote_retrieve_response_message( $response );
+    //   return new WP_Error( $error_code, $error_message );
+    // }
 
-    if ( $order_data['payment_method'] === 'bacs' ) { // OVO TREBA DODATI KAO OPCIJU U SETTINGSIMA!
+    // if ( $order_data['payment_method'] === 'bacs' ) { // OVO TREBA DODATI KAO OPCIJU U SETTINGSIMA! BANK TRANSFER
 
-      $body = json_decode( $response['body'] );
+    //   $body = json_decode( $response['body'] );
 
-      if ( $body->status !== 0 ) {
-        $error_code = $body->status;
-        $error_message = $body->message;
-        return new WP_Error( $error_code, $error_message );
-      }
+    //   if ( $body->status !== 0 ) {
+    //     $error_code = $body->status;
+    //     $error_message = $body->message;
+    //     return new WP_Error( $error_code, $error_message );
+    //   }
 
-      // Create pdf.
-      $pdf_link = esc_url( $body->ponuda->pdf );
-      $pdf_name = esc_html( $body->ponuda->broj_ponude );
+    //   // Create pdf.
+    //   $pdf_link = esc_url( $body->ponuda->pdf );
+    //   $pdf_name = esc_html( $body->ponuda->broj_ponude );
 
-      $pdf_get = wp_remote_get( $pdf_link );
+    //   $pdf_get = wp_remote_get( $pdf_link );
 
-      if ( is_wp_error( $pdf_get ) ) {
-        $error_code = wp_remote_retrieve_response_code( $pdf_get );
-        $error_message = wp_remote_retrieve_response_message( $pdf_get );
-        return new WP_Error( $error_code, $error_message );
-      }
+    //   if ( is_wp_error( $pdf_get ) ) {
+    //     $error_code = wp_remote_retrieve_response_code( $pdf_get );
+    //     $error_message = wp_remote_retrieve_response_message( $pdf_get );
+    //     return new WP_Error( $error_code, $error_message );
+    //   }
 
-      $pdf_contents = $pdf_get['body'];
+    //   $pdf_contents = $pdf_get['body'];
 
-      $pdf_name = 'ponuda-' . $pdf_name . '.pdf';
+    //   $pdf_name = 'ponuda-' . $pdf_name . '.pdf';
 
-      $upload_dir = wp_upload_dir();
+    //   $upload_dir = wp_upload_dir();
 
-      $new_dir = $upload_dir['basedir'] . '/ponude/' . date( 'Y' ) . '/' . date( 'm' );
+    //   $new_dir = $upload_dir['basedir'] . '/ponude/' . date( 'Y' ) . '/' . date( 'm' );
 
-      if ( ! file_exists( $new_dir ) ) {
-        wp_mkdir_p( $new_dir );
-      }
+    //   if ( ! file_exists( $new_dir ) ) {
+    //     wp_mkdir_p( $new_dir );
+    //   }
 
-      $attachment = $new_dir . '/' . $pdf_name;
+    //   $attachment = $new_dir . '/' . $pdf_name;
 
-      global $wp_filesystem;
-      if ( empty( $wp_filesystem ) ) {
-        require_once( ABSPATH . '/wp-admin/includes/file.php' );
-        WP_Filesystem();
-      }
+    //   global $wp_filesystem;
+    //   if ( empty( $wp_filesystem ) ) {
+    //     require_once( ABSPATH . '/wp-admin/includes/file.php' );
+    //     WP_Filesystem();
+    //   }
 
-      $wp_filesystem->put_contents(
-        $attachment,
-        $pdf_contents,
-        FS_CHMOD_FILE // predefined mode settings for WP files.
-      );
+    //   $wp_filesystem->put_contents(
+    //     $attachment,
+    //     $pdf_contents,
+    //     FS_CHMOD_FILE // predefined mode settings for WP files.
+    //   );
 
-      // Send mail with the attachment.
-      $headers  = 'MIME-Version: 1.0' . "\r\n";
-      $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+    //   // Send mail with the attachment.
+    //   $headers  = 'MIME-Version: 1.0' . "\r\n";
+    //   $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
-      $message = $solo_api_message;
+    //   $message = $solo_api_message;
 
-      wp_mail( $email, $solo_api_mail_title, $message, $headers, array( $attachment ) );
-    }
+    //   wp_mail( $email, $solo_api_mail_title, $message, $headers, array( $attachment ) );
+    // }
   }
 }

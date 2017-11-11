@@ -125,6 +125,11 @@ class Solo_Api_Woocommerce_Integration {
     $this->loader->add_action( 'wp_mail_from_name', $plugin_admin, 'solo_api_mail_from_name' );
     if ( get_option( 'solo_api_enable_pin' ) ) {
       $this->loader->add_action( 'woocommerce_checkout_fields', $plugin_admin, 'add_pin_field' );
+    }
+    if ( get_option( 'solo_api_enable_iban' ) ) {
+      $this->loader->add_action( 'woocommerce_checkout_fields', $plugin_admin, 'add_iban_field' );
+    }
+    if ( get_option( 'solo_api_enable_pin' ) || get_option( 'solo_api_enable_iban' ) ) {
       $this->loader->add_action( 'woocommerce_admin_order_data_after_shipping_address', $plugin_admin, 'checkout_field_display_admin_order_meta' );
     }
   }
