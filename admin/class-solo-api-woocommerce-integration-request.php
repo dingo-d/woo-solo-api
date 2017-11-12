@@ -114,18 +114,29 @@ class Solo_Api_Woocommerce_Integration_Request {
     $phone       = ( isset( $order_data[ $field ]['phone'] ) && $order_data[ $field ]['phone'] !== '' ) ? $order_data[ $field ]['phone'] : '';
     $company     = ( isset( $order_data[ $field ]['company'] ) && $order_data[ $field ]['company'] !== '' ) ? $order_data[ $field ]['company'] : '';
 
-    // PIN and IBAN are meta fields.
-    $pin_number  = wc_get_order_item_meta( $order_id, 'shipping_pin_number', true );
-    $iban_number = wc_get_order_item_meta( $order_id, 'shipping_iban_number', true );
+    $meta_data = $order_data['meta_data'];
 
-    if ( $field === 'billing' ) {
-      $pin_number  = wc_get_order_item_meta( $order_id, 'billing_pin_number', true );
-      $iban_number = wc_get_order_item_meta( $order_id, 'billing_iban_number', true );
+    foreach ( $meta_data as $data => $meta_value ) {
+      $data = $meta_value->get_data();
+
+      if ( $data['key'] === '_shipping_pin_number' ) {
+        $pin_number = ( isset( $data['value'] ) && $data['value'] !== '' ) ? $data['value'] : '';
+      }
+
+      if ( $data['key'] === '_shipping_iban_number' ) {
+        $iban_number = ( isset( $data['value'] ) && $data['value'] !== '' ) ? $data['value'] : '';
+      }
+
+      if ( $field === 'billing' ) {
+        if ( $data['key'] === '_billing_pin_number' ) {
+          $pin_number = ( isset( $data['value'] ) && $data['value'] !== '' ) ? $data['value'] : '';
+        }
+
+        if ( $data['key'] === '_billing_iban_number' ) {
+          $iban_number = ( isset( $data['value'] ) && $data['value'] !== '' ) ? $data['value'] : '';
+        }
+      }
     }
-
-    // error_log( print_r( $order_data, true ) );
-    // error_log( print_r( $pin_number, true ) ); // NE RADI!?!?
-    // error_log( print_r( $iban_number, true ) );
 
     $order_buyer = $first_name . ' ' . $last_name;
 
@@ -215,76 +226,108 @@ class Solo_Api_Woocommerce_Integration_Request {
     }
 
     error_log( print_r( 'URL', true) );
-    error_log( print_r( ess_url( $post_url ), true) );
+    error_log( print_r( esc_url( $post_url ), true) );
 
     $method_executed = false;
 
     /**
      * For more info go to: https://solo.com.hr/api-dokumentacija/izrada-racuna
      */
-    // $response = wp_remote_post( $post_url );
+    $response = wp_remote_post( $post_url );
 
-    // if ( is_wp_error( $response ) ) {
-    //   $error_code = wp_remote_retrieve_response_code( $response );
-    //   $error_message = wp_remote_retrieve_response_message( $response );
-    //   return new WP_Error( $error_code, $error_message );
-    // }
+    if ( is_wp_error( $response ) ) {
+      $error_code = wp_remote_retrieve_response_code( $response );
+      $error_message = wp_remote_retrieve_response_message( $response );
+      return new \WP_Error( $error_code, $error_message );
+    }
 
-    // if ( $order_data['payment_method'] === 'bacs' ) { // OVO TREBA DODATI KAO OPCIJU U SETTINGSIMA! BANK TRANSFER
+    if ( $order_data['payment_method'] === 'bacs' ) { // OVO TREBA DODATI KAO OPCIJU U SETTINGSIMA! BANK TRANSFER.
 
-    //   $body = json_decode( $response['body'] );
+      global $wp_filesystem;
+      if ( empty( $wp_filesystem ) ) {
+        require_once( ABSPATH . '/wp-admin/includes/file.php' );
+      }
 
-    //   if ( $body->status !== 0 ) {
-    //     $error_code = $body->status;
-    //     $error_message = $body->message;
-    //     return new WP_Error( $error_code, $error_message );
-    //   }
+      $checkout_url = \wc_get_checkout_url();
 
-    //   // Create pdf.
-    //   $pdf_link = esc_url( $body->ponuda->pdf );
-    //   $pdf_name = esc_html( $body->ponuda->broj_ponude );
+      $url   = wp_nonce_url( $checkout_url ,'_wpnonce', '_wpnonce' );
+      $creds = \request_filesystem_credentials( $url, '', false, false, null );
 
-    //   $pdf_get = wp_remote_get( $pdf_link );
+      if ( $creds === false ) {
+        return; // stop processing here.
+      }
 
-    //   if ( is_wp_error( $pdf_get ) ) {
-    //     $error_code = wp_remote_retrieve_response_code( $pdf_get );
-    //     $error_message = wp_remote_retrieve_response_message( $pdf_get );
-    //     return new WP_Error( $error_code, $error_message );
-    //   }
+      $body = json_decode( $response['body'] );
 
-    //   $pdf_contents = $pdf_get['body'];
+      if ( $body->status !== 0 ) {
+        $error_code = $body->status;
+        $error_message = $body->message;
+        return new \WP_Error( $error_code, $error_message );
+      }
 
-    //   $pdf_name = 'ponuda-' . $pdf_name . '.pdf';
+      // Create pdf.
+      $pdf_link = esc_url( $body->ponuda->pdf );
+      $pdf_name = esc_html( $body->ponuda->broj_ponude );
 
-    //   $upload_dir = wp_upload_dir();
+      $pdf_get = wp_remote_get( $pdf_link );
 
-    //   $new_dir = $upload_dir['basedir'] . '/ponude/' . date( 'Y' ) . '/' . date( 'm' );
+      if ( is_wp_error( $pdf_get ) ) {
+        $error_code = wp_remote_retrieve_response_code( $pdf_get );
+        $error_message = wp_remote_retrieve_response_message( $pdf_get );
+        return new \WP_Error( $error_code, $error_message );
+      }
 
-    //   if ( ! file_exists( $new_dir ) ) {
-    //     wp_mkdir_p( $new_dir );
-    //   }
+      $pdf_contents = $pdf_get['body'];
 
-    //   $attachment = $new_dir . '/' . $pdf_name;
+      $pdf_name = 'ponuda-' . $pdf_name . '.pdf';
 
-    //   global $wp_filesystem;
-    //   if ( empty( $wp_filesystem ) ) {
-    //     require_once( ABSPATH . '/wp-admin/includes/file.php' );
-    //     WP_Filesystem();
-    //   }
+      // Now we have some credentials, try to get the wp_filesystem running.
+      if ( ! WP_Filesystem( $creds ) ) {
+        // Our credentials were no good, ask the user for them again.
+        \request_filesystem_credentials( $url, '', true, false, null );
+        return true;
+      }
 
-    //   $wp_filesystem->put_contents(
-    //     $attachment,
-    //     $pdf_contents,
-    //     FS_CHMOD_FILE // predefined mode settings for WP files.
-    //   );
+      $upload_dir = wp_upload_dir();
 
-    //   // Send mail with the attachment.
-    //   $headers  = 'MIME-Version: 1.0' . "\r\n";
-    //   $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+      $new_dir = $upload_dir['basedir'] . '/ponude/' . date( 'Y' ) . '/' . date( 'm' );
 
-    //   $message = $solo_api_message;
+      if ( ! file_exists( $new_dir ) ) {
+        wp_mkdir_p( $new_dir );
+      }
 
-    //   wp_mail( $email, $solo_api_mail_title, $message, $headers, array( $attachment ) );
-    // }
+      $attachment = $new_dir . '/' . $pdf_name;
+
+      WP_Filesystem( $creds );
+
+      $wp_filesystem->put_contents(
+        $attachment,
+        $pdf_contents,
+        FS_CHMOD_FILE // predefined mode settings for WP files.
+      );
+
+      // Store the pdf as an attachment.
+      $filetype = wp_check_filetype( $pdf_name, null );
+
+      $attachment_array = array(
+          'guid'           => $attachment,
+          'post_mime_type' => $filetype['type'],
+          'post_title'     => $pdf_name,
+          'post_content'   => '',
+          'post_status'    => 'inherit',
+      );
+
+      $url_parse = wp_parse_url( $attachment );
+
+      $attachment_id = wp_insert_attachment( $attachment_array, $url_parse['path'], 0 ); // Create attachment in the Media screen.
+
+      // Send mail with the attachment.
+      $headers  = 'MIME-Version: 1.0' . "\r\n";
+      $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+
+      $message = $solo_api_message;
+
+      wp_mail( $email, $solo_api_mail_title, $message, $headers, array( $attachment ) );
+    }
   }
 }

@@ -164,7 +164,7 @@
               </select>
             </div>
             <div class="option">
-              <label for="solo_api_currency_rate" class="subtitle"><?php printf( '%s <a href="https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista" target="_blank" rel="noopener noreferrer">%s</a> %s', esc_html__( 'You can check the currency rate at', 'solo-api-woocommerce-integration' ), esc_html__( 'Croatian National Bank', 'solo-api-woocommerce-integration' ), esc_html__( 'to see the current currency rates. If the currency is HRK leave the field blank, for other currencies 6 decimals is the limit.', 'solo-api-woocommerce-integration' ) ); ?></label>
+              <label for="solo_api_currency_rate" class="subtitle"><?php printf( '%s <a href="https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista" target="_blank" rel="noopener noreferrer">%s</a> %s', esc_html__( 'You can check the currency rate at', 'solo-api-woocommerce-integration' ), esc_html__( 'Croatian National Bank', 'solo-api-woocommerce-integration' ), esc_html__( 'to see the current currency rates. If the currency is HRK leave the field blank. Limit the number of decimals to 6 places for other currencies (e.g. 6,123456).', 'solo-api-woocommerce-integration' ) ); ?></label>
               <input type="text" id="solo_api_currency_rate" name="solo_api_currency_rate" value="<?php echo esc_attr( get_option( 'solo_api_currency_rate' ) ); ?>">
             </div>
           </div>
