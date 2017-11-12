@@ -28,15 +28,10 @@ class Solo_Api_Woocommerce_Integration_i18n {
    * @since    1.0.0
    */
   public function load_plugin_textdomain() {
-
     load_plugin_textdomain(
       'solo-api-woocommerce-integration',
       false,
       dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
     );
-
   }
-
-
-
 }

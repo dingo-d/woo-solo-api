@@ -16,7 +16,7 @@
   <form method="post" action="options.php">
     <?php settings_fields( 'solo-api-settings-group' ); ?>
     <?php do_settings_sections( 'solo-api-settings-group' ); ?>
-    <div class="notice"><?php esc_html_e( 'For more details on the options you can read the official SOLO API documentation here: ' ); ?><a href="<?php echo esc_url( 'https://solo.com.hr/api-dokumentacija' ); ?>"><?php echo esc_html( 'https://solo.com.hr/api-dokumentacija' ); ?></a></div>
+    <div class="notice"><?php esc_html_e( 'For more details on the options you can read the official SOLO API documentation here: ', 'solo-api-woocommerce-integration' ); ?><a href="<?php echo esc_url( 'https://solo.com.hr/api-dokumentacija' ); ?>"><?php echo esc_html( 'https://solo.com.hr/api-dokumentacija' ); ?></a></div>
     <div class="options-wrapper">
       <div class="options-wrapper__tabs">
         <div href="#tab1" class="tab active"><?php esc_html_e( 'Solo API token', 'solo-api-woocommerce-integration' ); ?></div>
