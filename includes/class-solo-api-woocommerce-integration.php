@@ -117,6 +117,7 @@ class Solo_Api_Woocommerce_Integration {
     $plugin_solo_api_request = new Admin\Solo_Api_Woocommerce_Integration_Request( $this->get_plugin_name(), $this->get_version() );
 
     $this->loader->add_action( 'woocommerce_email_order_details', $plugin_solo_api_request, 'solo_api_send_api_request' );
+    $this->loader->add_filter( 'post_mime_types', $plugin_admin, 'add_pdf_post_mime_type' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
     $this->loader->add_action( 'admin_init', $plugin_admin, 'register_plugin_settings' );

@@ -60,6 +60,21 @@ class Solo_Api_Woocommerce_Integration_Admin {
   }
 
   /**
+   * Filter pdf file types on media screen
+   *
+   * This filter is added so that the user can find their
+   * recipes easier.
+   *
+   * @param array $post_mime_types Available post mime types.
+   * @return array $post_mime_types Updated post mime types.
+   */
+  public function add_pdf_post_mime_type( $post_mime_types ) {
+    $post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'solo-api-woocommerce-integration' ), esc_html__( 'Manage PDFs', 'solo-api-woocommerce-integration' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' , 'solo-api-woocommerce-integration' ) );
+
+    return $post_mime_types;
+  }
+
+  /**
    * Include additional WooCommerce checkout fields for shipping and billing
    *
    * Add personal identification number (PIN) in the checkout fields - OIB in Croatian.
