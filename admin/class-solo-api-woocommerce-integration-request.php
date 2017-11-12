@@ -92,9 +92,6 @@ class Solo_Api_Woocommerce_Integration_Request {
 
     $url = 'https://api.solo.com.hr/' . $solo_api_bill_type;
 
-    // OVISNO O RAČUNU ILI PONUDI MAKNUTI NEKE STVARI IZ API CALLA!
-    // ponuda nema tip_racuna, datum_isporuke i fiskalizaciju
-
     // Check if billing or shipping.
     $field = 'shipping';
 
@@ -154,14 +151,14 @@ class Solo_Api_Woocommerce_Integration_Request {
       }
     }
 
-    $post_url = $url . '?token=' . $solo_api_token . '&tip_usluge=' . $solo_api_service_type . '&prikazi_porez=' . $solo_api_show_taxes . '&kupac_naziv=' . $order_buyer . '&kupac_adresa=' . $order_address;
+    $post_url = $url . '?token=' . $solo_api_token . '&tip_usluge=' . $solo_api_service_type . '&prikazi_porez=' . $solo_api_show_taxes . '&kupac_naziv=' . esc_attr( $order_buyer ) . '&kupac_adresa=' . esc_attr( $order_address );
 
     if ( $solo_api_bill_type === 'racun' ) {
       $post_url .= '&tip_racuna=' . $solo_api_recipe_type;
     }
 
     if ( ! empty( $pin_number ) ) {
-      $post_url .= '&kupac_oib=' . $pin_number;
+      $post_url .= '&kupac_oib=' . esc_attr( $pin_number );
     }
 
     // Individual order.
@@ -200,10 +197,10 @@ class Solo_Api_Woocommerce_Integration_Request {
         $due_date = date( 'Y-m-d', strtotime( '+1 week' ) );
     }
 
-    $post_url .= '&nacin_placanja=' . $solo_api_payment_type . '&rok_placanja=' . $due_date . '&napomene=' . $customer_note;
+    $post_url .= '&nacin_placanja=' . $solo_api_payment_type . '&rok_placanja=' . $due_date . '&napomene=' . wp_kses_post( $customer_note );
 
     if ( ! empty( $iban_number ) ) {
-      $post_url .= '&iban=' . $iban_number;
+      $post_url .= '&iban=' . esc_attr( $iban_number );
     }
 
     if ( $solo_api_bill_type === 'ponuda' ) {
@@ -225,15 +222,13 @@ class Solo_Api_Woocommerce_Integration_Request {
       }
     }
 
-    error_log( print_r( 'URL', true) );
-    error_log( print_r( esc_url( $post_url ), true) );
-
     $method_executed = false;
 
+    $regular_url = str_replace( ' ', '%20', $post_url );
     /**
      * For more info go to: https://solo.com.hr/api-dokumentacija/izrada-racuna
      */
-    $response = wp_remote_post( $post_url );
+    $response = wp_remote_post( $regular_url );
 
     if ( is_wp_error( $response ) ) {
       $error_code = wp_remote_retrieve_response_code( $response );
