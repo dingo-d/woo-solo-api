@@ -84,8 +84,6 @@ class Solo_Api_Woocommerce_Integration_Request {
     $solo_api_show_taxes    = get_option( 'solo_api_show_taxes' );
     $solo_api_tax_rate      = get_option( 'solo_api_tax_rate' );
     $solo_api_recipe_type   = get_option( 'solo_api_recipe_type' );
-    $solo_api_mail_title    = get_option( 'solo_api_mail_title' );
-    $solo_api_message       = get_option( 'solo_api_message' );
     $solo_api_currency_rate = get_option( 'solo_api_currency_rate' );
     $solo_api_fiscalization = get_option( 'solo_api_fiscalization' );
     $solo_api_due_date      = get_option( 'solo_api_due_date' );
@@ -236,14 +234,30 @@ class Solo_Api_Woocommerce_Integration_Request {
       return new \WP_Error( $error_code, $error_message );
     }
 
-    if ( $order_data['payment_method'] === 'bacs' ) { // OVO TREBA DODATI KAO OPCIJU U SETTINGSIMA! BANK TRANSFER.
+    $this->solo_api_send_mail( $response, sanitize_email( $email ), $order_data['payment_method'] );
+  }
+
+  /**
+   * Send mail method
+   *
+   * A method that will send a mail with created recipe or order pdf.
+   *
+   * @param  WP_Error|array $response       The response or WP_Error on failure.
+   * @param  string         $email          Customer email.
+   * @param  string         $payment_method Payment method type.
+   * @since  1.0.0
+   */
+  public function solo_api_send_mail( $response, $email, $payment_method ) {
+    if ( $payment_method === 'bacs' ) { // OVO TREBA DODATI KAO OPCIJU U SETTINGSIMA! BANK TRANSFER.
 
       global $wp_filesystem;
       if ( empty( $wp_filesystem ) ) {
         require_once( ABSPATH . '/wp-admin/includes/file.php' );
       }
 
-      $checkout_url = \wc_get_checkout_url();
+      $solo_api_message    = get_option( 'solo_api_message' );
+      $solo_api_mail_title = get_option( 'solo_api_mail_title' );
+      $checkout_url        = \wc_get_checkout_url();
 
       $url   = wp_nonce_url( $checkout_url ,'_wpnonce', '_wpnonce' );
       $creds = \request_filesystem_credentials( $url, '', false, false, null );
@@ -320,9 +334,7 @@ class Solo_Api_Woocommerce_Integration_Request {
       $headers  = 'MIME-Version: 1.0' . "\r\n";
       $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
-      $message = $solo_api_message;
-
-      wp_mail( $email, $solo_api_mail_title, $message, $headers, array( $attachment ) );
+      wp_mail( $email, $solo_api_mail_title, $solo_api_message, $headers, array( $attachment ) );
     }
   }
 }
