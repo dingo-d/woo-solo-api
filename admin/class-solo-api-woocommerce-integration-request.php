@@ -61,11 +61,11 @@ class Solo_Api_Woocommerce_Integration_Request {
    */
   public function solo_api_send_api_request( $order_id ) {
 
-    $method_executed = get_transient( 'method_executed' );
+    $method_executed = get_transient( 'solo_api_method_executed' );
     if ( $method_executed === false ) {
       // It wasn't there, so regenerate the data and save the transient.
       $method_executed = true;
-      set_transient( 'method_executed', $method_executed, 5 );
+      set_transient( 'solo_api_method_executed', $method_executed, 5 );
     } else {
       return;
     }
@@ -231,7 +231,9 @@ class Solo_Api_Woocommerce_Integration_Request {
     /**
      * For more info go to: https://solo.com.hr/api-dokumentacija/izrada-racuna
      */
-    $response = wp_remote_post( $regular_url );
+    $response = wp_remote_post( $regular_url, array(
+        'method' => 'POST',
+    ) );
 
     if ( is_wp_error( $response ) ) {
       $error_code = wp_remote_retrieve_response_code( $response );
