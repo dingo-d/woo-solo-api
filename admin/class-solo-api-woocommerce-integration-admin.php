@@ -184,6 +184,7 @@ class Solo_Api_Woocommerce_Integration_Admin {
     register_setting( 'solo-api-settings-group', 'solo_api_fiscalization' );
     register_setting( 'solo-api-settings-group', 'solo_api_due_date' );
     register_setting( 'solo-api-settings-group', 'solo_api_mail_gateway' );
+    register_setting( 'solo-api-settings-group', 'solo_api_send_pdf' );
   }
 
   /**

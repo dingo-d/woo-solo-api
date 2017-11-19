@@ -21,8 +21,8 @@
       <div class="options-wrapper__tabs">
         <div href="#tab1" class="tab active"><?php esc_html_e( 'Solo API token', 'solo-api-woocommerce-integration' ); ?></div>
         <div href="#tab2" class="tab"><?php esc_html_e( 'Solo API options', 'solo-api-woocommerce-integration' ); ?></div>
-        <div href="#tab3" class="tab"><?php esc_html_e( 'Mail settings', 'solo-api-woocommerce-integration' ); ?></div>
-        <div href="#tab4" class="tab"><?php esc_html_e( 'WooCommerce additional settings', 'solo-api-woocommerce-integration' ); ?></div>
+        <div href="#tab3" class="tab"><?php esc_html_e( 'WooCommerce additional settings', 'solo-api-woocommerce-integration' ); ?></div>
+        <div href="#tab4" class="tab"><?php esc_html_e( 'Mail settings', 'solo-api-woocommerce-integration' ); ?></div>
       </div>
       <div class="options-wrapper__content">
         <div id="tab1" class="tab-content active">
@@ -171,25 +171,13 @@
         </div>
         <div id="tab3" class="tab-content">
           <div class="option">
-            <label for="solo_api_mail_title" class="subtitle"><?php esc_html_e( 'Set the title of the mail that will be send with the PDF recipe.', 'solo-api-woocommerce-integration' ); ?></label>
-            <input type="text" id="solo_api_mail_title" name="solo_api_mail_title" value="<?php echo esc_attr( get_option( 'solo_api_mail_title' ) ); ?>">
-          </div>
-          <div class="option">
-            <label for="solo_api_message" class="subtitle"><?php esc_html_e( 'Type the message that will appear on the mail with the recipe PDF attached.', 'solo-api-woocommerce-integration' ); ?></label>
-            <textarea name="solo_api_message" id="solo_api_message" cols="30" rows="10"><?php echo wp_kses_post( get_option( 'solo_api_message' ) ); ?></textarea>
-          </div>
-          <div class="option">
-            <label for="solo_api_change_mail_from" class="subtitle"><?php esc_html_e( 'Change the \'from\' name that shows when WordPress sends the mail.', 'solo-api-woocommerce-integration' ); ?></label>
-            <div class="caution"><?php esc_html_e( 'CAUTION: This change is global, every mail send from your WordPress will have this \'from\' name.', 'solo-api-woocommerce-integration' ); ?></div>
-            <input type="text" id="solo_api_change_mail_from" name="solo_api_change_mail_from" value="<?php echo esc_attr( get_option( 'solo_api_change_mail_from' ) ); ?>">
-          </div>
-        </div>
-        <div id="tab4" class="tab-content">
-          <div class="option">
             <label for="solo_api_enable_pin"><input type="checkbox" id="solo_api_enable_pin" name="solo_api_enable_pin" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_enable_pin' ) ) , true ); ?>><?php esc_html_e( 'Enable the PIN field on the billing and shipping from in the checkout.', 'solo-api-woocommerce-integration' ); ?></label>
           </div>
           <div class="option">
             <label for="solo_api_enable_iban"><input type="checkbox" id="solo_api_enable_iban" name="solo_api_enable_iban" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_enable_iban' ) ) , true ); ?>><?php esc_html_e( 'Enable the IBAN field on the billing and shipping from in the checkout.', 'solo-api-woocommerce-integration' ); ?></label>
+          </div>
+          <div class="option">
+            <label for="solo_api_send_pdf"><input type="checkbox" id="solo_api_send_pdf" name="solo_api_send_pdf" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_send_pdf' ) ) , true ); ?>><?php esc_html_e( 'Send the email to the client with the PDF of the order or the recipe.', 'solo-api-woocommerce-integration' ); ?></label>
           </div>
           <div class="option">
             <label for="solo_api_mail_gateway[]" class="subtitle"><?php esc_html_e( 'Create pdf and send mail to the customer only if these payment gateways are selected.', 'solo-api-woocommerce-integration' ); ?></label>
@@ -203,6 +191,21 @@
             <?php
             }
             ?>
+          </div>
+        </div>
+        <div id="tab4" class="tab-content">
+          <div class="option">
+            <label for="solo_api_mail_title" class="subtitle"><?php esc_html_e( 'Set the title of the mail that will be send with the PDF recipe.', 'solo-api-woocommerce-integration' ); ?></label>
+            <input type="text" id="solo_api_mail_title" name="solo_api_mail_title" value="<?php echo esc_attr( get_option( 'solo_api_mail_title' ) ); ?>">
+          </div>
+          <div class="option">
+            <label for="solo_api_message" class="subtitle"><?php esc_html_e( 'Type the message that will appear on the mail with the recipe PDF attached.', 'solo-api-woocommerce-integration' ); ?></label>
+            <textarea name="solo_api_message" id="solo_api_message" cols="30" rows="10"><?php echo wp_kses_post( get_option( 'solo_api_message' ) ); ?></textarea>
+          </div>
+          <div class="option">
+            <label for="solo_api_change_mail_from" class="subtitle"><?php esc_html_e( 'Change the \'from\' name that shows when WordPress sends the mail.', 'solo-api-woocommerce-integration' ); ?></label>
+            <div class="caution"><?php esc_html_e( 'CAUTION: This change is global, every mail send from your WordPress will have this \'from\' name.', 'solo-api-woocommerce-integration' ); ?></div>
+            <input type="text" id="solo_api_change_mail_from" name="solo_api_change_mail_from" value="<?php echo esc_attr( get_option( 'solo_api_change_mail_from' ) ); ?>">
           </div>
         </div>
       </div>

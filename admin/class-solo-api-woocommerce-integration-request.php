@@ -261,7 +261,8 @@ class Solo_Api_Woocommerce_Integration_Request {
    */
   public function solo_api_send_mail( $body, $email, $payment_method ) {
 
-    $checked_gateways = get_option( 'solo_api_mail_gateway' );
+    $solo_api_send_pdf  = get_option( 'solo_api_send_pdf' );
+    $checked_gateways   = get_option( 'solo_api_mail_gateway' );
     $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 
     $in_gateway = false;
@@ -275,90 +276,91 @@ class Solo_Api_Woocommerce_Integration_Request {
       }
     }
 
-    if ( $in_gateway ) {
-
-      global $wp_filesystem;
-      if ( empty( $wp_filesystem ) ) {
-        require_once( ABSPATH . '/wp-admin/includes/file.php' );
-      }
-
-      $solo_api_message    = get_option( 'solo_api_message' );
-      $solo_api_mail_title = get_option( 'solo_api_mail_title' );
-      $checkout_url        = \wc_get_checkout_url();
-
-      $url   = wp_nonce_url( $checkout_url ,'_wpnonce', '_wpnonce' );
-      $creds = \request_filesystem_credentials( $url, '', false, false, null );
-
-      if ( $creds === false ) {
-        return; // stop processing here.
-      }
-
-      // Create pdf.
-      $pdf_link = esc_url( $body->ponuda->pdf );
-      $pdf_name = esc_html( $body->ponuda->broj_ponude );
-
-      $pdf_get = wp_remote_get( $pdf_link );
-
-      if ( is_wp_error( $pdf_get ) ) {
-        $error_code = wp_remote_retrieve_response_code( $pdf_get );
-        $error_message = wp_remote_retrieve_response_message( $pdf_get );
-        return new \WP_Error( $error_code, $error_message );
-      }
-
-      $pdf_contents = $pdf_get['body'];
-
-      $pdf_name = 'ponuda-' . $pdf_name;
-
-      // Now we have some credentials, try to get the wp_filesystem running.
-      if ( ! WP_Filesystem( $creds ) ) {
-        // Our credentials were no good, ask the user for them again.
-        \request_filesystem_credentials( $url, '', true, false, null );
-        return true;
-      }
-
-      $upload_dir = wp_upload_dir();
-
-      $new_dir = $upload_dir['basedir'] . '/ponude/' . date( 'Y' ) . '/' . date( 'm' );
-
-      if ( ! file_exists( $new_dir ) ) {
-        wp_mkdir_p( $new_dir );
-      }
-
-      $attachment = $new_dir . '/' . $pdf_name . '.pdf';
-
-      if ( file_exists( $attachment ) ) {
-        $attachment = $new_dir . '/' . $pdf_name . '-' . mt_rand() . '.pdf';
-      }
-
-      WP_Filesystem( $creds );
-
-      $wp_filesystem->put_contents(
-        $attachment,
-        $pdf_contents,
-        FS_CHMOD_FILE // predefined mode settings for WP files.
-      );
-
-      // Store the pdf as an attachment.
-      $filetype = wp_check_filetype( $pdf_name, null );
-
-      $attachment_array = array(
-          'guid'           => $attachment,
-          'post_mime_type' => $filetype['type'],
-          'post_title'     => $pdf_name,
-          'post_content'   => '',
-          'post_status'    => 'inherit',
-      );
-
-      $url_parse = wp_parse_url( $attachment );
-
-      $attachment_id = wp_insert_attachment( $attachment_array, $url_parse['path'], 0 ); // Create attachment in the Media screen.
-
-      // Send mail with the attachment.
-      $headers  = 'MIME-Version: 1.0' . "\r\n";
-      $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-
-      wp_mail( $email, $solo_api_mail_title, $solo_api_message, $headers, array( $attachment ) );
+    global $wp_filesystem;
+    if ( empty( $wp_filesystem ) ) {
+      require_once( ABSPATH . '/wp-admin/includes/file.php' );
     }
 
+    $checkout_url = \wc_get_checkout_url();
+    $url          = wp_nonce_url( $checkout_url ,'_wpnonce', '_wpnonce' );
+    $creds        = \request_filesystem_credentials( $url, '', false, false, null );
+
+    if ( $creds === false ) {
+      return; // stop processing here.
+    }
+
+    // Create pdf.
+    $pdf_link = esc_url( $body->ponuda->pdf );
+    $pdf_name = esc_html( $body->ponuda->broj_ponude );
+
+    $pdf_get = wp_remote_get( $pdf_link );
+
+    if ( is_wp_error( $pdf_get ) ) {
+      $error_code = wp_remote_retrieve_response_code( $pdf_get );
+      $error_message = wp_remote_retrieve_response_message( $pdf_get );
+      return new \WP_Error( $error_code, $error_message );
+    }
+
+    $pdf_contents = $pdf_get['body'];
+
+    $pdf_name = 'ponuda-' . $pdf_name;
+
+    // Now we have some credentials, try to get the wp_filesystem running.
+    if ( ! WP_Filesystem( $creds ) ) {
+      // Our credentials were no good, ask the user for them again.
+      \request_filesystem_credentials( $url, '', true, false, null );
+      return true;
+    }
+
+    $upload_dir = wp_upload_dir();
+
+    $new_dir = $upload_dir['basedir'] . '/ponude/' . date( 'Y' ) . '/' . date( 'm' );
+
+    if ( ! file_exists( $new_dir ) ) {
+      wp_mkdir_p( $new_dir );
+    }
+
+    $attachment = $new_dir . '/' . $pdf_name . '.pdf';
+
+    if ( file_exists( $attachment ) ) {
+      $attachment = $new_dir . '/' . $pdf_name . '-' . mt_rand() . '.pdf';
+    }
+
+    WP_Filesystem( $creds );
+
+    $wp_filesystem->put_contents(
+      $attachment,
+      $pdf_contents,
+      FS_CHMOD_FILE // predefined mode settings for WP files.
+    );
+
+    // Store the pdf as an attachment.
+    $filetype = wp_check_filetype( $pdf_name, null );
+
+    $attachment_array = array(
+        'guid'           => $attachment,
+        'post_mime_type' => $filetype['type'],
+        'post_title'     => $pdf_name,
+        'post_content'   => '',
+        'post_status'    => 'inherit',
+    );
+
+    $url_parse = wp_parse_url( $attachment );
+
+    $attachment_id = wp_insert_attachment( $attachment_array, $url_parse['path'], 0 ); // Create attachment in the Media screen.
+
+    if ( $solo_api_send_pdf === '1' ) {
+      if ( $in_gateway ) {
+
+        $solo_api_message    = get_option( 'solo_api_message' );
+        $solo_api_mail_title = get_option( 'solo_api_mail_title' );
+
+        // Send mail with the attachment.
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+
+        wp_mail( $email, $solo_api_mail_title, $solo_api_message, $headers, array( $attachment ) );
+      }
+    }
   }
 }

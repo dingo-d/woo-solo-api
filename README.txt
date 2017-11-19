@@ -1,116 +1,68 @@
 === Solo API WooCommerce Integration ===
 Contributors: dingo_bastard
-Donate link: https://madebydenis.com
-Tags: comments, spam
-Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
+Tags: woocommerce, api, solo api, solo, api integration, shop
+Requires at least: 4.4
+Requires PHP: 5.6
+Tested up to: 4.9
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-https://solo.com.hr/api-dokumentacija
-
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+This plugin provides integration of the SOLO service with WooCommerce store.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+Solo API WooCommerce Integration plugin will integrate with your checkout process, and will send the API request with
+the order details to the SOLO service which will in turn create a PDF of the recipe or order on your SOLO dashboard.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Additionally, the recipe or order will be stored on your site, and you'll have the option of sending this PDF as a separate
+mail to the client.
 
-A few notes about the sections above:
+There is an entire options page where you can specify the details of the order or the recipe such as unit measure, payment
+options, language of the recipe, currency and others.
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+The plugin is translated to Croatian, since the SOLO service is primarily used by Croatian users.
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+For more information about the SOLO API visit this link: https://solo.com.hr/api-dokumentacija
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+= Install & Activate =
 
-e.g.
+Installing the plugin is easy. Just follow these steps:
 
-1. Upload `solo-api-woocommerce-integration.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+**Installing from WordPress repository:**
 
-== Frequently Asked Questions ==
+Be sure you have WooCommerce plugin installed first, otherwise you'll get an error on the plugin activation.
 
-= A question that someone might have =
+1. From the dashboard of your site, navigate to Plugins --> Add New.
+2. In the Search type Solo API WooCommerce Integration
+3. Click Install Now
+4. When it's finished, activate the plugin via the prompt. A message will show confirming activation was successful.
 
-An answer to that question.
+**Uploading the .zip file:**
 
-= What about foo bar? =
+1. From the dashboard of your site, navigate to Plugins --> Add New.
+2. Select the Upload option and hit "Choose File."
+3. When the popup appears select the solo-api-woocommerce-integration.x.x.zip file from your desktop. (The 'x.x' will change depending on the current version number).
+4. Follow the on-screen instructions and wait as the upload completes.
+5. When it's finished, activate the plugin via the prompt. A message will show confirming activation was successful.
 
-Answer to foo bar dilemma.
+= Requirements =
+
+* PHP 5.6 or greater (recommended: PHP 7 or greater)
+* WordPress 4.4 or above (because of the built in REST interface)
+* jQuery 1.11.x
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. After installation, you can go to the plugin settings and add your SOLO token
+2. You can set up various options that are directly linked to how you want the recipe to look like
+3. You can add some additional WooCommerce settings such as PIN and IBAN fields
+4. You can add the mail settings that will be send (if you choose to) to the client when the order is completed
 
 == Changelog ==
 
 = 1.0 =
-* A change since the previous version.
-* Another change.
+* Initial release
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
-
-== Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
