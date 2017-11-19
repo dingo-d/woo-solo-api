@@ -169,7 +169,7 @@ class Solo_Api_Woocommerce_Integration_Request {
       $product_name = $item_data['name'];
       $quantity     = (double) ( $item_data['quantity'] !== 0 ) ? $item_data['quantity'] : 1;
       $single_price = $item_data['total'] / $quantity;
-      $line_total   = number_format( $single_price, 2, ',', '.' );
+      $line_total   = urlencode( number_format( $single_price, 2, ',', '.' ) );
 
       $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . $product_name . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $line_total . '&kolicina_' . $item_no . '=' . $quantity . '&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $solo_api_tax_rate;
 
@@ -202,7 +202,7 @@ class Solo_Api_Woocommerce_Integration_Request {
     }
 
     if ( $solo_api_bill_type === 'ponuda' ) {
-      $post_url .= '&jezik_ponude=' . $solo_api_languages;
+      $post_url .= '&jezik_ponude=' . $solo_api_languages . '&valuta_ponude=' . $solo_api_currency;
     } else {
       $post_url .= '&jezik_racuna=' . $solo_api_languages;
     }
@@ -223,6 +223,11 @@ class Solo_Api_Woocommerce_Integration_Request {
     $method_executed = false;
 
     $regular_url = str_replace( ' ', '%20', $post_url );
+
+    if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
+      error_log( print_r( $regular_url, true ) );
+    }
+
     /**
      * For more info go to: https://solo.com.hr/api-dokumentacija/izrada-racuna
      */
@@ -234,7 +239,12 @@ class Solo_Api_Woocommerce_Integration_Request {
       return new \WP_Error( $error_code, $error_message );
     }
 
-    $this->solo_api_send_mail( $response, sanitize_email( $email ), $order_data['payment_method'] );
+    $body = json_decode( $response['body'] );
+
+    if ( $body->status !== 0 ) {
+      return new \WP_Error( $body->status, $body->message );
+    }
+    $this->solo_api_send_mail( $body, sanitize_email( $email ), $order_data['payment_method'] );
   }
 
   /**
@@ -242,13 +252,26 @@ class Solo_Api_Woocommerce_Integration_Request {
    *
    * A method that will send a mail with created recipe or order pdf.
    *
-   * @param  WP_Error|array $response       The response or WP_Error on failure.
-   * @param  string         $email          Customer email.
-   * @param  string         $payment_method Payment method type.
+   * @param  object $body           The body of response.
+   * @param  string $email          Customer email.
+   * @param  string $payment_method Payment method type.
    * @since  1.0.0
    */
-  public function solo_api_send_mail( $response, $email, $payment_method ) {
-    if ( $payment_method === 'bacs' ) { // OVO TREBA DODATI KAO OPCIJU U SETTINGSIMA! BANK TRANSFER.
+  public function solo_api_send_mail( $body, $email, $payment_method ) {
+
+    $checked_gateways = get_option( 'solo_api_mail_gateway' );
+    $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
+
+    $in_gateway = false;
+
+    foreach ( $checked_gateways as $key => $gateway ) {
+      if ( array_key_exists( $gateway, $available_gateways ) ) {
+        $in_gateway = true;
+        break;
+      }
+    }
+
+    if ( $in_gateway ) {
 
       global $wp_filesystem;
       if ( empty( $wp_filesystem ) ) {
@@ -264,14 +287,6 @@ class Solo_Api_Woocommerce_Integration_Request {
 
       if ( $creds === false ) {
         return; // stop processing here.
-      }
-
-      $body = json_decode( $response['body'] );
-
-      if ( $body->status !== 0 ) {
-        $error_code = $body->status;
-        $error_message = $body->message;
-        return new \WP_Error( $error_code, $error_message );
       }
 
       // Create pdf.
@@ -336,5 +351,6 @@ class Solo_Api_Woocommerce_Integration_Request {
 
       wp_mail( $email, $solo_api_mail_title, $solo_api_message, $headers, array( $attachment ) );
     }
+
   }
 }

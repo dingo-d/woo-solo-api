@@ -186,10 +186,23 @@
         </div>
         <div id="tab4" class="tab-content">
           <div class="option">
-            <label for="solo_api_enable_pin" class="subtitle"><input type="checkbox" id="solo_api_enable_pin" name="solo_api_enable_pin" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_enable_pin' ) ) , true ); ?>><?php esc_html_e( 'Enable the PIN field on the billing and shipping in the checkout.', 'solo-api-woocommerce-integration' ); ?></label>
+            <label for="solo_api_enable_pin"><input type="checkbox" id="solo_api_enable_pin" name="solo_api_enable_pin" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_enable_pin' ) ) , true ); ?>><?php esc_html_e( 'Enable the PIN field on the billing and shipping from in the checkout.', 'solo-api-woocommerce-integration' ); ?></label>
           </div>
           <div class="option">
-            <label for="solo_api_enable_iban" class="subtitle"><input type="checkbox" id="solo_api_enable_iban" name="solo_api_enable_iban" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_enable_iban' ) ) , true ); ?>><?php esc_html_e( 'Enable the IBAN field on the billing and shipping in the checkout.', 'solo-api-woocommerce-integration' ); ?></label>
+            <label for="solo_api_enable_iban"><input type="checkbox" id="solo_api_enable_iban" name="solo_api_enable_iban" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_enable_iban' ) ) , true ); ?>><?php esc_html_e( 'Enable the IBAN field on the billing and shipping from in the checkout.', 'solo-api-woocommerce-integration' ); ?></label>
+          </div>
+          <div class="option">
+            <label for="solo_api_mail_gateway[]" class="subtitle"><?php esc_html_e( 'Create pdf and send mail to the customer only if these payment gateways are selected.', 'solo-api-woocommerce-integration' ); ?></label>
+            <?php
+            $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
+            $checked_gateways = get_option( 'solo_api_mail_gateway' );
+
+            foreach ( $available_gateways as $gateway_key => $gateway_value ) {
+            ?>
+            <label class="multi_checkbox"><input type="checkbox" name="solo_api_mail_gateway[]" value="<?php echo esc_attr( $gateway_key ); ?>" <?php echo ( is_array( $checked_gateways ) && in_array( esc_attr( $gateway_key ), $checked_gateways, true ) ) ? 'checked' : ''; ?> ><?php echo esc_html( $gateway_value->title ); ?></label><br>
+            <?php
+            }
+            ?>
           </div>
         </div>
       </div>

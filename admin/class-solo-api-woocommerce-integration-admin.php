@@ -183,6 +183,7 @@ class Solo_Api_Woocommerce_Integration_Admin {
     register_setting( 'solo-api-settings-group', 'solo_api_currency_rate' );
     register_setting( 'solo-api-settings-group', 'solo_api_fiscalization' );
     register_setting( 'solo-api-settings-group', 'solo_api_due_date' );
+    register_setting( 'solo-api-settings-group', 'solo_api_mail_gateway' );
   }
 
   /**
@@ -218,7 +219,7 @@ class Solo_Api_Woocommerce_Integration_Admin {
    */
   function solo_api_mail_from_name( $name ) {
     $new_name = esc_attr( get_option( 'solo_api_change_mail_from' ) );
-    if ( ! empty( $new_name ) ) {
+    if ( ! empty( $new_name ) && $new_name !== '' ) {
       return $new_name;
     } else {
       return $name;
