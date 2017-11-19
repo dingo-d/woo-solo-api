@@ -264,10 +264,12 @@ class Solo_Api_Woocommerce_Integration_Request {
 
     $in_gateway = false;
 
-    foreach ( $checked_gateways as $key => $gateway ) {
-      if ( array_key_exists( $gateway, $available_gateways ) ) {
-        $in_gateway = true;
-        break;
+    if ( ! empty( $checked_gateways ) ) {
+      foreach ( $checked_gateways as $key => $gateway ) {
+        if ( array_key_exists( $gateway, $available_gateways ) ) {
+          $in_gateway = true;
+          break;
+        }
       }
     }
 
