@@ -35,16 +35,16 @@ class Solo_Api_Woocommerce_Integration_Activator {
       // Deactivate the plugin.
       deactivate_plugins( plugin_basename( __FILE__ ) );
 
-      $error_message = esc_html__( 'You do not have proper authorization to activate a plugin!', 'solo-api-woocommerce-integration' );
-      die( $error_message );
+      $error_message = __( 'You do not have proper authorization to activate a plugin!', 'solo-api-woocommerce-integration' );
+      die( esc_html( $error_message ) );
     }
 
     if ( ! class_exists( 'WooCommerce' ) ) {
       // Deactivate the plugin.
       deactivate_plugins( plugin_basename( __FILE__ ) );
       // Throw an error in the WordPress admin console.
-      $error_message = esc_html__( 'This plugin requires ', 'solo-api-woocommerce-integration' ) . '<a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '">WooCommerce</a>' . esc_html__( ' plugin to be active!', 'solo-api-woocommerce-integration' );
-      die( $error_message );
+      $error_message = __( 'This plugin requires ', 'solo-api-woocommerce-integration' ) . '<a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '">WooCommerce</a>' . __( ' plugin to be active!', 'solo-api-woocommerce-integration' );
+      die( wp_kses_post( $error_message ) );
     }
   }
 

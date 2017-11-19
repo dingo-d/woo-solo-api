@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Solo API WooCommerce Integration\n"
-"POT-Creation-Date: 2017-11-12 20:26+0100\n"
-"PO-Revision-Date: 2017-11-12 20:28+0100\n"
+"POT-Creation-Date: 2017-11-19 12:28+0100\n"
+"PO-Revision-Date: 2017-11-19 12:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: Denis Žoljom\n"
 "Language: hr\n"
@@ -57,19 +57,19 @@ msgstr "IBAN broj naručitelja"
 msgid "Customer billing IBAN number"
 msgstr "IBAN broj naručitelja"
 
-#: admin/class-solo-api-woocommerce-integration-admin.php:195
+#: admin/class-solo-api-woocommerce-integration-admin.php:196
 msgid "Solo API WooCommerce Integration Options"
 msgstr "Opcije Solo API WooCommerce integracije"
 
-#: admin/class-solo-api-woocommerce-integration-admin.php:196
+#: admin/class-solo-api-woocommerce-integration-admin.php:197
 msgid "Solo API Options"
 msgstr "Solo API Opcije"
 
-#: admin/class-solo-api-woocommerce-integration-admin.php:209
+#: admin/class-solo-api-woocommerce-integration-admin.php:210
 msgid "SOLO API Settings"
 msgstr "Solo API Postavke"
 
-#: admin/class-solo-api-woocommerce-integration-request.php:184
+#: admin/class-solo-api-woocommerce-integration-request.php:182
 msgid "Shipping fee"
 msgstr "Naknade dostave"
 
@@ -502,14 +502,22 @@ msgstr ""
 "poslani sa ove stranice."
 
 #: admin/partials/solo-api-woocommerce-integration-admin-display.php:189
-msgid "Enable the PIN field on the billing and shipping in the checkout."
+msgid "Enable the PIN field on the billing and shipping from in the checkout."
 msgstr ""
 "Omogućite OIB polje na dostavnoj i naplatnoj formi na naplatnoj stranici."
 
 #: admin/partials/solo-api-woocommerce-integration-admin-display.php:192
-msgid "Enable the IBAN field on the billing and shipping in the checkout."
+msgid "Enable the IBAN field on the billing and shipping from in the checkout."
 msgstr ""
 "Omogućite IBAN polje na dostavnoj i naplatnoj formi na naplatnoj stranici."
+
+#: admin/partials/solo-api-woocommerce-integration-admin-display.php:195
+msgid ""
+"Create pdf and send mail to the customer only if these payment gateways are "
+"selected."
+msgstr ""
+"Kreirajte pdf i pošaljite ga na klijentov mail, samo ako su odabrani "
+"sljedeći platni procesori."
 
 #: includes/class-solo-api-woocommerce-integration-activator.php:38
 msgid "You do not have proper authorization to activate a plugin!"

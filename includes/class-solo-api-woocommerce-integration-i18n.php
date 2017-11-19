@@ -20,7 +20,7 @@ namespace Solo_Api_Woocommerce_Integration\Includes;
  * @package    Solo_Api_Woocommerce_Integration\Includes
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
-class Solo_Api_Woocommerce_Integration_i18n {
+class Solo_Api_Woocommerce_Integration_I18n {
 
   /**
    * Load the plugin text domain for translation.

@@ -169,7 +169,7 @@ class Solo_Api_Woocommerce_Integration_Request {
       $product_name = $item_data['name'];
       $quantity     = (double) ( $item_data['quantity'] !== 0 ) ? $item_data['quantity'] : 1;
       $single_price = $item_data['total'] / $quantity;
-      $line_total   = urlencode( number_format( $single_price, 2, ',', '.' ) );
+      $line_total   = rawurlencode( number_format( $single_price, 2, ',', '.' ) );
 
       $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . $product_name . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $line_total . '&kolicina_' . $item_no . '=' . $quantity . '&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $solo_api_tax_rate;
 
@@ -186,11 +186,11 @@ class Solo_Api_Woocommerce_Integration_Request {
 
     switch ( $solo_api_due_date ) {
       case '2':
-        $due_date = date( 'Y-m-d', strtotime( '+2 weeks' ) );
-        break;
+            $due_date = date( 'Y-m-d', strtotime( '+2 weeks' ) );
+            break;
       case '3':
-        $due_date = date( 'Y-m-d', strtotime( '+3 weeks' ) );
-        break;
+            $due_date = date( 'Y-m-d', strtotime( '+3 weeks' ) );
+            break;
       default:
         $due_date = date( 'Y-m-d', strtotime( '+1 week' ) );
     }

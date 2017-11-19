@@ -217,7 +217,7 @@ class Solo_Api_Woocommerce_Integration_Admin {
    * @param  string $name Name that is shown.
    * @return string       Changed name.
    */
-  function solo_api_mail_from_name( $name ) {
+  function solo_api_mail_from_name( solo_api_mail_from_name ) {
     $new_name = esc_attr( get_option( 'solo_api_change_mail_from' ) );
     if ( ! empty( $new_name ) && $new_name !== '' ) {
       return $new_name;

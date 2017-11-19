@@ -93,14 +93,14 @@ class Solo_Api_Woocommerce_Integration {
   /**
    * Define the locale for this plugin for internationalization.
    *
-   * Uses the Solo_Api_Woocommerce_Integration_i18n class in order to set the domain and to register the hook
+   * Uses the Solo_Api_Woocommerce_Integration_I18n class in order to set the domain and to register the hook
    * with WordPress.
    *
    * @since    1.0.0
    * @access   private
    */
   private function set_locale() {
-    $plugin_i18n = new Solo_Api_Woocommerce_Integration_i18n();
+    $plugin_i18n = new Solo_Api_Woocommerce_Integration_I18n();
 
     $this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
   }

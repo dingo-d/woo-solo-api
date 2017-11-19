@@ -24,7 +24,49 @@
  * @package    Solo_Api_Woocommerce_Integration
  */
 
+if ( ! current_user_can( 'activate_plugins' ) ) {
+  return;
+}
+
+check_admin_referer( 'bulk-plugins' );
+
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit;
+  exit;
+}
+
+/**
+ * Delete saved options in the database
+ */
+delete_option( 'solo_api_token' );
+delete_option( 'solo_api_measure' );
+delete_option( 'solo_api_payment_type' );
+delete_option( 'solo_api_languages' );
+delete_option( 'solo_api_currency' );
+delete_option( 'solo_api_bill_offer' );
+delete_option( 'solo_api_service_type' );
+delete_option( 'solo_api_show_taxes' );
+delete_option( 'solo_api_tax_rate' );
+delete_option( 'solo_api_recipe_type' );
+delete_option( 'solo_api_mail_title' );
+delete_option( 'solo_api_message' );
+delete_option( 'solo_api_change_mail_from' );
+delete_option( 'solo_api_enable_pin' );
+delete_option( 'solo_api_enable_iban' );
+delete_option( 'solo_api_currency_rate' );
+delete_option( 'solo_api_fiscalization' );
+delete_option( 'solo_api_due_date' );
+delete_option( 'solo_api_mail_gateway' );
+
+add_action( 'wp_mail_from_name', 'solo_api_revert_mail_from_name' );
+
+/**
+ * Revert mail from name that is send from WordPress to default
+ *
+ * @param  string $name Name that is shown.
+ * @return string       Changed name.
+ */
+function solo_api_revert_mail_from_name( $name ) {
+  $from_name = 'WordPress';
+  return $from_name;
 }
