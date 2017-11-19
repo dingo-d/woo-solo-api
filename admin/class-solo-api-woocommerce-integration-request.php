@@ -305,7 +305,7 @@ class Solo_Api_Woocommerce_Integration_Request {
 
       $pdf_contents = $pdf_get['body'];
 
-      $pdf_name = 'ponuda-' . $pdf_name . '.pdf';
+      $pdf_name = 'ponuda-' . $pdf_name;
 
       // Now we have some credentials, try to get the wp_filesystem running.
       if ( ! WP_Filesystem( $creds ) ) {
@@ -322,7 +322,11 @@ class Solo_Api_Woocommerce_Integration_Request {
         wp_mkdir_p( $new_dir );
       }
 
-      $attachment = $new_dir . '/' . $pdf_name;
+      $attachment = $new_dir . '/' . $pdf_name . '.pdf';
+
+      if ( file_exists( $attachment ) ) {
+        $attachment = $new_dir . '/' . $pdf_name . '-' . mt_rand() . '.pdf';
+      }
 
       WP_Filesystem( $creds );
 
