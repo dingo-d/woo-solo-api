@@ -21,14 +21,12 @@
  * @link       https://madebydenis.com
  * @since      1.0.0
  *
- * @package    Solo_Api_Woocommerce_Integration
+ * @package    Woo_Solo_Api
  */
 
 if ( ! current_user_can( 'activate_plugins' ) ) {
   return;
 }
-
-check_admin_referer( 'bulk-plugins' );
 
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {

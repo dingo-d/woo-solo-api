@@ -1,4 +1,4 @@
-=== Solo API WooCommerce Integration ===
+=== Woo Solo Api ===
 Contributors: dingo_bastard
 Tags: woocommerce, api, solo api, solo, api integration, shop
 Requires at least: 4.4
@@ -12,7 +12,7 @@ This plugin provides integration of the SOLO service with WooCommerce store.
 
 == Description ==
 
-Solo API WooCommerce Integration plugin will integrate with your checkout process, and will send the API request with
+Woo Solo Api plugin will integrate with your checkout process, and will send the API request with
 the order details to the SOLO service which will in turn create a PDF of the recipe or order on your SOLO dashboard.
 
 Additionally, the recipe or order will be stored on your site, and you'll have the option of sending this PDF as a separate
@@ -36,7 +36,7 @@ Installing the plugin is easy. Just follow these steps:
 Be sure you have WooCommerce plugin installed first, otherwise you'll get an error on the plugin activation.
 
 1. From the dashboard of your site, navigate to Plugins --> Add New.
-2. In the Search type Solo API WooCommerce Integration
+2. In the Search type Woo Solo Api
 3. Click Install Now
 4. When it's finished, activate the plugin via the prompt. A message will show confirming activation was successful.
 
@@ -44,7 +44,7 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 1. From the dashboard of your site, navigate to Plugins --> Add New.
 2. Select the Upload option and hit "Choose File."
-3. When the popup appears select the solo-api-woocommerce-integration.x.x.zip file from your desktop. (The 'x.x' will change depending on the current version number).
+3. When the popup appears select the woo-solo-api.x.x.zip file from your desktop. (The 'x.x' will change depending on the current version number).
 4. Follow the on-screen instructions and wait as the upload completes.
 5. When it's finished, activate the plugin via the prompt. A message will show confirming activation was successful.
 

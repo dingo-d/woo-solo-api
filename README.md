@@ -1,4 +1,4 @@
-# Solo API WooCommerce Integration
+# Woo Solo Api
 
 **Contributors**: dingo_bastard
 **Tags**: woocommerce, api, solo api, solo, api integration, shop
@@ -11,7 +11,7 @@
 
 ---
 
-Solo API WooCommerce Integration is used to send the preorder or order recipe from WooCommerce to SOLO API service.
+Woo Solo Api is used to send the preorder or order recipe from WooCommerce to SOLO API service.
 
 Read more here: https://solo.com.hr/api-dokumentacija
 
@@ -24,8 +24,8 @@ Read more here: https://solo.com.hr/api-dokumentacija
 
 ## Credits
 
-Solo API WooCommerce Integration is maintained by Denis Žoljom
+Woo Solo Api is maintained by Denis Žoljom
 
 ## Licence
 
-Solo API WooCommerce Integration is Copyright © 2017 Made by Denis. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+Woo Solo Api is Copyright © 2017 Made by Denis. It is free software, and may be redistributed under the terms specified in the LICENSE file.

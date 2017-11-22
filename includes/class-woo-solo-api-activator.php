@@ -5,10 +5,10 @@
  * @link       https://madebydenis.com
  * @since      1.0.0
  *
- * @package    Solo_Api_Woocommerce_Integration\Includes
+ * @package    Woo_Solo_Api\Includes
  */
 
-namespace Solo_Api_Woocommerce_Integration\Includes;
+namespace Woo_Solo_Api\Includes;
 
 /**
  * Fired during plugin activation.
@@ -16,10 +16,10 @@ namespace Solo_Api_Woocommerce_Integration\Includes;
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Solo_Api_Woocommerce_Integration\Includes
+ * @package    Woo_Solo_Api\Includes
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
-class Solo_Api_Woocommerce_Integration_Activator {
+class Woo_Solo_Api_Activator {
 
   /**
    * Activation function
@@ -35,7 +35,7 @@ class Solo_Api_Woocommerce_Integration_Activator {
       // Deactivate the plugin.
       deactivate_plugins( plugin_basename( __FILE__ ) );
 
-      $error_message = __( 'You do not have proper authorization to activate a plugin!', 'solo-api-woocommerce-integration' );
+      $error_message = __( 'You do not have proper authorization to activate a plugin!', 'woo-solo-api' );
       die( esc_html( $error_message ) );
     }
 
@@ -43,7 +43,7 @@ class Solo_Api_Woocommerce_Integration_Activator {
       // Deactivate the plugin.
       deactivate_plugins( plugin_basename( __FILE__ ) );
       // Throw an error in the WordPress admin console.
-      $error_message = __( 'This plugin requires ', 'solo-api-woocommerce-integration' ) . '<a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '">WooCommerce</a>' . __( ' plugin to be active!', 'solo-api-woocommerce-integration' );
+      $error_message = __( 'This plugin requires ', 'woo-solo-api' ) . '<a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '">WooCommerce</a>' . __( ' plugin to be active!', 'woo-solo-api' );
       die( wp_kses_post( $error_message ) );
     }
   }

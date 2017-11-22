@@ -5,10 +5,10 @@
  * @link       https://madebydenis.com
  * @since      1.0.0
  *
- * @package    Solo_Api_Woocommerce_Integration\Includes
+ * @package    Woo_Solo_Api\Includes
  */
 
-namespace Solo_Api_Woocommerce_Integration\Includes;
+namespace Woo_Solo_Api\Includes;
 
 /**
  * Register all actions and filters for the plugin.
@@ -17,10 +17,10 @@ namespace Solo_Api_Woocommerce_Integration\Includes;
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Solo_Api_Woocommerce_Integration\Includes
+ * @package    Woo_Solo_Api\Includes
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
-class Solo_Api_Woocommerce_Integration_Loader {
+class Woo_Solo_Api_Loader {
 
   /**
    * The array of actions registered with WordPress.

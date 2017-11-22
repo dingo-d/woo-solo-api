@@ -5,22 +5,22 @@
  *
  * @link              https://madebydenis.com
  * @since             1.0.0
- * @package           Solo_Api_Woocommerce_Integration
+ * @package           Woo_Solo_Api
  *
- * Plugin Name:       Solo API WooCommerce Integration
- * Plugin URI:        https://madebydenis.com/solo-api-woocommerce-integration
+ * Plugin Name:       Woo Solo Api
+ * Plugin URI:        https://madebydenis.com/woo-solo-api
  * Description:       This plugin provides integration of the SOLO API service with WooCommerce.
  * Version:           1.0.0
  * Author:            Denis Žoljom
  * Author URI:        https://madebydenis.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       solo-api-woocommerce-integration
+ * Text Domain:       woo-solo-api
  * Domain Path:       /languages
  */
 
-namespace Solo_Api_Woocommerce_Integration;
-use Solo_Api_Woocommerce_Integration\Includes as Includes;
+namespace Woo_Solo_Api;
+use Woo_Solo_Api\Includes as Includes;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -28,21 +28,21 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'SAWI_PLUGIN_VERSION', '1.0.0' );
-define( 'SAWI_PLUGIN_NAME', 'solo-api-woocommerce-integration' );
+define( 'SAWI_PLUGIN_NAME', 'woo-solo-api' );
 
 // Include the autoloader so we can dynamically include the rest of the classes.
 include_once( 'lib/autoloader.php' );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-solo-api-woocommerce-integration-activator.php
+ * This action is documented in includes/class-woo-solo-api-activator.php
  */
-function activate_solo_api_woocommerce_integration() {
-  require_once plugin_dir_path( __FILE__ ) . 'includes/class-solo-api-woocommerce-integration-activator.php';
-  Includes\Solo_Api_Woocommerce_Integration_Activator::activate();
+function activate_woo_solo_api() {
+  require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-solo-api-activator.php';
+  Includes\Woo_Solo_Api_Activator::activate();
 }
 
-register_activation_hook( __FILE__, __NAMESPACE__ . '\\activate_solo_api_woocommerce_integration' );
+register_activation_hook( __FILE__, __NAMESPACE__ . '\\activate_woo_solo_api' );
 
 /**
  * Begins execution of the plugin.
@@ -53,11 +53,11 @@ register_activation_hook( __FILE__, __NAMESPACE__ . '\\activate_solo_api_woocomm
  *
  * @since    1.0.0
  */
-function run_solo_api_woocommerce_integration() {
+function run_woo_solo_api() {
 
-  $plugin = new Includes\Solo_Api_Woocommerce_Integration();
+  $plugin = new Includes\Woo_Solo_Api();
   $plugin->run();
 
 }
 
-run_solo_api_woocommerce_integration();
+run_woo_solo_api();

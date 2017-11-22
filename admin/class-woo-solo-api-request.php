@@ -5,18 +5,18 @@
  * @link       https://madebydenis.com
  * @since      1.0.0
  *
- * @package    Solo_Api_Woocommerce_Integration\Admin
+ * @package    Woo_Solo_Api\Admin
  */
 
-namespace Solo_Api_Woocommerce_Integration\Admin;
+namespace Woo_Solo_Api\Admin;
 
 /**
  * Main api request class
  *
- * @package    Solo_Api_Woocommerce_Integration\Admin
+ * @package    Woo_Solo_Api\Admin
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
-class Solo_Api_Woocommerce_Integration_Request {
+class Woo_Solo_Api_Request {
 
   /**
    * The ID of this plugin.
@@ -179,7 +179,7 @@ class Solo_Api_Woocommerce_Integration_Request {
     // Shipping.
     if ( (int) $order->get_total_shipping() > 0 ) {
       $shipping_price = number_format( (int) $order->get_total_shipping(), 2, ',', '.' );
-      $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . esc_html__( 'Shipping fee', 'solo-api-woocommerce-integration' ) . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $shipping_price . '&kolicina_' . $item_no . '=1&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $solo_api_tax_rate;
+      $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . esc_html__( 'Shipping fee', 'woo-solo-api' ) . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $shipping_price . '&kolicina_' . $item_no . '=1&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $solo_api_tax_rate;
     }
 
     $customer_note = ( isset( $order->data['customer_note'] ) && '' !== $order->data['customer_note'] ) ? $order->data['customer_note'] : '';

@@ -11,12 +11,12 @@
  * @link       https://madebydenis/
  * @since      1.0.0
  *
- * @package    Solo_Api_Woocommerce_Integration\Lib
+ * @package    Woo_Solo_Api\Lib
  */
 
-namespace Solo_Api_Woocommerce_Integration\Lib;
+namespace Woo_Solo_Api\Lib;
 
-spl_autoload_register( __NAMESPACE__ . '\\solo_api_woocommerce_integration_autoloader' );
+spl_autoload_register( __NAMESPACE__ . '\\woo_solo_api_autoloader' );
 
 /**
  * Dynamically loads the class attempting to be instantiated elsewhere in the
@@ -24,7 +24,7 @@ spl_autoload_register( __NAMESPACE__ . '\\solo_api_woocommerce_integration_autol
  *
  * @param string $filename The fully-qualified name of the file that contains the class.
  */
-function solo_api_woocommerce_integration_autoloader( $filename ) {
+function woo_solo_api_autoloader( $filename ) {
   $file_path = explode( '\\', $filename );
 
   if ( isset( $file_path[ count( $file_path ) - 1 ] ) ) {

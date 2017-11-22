@@ -5,20 +5,20 @@
  * @link       https://madebydenis.com
  * @since      1.0.0
  *
- * @package    Solo_Api_Woocommerce_Integration\Admin
+ * @package    Woo_Solo_Api\Admin
  */
 
-namespace Solo_Api_Woocommerce_Integration\Admin;
+namespace Woo_Solo_Api\Admin;
 
 /**
  * The admin-specific functionality of the plugin.
  *
  * Defines the plugin name, version, and enqueue hooks.
  *
- * @package    Solo_Api_Woocommerce_Integration\Admin
+ * @package    Woo_Solo_Api\Admin
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
-class Solo_Api_Woocommerce_Integration_Admin {
+class Woo_Solo_Api_Admin {
 
   /**
    * The ID of this plugin.
@@ -56,7 +56,7 @@ class Solo_Api_Woocommerce_Integration_Admin {
    * @since 1.0.0
    */
   public function options_page_render() {
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/solo-api-woocommerce-integration-admin-display.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/woo-solo-api-admin-display.php';
   }
 
   /**
@@ -69,7 +69,7 @@ class Solo_Api_Woocommerce_Integration_Admin {
    * @return array $post_mime_types Updated post mime types.
    */
   public function add_pdf_post_mime_type( $post_mime_types ) {
-    $post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'solo-api-woocommerce-integration' ), esc_html__( 'Manage PDFs', 'solo-api-woocommerce-integration' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' , 'solo-api-woocommerce-integration' ) );
+    $post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'woo-solo-api' ), esc_html__( 'Manage PDFs', 'woo-solo-api' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' , 'woo-solo-api' ) );
 
     return $post_mime_types;
   }
@@ -84,16 +84,16 @@ class Solo_Api_Woocommerce_Integration_Admin {
    */
   public function add_pin_field( $fields ) {
     $fields['shipping']['shipping_pin_number'] = array(
-        'label'       => esc_html__( 'PIN number', 'solo-api-woocommerce-integration' ),
-        'placeholder' => _x( '01234567891', 'placeholder', 'solo-api-woocommerce-integration' ),
+        'label'       => esc_html__( 'PIN number', 'woo-solo-api' ),
+        'placeholder' => _x( '01234567891', 'placeholder', 'woo-solo-api' ),
         'required'    => false,
         'class'       => array( 'form-row-wide' ),
         'clear'       => true,
     );
 
     $fields['billing']['billing_pin_number'] = array(
-        'label'       => esc_html__( 'PIN number', 'solo-api-woocommerce-integration' ),
-        'placeholder' => _x( '01234567891', 'placeholder', 'solo-api-woocommerce-integration' ),
+        'label'       => esc_html__( 'PIN number', 'woo-solo-api' ),
+        'placeholder' => _x( '01234567891', 'placeholder', 'woo-solo-api' ),
         'required'    => false,
         'class'       => array( 'form-row-wide' ),
         'clear'       => true,
@@ -112,16 +112,16 @@ class Solo_Api_Woocommerce_Integration_Admin {
    */
   public function add_iban_field( $fields ) {
     $fields['shipping']['shipping_iban_number'] = array(
-        'label'       => esc_html__( 'IBAN number', 'solo-api-woocommerce-integration' ),
-        'placeholder' => _x( 'HR12345678901234567890', 'placeholder', 'solo-api-woocommerce-integration' ),
+        'label'       => esc_html__( 'IBAN number', 'woo-solo-api' ),
+        'placeholder' => _x( 'HR12345678901234567890', 'placeholder', 'woo-solo-api' ),
         'required'    => false,
         'class'       => array( 'form-row-wide' ),
         'clear'       => true,
     );
 
     $fields['billing']['billing_iban_number'] = array(
-        'label'       => esc_html__( 'IBAN number', 'solo-api-woocommerce-integration' ),
-        'placeholder' => _x( 'HR12345678901234567890', 'placeholder', 'solo-api-woocommerce-integration' ),
+        'label'       => esc_html__( 'IBAN number', 'woo-solo-api' ),
+        'placeholder' => _x( 'HR12345678901234567890', 'placeholder', 'woo-solo-api' ),
         'required'    => false,
         'class'       => array( 'form-row-wide' ),
         'clear'       => true,
@@ -143,19 +143,19 @@ class Solo_Api_Woocommerce_Integration_Admin {
     $billing_iban  = get_post_meta( $order->get_id(), '_billing_iban_number', true );
 
     if ( ! empty( $shipping_pin ) ) {
-      echo '<p><strong> ' . esc_html__( 'Customer shipping PIN number', 'solo-api-woocommerce-integration' ) . ' :</strong> ' . esc_html( $shipping_pin ) . '</p>';
+      echo '<p><strong> ' . esc_html__( 'Customer shipping PIN number', 'woo-solo-api' ) . ' :</strong> ' . esc_html( $shipping_pin ) . '</p>';
     }
 
     if ( ! empty( $billing_pin ) ) {
-      echo '<p><strong> ' . esc_html__( 'Customer billing PIN number', 'solo-api-woocommerce-integration' ) . ' :</strong> ' . esc_html( $billing_pin ) . '</p>';
+      echo '<p><strong> ' . esc_html__( 'Customer billing PIN number', 'woo-solo-api' ) . ' :</strong> ' . esc_html( $billing_pin ) . '</p>';
     }
 
     if ( ! empty( $shipping_iban ) ) {
-      echo '<p><strong> ' . esc_html__( 'Customer shipping IBAN number', 'solo-api-woocommerce-integration' ) . ' :</strong> ' . esc_html( $shipping_iban ) . '</p>';
+      echo '<p><strong> ' . esc_html__( 'Customer shipping IBAN number', 'woo-solo-api' ) . ' :</strong> ' . esc_html( $shipping_iban ) . '</p>';
     }
 
     if ( ! empty( $billing_iban ) ) {
-      echo '<p><strong> ' . esc_html__( 'Customer billing IBAN number', 'solo-api-woocommerce-integration' ) . ' :</strong> ' . esc_html( $billing_iban ) . '</p>';
+      echo '<p><strong> ' . esc_html__( 'Customer billing IBAN number', 'woo-solo-api' ) . ' :</strong> ' . esc_html( $billing_iban ) . '</p>';
     }
   }
 
@@ -194,8 +194,8 @@ class Solo_Api_Woocommerce_Integration_Admin {
    */
   public function add_plugin_options_page() {
     add_options_page(
-      esc_html__( 'Solo API WooCommerce Integration Options', 'solo-api-woocommerce-integration' ),
-      esc_html__( 'Solo API Options', 'solo-api-woocommerce-integration' ),
+      esc_html__( 'Woo Solo Api Options', 'woo-solo-api' ),
+      esc_html__( 'Solo API Options', 'woo-solo-api' ),
       'manage_options',
       'solo_api_options',
       array( $this, 'options_page_render' )
@@ -208,7 +208,7 @@ class Solo_Api_Woocommerce_Integration_Admin {
    * @param array $links Plugin action links.
    */
   public function add_action_links( $links ) {
-     $links[] = '<a href="' . admin_url( 'options-general.php?page=solo_api_options' ) . '">' . esc_html__( 'SOLO API Settings', 'solo-api-woocommerce-integration' ) . '</a>';
+     $links[] = '<a href="' . admin_url( 'options-general.php?page=solo_api_options' ) . '">' . esc_html__( 'SOLO API Settings', 'woo-solo-api' ) . '</a>';
     return $links;
   }
 
@@ -233,7 +233,7 @@ class Solo_Api_Woocommerce_Integration_Admin {
    * @since    1.0.0
    */
   public function enqueue_styles() {
-    wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/solo-api-woocommerce-integration-admin.css', array(), $this->version, 'all' );
+    wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/woo-solo-api-admin.css', array(), $this->version, 'all' );
   }
 
   /**
@@ -242,6 +242,6 @@ class Solo_Api_Woocommerce_Integration_Admin {
    * @since    1.0.0
    */
   public function enqueue_scripts() {
-    wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/solo-api-woocommerce-integration-admin.js', array( 'jquery' ), $this->version, false );
+    wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/woo-solo-api-admin.js', array( 'jquery' ), $this->version, false );
   }
 }
