@@ -74,21 +74,17 @@ class Woo_Solo_Api_Request {
     $order_data = $order->get_data(); // The Order data.
 
     // Options.
-    $solo_api_token         = get_option( 'solo_api_token' );
-    $solo_api_measure       = get_option( 'solo_api_measure' );
-    $solo_api_payment_type  = get_option( 'solo_api_payment_type' );
-    $solo_api_languages     = get_option( 'solo_api_languages' );
-    $solo_api_currency      = get_option( 'solo_api_currency' );
-    $solo_api_bill_type     = get_option( 'solo_api_bill_offer' );
-    $solo_api_service_type  = get_option( 'solo_api_service_type' );
-    $solo_api_show_taxes    = get_option( 'solo_api_show_taxes' );
-    $solo_api_tax_rate      = get_option( 'solo_api_tax_rate' );
-    $solo_api_recipe_type   = get_option( 'solo_api_recipe_type' );
-    $solo_api_currency_rate = get_option( 'solo_api_currency_rate' );
-    $solo_api_fiscalization = get_option( 'solo_api_fiscalization' );
-    $solo_api_due_date      = get_option( 'solo_api_due_date' );
-
-    $url = 'https://api.solo.com.hr/' . $solo_api_bill_type;
+    $solo_api_token           = get_option( 'solo_api_token' );
+    $solo_api_measure         = get_option( 'solo_api_measure' );
+    $solo_api_payment_type    = get_option( 'solo_api_payment_type' );
+    $solo_api_languages       = get_option( 'solo_api_languages' );
+    $solo_api_currency        = get_option( 'solo_api_currency' );
+    $solo_api_service_type    = get_option( 'solo_api_service_type' );
+    $solo_api_show_taxes      = get_option( 'solo_api_show_taxes' );
+    $solo_api_tax_rate        = get_option( 'solo_api_tax_rate' );
+    $solo_api_invoice_type    = get_option( 'solo_api_invoice_type' );
+    $solo_api_currency_rate   = get_option( 'solo_api_currency_rate' );
+    $solo_api_due_date        = get_option( 'solo_api_due_date' );
 
     // Check if billing or shipping.
     $field = 'shipping';
@@ -149,10 +145,15 @@ class Woo_Solo_Api_Request {
       }
     }
 
+    $solo_api_bill_type     = get_option( 'solo_api_bill_offer-' . esc_attr( $order_data['payment_method'] ) );
+    $solo_api_fiscalization = get_option( 'solo_api_fiscalization-' . esc_attr( $order_data['payment_method'] ) );
+
+    $url = 'https://api.solo.com.hr/' . $solo_api_bill_type;
+
     $post_url = $url . '?token=' . $solo_api_token . '&tip_usluge=' . $solo_api_service_type . '&prikazi_porez=' . $solo_api_show_taxes . '&kupac_naziv=' . esc_attr( $order_buyer ) . '&kupac_adresa=' . esc_attr( $order_address );
 
     if ( $solo_api_bill_type === 'racun' ) {
-      $post_url .= '&tip_racuna=' . $solo_api_recipe_type;
+      $post_url .= '&tip_racuna=' . $solo_api_invoice_type;
     }
 
     if ( ! empty( $pin_number ) ) {
@@ -213,7 +214,7 @@ class Woo_Solo_Api_Request {
     }
 
     if ( $solo_api_bill_type === 'racun' ) {
-      if ( intval( $solo_api_fiscalization ) === 1 ) {
+      if ( ! empty( $solo_api_fiscalization ) ) {
         $post_url .= '&fiskalizacija=1';
       } else {
         $post_url .= '&fiskalizacija=0';
@@ -252,7 +253,7 @@ class Woo_Solo_Api_Request {
   /**
    * Send mail method
    *
-   * A method that will send a mail with created recipe or order pdf.
+   * A method that will send a mail with created invoice or order pdf.
    *
    * @param  object $body           The body of response.
    * @param  string $email          Customer email.

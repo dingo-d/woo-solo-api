@@ -17,4 +17,18 @@ jQuery(document).ready(function($){
     toggleTab($(this));
   });
 
+  function selectFiscalization() {
+    var $select = $(this);
+    console.log($select.val());
+    if ($select.val() === 'racun') {
+      $select.parents('.fields__single').find('input[type="checkbox"]').prop('disabled', false);
+    } else {
+      $select.parents('.fields__single').find('input[type="checkbox"]').prop('checked', false);
+      $select.parents('.fields__single').find('input[type="checkbox"]').prop('disabled', true);
+    }
+  }
+
+  $('select[name*=solo_api_bill_offer-]').on('change', selectFiscalization);
+  $('select[name*=solo_api_bill_offer-]').each(selectFiscalization);
+
 });

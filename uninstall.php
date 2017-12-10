@@ -41,20 +41,25 @@ delete_option( 'solo_api_measure' );
 delete_option( 'solo_api_payment_type' );
 delete_option( 'solo_api_languages' );
 delete_option( 'solo_api_currency' );
-delete_option( 'solo_api_bill_offer' );
 delete_option( 'solo_api_service_type' );
 delete_option( 'solo_api_show_taxes' );
 delete_option( 'solo_api_tax_rate' );
-delete_option( 'solo_api_recipe_type' );
+delete_option( 'solo_api_invoice_type' );
 delete_option( 'solo_api_mail_title' );
 delete_option( 'solo_api_message' );
 delete_option( 'solo_api_change_mail_from' );
 delete_option( 'solo_api_enable_pin' );
 delete_option( 'solo_api_enable_iban' );
 delete_option( 'solo_api_currency_rate' );
-delete_option( 'solo_api_fiscalization' );
 delete_option( 'solo_api_due_date' );
 delete_option( 'solo_api_mail_gateway' );
+delete_option( 'solo_api_send_pdf' );
+
+$available_woo_gateways = WC()->payment_gateways->get_available_payment_gateways();
+foreach ( $available_woo_gateways as $gateway_woo_sett => $gateway_woo_val ) {
+  delete_option( 'solo_api_bill_offer-' . esc_attr( $gateway_woo_val->id ) );
+  delete_option( 'solo_api_fiscalization-' . esc_attr( $gateway_woo_val->id ) );
+}
 
 add_action( 'wp_mail_from_name', 'solo_api_revert_mail_from_name' );
 

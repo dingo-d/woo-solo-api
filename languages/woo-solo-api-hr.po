@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Woo Solo Api\n"
-"POT-Creation-Date: 2017-11-19 12:28+0100\n"
-"PO-Revision-Date: 2017-11-19 12:29+0100\n"
+"POT-Creation-Date: 2017-12-10 11:23+0100\n"
+"PO-Revision-Date: 2017-12-10 11:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: Denis Žoljom\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.5\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -31,8 +31,7 @@ msgstr "Uredi PDF-ove"
 msgid "PDF <span class=\"count\">(%s)</span>"
 msgstr "PDF <span class=\"count\">(%s)</span>"
 
-#: admin/class-woo-solo-api-admin.php:87
-#: admin/class-woo-solo-api-admin.php:95
+#: admin/class-woo-solo-api-admin.php:87 admin/class-woo-solo-api-admin.php:95
 msgid "PIN number"
 msgstr "OIB broj"
 
@@ -57,27 +56,27 @@ msgstr "IBAN broj naručitelja"
 msgid "Customer billing IBAN number"
 msgstr "IBAN broj naručitelja"
 
-#: admin/class-woo-solo-api-admin.php:196
+#: admin/class-woo-solo-api-admin.php:201
 msgid "Woo Solo Api Options"
 msgstr "Opcije Solo API WooCommerce integracije"
 
-#: admin/class-woo-solo-api-admin.php:197
+#: admin/class-woo-solo-api-admin.php:202
 msgid "Solo API Options"
 msgstr "Solo API Opcije"
 
-#: admin/class-woo-solo-api-admin.php:210
+#: admin/class-woo-solo-api-admin.php:215
 msgid "SOLO API Settings"
 msgstr "Solo API Postavke"
 
-#: admin/class-woo-solo-api-request.php:182
+#: admin/class-woo-solo-api-request.php:183
 msgid "Shipping fee"
 msgstr "Naknade dostave"
 
-#: admin/partials/woo-solo-api-admin-display.php:15
+#: admin/partials/woo-solo-api-admin-display.php:17
 msgid "Solo API settings"
 msgstr "Solo API postavke"
 
-#: admin/partials/woo-solo-api-admin-display.php:19
+#: admin/partials/woo-solo-api-admin-display.php:21
 msgid ""
 "For more details on the options you can read the official SOLO API "
 "documentation here: "
@@ -85,28 +84,28 @@ msgstr ""
 "Za više detalja o opcijama APIja možete pročitati službenu dokumentaciju "
 "ovdje: "
 
-#: admin/partials/woo-solo-api-admin-display.php:22
+#: admin/partials/woo-solo-api-admin-display.php:24
 msgid "Solo API token"
 msgstr "Solo API token"
 
-#: admin/partials/woo-solo-api-admin-display.php:23
+#: admin/partials/woo-solo-api-admin-display.php:25
 msgid "Solo API options"
 msgstr "Solo API opcije"
 
-#: admin/partials/woo-solo-api-admin-display.php:24
-msgid "Mail settings"
-msgstr "Opcije e-maila"
-
-#: admin/partials/woo-solo-api-admin-display.php:25
+#: admin/partials/woo-solo-api-admin-display.php:26
 msgid "WooCommerce additional settings"
 msgstr "Dodatne postavke za WooCommerce"
 
-#: admin/partials/woo-solo-api-admin-display.php:30
+#: admin/partials/woo-solo-api-admin-display.php:27
+msgid "Mail settings"
+msgstr "Opcije e-maila"
+
+#: admin/partials/woo-solo-api-admin-display.php:32
 msgid "Enter your personal token that you obtained from you SOLO account."
 msgstr ""
 "Upišite vaš osobni token koji ste nabavili sa vašeg SOLO korisničkog računa."
 
-#: admin/partials/woo-solo-api-admin-display.php:37
+#: admin/partials/woo-solo-api-admin-display.php:39
 msgid ""
 "Unit measure - select the default measure in your shop (e.g. piece, hour, "
 "m^3 etc.)"
@@ -114,275 +113,283 @@ msgstr ""
 "Jedinična mjera - izaberite zadanu jediničnu mjeru u vašoj trgovini (npr. "
 "komad, sat, m^3 itd.)"
 
-#: admin/partials/woo-solo-api-admin-display.php:39
+#: admin/partials/woo-solo-api-admin-display.php:41
 msgid "-"
 msgstr "-"
 
-#: admin/partials/woo-solo-api-admin-display.php:40
+#: admin/partials/woo-solo-api-admin-display.php:42
 msgid "piece"
 msgstr "komad"
 
-#: admin/partials/woo-solo-api-admin-display.php:41
+#: admin/partials/woo-solo-api-admin-display.php:43
 msgid "hour"
 msgstr "sat"
 
-#: admin/partials/woo-solo-api-admin-display.php:42
+#: admin/partials/woo-solo-api-admin-display.php:44
 msgid "year"
 msgstr "godina"
 
-#: admin/partials/woo-solo-api-admin-display.php:43
+#: admin/partials/woo-solo-api-admin-display.php:45
 msgid "km"
 msgstr "kilometar"
 
-#: admin/partials/woo-solo-api-admin-display.php:44
+#: admin/partials/woo-solo-api-admin-display.php:46
 msgid "litre"
 msgstr "litra"
 
-#: admin/partials/woo-solo-api-admin-display.php:45
+#: admin/partials/woo-solo-api-admin-display.php:47
 msgid "kg"
 msgstr "kilogram"
 
-#: admin/partials/woo-solo-api-admin-display.php:46
+#: admin/partials/woo-solo-api-admin-display.php:48
 msgid "kWh"
 msgstr "kilovat-sat"
 
-#: admin/partials/woo-solo-api-admin-display.php:47
+#: admin/partials/woo-solo-api-admin-display.php:49
 msgid "m³"
 msgstr "m³"
 
-#: admin/partials/woo-solo-api-admin-display.php:48
+#: admin/partials/woo-solo-api-admin-display.php:50
 msgid "tonne"
 msgstr "tona"
 
-#: admin/partials/woo-solo-api-admin-display.php:49
+#: admin/partials/woo-solo-api-admin-display.php:51
 msgid "m²"
 msgstr "m²"
 
-#: admin/partials/woo-solo-api-admin-display.php:50
+#: admin/partials/woo-solo-api-admin-display.php:52
 msgid "m"
 msgstr "metar"
 
-#: admin/partials/woo-solo-api-admin-display.php:51
+#: admin/partials/woo-solo-api-admin-display.php:53
 msgid "day"
 msgstr "dan"
 
-#: admin/partials/woo-solo-api-admin-display.php:52
+#: admin/partials/woo-solo-api-admin-display.php:54
 msgid "month"
 msgstr "mjesec"
 
-#: admin/partials/woo-solo-api-admin-display.php:53
+#: admin/partials/woo-solo-api-admin-display.php:55
 msgid "night"
 msgstr "noć"
 
-#: admin/partials/woo-solo-api-admin-display.php:54
+#: admin/partials/woo-solo-api-admin-display.php:56
 msgid "card"
 msgstr "kartica"
 
-#: admin/partials/woo-solo-api-admin-display.php:55
+#: admin/partials/woo-solo-api-admin-display.php:57
 msgid "account"
 msgstr "račun"
 
-#: admin/partials/woo-solo-api-admin-display.php:56
+#: admin/partials/woo-solo-api-admin-display.php:58
 msgid "pair"
 msgstr "par"
 
-#: admin/partials/woo-solo-api-admin-display.php:57
+#: admin/partials/woo-solo-api-admin-display.php:59
 msgid "ml"
 msgstr "mililitra"
 
-#: admin/partials/woo-solo-api-admin-display.php:58
+#: admin/partials/woo-solo-api-admin-display.php:60
 msgid "pax"
 msgstr "pax"
 
-#: admin/partials/woo-solo-api-admin-display.php:59
+#: admin/partials/woo-solo-api-admin-display.php:61
 msgid "room"
 msgstr "soba"
 
-#: admin/partials/woo-solo-api-admin-display.php:60
+#: admin/partials/woo-solo-api-admin-display.php:62
 msgid "appartmant"
 msgstr "apartman"
 
-#: admin/partials/woo-solo-api-admin-display.php:61
+#: admin/partials/woo-solo-api-admin-display.php:63
 msgid "term"
 msgstr "term"
 
-#: admin/partials/woo-solo-api-admin-display.php:62
+#: admin/partials/woo-solo-api-admin-display.php:64
 msgid "set"
 msgstr "set"
 
-#: admin/partials/woo-solo-api-admin-display.php:63
+#: admin/partials/woo-solo-api-admin-display.php:65
 msgid "package"
 msgstr "pakiranje"
 
-#: admin/partials/woo-solo-api-admin-display.php:64
+#: admin/partials/woo-solo-api-admin-display.php:66
 msgid "point"
 msgstr "bod"
 
-#: admin/partials/woo-solo-api-admin-display.php:65
+#: admin/partials/woo-solo-api-admin-display.php:67
 msgid "service"
 msgstr "usluga"
 
-#: admin/partials/woo-solo-api-admin-display.php:66
+#: admin/partials/woo-solo-api-admin-display.php:68
 msgid "pal"
 msgstr "pal"
 
-#: admin/partials/woo-solo-api-admin-display.php:67
+#: admin/partials/woo-solo-api-admin-display.php:69
 msgid "kont"
 msgstr "kont"
 
-#: admin/partials/woo-solo-api-admin-display.php:68
+#: admin/partials/woo-solo-api-admin-display.php:70
 msgid "čl"
 msgstr "čl"
 
-#: admin/partials/woo-solo-api-admin-display.php:69
+#: admin/partials/woo-solo-api-admin-display.php:71
 msgid "tis"
 msgstr "tis"
 
-#: admin/partials/woo-solo-api-admin-display.php:70
+#: admin/partials/woo-solo-api-admin-display.php:72
 msgid "sec"
 msgstr "sekunda"
 
-#: admin/partials/woo-solo-api-admin-display.php:71
+#: admin/partials/woo-solo-api-admin-display.php:73
 msgid "min"
 msgstr "minuta"
 
-#: admin/partials/woo-solo-api-admin-display.php:75
+#: admin/partials/woo-solo-api-admin-display.php:77
 msgid "Payment options"
 msgstr "Načini plaćanja"
 
-#: admin/partials/woo-solo-api-admin-display.php:77
+#: admin/partials/woo-solo-api-admin-display.php:79
 msgid "Transactional account"
 msgstr "Transakcijski račun"
 
-#: admin/partials/woo-solo-api-admin-display.php:78
+#: admin/partials/woo-solo-api-admin-display.php:80
 msgid "Cash"
 msgstr "Gotovina"
 
-#: admin/partials/woo-solo-api-admin-display.php:79
+#: admin/partials/woo-solo-api-admin-display.php:81
 msgid "Cards"
 msgstr "Kartice"
 
-#: admin/partials/woo-solo-api-admin-display.php:80
+#: admin/partials/woo-solo-api-admin-display.php:82
 msgid "Cheque"
 msgstr "Ček"
 
-#: admin/partials/woo-solo-api-admin-display.php:81
+#: admin/partials/woo-solo-api-admin-display.php:83
 msgid "Other"
 msgstr "Ostalo"
 
-#: admin/partials/woo-solo-api-admin-display.php:85
+#: admin/partials/woo-solo-api-admin-display.php:87
 msgid "Languages"
 msgstr "Jezik računa"
 
-#: admin/partials/woo-solo-api-admin-display.php:87
+#: admin/partials/woo-solo-api-admin-display.php:89
 msgid "Croatian"
 msgstr "Hrvatski"
 
-#: admin/partials/woo-solo-api-admin-display.php:88
+#: admin/partials/woo-solo-api-admin-display.php:90
 msgid "English"
 msgstr "Engleski"
 
-#: admin/partials/woo-solo-api-admin-display.php:89
+#: admin/partials/woo-solo-api-admin-display.php:91
 msgid "German"
 msgstr "Njemački"
 
-#: admin/partials/woo-solo-api-admin-display.php:90
+#: admin/partials/woo-solo-api-admin-display.php:92
 msgid "French"
 msgstr "Francuski"
 
-#: admin/partials/woo-solo-api-admin-display.php:91
+#: admin/partials/woo-solo-api-admin-display.php:93
 msgid "Italian"
 msgstr "Talijanski"
 
-#: admin/partials/woo-solo-api-admin-display.php:92
+#: admin/partials/woo-solo-api-admin-display.php:94
 msgid "Spanish"
 msgstr "Španjolski"
 
-#: admin/partials/woo-solo-api-admin-display.php:96
+#: admin/partials/woo-solo-api-admin-display.php:98
 msgid "Currency"
 msgstr "Valuta"
 
-#: admin/partials/woo-solo-api-admin-display.php:98
+#: admin/partials/woo-solo-api-admin-display.php:100
 msgid "HRK - kn"
 msgstr "HRK - kn"
 
-#: admin/partials/woo-solo-api-admin-display.php:99
+#: admin/partials/woo-solo-api-admin-display.php:101
 msgid "AUD - $"
 msgstr "AUD - $"
 
-#: admin/partials/woo-solo-api-admin-display.php:100
+#: admin/partials/woo-solo-api-admin-display.php:102
 msgid "CAD - $"
 msgstr "CAD - $"
 
-#: admin/partials/woo-solo-api-admin-display.php:101
+#: admin/partials/woo-solo-api-admin-display.php:103
 msgid "CZK - Kč"
 msgstr "CZK - Kč"
 
-#: admin/partials/woo-solo-api-admin-display.php:102
+#: admin/partials/woo-solo-api-admin-display.php:104
 msgid "DKK - kr"
 msgstr "DKK - kr"
 
-#: admin/partials/woo-solo-api-admin-display.php:103
+#: admin/partials/woo-solo-api-admin-display.php:105
 msgid "HUF - Ft"
 msgstr "HUF - Ft"
 
-#: admin/partials/woo-solo-api-admin-display.php:104
+#: admin/partials/woo-solo-api-admin-display.php:106
 msgid "JPY - ¥"
 msgstr "JPY - ¥"
 
-#: admin/partials/woo-solo-api-admin-display.php:105
+#: admin/partials/woo-solo-api-admin-display.php:107
 msgid "NOK - kr"
 msgstr "NOK - kr"
 
-#: admin/partials/woo-solo-api-admin-display.php:106
+#: admin/partials/woo-solo-api-admin-display.php:108
 msgid "SEK - kr"
 msgstr "SEK - kr"
 
-#: admin/partials/woo-solo-api-admin-display.php:107
+#: admin/partials/woo-solo-api-admin-display.php:109
 msgid "CHF - CHF"
 msgstr "CHF - CHF"
 
-#: admin/partials/woo-solo-api-admin-display.php:108
+#: admin/partials/woo-solo-api-admin-display.php:110
 msgid "GBP - £"
 msgstr "GBP - £"
 
-#: admin/partials/woo-solo-api-admin-display.php:109
+#: admin/partials/woo-solo-api-admin-display.php:111
 msgid "USD - $"
 msgstr "USD - $"
 
-#: admin/partials/woo-solo-api-admin-display.php:110
+#: admin/partials/woo-solo-api-admin-display.php:112
 msgid "BAM - KM"
 msgstr "BAM - KM"
 
-#: admin/partials/woo-solo-api-admin-display.php:111
+#: admin/partials/woo-solo-api-admin-display.php:113
 msgid "EUR - €"
 msgstr "EUR - €"
 
-#: admin/partials/woo-solo-api-admin-display.php:112
+#: admin/partials/woo-solo-api-admin-display.php:114
 msgid "PLN - zł"
 msgstr "PLN - zł"
 
-#: admin/partials/woo-solo-api-admin-display.php:116
-msgid "Select if you want to create an invoice or an offer."
-msgstr "Izaberite želite li kreirati račun ili ponudu."
-
 #: admin/partials/woo-solo-api-admin-display.php:118
+msgid "Choose the type of payment for each enabled payment gateway"
+msgstr "Izaberite tip naplate za svaki omogućen platni procesor"
+
+#: admin/partials/woo-solo-api-admin-display.php:128
+msgid "Type of payment document"
+msgstr "Tip platne ponude"
+
+#: admin/partials/woo-solo-api-admin-display.php:130
 msgid "Offer"
 msgstr "Ponuda"
 
-#: admin/partials/woo-solo-api-admin-display.php:119
+#: admin/partials/woo-solo-api-admin-display.php:131
 msgid "Invoice"
 msgstr "Račun"
 
-#: admin/partials/woo-solo-api-admin-display.php:123
-msgid ""
-"Check if you want the invoice to be fiscalized. Fiscalization certificate "
-"must be added in the SOLO options."
-msgstr ""
-"Izaberite želite li fiskalizirati račun. Fiskalizacijski certifikat mora "
-"biti dodan u SOLO opcijama na vašem korisničkom računu."
+#: admin/partials/woo-solo-api-admin-display.php:133
+msgid "Check if you want the invoice to be fiscalized.*"
+msgstr "Izaberite želite li fiskalizirati račun.*"
 
-#: admin/partials/woo-solo-api-admin-display.php:129
+#: admin/partials/woo-solo-api-admin-display.php:139
+msgid ""
+"* Fiscalization certificate must be added in the SOLO options, and it only "
+"applies to invoices."
+msgstr ""
+"* Fiskalizacijski certifikat mora biti dodan u SOLO opcijama, i samo vrijedi "
+"za račune."
+
+#: admin/partials/woo-solo-api-admin-display.php:144
 msgid ""
 "Enter the type of the service - you can find it in your account settings "
 "(Usluge -> Tipovi usluga). Has to be unique ID of the service."
@@ -390,87 +397,87 @@ msgstr ""
 "Unesite ID usluge u koju spada račun. Usluge možete pronaći pod Usluge -> "
 "Tipovi usluga nakon prijave u servis. Svaka usluga ima svoj unikatni ID."
 
-#: admin/partials/woo-solo-api-admin-display.php:133
+#: admin/partials/woo-solo-api-admin-display.php:148
 msgid "Show taxes"
 msgstr "Prikaži poreze"
 
-#: admin/partials/woo-solo-api-admin-display.php:135
+#: admin/partials/woo-solo-api-admin-display.php:150
 msgid "Don't show tax"
 msgstr "Nemoj prikazati poreze"
 
-#: admin/partials/woo-solo-api-admin-display.php:136
+#: admin/partials/woo-solo-api-admin-display.php:151
 msgid "Show tax"
 msgstr "Prikaži porez"
 
-#: admin/partials/woo-solo-api-admin-display.php:140
+#: admin/partials/woo-solo-api-admin-display.php:155
 msgid "Tax rate"
 msgstr "Porezna stopa"
 
-#: admin/partials/woo-solo-api-admin-display.php:142
+#: admin/partials/woo-solo-api-admin-display.php:157
 msgid "0%"
 msgstr "0%"
 
-#: admin/partials/woo-solo-api-admin-display.php:143
+#: admin/partials/woo-solo-api-admin-display.php:158
 msgid "5%"
 msgstr "5%"
 
-#: admin/partials/woo-solo-api-admin-display.php:144
+#: admin/partials/woo-solo-api-admin-display.php:159
 msgid "13%"
 msgstr "13%"
 
-#: admin/partials/woo-solo-api-admin-display.php:145
+#: admin/partials/woo-solo-api-admin-display.php:160
 msgid "25%"
 msgstr "25%"
 
-#: admin/partials/woo-solo-api-admin-display.php:149
+#: admin/partials/woo-solo-api-admin-display.php:164
 msgid "Type of reciepe (only works with reciepe, not with offer)"
 msgstr "Tip računa (radi samo sa odabranim računom, ne sa ponudom)"
 
-#: admin/partials/woo-solo-api-admin-display.php:151
+#: admin/partials/woo-solo-api-admin-display.php:166
 msgid "R"
 msgstr "R"
 
-#: admin/partials/woo-solo-api-admin-display.php:152
+#: admin/partials/woo-solo-api-admin-display.php:167
 msgid "R1"
 msgstr "R1"
 
-#: admin/partials/woo-solo-api-admin-display.php:153
+#: admin/partials/woo-solo-api-admin-display.php:168
 msgid "R2"
 msgstr "R2"
 
-#: admin/partials/woo-solo-api-admin-display.php:154
+#: admin/partials/woo-solo-api-admin-display.php:169
 msgid "No label"
 msgstr "Bez oznake"
 
-#: admin/partials/woo-solo-api-admin-display.php:155
+#: admin/partials/woo-solo-api-admin-display.php:170
 msgid "In advance"
 msgstr "Avansni"
 
-#: admin/partials/woo-solo-api-admin-display.php:159
+#: admin/partials/woo-solo-api-admin-display.php:174
 msgid "Invoice/Offer due date"
 msgstr "Rok plaćanja računa/ponude"
 
-#: admin/partials/woo-solo-api-admin-display.php:161
+#: admin/partials/woo-solo-api-admin-display.php:176
 msgid "1 week"
 msgstr "1 tjedan"
 
-#: admin/partials/woo-solo-api-admin-display.php:162
+#: admin/partials/woo-solo-api-admin-display.php:177
 msgid "2 weeks"
 msgstr "2 tjedna"
 
-#: admin/partials/woo-solo-api-admin-display.php:163
+#: admin/partials/woo-solo-api-admin-display.php:178
 msgid "3 weeks"
 msgstr "3 tjedna"
 
-#: admin/partials/woo-solo-api-admin-display.php:167
+#: admin/partials/woo-solo-api-admin-display.php:182
 msgid "You can check the currency rate at"
 msgstr "Tečaj valuta možete provjeriti na stranici"
 
-#: admin/partials/woo-solo-api-admin-display.php:167
+#: admin/partials/woo-solo-api-admin-display.php:182
 msgid "Croatian National Bank"
 msgstr "Hrvatske Nacionalne Banke"
 
-#: admin/partials/woo-solo-api-admin-display.php:167
+#: admin/partials/woo-solo-api-admin-display.php:182
 msgid ""
 "to see the current currency rates. If the currency is HRK leave the field "
 "blank. Limit the number of decimals to 6 places for other currencies (e.g. "
@@ -478,28 +485,6 @@ msgid ""
 msgstr ""
 "ukoliko želite vidjeti trenutne tečajeve. Ako je tečaj HRK ostavite ovo "
 "polje prazno. Broj decimala tečaja mora biti 6 (npr. 6,123456)."
-
-#: admin/partials/woo-solo-api-admin-display.php:174
-msgid "Set the title of the mail that will be send with the PDF recipe."
-msgstr "Postavite naslov e-maila koji će se poslati zajedno sa PDF računom."
-
-#: admin/partials/woo-solo-api-admin-display.php:178
-msgid ""
-"Type the message that will appear on the mail with the recipe PDF attached."
-msgstr "Upišite poruku e-maila koji će se poslati sa PDF računom."
-
-#: admin/partials/woo-solo-api-admin-display.php:182
-msgid "Change the 'from' name that shows when WordPress sends the mail."
-msgstr ""
-"Promijenite 'od' ime koje se pojavljuje kada WordPress šalje svoje mailove."
-
-#: admin/partials/woo-solo-api-admin-display.php:183
-msgid ""
-"CAUTION: This change is global, every mail send from your WordPress will "
-"have this 'from' name."
-msgstr ""
-"OPREZ: Ova promijena je globalna i utjecati će na sve mailove koji su "
-"poslani sa ove stranice."
 
 #: admin/partials/woo-solo-api-admin-display.php:189
 msgid "Enable the PIN field on the billing and shipping from in the checkout."
@@ -512,12 +497,40 @@ msgstr ""
 "Omogućite IBAN polje na dostavnoj i naplatnoj formi na naplatnoj stranici."
 
 #: admin/partials/woo-solo-api-admin-display.php:195
+msgid "Send the email to the client with the PDF of the order or the invoice."
+msgstr ""
+"Postavite naslov e-maila koji će se poslati zajedno sa PDF ponudom ili "
+"računom."
+
+#: admin/partials/woo-solo-api-admin-display.php:198
 msgid ""
 "Create pdf and send mail to the customer only if these payment gateways are "
 "selected."
 msgstr ""
 "Kreirajte pdf i pošaljite ga na klijentov mail, samo ako su odabrani "
 "sljedeći platni procesori."
+
+#: admin/partials/woo-solo-api-admin-display.php:211
+msgid "Set the title of the mail that will be send with the PDF invoice."
+msgstr "Postavite naslov e-maila koji će se poslati zajedno sa PDF računom."
+
+#: admin/partials/woo-solo-api-admin-display.php:215
+msgid ""
+"Type the message that will appear on the mail with the invoice PDF attached."
+msgstr "Upišite poruku e-maila koji će se poslati sa PDF računom."
+
+#: admin/partials/woo-solo-api-admin-display.php:219
+msgid "Change the 'from' name that shows when WordPress sends the mail."
+msgstr ""
+"Promijenite 'od' ime koje se pojavljuje kada WordPress šalje svoje mailove."
+
+#: admin/partials/woo-solo-api-admin-display.php:220
+msgid ""
+"CAUTION: This change is global, every mail send from your WordPress will "
+"have this 'from' name."
+msgstr ""
+"OPREZ: Ova promijena je globalna i utjecati će na sve mailove koji su "
+"poslani sa ove stranice."
 
 #: includes/class-woo-solo-api-activator.php:38
 msgid "You do not have proper authorization to activate a plugin!"
@@ -530,3 +543,10 @@ msgstr "Ovaj plugin zahtjeva da "
 #: includes/class-woo-solo-api-activator.php:46
 msgid " plugin to be active!"
 msgstr " bude aktiviran!"
+
+#~ msgid ""
+#~ "Check if you want the invoice to be fiscalized. Fiscalization certificate "
+#~ "must be added in the SOLO options."
+#~ msgstr ""
+#~ "Izaberite želite li fiskalizirati račun. Fiskalizacijski certifikat mora "
+#~ "biti dodan u SOLO opcijama na vašem korisničkom računu."

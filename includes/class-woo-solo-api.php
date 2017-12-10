@@ -64,7 +64,7 @@ class Woo_Solo_Api {
     if ( defined( 'SAWI_PLUGIN_VERSION' ) ) {
       $this->version = SAWI_PLUGIN_VERSION;
     } else {
-      $this->version = '1.0.0';
+      $this->version = '1.1';
     }
 
     if ( defined( 'SAWI_PLUGIN_NAME' ) ) {

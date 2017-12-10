@@ -88,7 +88,7 @@
   background: #FFF;
   padding: 20px;
   position: relative;
-  min-height: 600px;
+  min-height: 650px;
 }
 
 .solo-api-options .options-wrapper__content .tab-content {
@@ -115,4 +115,23 @@
 
 .solo-api-options .options-wrapper__content .tab-content .right {
   padding-left: 20px;
+}
+
+.solo-api-options .fields__single {
+  margin-bottom: 10px;
+}
+
+.solo-api-options .fields__subtitle {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.solo-api-options .fields__subtitle--main {
+  font-weight: 600;
+  min-width: 180px;
+  margin-right: 20px;
+}
+
+.solo-api-options .fields__note {
+  margin-top: 30px;
 }

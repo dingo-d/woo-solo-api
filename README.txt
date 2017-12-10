@@ -3,8 +3,8 @@ Contributors: dingo_bastard
 Tags: woocommerce, api, solo api, solo, api integration, shop
 Requires at least: 4.4
 Requires PHP: 5.6
-Tested up to: 4.9
-Stable tag: 1.0.0
+Tested up to: 4.9.1
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,13 +13,13 @@ This plugin provides integration of the SOLO service with WooCommerce store.
 == Description ==
 
 Woo Solo Api plugin will integrate with your checkout process, and will send the API request with
-the order details to the SOLO service which will in turn create a PDF of the recipe or order on your SOLO dashboard.
+the order details to the SOLO service which will in turn create a PDF of the invoice or order on your SOLO dashboard.
 
-Additionally, the recipe or order will be stored on your site, and you'll have the option of sending this PDF as a separate
+Additionally, the invoice or order will be stored on your site, and you'll have the option of sending this PDF as a separate
 mail to the client.
 
-There is an entire options page where you can specify the details of the order or the recipe such as unit measure, payment
-options, language of the recipe, currency and others.
+There is an entire options page where you can specify the details of the order or the invoice such as unit measure, payment
+options, language of the invoice, currency and others.
 
 The plugin is translated to Croatian, since the SOLO service is primarily used by Croatian users.
 
@@ -57,7 +57,7 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 == Screenshots ==
 
 1. After installation, you can go to the plugin settings and add your SOLO token
-2. You can set up various options that are directly linked to how you want the recipe to look like
+2. You can set up various options that are directly linked to how you want the invoice to look like
 3. You can add some additional WooCommerce settings such as PIN and IBAN fields
 4. You can add the mail settings that will be send (if you choose to) to the client when the order is completed
 
@@ -65,4 +65,11 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 = 1.0 =
 * Initial release
+
+= 1.0.1 =
+* Typo fix
+
+= 1.1 =
+* Added multiple invoice type selection based on payment type with appropriate fiscalization check
+* Fiscalization will be disabled for offer by default, and enabled only on invoice type
 

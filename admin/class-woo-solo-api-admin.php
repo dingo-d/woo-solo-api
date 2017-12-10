@@ -63,7 +63,7 @@ class Woo_Solo_Api_Admin {
    * Filter pdf file types on media screen
    *
    * This filter is added so that the user can find their
-   * recipes easier.
+   * invoices easier.
    *
    * @param array $post_mime_types Available post mime types.
    * @return array $post_mime_types Updated post mime types.
@@ -170,21 +170,25 @@ class Woo_Solo_Api_Admin {
     register_setting( 'solo-api-settings-group', 'solo_api_payment_type' );
     register_setting( 'solo-api-settings-group', 'solo_api_languages' );
     register_setting( 'solo-api-settings-group', 'solo_api_currency' );
-    register_setting( 'solo-api-settings-group', 'solo_api_bill_offer' );
     register_setting( 'solo-api-settings-group', 'solo_api_service_type' );
     register_setting( 'solo-api-settings-group', 'solo_api_show_taxes' );
     register_setting( 'solo-api-settings-group', 'solo_api_tax_rate' );
-    register_setting( 'solo-api-settings-group', 'solo_api_recipe_type' );
+    register_setting( 'solo-api-settings-group', 'solo_api_invoice_type' );
     register_setting( 'solo-api-settings-group', 'solo_api_mail_title' );
     register_setting( 'solo-api-settings-group', 'solo_api_message' );
     register_setting( 'solo-api-settings-group', 'solo_api_change_mail_from' );
     register_setting( 'solo-api-settings-group', 'solo_api_enable_pin' );
     register_setting( 'solo-api-settings-group', 'solo_api_enable_iban' );
     register_setting( 'solo-api-settings-group', 'solo_api_currency_rate' );
-    register_setting( 'solo-api-settings-group', 'solo_api_fiscalization' );
     register_setting( 'solo-api-settings-group', 'solo_api_due_date' );
     register_setting( 'solo-api-settings-group', 'solo_api_mail_gateway' );
     register_setting( 'solo-api-settings-group', 'solo_api_send_pdf' );
+
+    $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
+    foreach ( $available_gateways as $gateway_sett => $gateway_val ) {
+      register_setting( 'solo-api-settings-group', 'solo_api_bill_offer-' . esc_attr( $gateway_val->id ) );
+      register_setting( 'solo-api-settings-group', 'solo_api_fiscalization-' . esc_attr( $gateway_val->id ) );
+    }
   }
 
   /**
