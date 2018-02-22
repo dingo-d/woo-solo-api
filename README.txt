@@ -1,10 +1,12 @@
 === Woo Solo Api ===
 Contributors: dingo_bastard
-Tags: woocommerce, api, solo api, solo, api integration, shop
+Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 4.4
 Requires PHP: 5.6
-Tested up to: 4.9.1
-Stable tag: 1.1
+Tested up to: 4.9.4
+Stable tag: 1.2
+WC requires at least: 3.0.0
+WC tested up to: 3.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -72,4 +74,8 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 = 1.1 =
 * Added multiple invoice type selection based on payment type with appropriate fiscalization check
 * Fiscalization will be disabled for offer by default, and enabled only on invoice type
+
+= 1.2 =
+* Renamed classes - shorten name of the classes and changed file names
+* Fixed bug that prevented sending of the pdf bill if the type of the bill was offer (ponuda)
 

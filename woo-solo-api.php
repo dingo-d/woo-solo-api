@@ -3,20 +3,22 @@
  *
  * Plugin main file
  *
- * @link              https://madebydenis.com
- * @since             1.0.0
- * @package           Woo_Solo_Api
+ * @link                 https://madebydenis.com
+ * @since                1.0.0
+ * @package              Woo_Solo_Api
  *
- * Plugin Name:       Woo Solo Api
- * Plugin URI:        https://madebydenis.com/woo-solo-api
- * Description:       This plugin provides integration of the SOLO API service with WooCommerce.
- * Version:           1.1
- * Author:            Denis Žoljom
- * Author URI:        https://madebydenis.com
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       woo-solo-api
- * Domain Path:       /languages
+ * Plugin Name:          Woo Solo Api
+ * Plugin URI:           https://madebydenis.com/woo-solo-api
+ * Description:          This plugin provides integration of the SOLO API service with WooCommerce.
+ * Version:              1.2
+ * Author:               Denis Žoljom
+ * Author URI:           https://madebydenis.com
+ * License:              GPL-2.0+
+ * License URI:          http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:          woo-solo-api
+ * Domain Path:          /languages
+ * WC requires at least: 3.0.0
+ * WC tested up to:      3.3.1
  */
 
 namespace Woo_Solo_Api;
@@ -27,7 +29,7 @@ if ( ! defined( 'WPINC' ) ) {
   die;
 }
 
-define( 'SAWI_PLUGIN_VERSION', '1.1' );
+define( 'SAWI_PLUGIN_VERSION', '1.2' );
 define( 'SAWI_PLUGIN_NAME', 'woo-solo-api' );
 
 // Include the autoloader so we can dynamically include the rest of the classes.
@@ -38,8 +40,8 @@ include_once( 'lib/autoloader.php' );
  * This action is documented in includes/class-woo-solo-api-activator.php
  */
 function activate_woo_solo_api() {
-  require_once plugin_dir_path( __FILE__ ) . 'includes/class-woo-solo-api-activator.php';
-  Includes\Woo_Solo_Api_Activator::activate();
+  require_once plugin_dir_path( __FILE__ ) . 'includes/class-activator.php';
+  Includes\Activator::activate();
 }
 
 register_activation_hook( __FILE__, __NAMESPACE__ . '\\activate_woo_solo_api' );

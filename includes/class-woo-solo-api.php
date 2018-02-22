@@ -29,7 +29,7 @@ class Woo_Solo_Api {
    *
    * @since    1.0.0
    * @access   protected
-   * @var      Woo_Solo_Api_Loader    $loader    Maintains and registers all hooks for the plugin.
+   * @var      Loader    $loader    Maintains and registers all hooks for the plugin.
    */
   protected $loader;
 
@@ -64,7 +64,7 @@ class Woo_Solo_Api {
     if ( defined( 'SAWI_PLUGIN_VERSION' ) ) {
       $this->version = SAWI_PLUGIN_VERSION;
     } else {
-      $this->version = '1.1';
+      $this->version = '1.2';
     }
 
     if ( defined( 'SAWI_PLUGIN_NAME' ) ) {
@@ -87,20 +87,20 @@ class Woo_Solo_Api {
    * @access   private
    */
   private function load_dependencies() {
-    $this->loader = new Woo_Solo_Api_Loader();
+    $this->loader = new Loader();
   }
 
   /**
    * Define the locale for this plugin for internationalization.
    *
-   * Uses the Woo_Solo_Api_I18n class in order to set the domain and to register the hook
+   * Uses the Internationalization class in order to set the domain and to register the hook
    * with WordPress.
    *
    * @since    1.0.0
    * @access   private
    */
   private function set_locale() {
-    $plugin_i18n = new Woo_Solo_Api_I18n();
+    $plugin_i18n = new Internationalization();
 
     $this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
   }
@@ -113,8 +113,8 @@ class Woo_Solo_Api {
    * @access   private
    */
   private function define_admin_hooks() {
-    $plugin_admin = new Admin\Woo_Solo_Api_Admin( $this->get_plugin_name(), $this->get_version() );
-    $plugin_solo_api_request = new Admin\Woo_Solo_Api_Request( $this->get_plugin_name(), $this->get_version() );
+    $plugin_admin = new Admin\Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_solo_api_request = new Admin\Request( $this->get_plugin_name(), $this->get_version() );
 
     $this->loader->add_action( 'woocommerce_email_order_details', $plugin_solo_api_request, 'solo_api_send_api_request' );
     $this->loader->add_filter( 'post_mime_types', $plugin_admin, 'add_pdf_post_mime_type' );
@@ -159,7 +159,7 @@ class Woo_Solo_Api {
    * The reference to the class that orchestrates the hooks with the plugin.
    *
    * @since     1.0.0
-   * @return    Woo_Solo_Api_Loader    Orchestrates the hooks of the plugin.
+   * @return    Loader    Orchestrates the hooks of the plugin.
    */
   public function get_loader() {
     return $this->loader;

@@ -18,7 +18,7 @@ namespace Woo_Solo_Api\Admin;
  * @package    Woo_Solo_Api\Admin
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
-class Woo_Solo_Api_Admin {
+class Admin {
 
   /**
    * The ID of this plugin.
@@ -56,7 +56,7 @@ class Woo_Solo_Api_Admin {
    * @since 1.0.0
    */
   public function options_page_render() {
-    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/woo-solo-api-admin-display.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/admin-display.php';
   }
 
   /**

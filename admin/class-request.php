@@ -15,8 +15,11 @@ namespace Woo_Solo_Api\Admin;
  *
  * @package    Woo_Solo_Api\Admin
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
+ *
+ * @since      1.2  Added bill type check in the request method
+ * @since      1.0.0
  */
-class Woo_Solo_Api_Request {
+class Request {
 
   /**
    * The ID of this plugin.
@@ -247,7 +250,7 @@ class Woo_Solo_Api_Request {
     if ( $body->status !== 0 ) {
       return new \WP_Error( $body->status, $body->message );
     }
-    $this->solo_api_send_mail( $body, sanitize_email( $email ), $order_data['payment_method'] );
+    $this->solo_api_send_mail( $body, sanitize_email( $email ), $order_data['payment_method'], $solo_api_bill_type );
   }
 
   /**
@@ -258,9 +261,12 @@ class Woo_Solo_Api_Request {
    * @param  object $body           The body of response.
    * @param  string $email          Customer email.
    * @param  string $payment_method Payment method type.
+   * @param  string $bill_type      Bill type. Important for sending the email.
+   *
+   * @since  1.2  Added bill type check
    * @since  1.0.0
    */
-  public function solo_api_send_mail( $body, $email, $payment_method ) {
+  public function solo_api_send_mail( $body, $email, $payment_method, $bill_type ) {
 
     $solo_api_send_pdf  = get_option( 'solo_api_send_pdf' );
     $checked_gateways   = get_option( 'solo_api_mail_gateway' );
@@ -290,9 +296,15 @@ class Woo_Solo_Api_Request {
       return; // stop processing here.
     }
 
+    $response_body = (array) $body;
+
     // Create pdf.
-    $pdf_link = esc_url( $body->ponuda->pdf );
-    $pdf_name = esc_html( $body->ponuda->broj_ponude );
+    $pdf_link = esc_url( $response_body[ $bill_type ]->pdf );
+    if ( $bill_type === 'racun' ) {
+      $pdf_name = esc_html( $response_body[ $bill_type ]->broj_racuna );
+    } else {
+      $pdf_name = esc_html( $response_body[ $bill_type ]->broj_ponude );
+    }
 
     $pdf_get = wp_remote_get( $pdf_link );
 

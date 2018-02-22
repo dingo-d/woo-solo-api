@@ -19,7 +19,7 @@ namespace Woo_Solo_Api\Includes;
  * @package    Woo_Solo_Api\Includes
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
-class Woo_Solo_Api_Activator {
+class Activator {
 
   /**
    * Activation function
