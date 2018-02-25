@@ -47,7 +47,7 @@ class Admin {
    */
   public function __construct( $plugin_name, $version ) {
     $this->plugin_name = $plugin_name;
-    $this->version = $version;
+    $this->version     = $version;
   }
 
   /**
@@ -69,7 +69,7 @@ class Admin {
    * @return array $post_mime_types Updated post mime types.
    */
   public function add_pdf_post_mime_type( $post_mime_types ) {
-    $post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'woo-solo-api' ), esc_html__( 'Manage PDFs', 'woo-solo-api' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' , 'woo-solo-api' ) );
+    $post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'woo-solo-api' ), esc_html__( 'Manage PDFs', 'woo-solo-api' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>', 'woo-solo-api' ) );
 
     return $post_mime_types;
   }
@@ -172,7 +172,6 @@ class Admin {
     register_setting( 'solo-api-settings-group', 'solo_api_currency' );
     register_setting( 'solo-api-settings-group', 'solo_api_service_type' );
     register_setting( 'solo-api-settings-group', 'solo_api_show_taxes' );
-    register_setting( 'solo-api-settings-group', 'solo_api_tax_rate' );
     register_setting( 'solo-api-settings-group', 'solo_api_invoice_type' );
     register_setting( 'solo-api-settings-group', 'solo_api_mail_title' );
     register_setting( 'solo-api-settings-group', 'solo_api_message' );
@@ -222,7 +221,7 @@ class Admin {
    * @param  string $name Name that is shown.
    * @return string       Changed name.
    */
-  function solo_api_mail_from_name( $name ) {
+  public function solo_api_mail_from_name( $name ) {
     $new_name = esc_attr( get_option( 'solo_api_change_mail_from' ) );
     if ( ! empty( $new_name ) && $new_name !== '' ) {
       return $new_name;

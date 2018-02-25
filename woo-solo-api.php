@@ -22,6 +22,7 @@
  */
 
 namespace Woo_Solo_Api;
+
 use Woo_Solo_Api\Includes as Includes;
 
 // If this file is called directly, abort.
@@ -33,7 +34,7 @@ define( 'SAWI_PLUGIN_VERSION', '1.2' );
 define( 'SAWI_PLUGIN_NAME', 'woo-solo-api' );
 
 // Include the autoloader so we can dynamically include the rest of the classes.
-include_once( 'lib/autoloader.php' );
+require_once 'lib/autoloader.php';
 
 /**
  * The code that runs during plugin activation.
