@@ -4,9 +4,9 @@ Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 4.4
 Requires PHP: 5.6
 Tested up to: 4.9.4
-Stable tag: 1.2
+Stable tag: 1.3
 WC requires at least: 3.0.0
-WC tested up to: 3.3.1
+WC tested up to: 3.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -65,17 +65,32 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 == Changelog ==
 
-= 1.0 =
-* Initial release
-
-= 1.0.1 =
-* Typo fix
-
-= 1.1 =
-* Added multiple invoice type selection based on payment type with appropriate fiscalization check
-* Fiscalization will be disabled for offer by default, and enabled only on invoice type
+= 1.3 =
+* Add additional debug methods
+* Code sniffer fixes
+* Add tax check - tax rate can be separate for shipping and for items, and are handled by WooCommerce
 
 = 1.2 =
+
 * Renamed classes - shorten name of the classes and changed file names
 * Fixed bug that prevented sending of the pdf bill if the type of the bill was offer (ponuda)
 
+= 1.1 =
+
+* Added multiple invoice type selection based on payment type with appropriate fiscalization check
+* Fiscalization will be disabled for offer by default, and enabled only on invoice type
+
+= 1.0.1 =
+
+* Typo fix
+
+= 1.0 =
+
+* Initial release
+
+== Additional notes ==
+
+The 1.3 update removed the predefined tax rates from the plugin, and is instead using WooCommerce taxes.
+This means that you can have different tax for the item, and different for the shipping. Word of caution though, the Croatian law has predefined taxes of 0, 5, 13 or 25%. So in case you put the tax for the item and shipping anything other than that, the tax rate will be sent as 0 - so that your SOLO invoice or offer will pass, but with 0 tax rate.
+
+Also be sure to separate those two taxes. For instance you can set the item tax rate as a standard tax rate, and then the shipping tax can be set as a reduced tax rate, and then just set the Shipping tax class to reduced tax rate in the WooCommerce options. If you put everything as a standard one, the tax rates will get mixed and the end price won't be correct (not sure how else to handle this since WooCommerce has a weird tax system).

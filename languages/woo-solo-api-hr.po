@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Woo Solo Api\n"
-"POT-Creation-Date: 2018-02-12 23:12+0100\n"
-"PO-Revision-Date: 2018-02-12 23:12+0100\n"
+"POT-Creation-Date: 2018-02-25 17:34+0100\n"
+"PO-Revision-Date: 2018-02-25 17:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: Denis Žoljom\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -55,27 +55,27 @@ msgstr "IBAN broj naručitelja"
 msgid "Customer billing IBAN number"
 msgstr "IBAN broj naručitelja"
 
-#: admin/class-admin.php:201
+#: admin/class-admin.php:200
 msgid "Woo Solo Api Options"
 msgstr "Opcije Solo API WooCommerce integracije"
 
-#: admin/class-admin.php:202
+#: admin/class-admin.php:201
 msgid "Solo API Options"
 msgstr "Solo API Opcije"
 
-#: admin/class-admin.php:215
+#: admin/class-admin.php:214
 msgid "SOLO API Settings"
 msgstr "Solo API Postavke"
 
-#: admin/class-request.php:186
+#: admin/class-request.php:202
 msgid "Shipping fee"
 msgstr "Naknade dostave"
 
-#: admin/partials/admin-display.php:17
+#: admin/partials/admin-display.php:32
 msgid "Solo API settings"
 msgstr "Solo API postavke"
 
-#: admin/partials/admin-display.php:21
+#: admin/partials/admin-display.php:36
 msgid ""
 "For more details on the options you can read the official SOLO API "
 "documentation here: "
@@ -83,28 +83,28 @@ msgstr ""
 "Za više detalja o opcijama APIja možete pročitati službenu dokumentaciju "
 "ovdje: "
 
-#: admin/partials/admin-display.php:24
+#: admin/partials/admin-display.php:39
 msgid "Solo API token"
 msgstr "Solo API token"
 
-#: admin/partials/admin-display.php:25
+#: admin/partials/admin-display.php:40
 msgid "Solo API options"
 msgstr "Solo API opcije"
 
-#: admin/partials/admin-display.php:26
+#: admin/partials/admin-display.php:41
 msgid "WooCommerce additional settings"
 msgstr "Dodatne postavke za WooCommerce"
 
-#: admin/partials/admin-display.php:27
+#: admin/partials/admin-display.php:42
 msgid "Mail settings"
 msgstr "Opcije e-maila"
 
-#: admin/partials/admin-display.php:32
+#: admin/partials/admin-display.php:47
 msgid "Enter your personal token that you obtained from you SOLO account."
 msgstr ""
 "Upišite vaš osobni token koji ste nabavili sa vašeg SOLO korisničkog računa."
 
-#: admin/partials/admin-display.php:39
+#: admin/partials/admin-display.php:54
 msgid ""
 "Unit measure - select the default measure in your shop (e.g. piece, hour, "
 "m^3 etc.)"
@@ -112,275 +112,275 @@ msgstr ""
 "Jedinična mjera - izaberite zadanu jediničnu mjeru u vašoj trgovini (npr. "
 "komad, sat, m^3 itd.)"
 
-#: admin/partials/admin-display.php:41
+#: admin/partials/admin-display.php:56
 msgid "-"
 msgstr "-"
 
-#: admin/partials/admin-display.php:42
+#: admin/partials/admin-display.php:57
 msgid "piece"
 msgstr "komad"
 
-#: admin/partials/admin-display.php:43
+#: admin/partials/admin-display.php:58
 msgid "hour"
 msgstr "sat"
 
-#: admin/partials/admin-display.php:44
+#: admin/partials/admin-display.php:59
 msgid "year"
 msgstr "godina"
 
-#: admin/partials/admin-display.php:45
+#: admin/partials/admin-display.php:60
 msgid "km"
 msgstr "kilometar"
 
-#: admin/partials/admin-display.php:46
+#: admin/partials/admin-display.php:61
 msgid "litre"
 msgstr "litra"
 
-#: admin/partials/admin-display.php:47
+#: admin/partials/admin-display.php:62
 msgid "kg"
 msgstr "kilogram"
 
-#: admin/partials/admin-display.php:48
+#: admin/partials/admin-display.php:63
 msgid "kWh"
 msgstr "kilovat-sat"
 
-#: admin/partials/admin-display.php:49
+#: admin/partials/admin-display.php:64
 msgid "m³"
 msgstr "m³"
 
-#: admin/partials/admin-display.php:50
+#: admin/partials/admin-display.php:65
 msgid "tonne"
 msgstr "tona"
 
-#: admin/partials/admin-display.php:51
+#: admin/partials/admin-display.php:66
 msgid "m²"
 msgstr "m²"
 
-#: admin/partials/admin-display.php:52
+#: admin/partials/admin-display.php:67
 msgid "m"
 msgstr "metar"
 
-#: admin/partials/admin-display.php:53
+#: admin/partials/admin-display.php:68
 msgid "day"
 msgstr "dan"
 
-#: admin/partials/admin-display.php:54
+#: admin/partials/admin-display.php:69
 msgid "month"
 msgstr "mjesec"
 
-#: admin/partials/admin-display.php:55
+#: admin/partials/admin-display.php:70
 msgid "night"
 msgstr "noć"
 
-#: admin/partials/admin-display.php:56
+#: admin/partials/admin-display.php:71
 msgid "card"
 msgstr "kartica"
 
-#: admin/partials/admin-display.php:57
+#: admin/partials/admin-display.php:72
 msgid "account"
 msgstr "račun"
 
-#: admin/partials/admin-display.php:58
+#: admin/partials/admin-display.php:73
 msgid "pair"
 msgstr "par"
 
-#: admin/partials/admin-display.php:59
+#: admin/partials/admin-display.php:74
 msgid "ml"
 msgstr "mililitra"
 
-#: admin/partials/admin-display.php:60
+#: admin/partials/admin-display.php:75
 msgid "pax"
 msgstr "pax"
 
-#: admin/partials/admin-display.php:61
+#: admin/partials/admin-display.php:76
 msgid "room"
 msgstr "soba"
 
-#: admin/partials/admin-display.php:62
+#: admin/partials/admin-display.php:77
 msgid "appartmant"
 msgstr "apartman"
 
-#: admin/partials/admin-display.php:63
+#: admin/partials/admin-display.php:78
 msgid "term"
 msgstr "term"
 
-#: admin/partials/admin-display.php:64
+#: admin/partials/admin-display.php:79
 msgid "set"
 msgstr "set"
 
-#: admin/partials/admin-display.php:65
+#: admin/partials/admin-display.php:80
 msgid "package"
 msgstr "pakiranje"
 
-#: admin/partials/admin-display.php:66
+#: admin/partials/admin-display.php:81
 msgid "point"
 msgstr "bod"
 
-#: admin/partials/admin-display.php:67
+#: admin/partials/admin-display.php:82
 msgid "service"
 msgstr "usluga"
 
-#: admin/partials/admin-display.php:68
+#: admin/partials/admin-display.php:83
 msgid "pal"
 msgstr "pal"
 
-#: admin/partials/admin-display.php:69
+#: admin/partials/admin-display.php:84
 msgid "kont"
 msgstr "kont"
 
-#: admin/partials/admin-display.php:70
+#: admin/partials/admin-display.php:85
 msgid "čl"
 msgstr "čl"
 
-#: admin/partials/admin-display.php:71
+#: admin/partials/admin-display.php:86
 msgid "tis"
 msgstr "tis"
 
-#: admin/partials/admin-display.php:72
+#: admin/partials/admin-display.php:87
 msgid "sec"
 msgstr "sekunda"
 
-#: admin/partials/admin-display.php:73
+#: admin/partials/admin-display.php:88
 msgid "min"
 msgstr "minuta"
 
-#: admin/partials/admin-display.php:77
+#: admin/partials/admin-display.php:92
 msgid "Payment options"
 msgstr "Načini plaćanja"
 
-#: admin/partials/admin-display.php:79
+#: admin/partials/admin-display.php:94
 msgid "Transactional account"
 msgstr "Transakcijski račun"
 
-#: admin/partials/admin-display.php:80
+#: admin/partials/admin-display.php:95
 msgid "Cash"
 msgstr "Gotovina"
 
-#: admin/partials/admin-display.php:81
+#: admin/partials/admin-display.php:96
 msgid "Cards"
 msgstr "Kartice"
 
-#: admin/partials/admin-display.php:82
+#: admin/partials/admin-display.php:97
 msgid "Cheque"
 msgstr "Ček"
 
-#: admin/partials/admin-display.php:83
+#: admin/partials/admin-display.php:98
 msgid "Other"
 msgstr "Ostalo"
 
-#: admin/partials/admin-display.php:87
+#: admin/partials/admin-display.php:102
 msgid "Languages"
 msgstr "Jezik računa"
 
-#: admin/partials/admin-display.php:89
+#: admin/partials/admin-display.php:104
 msgid "Croatian"
 msgstr "Hrvatski"
 
-#: admin/partials/admin-display.php:90
+#: admin/partials/admin-display.php:105
 msgid "English"
 msgstr "Engleski"
 
-#: admin/partials/admin-display.php:91
+#: admin/partials/admin-display.php:106
 msgid "German"
 msgstr "Njemački"
 
-#: admin/partials/admin-display.php:92
+#: admin/partials/admin-display.php:107
 msgid "French"
 msgstr "Francuski"
 
-#: admin/partials/admin-display.php:93
+#: admin/partials/admin-display.php:108
 msgid "Italian"
 msgstr "Talijanski"
 
-#: admin/partials/admin-display.php:94
+#: admin/partials/admin-display.php:109
 msgid "Spanish"
 msgstr "Španjolski"
 
-#: admin/partials/admin-display.php:98
+#: admin/partials/admin-display.php:113
 msgid "Currency"
 msgstr "Valuta"
 
-#: admin/partials/admin-display.php:100
+#: admin/partials/admin-display.php:115
 msgid "HRK - kn"
 msgstr "HRK - kn"
 
-#: admin/partials/admin-display.php:101
+#: admin/partials/admin-display.php:116
 msgid "AUD - $"
 msgstr "AUD - $"
 
-#: admin/partials/admin-display.php:102
+#: admin/partials/admin-display.php:117
 msgid "CAD - $"
 msgstr "CAD - $"
 
-#: admin/partials/admin-display.php:103
+#: admin/partials/admin-display.php:118
 msgid "CZK - Kč"
 msgstr "CZK - Kč"
 
-#: admin/partials/admin-display.php:104
+#: admin/partials/admin-display.php:119
 msgid "DKK - kr"
 msgstr "DKK - kr"
 
-#: admin/partials/admin-display.php:105
+#: admin/partials/admin-display.php:120
 msgid "HUF - Ft"
 msgstr "HUF - Ft"
 
-#: admin/partials/admin-display.php:106
+#: admin/partials/admin-display.php:121
 msgid "JPY - ¥"
 msgstr "JPY - ¥"
 
-#: admin/partials/admin-display.php:107
+#: admin/partials/admin-display.php:122
 msgid "NOK - kr"
 msgstr "NOK - kr"
 
-#: admin/partials/admin-display.php:108
+#: admin/partials/admin-display.php:123
 msgid "SEK - kr"
 msgstr "SEK - kr"
 
-#: admin/partials/admin-display.php:109
+#: admin/partials/admin-display.php:124
 msgid "CHF - CHF"
 msgstr "CHF - CHF"
 
-#: admin/partials/admin-display.php:110
+#: admin/partials/admin-display.php:125
 msgid "GBP - £"
 msgstr "GBP - £"
 
-#: admin/partials/admin-display.php:111
+#: admin/partials/admin-display.php:126
 msgid "USD - $"
 msgstr "USD - $"
 
-#: admin/partials/admin-display.php:112
+#: admin/partials/admin-display.php:127
 msgid "BAM - KM"
 msgstr "BAM - KM"
 
-#: admin/partials/admin-display.php:113
+#: admin/partials/admin-display.php:128
 msgid "EUR - €"
 msgstr "EUR - €"
 
-#: admin/partials/admin-display.php:114
+#: admin/partials/admin-display.php:129
 msgid "PLN - zł"
 msgstr "PLN - zł"
 
-#: admin/partials/admin-display.php:118
+#: admin/partials/admin-display.php:133
 msgid "Choose the type of payment for each enabled payment gateway"
 msgstr "Izaberite tip naplate za svaki omogućen platni procesor"
 
-#: admin/partials/admin-display.php:128
+#: admin/partials/admin-display.php:143
 msgid "Type of payment document"
 msgstr "Tip platne ponude"
 
-#: admin/partials/admin-display.php:130
+#: admin/partials/admin-display.php:145
 msgid "Offer"
 msgstr "Ponuda"
 
-#: admin/partials/admin-display.php:131
+#: admin/partials/admin-display.php:146
 msgid "Invoice"
 msgstr "Račun"
 
-#: admin/partials/admin-display.php:133
+#: admin/partials/admin-display.php:148
 msgid "Check if you want the invoice to be fiscalized.*"
 msgstr "Izaberite želite li fiskalizirati račun.*"
 
-#: admin/partials/admin-display.php:139
+#: admin/partials/admin-display.php:154
 msgid ""
 "* Fiscalization certificate must be added in the SOLO options, and it only "
 "applies to invoices."
@@ -388,7 +388,7 @@ msgstr ""
 "* Fiskalizacijski certifikat mora biti dodan u SOLO opcijama, i samo vrijedi "
 "za račune."
 
-#: admin/partials/admin-display.php:144
+#: admin/partials/admin-display.php:159
 msgid ""
 "Enter the type of the service - you can find it in your account settings "
 "(Usluge -> Tipovi usluga). Has to be unique ID of the service."
@@ -396,87 +396,67 @@ msgstr ""
 "Unesite ID usluge u koju spada račun. Usluge možete pronaći pod Usluge -> "
 "Tipovi usluga nakon prijave u servis. Svaka usluga ima svoj unikatni ID."
 
-#: admin/partials/admin-display.php:148
+#: admin/partials/admin-display.php:163
 msgid "Show taxes"
 msgstr "Prikaži poreze"
 
-#: admin/partials/admin-display.php:150
+#: admin/partials/admin-display.php:165
 msgid "Don't show tax"
 msgstr "Nemoj prikazati poreze"
 
-#: admin/partials/admin-display.php:151
+#: admin/partials/admin-display.php:166
 msgid "Show tax"
 msgstr "Prikaži porez"
 
-#: admin/partials/admin-display.php:155
-msgid "Tax rate"
-msgstr "Porezna stopa"
-
-#: admin/partials/admin-display.php:157
-msgid "0%"
-msgstr "0%"
-
-#: admin/partials/admin-display.php:158
-msgid "5%"
-msgstr "5%"
-
-#: admin/partials/admin-display.php:159
-msgid "13%"
-msgstr "13%"
-
-#: admin/partials/admin-display.php:160
-msgid "25%"
-msgstr "25%"
-
-#: admin/partials/admin-display.php:164
+#: admin/partials/admin-display.php:170
 msgid "Type of reciepe (only works with reciepe, not with offer)"
 msgstr "Tip računa (radi samo sa odabranim računom, ne sa ponudom)"
 
-#: admin/partials/admin-display.php:166
+#: admin/partials/admin-display.php:172
 msgid "R"
 msgstr "R"
 
-#: admin/partials/admin-display.php:167
+#: admin/partials/admin-display.php:173
 msgid "R1"
 msgstr "R1"
 
-#: admin/partials/admin-display.php:168
+#: admin/partials/admin-display.php:174
 msgid "R2"
 msgstr "R2"
 
-#: admin/partials/admin-display.php:169
+#: admin/partials/admin-display.php:175
 msgid "No label"
 msgstr "Bez oznake"
 
-#: admin/partials/admin-display.php:170
+#: admin/partials/admin-display.php:176
 msgid "In advance"
 msgstr "Avansni"
 
-#: admin/partials/admin-display.php:174
+#: admin/partials/admin-display.php:180
 msgid "Invoice/Offer due date"
 msgstr "Rok plaćanja računa/ponude"
 
-#: admin/partials/admin-display.php:176
+#: admin/partials/admin-display.php:182
 msgid "1 week"
 msgstr "1 tjedan"
 
-#: admin/partials/admin-display.php:177
+#: admin/partials/admin-display.php:183
 msgid "2 weeks"
 msgstr "2 tjedna"
 
-#: admin/partials/admin-display.php:178
+#: admin/partials/admin-display.php:184
 msgid "3 weeks"
 msgstr "3 tjedna"
 
-#: admin/partials/admin-display.php:182
+#: admin/partials/admin-display.php:188
 msgid "You can check the currency rate at"
 msgstr "Tečaj valuta možete provjeriti na stranici"
 
-#: admin/partials/admin-display.php:182
+#: admin/partials/admin-display.php:188
 msgid "Croatian National Bank"
 msgstr "Hrvatske Nacionalne Banke"
 
-#: admin/partials/admin-display.php:182
+#: admin/partials/admin-display.php:188
 msgid ""
 "to see the current currency rates. If the currency is HRK leave the field "
 "blank. Limit the number of decimals to 6 places for other currencies (e.g. "
@@ -485,23 +465,23 @@ msgstr ""
 "ukoliko želite vidjeti trenutne tečajeve. Ako je tečaj HRK ostavite ovo "
 "polje prazno. Broj decimala tečaja mora biti 6 (npr. 6,123456)."
 
-#: admin/partials/admin-display.php:189
+#: admin/partials/admin-display.php:195
 msgid "Enable the PIN field on the billing and shipping from in the checkout."
 msgstr ""
 "Omogućite OIB polje na dostavnoj i naplatnoj formi na naplatnoj stranici."
 
-#: admin/partials/admin-display.php:192
+#: admin/partials/admin-display.php:198
 msgid "Enable the IBAN field on the billing and shipping from in the checkout."
 msgstr ""
 "Omogućite IBAN polje na dostavnoj i naplatnoj formi na naplatnoj stranici."
 
-#: admin/partials/admin-display.php:195
+#: admin/partials/admin-display.php:201
 msgid "Send the email to the client with the PDF of the order or the invoice."
 msgstr ""
 "Postavite naslov e-maila koji će se poslati zajedno sa PDF ponudom ili "
 "računom."
 
-#: admin/partials/admin-display.php:198
+#: admin/partials/admin-display.php:204
 msgid ""
 "Create pdf and send mail to the customer only if these payment gateways are "
 "selected."
@@ -509,21 +489,21 @@ msgstr ""
 "Kreirajte pdf i pošaljite ga na klijentov mail, samo ako su odabrani "
 "sljedeći platni procesori."
 
-#: admin/partials/admin-display.php:211
+#: admin/partials/admin-display.php:217
 msgid "Set the title of the mail that will be send with the PDF invoice."
 msgstr "Postavite naslov e-maila koji će se poslati zajedno sa PDF računom."
 
-#: admin/partials/admin-display.php:215
+#: admin/partials/admin-display.php:221
 msgid ""
 "Type the message that will appear on the mail with the invoice PDF attached."
 msgstr "Upišite poruku e-maila koji će se poslati sa PDF računom."
 
-#: admin/partials/admin-display.php:219
+#: admin/partials/admin-display.php:225
 msgid "Change the 'from' name that shows when WordPress sends the mail."
 msgstr ""
 "Promijenite 'od' ime koje se pojavljuje kada WordPress šalje svoje mailove."
 
-#: admin/partials/admin-display.php:220
+#: admin/partials/admin-display.php:226
 msgid ""
 "CAUTION: This change is global, every mail send from your WordPress will "
 "have this 'from' name."
@@ -542,6 +522,21 @@ msgstr "Ovaj plugin zahtjeva da "
 #: includes/class-activator.php:46
 msgid " plugin to be active!"
 msgstr " bude aktiviran!"
+
+#~ msgid "Tax rate"
+#~ msgstr "Porezna stopa"
+
+#~ msgid "0%"
+#~ msgstr "0%"
+
+#~ msgid "5%"
+#~ msgstr "5%"
+
+#~ msgid "13%"
+#~ msgstr "13%"
+
+#~ msgid "25%"
+#~ msgstr "25%"
 
 #~ msgid ""
 #~ "Check if you want the invoice to be fiscalized. Fiscalization certificate "

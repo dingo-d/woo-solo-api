@@ -60,6 +60,7 @@ class Request {
    * TO DO: Razbiti možda na više metoda.
    *
    * @param int $order_id ID of the order.
+   * @since 1.3.0 Added tax checks and additional debug options.
    * @since 1.0.0
    */
   public function solo_api_send_api_request( $order_id ) {
