@@ -12,6 +12,7 @@
  */
 
 namespace Woo_Solo_Api\Includes;
+
 use Woo_Solo_Api\Admin as Admin;
 
 /**
@@ -64,7 +65,7 @@ class Woo_Solo_Api {
     if ( defined( 'SAWI_PLUGIN_VERSION' ) ) {
       $this->version = SAWI_PLUGIN_VERSION;
     } else {
-      $this->version = '1.2';
+      $this->version = '1.3';
     }
 
     if ( defined( 'SAWI_PLUGIN_NAME' ) ) {
@@ -114,9 +115,10 @@ class Woo_Solo_Api {
    */
   private function define_admin_hooks() {
     $plugin_admin = new Admin\Admin( $this->get_plugin_name(), $this->get_version() );
-    $plugin_solo_api_request = new Admin\Request( $this->get_plugin_name(), $this->get_version() );
+    $api_request  = new Admin\Request( $this->get_plugin_name(), $this->get_version() );
 
-    $this->loader->add_action( 'woocommerce_email_order_details', $plugin_solo_api_request, 'solo_api_send_api_request' );
+    $this->loader->add_action( 'woocommerce_email_order_details', $api_request, 'solo_api_send_api_request' );
+
     $this->loader->add_filter( 'post_mime_types', $plugin_admin, 'add_pdf_post_mime_type' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );

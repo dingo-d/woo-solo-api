@@ -44,7 +44,7 @@ function woo_solo_api_autoloader( $filename ) {
 
   $file_count = count( $file_path );
   for ( $i = 1; $i < $file_count - 1; $i++ ) {
-    $dir = strtolower( $file_path[ $i ] );
+    $dir                   = strtolower( $file_path[ $i ] );
     $fully_qualified_path .= trailingslashit( $dir );
   }
 
@@ -52,6 +52,6 @@ function woo_solo_api_autoloader( $filename ) {
 
   // Now we include the file.
   if ( file_exists( $fully_qualified_path ) ) {
-    include_once( $fully_qualified_path );
+    include_once $fully_qualified_path;
   }
 }

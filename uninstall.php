@@ -43,7 +43,6 @@ delete_option( 'solo_api_languages' );
 delete_option( 'solo_api_currency' );
 delete_option( 'solo_api_service_type' );
 delete_option( 'solo_api_show_taxes' );
-delete_option( 'solo_api_tax_rate' );
 delete_option( 'solo_api_invoice_type' );
 delete_option( 'solo_api_mail_title' );
 delete_option( 'solo_api_message' );

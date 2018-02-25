@@ -48,7 +48,7 @@ class Request {
    */
   public function __construct( $plugin_name, $version ) {
     $this->plugin_name = $plugin_name;
-    $this->version = $version;
+    $this->version     = $version;
   }
 
   /**
@@ -60,6 +60,7 @@ class Request {
    * TO DO: Razbiti možda na više metoda.
    *
    * @param int $order_id ID of the order.
+   * @since 1.3.0 Added tax checks and additional debug options.
    * @since 1.0.0
    */
   public function solo_api_send_api_request( $order_id ) {
@@ -73,21 +74,20 @@ class Request {
       return;
     }
 
-    $order = wc_get_order( $order_id );
+    $order      = wc_get_order( $order_id );
     $order_data = $order->get_data(); // The Order data.
 
     // Options.
-    $solo_api_token           = get_option( 'solo_api_token' );
-    $solo_api_measure         = get_option( 'solo_api_measure' );
-    $solo_api_payment_type    = get_option( 'solo_api_payment_type' );
-    $solo_api_languages       = get_option( 'solo_api_languages' );
-    $solo_api_currency        = get_option( 'solo_api_currency' );
-    $solo_api_service_type    = get_option( 'solo_api_service_type' );
-    $solo_api_show_taxes      = get_option( 'solo_api_show_taxes' );
-    $solo_api_tax_rate        = get_option( 'solo_api_tax_rate' );
-    $solo_api_invoice_type    = get_option( 'solo_api_invoice_type' );
-    $solo_api_currency_rate   = get_option( 'solo_api_currency_rate' );
-    $solo_api_due_date        = get_option( 'solo_api_due_date' );
+    $solo_api_token         = get_option( 'solo_api_token' );
+    $solo_api_measure       = get_option( 'solo_api_measure' );
+    $solo_api_payment_type  = get_option( 'solo_api_payment_type' );
+    $solo_api_languages     = get_option( 'solo_api_languages' );
+    $solo_api_currency      = get_option( 'solo_api_currency' );
+    $solo_api_service_type  = get_option( 'solo_api_service_type' );
+    $solo_api_show_taxes    = get_option( 'solo_api_show_taxes' );
+    $solo_api_invoice_type  = get_option( 'solo_api_invoice_type' );
+    $solo_api_currency_rate = get_option( 'solo_api_currency_rate' );
+    $solo_api_due_date      = get_option( 'solo_api_due_date' );
 
     // Check if billing or shipping.
     $field = 'shipping';
@@ -96,17 +96,17 @@ class Request {
       $field = 'billing';
     }
 
-    $first_name  = ( isset( $order_data[ $field ]['first_name'] ) && $order_data[ $field ]['first_name'] !== '' ) ? $order_data[ $field ]['first_name'] : '';
-    $last_name   = ( isset( $order_data[ $field ]['last_name'] ) && $order_data[ $field ]['last_name'] !== '' ) ? $order_data[ $field ]['last_name'] : '';
-    $address_1   = ( isset( $order_data[ $field ]['address_1'] ) && $order_data[ $field ]['address_1'] !== '' ) ? $order_data[ $field ]['address_1'] : '';
-    $address_2   = ( isset( $order_data[ $field ]['address_2'] ) && $order_data[ $field ]['address_2'] !== '' ) ? $order_data[ $field ]['address_2'] : '';
-    $city        = ( isset( $order_data[ $field ]['city'] ) && $order_data[ $field ]['city'] !== '' ) ? $order_data[ $field ]['city'] : '';
-    $state       = ( isset( $order_data[ $field ]['state'] ) && $order_data[ $field ]['state'] !== '' ) ? $order_data[ $field ]['state'] : '';
-    $country     = ( isset( $order_data[ $field ]['country'] ) && $order_data[ $field ]['country'] !== '' ) ? $order_data[ $field ]['country'] : '';
-    $postcode    = ( isset( $order_data[ $field ]['postcode'] ) && $order_data[ $field ]['postcode'] !== '' ) ? $order_data[ $field ]['postcode'] : '';
-    $email       = ( isset( $order_data[ $field ]['email'] ) && $order_data[ $field ]['email'] !== '' ) ? $order_data[ $field ]['email'] : '';
-    $phone       = ( isset( $order_data[ $field ]['phone'] ) && $order_data[ $field ]['phone'] !== '' ) ? $order_data[ $field ]['phone'] : '';
-    $company     = ( isset( $order_data[ $field ]['company'] ) && $order_data[ $field ]['company'] !== '' ) ? $order_data[ $field ]['company'] : '';
+    $first_name = ( isset( $order_data[ $field ]['first_name'] ) && $order_data[ $field ]['first_name'] !== '' ) ? $order_data[ $field ]['first_name'] : '';
+    $last_name  = ( isset( $order_data[ $field ]['last_name'] ) && $order_data[ $field ]['last_name'] !== '' ) ? $order_data[ $field ]['last_name'] : '';
+    $address_1  = ( isset( $order_data[ $field ]['address_1'] ) && $order_data[ $field ]['address_1'] !== '' ) ? $order_data[ $field ]['address_1'] : '';
+    $address_2  = ( isset( $order_data[ $field ]['address_2'] ) && $order_data[ $field ]['address_2'] !== '' ) ? $order_data[ $field ]['address_2'] : '';
+    $city       = ( isset( $order_data[ $field ]['city'] ) && $order_data[ $field ]['city'] !== '' ) ? $order_data[ $field ]['city'] : '';
+    $state      = ( isset( $order_data[ $field ]['state'] ) && $order_data[ $field ]['state'] !== '' ) ? $order_data[ $field ]['state'] : '';
+    $country    = ( isset( $order_data[ $field ]['country'] ) && $order_data[ $field ]['country'] !== '' ) ? $order_data[ $field ]['country'] : '';
+    $postcode   = ( isset( $order_data[ $field ]['postcode'] ) && $order_data[ $field ]['postcode'] !== '' ) ? $order_data[ $field ]['postcode'] : '';
+    $email      = ( isset( $order_data[ $field ]['email'] ) && $order_data[ $field ]['email'] !== '' ) ? $order_data[ $field ]['email'] : '';
+    $phone      = ( isset( $order_data[ $field ]['phone'] ) && $order_data[ $field ]['phone'] !== '' ) ? $order_data[ $field ]['phone'] : '';
+    $company    = ( isset( $order_data[ $field ]['company'] ) && $order_data[ $field ]['company'] !== '' ) ? $order_data[ $field ]['company'] : '';
 
     $meta_data = $order_data['meta_data'];
 
@@ -168,22 +168,39 @@ class Request {
 
     foreach ( array_unique( $order->get_items() ) as $item_key => $item_values ) {
       $item_name = $item_values->get_name(); // Name of the product.
-      $item_data = $item_values->get_data();
+      $item_data = $item_values->get_data(); // Product data.
 
       $product_name = $item_data['name'];
       $quantity     = (double) ( $item_data['quantity'] !== 0 ) ? $item_data['quantity'] : 1;
-      $single_price = $item_data['total'] / $quantity;
-      $line_total   = rawurlencode( number_format( $single_price, 2, ',', '.' ) );
+      $single_price = (double) $item_data['total'] / $quantity;
+      $single_tax   = (double) $item_data['total_tax'] / $quantity;
 
-      $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . $product_name . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $line_total . '&kolicina_' . $item_no . '=' . $quantity . '&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $solo_api_tax_rate;
+      $tax_rate = (int) ( ( $single_tax / $single_price ) * 100 );
+
+      // If the tax rate is not 5%, 13% or 25% then the set tax will be 0.
+      if ( ! in_array( $tax_rate, array( 5, 13, 25 ), true ) ) {
+        $tax_rate = 0;
+      }
+
+      $line_total = rawurlencode( number_format( $single_price, 2, ',', '.' ) );
+
+      $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . $product_name . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $line_total . '&kolicina_' . $item_no . '=' . $quantity . '&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $tax_rate;
 
       $item_no++;
     }
 
     // Shipping.
     if ( (int) $order->get_total_shipping() > 0 ) {
-      $shipping_price = number_format( (int) $order->get_total_shipping(), 2, ',', '.' );
-      $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . esc_html__( 'Shipping fee', 'woo-solo-api' ) . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $shipping_price . '&kolicina_' . $item_no . '=1&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $solo_api_tax_rate;
+      $shipping_price = (double) number_format( $order->get_total_shipping(), 2, ',', '.' );
+
+      $tax_rate = (int) ( ( $order->get_shipping_tax() / $order->get_total_shipping() ) * 100 );
+
+      // If the tax rate is not 5%, 13% or 25% then the set tax will be 0.
+      if ( ! in_array( $tax_rate, array( 5, 13, 25 ), true ) ) {
+        $tax_rate = 0;
+      }
+
+      $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . esc_html__( 'Shipping fee', 'woo-solo-api' ) . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $shipping_price . '&kolicina_' . $item_no . '=1&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $tax_rate;
     }
 
     $customer_note = ( isset( $order->data['customer_note'] ) && '' !== $order->data['customer_note'] ) ? $order->data['customer_note'] : '';
@@ -212,7 +229,7 @@ class Request {
     }
 
     if ( ! empty( $solo_api_currency_rate ) ) {
-      $num = (float) str_replace( ',', '.', $solo_api_currency_rate );
+      $num       = (float) str_replace( ',', '.', $solo_api_currency_rate );
       $post_url .= '&tecaj=' . str_replace( '.', ',', round( $num, 6 ) );
     }
 
@@ -229,18 +246,28 @@ class Request {
     $regular_url = str_replace( ' ', '%20', $post_url );
 
     if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
+      // phpcs:disable WordPress.PHP.DevelopmentFunctions
       error_log( print_r( $regular_url, true ) );
+      // phpcs:enable
     }
 
     /**
      * For more info go to: https://solo.com.hr/api-dokumentacija/izrada-racuna
      */
-    $response = wp_remote_post( $regular_url, array(
-        'method' => 'POST',
-    ) );
+    $response = wp_remote_post(
+      $regular_url, array(
+          'method' => 'POST',
+      )
+    );
+
+    if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
+      // phpcs:disable WordPress.PHP.DevelopmentFunctions
+      error_log( print_r( $response, true ) );
+      // phpcs:enable
+    }
 
     if ( is_wp_error( $response ) ) {
-      $error_code = wp_remote_retrieve_response_code( $response );
+      $error_code    = wp_remote_retrieve_response_code( $response );
       $error_message = wp_remote_retrieve_response_message( $response );
       return new \WP_Error( $error_code, $error_message );
     }
@@ -250,6 +277,7 @@ class Request {
     if ( $body->status !== 0 ) {
       return new \WP_Error( $body->status, $body->message );
     }
+
     $this->solo_api_send_mail( $body, sanitize_email( $email ), $order_data['payment_method'], $solo_api_bill_type );
   }
 
@@ -285,11 +313,11 @@ class Request {
 
     global $wp_filesystem;
     if ( empty( $wp_filesystem ) ) {
-      require_once( ABSPATH . '/wp-admin/includes/file.php' );
+      require_once ABSPATH . '/wp-admin/includes/file.php';
     }
 
     $checkout_url = \wc_get_checkout_url();
-    $url          = wp_nonce_url( $checkout_url ,'_wpnonce', '_wpnonce' );
+    $url          = wp_nonce_url( $checkout_url, '_wpnonce', '_wpnonce' );
     $creds        = \request_filesystem_credentials( $url, '', false, false, null );
 
     if ( $creds === false ) {
@@ -309,7 +337,7 @@ class Request {
     $pdf_get = wp_remote_get( $pdf_link );
 
     if ( is_wp_error( $pdf_get ) ) {
-      $error_code = wp_remote_retrieve_response_code( $pdf_get );
+      $error_code    = wp_remote_retrieve_response_code( $pdf_get );
       $error_message = wp_remote_retrieve_response_message( $pdf_get );
       return new \WP_Error( $error_code, $error_message );
     }

@@ -28,7 +28,7 @@ class Activator {
    */
   public static function activate() {
     if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
-      include_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+      include_once ABSPATH . '/wp-admin/includes/plugin.php';
     }
 
     if ( ! current_user_can( 'activate_plugins' ) ) {
