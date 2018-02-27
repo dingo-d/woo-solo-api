@@ -79,15 +79,8 @@ class Request {
 
     $solo_api_send_control = get_option( 'solo_api_send_control' );
 
-    // First check if the pdf should be send on checkout or on admin.
-    if ( $solo_api_send_control === 'checkout' ) {
-      // This should run only on the front facing side.
-      if ( is_admin() ) {
-        return;
-      } else {
-        $this->execute_solo_api_call( $order );
-      }
-    } else {
+    // First check if the pdf should be send on checkout or on status change.
+    if ( $solo_api_send_control === 'status_change' ) {
       // If the option is selected to sed pdf on admin we should only run it on admin.
       if ( is_admin() ) {
         // Execute only if status is changed to completed!
@@ -100,6 +93,13 @@ class Request {
         }
       } else {
         return;
+      }
+    } else {
+      // This should run only on the front facing side.
+      if ( is_admin() ) {
+        return;
+      } else {
+        $this->execute_solo_api_call( $order );
       }
     }
   }
@@ -210,26 +210,22 @@ class Request {
       $item_name = $item_values->get_name(); // Name of the product.
       $item_data = $item_values->get_data(); // Product data.
 
+      $tax_rates = \WC_Tax::get_rates( $item_values->get_tax_class() );
+
+      foreach ( $tax_rates as $tax_rate_key => $tax_rate_value ) {
+        $tax_rate = (double) $tax_rate_value['rate'];
+      }
+
       $product_name = $item_data['name'];
       $quantity     = (double) ( $item_data['quantity'] !== 0 ) ? $item_data['quantity'] : 1;
       $single_price = (double) $item_data['total'] / $quantity;
-      $single_tax   = (double) $item_data['total_tax'] / $quantity;
-
-      error_log( print_r( 'QUANTITY' , true ) );
-      error_log( print_r( $quantity , true ) );
-      error_log( print_r( 'SINGLE_PRICE' , true ) );
-      error_log( print_r( $single_price , true ) );
-      error_log( print_r( 'SINGLE_TAX' , true ) );
-      error_log( print_r( $single_tax , true ) );
-
-      $tax_rate = (int) ( ( $single_tax / $single_price ) * 100 );
 
       // If the tax rate is not 5%, 13% or 25% then the set tax will be 0.
-      if ( ! in_array( $tax_rate, array( 5, 13, 25 ), true ) ) {
+      if ( ! in_array( $tax_rate, array( 5, 13, 25 ) ) ) {
         $tax_rate = 0;
       }
 
-      $line_total = rawurlencode( number_format( $single_price, 2, ',', '.' ) );
+      $line_total = number_format( $single_price, 2, ',', '.' );
 
       $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . $product_name . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $line_total . '&kolicina_' . $item_no . '=' . $quantity . '&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $tax_rate;
 
@@ -237,21 +233,24 @@ class Request {
     }
 
     // Shipping.
-    if ( (int) $order->get_total_shipping() > 0 ) {
-      $shipping_price = (double) number_format( $order->get_total_shipping(), 2, ',', '.' );
-
-      $tax_rate = (int) ( ( $order->get_shipping_tax() / $order->get_total_shipping() ) * 100 );
-
-error_log( print_r( 'SHIPPING_PRICE', true ) );
-error_log( print_r( $shipping_price, true ) );
-error_log( print_r( 'TAX_RATE', true ) );
-error_log( print_r( $tax_rate, true ) );
-      // If the tax rate is not 5%, 13% or 25% then the set tax will be 0.
-      if ( ! in_array( $tax_rate, array( 5, 13, 25 ), true ) ) {
-        $tax_rate = 0;
+    $total_shipping = $order->get_total_shipping();
+    if ( (double) $total_shipping > 0 ) {
+      $shipping_items = $order->get_items( 'shipping' );
+      foreach ( $shipping_items as $shipping_key => $shipping_object ) {
+        $shipping_tax_rates = \WC_Tax::get_rates( $shipping_object->get_tax_class() );
       }
 
-      $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . esc_html__( 'Shipping fee', 'woo-solo-api' ) . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $shipping_price . '&kolicina_' . $item_no . '=1&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $tax_rate;
+      foreach ( $shipping_tax_rates as $shipping_tax_rates_key => $shipping_tax_rates_value ) {
+        $shipping_tax_rate = (double) $shipping_tax_rates_value['rate'];
+      }
+
+      $shipping_price = number_format( $total_shipping, 2, ',', '.' );
+
+      if ( ! in_array( $shipping_tax_rate, array( 5, 13, 25 ) ) ) {
+        $shipping_tax_rate = 0;
+      }
+
+      $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . esc_html__( 'Shipping fee', 'woo-solo-api' ) . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $shipping_price . '&kolicina_' . $item_no . '=1&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $shipping_tax_rate;
     }
 
     $customer_note = ( isset( $order->data['customer_note'] ) && '' !== $order->data['customer_note'] ) ? $order->data['customer_note'] : '';
