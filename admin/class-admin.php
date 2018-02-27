@@ -182,6 +182,7 @@ class Admin {
     register_setting( 'solo-api-settings-group', 'solo_api_due_date' );
     register_setting( 'solo-api-settings-group', 'solo_api_mail_gateway' );
     register_setting( 'solo-api-settings-group', 'solo_api_send_pdf' );
+    register_setting( 'solo-api-settings-group', 'solo_api_send_control' );
 
     $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
     foreach ( $available_gateways as $gateway_sett => $gateway_val ) {

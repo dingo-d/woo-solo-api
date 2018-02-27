@@ -5,6 +5,7 @@
  * This file is used to markup the admin-facing aspects of the plugin.
  *
  * @link       https://madebydenis.com
+ * @since      1.4.0 Add additional options for send pdf control.
  * @since      1.0.0
  *
  * @package    Woo_Solo_Api
@@ -24,6 +25,7 @@ $solo_api_invoice_type_option  = get_option( 'solo_api_invoice_type' );
 $solo_api_currency_rate_option = get_option( 'solo_api_currency_rate' );
 $solo_api_due_date_option      = get_option( 'solo_api_due_date' );
 $solo_api_send_pdf_option      = get_option( 'solo_api_send_pdf' );
+$solo_api_send_control_option  = get_option( 'solo_api_send_control' );
 $solo_api_mail_gateway_option  = get_option( 'solo_api_mail_gateway' );
 $solo_api_message_option       = get_option( 'solo_api_message' );
 $solo_api_mail_title_option    = get_option( 'solo_api_mail_title' );
@@ -33,12 +35,12 @@ $solo_api_mail_title_option    = get_option( 'solo_api_mail_title' );
   <form method="post" action="options.php">
     <?php settings_fields( 'solo-api-settings-group' ); ?>
     <?php do_settings_sections( 'solo-api-settings-group' ); ?>
-    <div class="notice"><?php esc_html_e( 'For more details on the options you can read the official SOLO API documentation here: ', 'woo-solo-api' ); ?><a href="<?php echo esc_url( 'https://solo.com.hr/api-dokumentacija' ); ?>"><?php echo esc_html( 'https://solo.com.hr/api-dokumentacija' ); ?></a></div>
+    <div class="notice plugin-notice"><?php esc_html_e( 'For more details on the options you can read the official SOLO API documentation here: ', 'woo-solo-api' ); ?><a href="<?php echo esc_url( 'https://solo.com.hr/api-dokumentacija' ); ?>"><?php echo esc_html( 'https://solo.com.hr/api-dokumentacija' ); ?></a></div>
     <div class="options-wrapper">
       <div class="options-wrapper__tabs">
         <div href="#tab1" class="tab active"><?php esc_html_e( 'Solo API token', 'woo-solo-api' ); ?></div>
         <div href="#tab2" class="tab"><?php esc_html_e( 'Solo API options', 'woo-solo-api' ); ?></div>
-        <div href="#tab3" class="tab"><?php esc_html_e( 'WooCommerce additional settings', 'woo-solo-api' ); ?></div>
+        <div href="#tab3" class="tab"><?php esc_html_e( 'Additional settings', 'woo-solo-api' ); ?></div>
         <div href="#tab4" class="tab"><?php esc_html_e( 'Mail settings', 'woo-solo-api' ); ?></div>
       </div>
       <div class="options-wrapper__content">
@@ -191,12 +193,14 @@ $solo_api_mail_title_option    = get_option( 'solo_api_mail_title' );
           </div>
         </div>
         <div id="tab3" class="tab-content">
+          <h4><?php esc_html_e( 'WooCommerce checkout settings', 'woo-solo-api' ); ?></h4>
           <div class="option">
             <label for="solo_api_enable_pin"><input type="checkbox" id="solo_api_enable_pin" name="solo_api_enable_pin" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_enable_pin' ) ), true ); ?>><?php esc_html_e( 'Enable the PIN field on the billing and shipping from in the checkout.', 'woo-solo-api' ); ?></label>
           </div>
           <div class="option">
             <label for="solo_api_enable_iban"><input type="checkbox" id="solo_api_enable_iban" name="solo_api_enable_iban" value="1" <?php checked( '1', esc_attr( get_option( 'solo_api_enable_iban' ) ), true ); ?>><?php esc_html_e( 'Enable the IBAN field on the billing and shipping from in the checkout.', 'woo-solo-api' ); ?></label>
           </div>
+          <h4><?php esc_html_e( 'PDF settings', 'woo-solo-api' ); ?></h4>
           <div class="option">
             <label for="solo_api_send_pdf"><input type="checkbox" id="solo_api_send_pdf" name="solo_api_send_pdf" value="1" <?php checked( '1', esc_attr( $solo_api_send_pdf_option ), true ); ?>><?php esc_html_e( 'Send the email to the client with the PDF of the order or the invoice.', 'woo-solo-api' ); ?></label>
           </div>
@@ -210,6 +214,14 @@ $solo_api_mail_title_option    = get_option( 'solo_api_mail_title' );
             <?php
             }
             ?>
+          </div>
+          <div class="option">
+            <label for="solo_api_send_control" class="subtitle"><?php esc_html_e( 'PDF send control', 'woo-solo-api' ); ?></label>
+            <div class="solo-info"><?php printf( '%1$s <br> %2$s', esc_html__( 'Decide when to send the PDF of the order or invoice - on customer checkout, or when you approve the order in the WooCommerce admin.', 'woo-solo-api' ), esc_html__( 'This will determine when the call to the SOLO API will be made.', 'woo-solo-api' ) ); ?></div>
+              <select name="solo_api_send_control" id="solo_api_send_control">
+                <option value="checkout" <?php selected( 'checkout', $solo_api_send_control_option, true ); ?>><?php esc_html_e( 'On checkout', 'woo-solo-api' ); ?></option>
+                <option value="status_change" <?php selected( 'status_change', $solo_api_send_control_option, true ); ?>><?php esc_html_e( 'On status change to \'completed\'', 'woo-solo-api' ); ?></option>
+              </select>
           </div>
         </div>
         <div id="tab4" class="tab-content">

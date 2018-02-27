@@ -57,13 +57,16 @@ class Request {
    * The main function of the pluging. It handles the request from
    * the order once the oreder is sent.
    *
-   * TO DO: Razbiti možda na više metoda.
+   * @param WC_Order       $order Order data.
+   * @param bool           $sent_to_admin Send to admin (default: false).
+   * @param bool           $plain_text Plain text email (default: false).
+   * @param WC_Email_Order $email Order email object.
    *
-   * @param int $order_id ID of the order.
+   * @since 1.4.0 Fix the send api method.
    * @since 1.3.0 Added tax checks and additional debug options.
    * @since 1.0.0
    */
-  public function solo_api_send_api_request( $order_id ) {
+  public function solo_api_send_api_request( $order, $sent_to_admin, $plain_text, $email ) {
 
     $method_executed = get_transient( 'solo_api_method_executed' );
     if ( $method_executed === false ) {
@@ -74,10 +77,45 @@ class Request {
       return;
     }
 
-    $order      = wc_get_order( $order_id );
-    $order_data = $order->get_data(); // The Order data.
+    $solo_api_send_control = get_option( 'solo_api_send_control' );
+
+    // First check if the pdf should be send on checkout or on admin.
+    if ( $solo_api_send_control === 'checkout' ) {
+      // This should run only on the front facing side.
+      if ( is_admin() ) {
+        return;
+      } else {
+        $this->execute_solo_api_call( $order );
+      }
+    } else {
+      // If the option is selected to sed pdf on admin we should only run it on admin.
+      if ( is_admin() ) {
+        // Execute only if status is changed to completed!
+        $order        = $email->object;
+        $order_data   = $order->get_data(); // The Order data.
+        $order_status = $order_data['status'];
+
+        if ( $order_status === 'completed' ) {
+          $this->execute_solo_api_call( $order );
+        }
+      } else {
+        return;
+      }
+    }
+  }
+
+  /**
+   * Execute the call to the SOLO API
+   *
+   * @param  WC_Order $order Order data.
+   * @since  1.4.0 Separated the send method for more control. Add
+   *               Check to send the mail in this method, so that the
+   *               method that controls the send is not called at all.
+   */
+  public function execute_solo_api_call( $order ) {
 
     // Options.
+    $solo_api_token         = get_option( 'solo_api_token' );
     $solo_api_token         = get_option( 'solo_api_token' );
     $solo_api_measure       = get_option( 'solo_api_measure' );
     $solo_api_payment_type  = get_option( 'solo_api_payment_type' );
@@ -88,6 +126,8 @@ class Request {
     $solo_api_invoice_type  = get_option( 'solo_api_invoice_type' );
     $solo_api_currency_rate = get_option( 'solo_api_currency_rate' );
     $solo_api_due_date      = get_option( 'solo_api_due_date' );
+
+    $order_data = $order->get_data(); // The Order data.
 
     // Check if billing or shipping.
     $field = 'shipping';
@@ -175,6 +215,13 @@ class Request {
       $single_price = (double) $item_data['total'] / $quantity;
       $single_tax   = (double) $item_data['total_tax'] / $quantity;
 
+      error_log( print_r( 'QUANTITY' , true ) );
+      error_log( print_r( $quantity , true ) );
+      error_log( print_r( 'SINGLE_PRICE' , true ) );
+      error_log( print_r( $single_price , true ) );
+      error_log( print_r( 'SINGLE_TAX' , true ) );
+      error_log( print_r( $single_tax , true ) );
+
       $tax_rate = (int) ( ( $single_tax / $single_price ) * 100 );
 
       // If the tax rate is not 5%, 13% or 25% then the set tax will be 0.
@@ -195,6 +242,10 @@ class Request {
 
       $tax_rate = (int) ( ( $order->get_shipping_tax() / $order->get_total_shipping() ) * 100 );
 
+error_log( print_r( 'SHIPPING_PRICE', true ) );
+error_log( print_r( $shipping_price, true ) );
+error_log( print_r( 'TAX_RATE', true ) );
+error_log( print_r( $tax_rate, true ) );
       // If the tax rate is not 5%, 13% or 25% then the set tax will be 0.
       if ( ! in_array( $tax_rate, array( 5, 13, 25 ), true ) ) {
         $tax_rate = 0;
@@ -278,7 +329,12 @@ class Request {
       return new \WP_Error( $body->status, $body->message );
     }
 
-    $this->solo_api_send_mail( $body, sanitize_email( $email ), $order_data['payment_method'], $solo_api_bill_type );
+    // Send mail to the customer with the PDF of the invoice.
+    $solo_api_send_pdf = get_option( 'solo_api_send_pdf' );
+
+    if ( $solo_api_send_pdf === '1' ) {
+      $this->solo_api_send_mail( $body, sanitize_email( $email ), $order_data['payment_method'], $solo_api_bill_type );
+    }
   }
 
   /**
@@ -291,12 +347,12 @@ class Request {
    * @param  string $payment_method Payment method type.
    * @param  string $bill_type      Bill type. Important for sending the email.
    *
+   * @since  1.4  Remove the check to send the mail or not.
    * @since  1.2  Added bill type check
    * @since  1.0.0
    */
   public function solo_api_send_mail( $body, $email, $payment_method, $bill_type ) {
 
-    $solo_api_send_pdf  = get_option( 'solo_api_send_pdf' );
     $checked_gateways   = get_option( 'solo_api_mail_gateway' );
     $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 
@@ -390,18 +446,15 @@ class Request {
 
     $attachment_id = wp_insert_attachment( $attachment_array, $url_parse['path'], 0 ); // Create attachment in the Media screen.
 
-    if ( $solo_api_send_pdf === '1' ) {
-      if ( $in_gateway ) {
+    if ( $in_gateway ) {
+      $solo_api_message    = get_option( 'solo_api_message' );
+      $solo_api_mail_title = get_option( 'solo_api_mail_title' );
 
-        $solo_api_message    = get_option( 'solo_api_message' );
-        $solo_api_mail_title = get_option( 'solo_api_mail_title' );
+      // Send mail with the attachment.
+      $headers  = 'MIME-Version: 1.0' . "\r\n";
+      $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
-        // Send mail with the attachment.
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-
-        wp_mail( $email, $solo_api_mail_title, $solo_api_message, $headers, array( $attachment ) );
-      }
+      wp_mail( $email, $solo_api_mail_title, $solo_api_message, $headers, array( $attachment ) );
     }
   }
 }
