@@ -4,7 +4,7 @@ Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 4.4
 Requires PHP: 5.6
 Tested up to: 4.9.4
-Stable tag: 1.3
+Stable tag: 1.4
 WC requires at least: 3.0.0
 WC tested up to: 3.3.3
 License: GPLv2 or later
@@ -65,6 +65,11 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 == Changelog ==
 
+= 1.4 =
+* Added automatic conversion rate from Croatian National Bank (https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista)
+* Add a fix for duplicated orders - you can now choose if you want to make SOLO API call on the checkout or when changing order status manually
+* Fix for taxes rounding error on shipping
+
 = 1.3 =
 * Add additional debug methods
 * Code sniffer fixes
@@ -89,6 +94,11 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 * Initial release
 
 == Additional notes ==
+
+The 1.4 update fixed a lot of issues with the taxes, and tax rates. Although this has been fixed, the taxes probably wont't be picked up by the SOLO API if you set the option in the WooCommerce to include taxes in the price of the product. This is why you should separate the two. Also when creating a shipping tax class, be sure to create it as aseparate class, and leave the standard tax class for the product. So for instance the product will have a standard tax of 5%, and the shipping can have a separate class with tax rate of 25% (be sure to tick the shipping checkbox in this class).
+The including prices will be fixed in the next update.
+
+----
 
 The 1.3 update removed the predefined tax rates from the plugin, and is instead using WooCommerce taxes.
 This means that you can have different tax for the item, and different for the shipping. Word of caution though, the Croatian law has predefined taxes of 0, 5, 13 or 25%. So in case you put the tax for the item and shipping anything other than that, the tax rate will be sent as 0 - so that your SOLO invoice or offer will pass, but with 0 tax rate.
