@@ -13,7 +13,7 @@
   display: block;
 }
 
-.solo-api-options .notice {
+.solo-api-options .plugin-notice {
   padding: 10px;
 }
 
@@ -134,4 +134,8 @@
 
 .solo-api-options .fields__note {
   margin-top: 30px;
+}
+
+.solo-info {
+  margin-bottom: 10px;
 }

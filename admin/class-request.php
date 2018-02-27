@@ -16,39 +16,28 @@ namespace Woo_Solo_Api\Admin;
  * @package    Woo_Solo_Api\Admin
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  *
- * @since      1.2  Added bill type check in the request method
+ * @since      1.4.0  Added additional methods.
+ * @since      1.2.0  Added bill type check in the request method
  * @since      1.0.0
  */
 class Request {
 
   /**
-   * The ID of this plugin.
+   * Helpers object property.
    *
-   * @since    1.0.0
+   * @since    1.4.0
    * @access   private
-   * @var      string    $plugin_name    The ID of this plugin.
+   * @var      string    $helper    Helper object instance.
    */
-  private $plugin_name;
-
-  /**
-   * The version of this plugin.
-   *
-   * @since    1.0.0
-   * @access   private
-   * @var      string    $version    The current version of this plugin.
-   */
-  private $version;
+  private $helper;
 
   /**
    * Initialize the class and set its properties.
    *
    * @since 1.0.0
-   * @param string $plugin_name  The name of this plugin.
-   * @param string $version      The version of this plugin.
    */
-  public function __construct( $plugin_name, $version ) {
-    $this->plugin_name = $plugin_name;
-    $this->version     = $version;
+  public function __construct() {
+    $this->helper = new Helpers();
   }
 
   /**
@@ -57,13 +46,16 @@ class Request {
    * The main function of the pluging. It handles the request from
    * the order once the oreder is sent.
    *
-   * TO DO: Razbiti možda na više metoda.
+   * @param WC_Order       $order Order data.
+   * @param bool           $sent_to_admin Send to admin (default: false).
+   * @param bool           $plain_text Plain text email (default: false).
+   * @param WC_Email_Order $email Order email object.
    *
-   * @param int $order_id ID of the order.
+   * @since 1.4.0 Fix the send api method.
    * @since 1.3.0 Added tax checks and additional debug options.
    * @since 1.0.0
    */
-  public function solo_api_send_api_request( $order_id ) {
+  public function solo_api_send_api_request( $order, $sent_to_admin, $plain_text, $email ) {
 
     $method_executed = get_transient( 'solo_api_method_executed' );
     if ( $method_executed === false ) {
@@ -74,20 +66,56 @@ class Request {
       return;
     }
 
-    $order      = wc_get_order( $order_id );
-    $order_data = $order->get_data(); // The Order data.
+    $solo_api_send_control = get_option( 'solo_api_send_control' );
+
+    // First check if the pdf should be send on checkout or on status change.
+    if ( $solo_api_send_control === 'status_change' ) {
+      // If the option is selected to sed pdf on admin we should only run it on admin.
+      if ( is_admin() ) {
+        // Execute only if status is changed to completed!
+        $order        = $email->object;
+        $order_data   = $order->get_data(); // The Order data.
+        $order_status = $order_data['status'];
+
+        if ( $order_status === 'completed' ) {
+          $this->execute_solo_api_call( $order );
+        }
+      } else {
+        return;
+      }
+    } else {
+      // This should run only on the front facing side.
+      if ( is_admin() ) {
+        return;
+      } else {
+        $this->execute_solo_api_call( $order );
+      }
+    }
+  }
+
+  /**
+   * Execute the call to the SOLO API
+   *
+   * @param  WC_Order $order Order data.
+   * @since  1.4.0 Separated the send method for more control. Add
+   *               Check to send the mail in this method, so that the
+   *               method that controls the send is not called at all.
+   */
+  public function execute_solo_api_call( $order ) {
 
     // Options.
-    $solo_api_token         = get_option( 'solo_api_token' );
-    $solo_api_measure       = get_option( 'solo_api_measure' );
-    $solo_api_payment_type  = get_option( 'solo_api_payment_type' );
-    $solo_api_languages     = get_option( 'solo_api_languages' );
-    $solo_api_currency      = get_option( 'solo_api_currency' );
-    $solo_api_service_type  = get_option( 'solo_api_service_type' );
-    $solo_api_show_taxes    = get_option( 'solo_api_show_taxes' );
-    $solo_api_invoice_type  = get_option( 'solo_api_invoice_type' );
-    $solo_api_currency_rate = get_option( 'solo_api_currency_rate' );
-    $solo_api_due_date      = get_option( 'solo_api_due_date' );
+    $solo_api_token        = get_option( 'solo_api_token' );
+    $solo_api_token        = get_option( 'solo_api_token' );
+    $solo_api_measure      = get_option( 'solo_api_measure' );
+    $solo_api_payment_type = get_option( 'solo_api_payment_type' );
+    $solo_api_languages    = get_option( 'solo_api_languages' );
+    $solo_api_currency     = get_option( 'solo_api_currency' );
+    $solo_api_service_type = get_option( 'solo_api_service_type' );
+    $solo_api_show_taxes   = get_option( 'solo_api_show_taxes' );
+    $solo_api_invoice_type = get_option( 'solo_api_invoice_type' );
+    $solo_api_due_date     = get_option( 'solo_api_due_date' );
+
+    $order_data = $order->get_data(); // The Order data.
 
     // Check if billing or shipping.
     $field = 'shipping';
@@ -170,19 +198,22 @@ class Request {
       $item_name = $item_values->get_name(); // Name of the product.
       $item_data = $item_values->get_data(); // Product data.
 
+      $tax_rates = \WC_Tax::get_rates( $item_values->get_tax_class() );
+
+      foreach ( $tax_rates as $tax_rate_key => $tax_rate_value ) {
+        $tax_rate = (double) $tax_rate_value['rate'];
+      }
+
       $product_name = $item_data['name'];
       $quantity     = (double) ( $item_data['quantity'] !== 0 ) ? $item_data['quantity'] : 1;
       $single_price = (double) $item_data['total'] / $quantity;
-      $single_tax   = (double) $item_data['total_tax'] / $quantity;
-
-      $tax_rate = (int) ( ( $single_tax / $single_price ) * 100 );
 
       // If the tax rate is not 5%, 13% or 25% then the set tax will be 0.
-      if ( ! in_array( $tax_rate, array( 5, 13, 25 ), true ) ) {
+      if ( ! in_array( $tax_rate, array( 5, 13, 25 ) ) ) {
         $tax_rate = 0;
       }
 
-      $line_total = rawurlencode( number_format( $single_price, 2, ',', '.' ) );
+      $line_total = number_format( $single_price, 2, ',', '.' );
 
       $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . $product_name . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $line_total . '&kolicina_' . $item_no . '=' . $quantity . '&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $tax_rate;
 
@@ -190,17 +221,24 @@ class Request {
     }
 
     // Shipping.
-    if ( (int) $order->get_total_shipping() > 0 ) {
-      $shipping_price = (double) number_format( $order->get_total_shipping(), 2, ',', '.' );
-
-      $tax_rate = (int) ( ( $order->get_shipping_tax() / $order->get_total_shipping() ) * 100 );
-
-      // If the tax rate is not 5%, 13% or 25% then the set tax will be 0.
-      if ( ! in_array( $tax_rate, array( 5, 13, 25 ), true ) ) {
-        $tax_rate = 0;
+    $total_shipping = $order->get_total_shipping();
+    if ( (double) $total_shipping > 0 ) {
+      $shipping_items = $order->get_items( 'shipping' );
+      foreach ( $shipping_items as $shipping_key => $shipping_object ) {
+        $shipping_tax_rates = \WC_Tax::get_rates( $shipping_object->get_tax_class() );
       }
 
-      $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . esc_html__( 'Shipping fee', 'woo-solo-api' ) . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $shipping_price . '&kolicina_' . $item_no . '=1&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $tax_rate;
+      foreach ( $shipping_tax_rates as $shipping_tax_rates_key => $shipping_tax_rates_value ) {
+        $shipping_tax_rate = (double) $shipping_tax_rates_value['rate'];
+      }
+
+      $shipping_price = number_format( $total_shipping, 2, ',', '.' );
+
+      if ( ! in_array( $shipping_tax_rate, array( 5, 13, 25 ) ) ) {
+        $shipping_tax_rate = 0;
+      }
+
+      $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . esc_html__( 'Shipping fee', 'woo-solo-api' ) . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $shipping_price . '&kolicina_' . $item_no . '=1&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $shipping_tax_rate;
     }
 
     $customer_note = ( isset( $order->data['customer_note'] ) && '' !== $order->data['customer_note'] ) ? $order->data['customer_note'] : '';
@@ -216,7 +254,7 @@ class Request {
         $due_date = date( 'Y-m-d', strtotime( '+1 week' ) );
     }
 
-    $post_url .= '&nacin_placanja=' . $solo_api_payment_type . '&rok_placanja=' . $due_date . '&napomene=' . wp_kses_post( $customer_note );
+    $post_url .= '&nacin_placanja=' . $solo_api_payment_type . '&rok_placanja=' . $due_date;
 
     if ( ! empty( $iban_number ) ) {
       $post_url .= '&iban=' . esc_attr( $iban_number );
@@ -228,9 +266,44 @@ class Request {
       $post_url .= '&jezik_racuna=' . $solo_api_languages;
     }
 
-    if ( ! empty( $solo_api_currency_rate ) ) {
-      $num       = (float) str_replace( ',', '.', $solo_api_currency_rate );
-      $post_url .= '&tecaj=' . str_replace( '.', ',', round( $num, 6 ) );
+    if ( $solo_api_currency !== '1' ) { // Only for foreign currency.
+      $currency_helper = array(
+          '1' => 'HRK',
+          '2' => 'AUD',
+          '3' => 'CAD',
+          '4' => 'CZK',
+          '5' => 'DKK',
+          '6' => 'HUF',
+          '7' => 'JPY',
+          '8' => 'NOK',
+          '9' => 'SEK',
+          '10' => 'CHF',
+          '11' => 'GBP',
+          '12' => 'USD',
+          '13' => 'BAM',
+          '14' => 'EUR',
+          '15' => 'PLN',
+      );
+
+      $api_rates = $this->helper->get_exchange_rates();
+      $currency  = $currency_helper[ $solo_api_currency ];
+
+      $currency_rate = array_values( array_filter( array_map( function( $el ) use ( $currency ) {
+        if ( $el['currency_code'] === $currency ) {
+          return $el['median_rate'];
+        }
+      }, $api_rates ) ) );
+
+      if ( ! empty( $currency_rate ) ) {
+        $num       = (float) str_replace( ',', '.', $currency_rate[0] );
+        $post_url .= '&tecaj=' . str_replace( '.', ',', round( $num, 6 ) );
+
+        $customer_note .= "\n" . sprintf( '%1$s (1 %2$s = %3$s HRK)',
+          esc_html__( 'Recalculated at the middle exchange rate of the CNB', 'woo-solo-api' ),
+          esc_html( $currency ),
+          esc_html( str_replace( '.', ',', round( $num, 6 ) ) )
+        );
+      }
     }
 
     if ( $solo_api_bill_type === 'racun' ) {
@@ -240,6 +313,8 @@ class Request {
         $post_url .= '&fiskalizacija=0';
       }
     }
+
+    $post_url .= '&napomene=' . wp_kses_post( $customer_note );
 
     $method_executed = false;
 
@@ -278,7 +353,12 @@ class Request {
       return new \WP_Error( $body->status, $body->message );
     }
 
-    $this->solo_api_send_mail( $body, sanitize_email( $email ), $order_data['payment_method'], $solo_api_bill_type );
+    // Send mail to the customer with the PDF of the invoice.
+    $solo_api_send_pdf = get_option( 'solo_api_send_pdf' );
+
+    if ( $solo_api_send_pdf === '1' ) {
+      $this->solo_api_send_mail( $body, sanitize_email( $email ), $order_data['payment_method'], $solo_api_bill_type );
+    }
   }
 
   /**
@@ -291,12 +371,12 @@ class Request {
    * @param  string $payment_method Payment method type.
    * @param  string $bill_type      Bill type. Important for sending the email.
    *
+   * @since  1.4  Remove the check to send the mail or not.
    * @since  1.2  Added bill type check
    * @since  1.0.0
    */
   public function solo_api_send_mail( $body, $email, $payment_method, $bill_type ) {
 
-    $solo_api_send_pdf  = get_option( 'solo_api_send_pdf' );
     $checked_gateways   = get_option( 'solo_api_mail_gateway' );
     $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 
@@ -390,18 +470,15 @@ class Request {
 
     $attachment_id = wp_insert_attachment( $attachment_array, $url_parse['path'], 0 ); // Create attachment in the Media screen.
 
-    if ( $solo_api_send_pdf === '1' ) {
-      if ( $in_gateway ) {
+    if ( $in_gateway ) {
+      $solo_api_message    = get_option( 'solo_api_message' );
+      $solo_api_mail_title = get_option( 'solo_api_mail_title' );
 
-        $solo_api_message    = get_option( 'solo_api_message' );
-        $solo_api_mail_title = get_option( 'solo_api_mail_title' );
+      // Send mail with the attachment.
+      $headers  = 'MIME-Version: 1.0' . "\r\n";
+      $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
-        // Send mail with the attachment.
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-
-        wp_mail( $email, $solo_api_mail_title, $solo_api_message, $headers, array( $attachment ) );
-      }
+      wp_mail( $email, $solo_api_mail_title, $solo_api_message, $headers, array( $attachment ) );
     }
   }
 }

@@ -49,10 +49,10 @@ delete_option( 'solo_api_message' );
 delete_option( 'solo_api_change_mail_from' );
 delete_option( 'solo_api_enable_pin' );
 delete_option( 'solo_api_enable_iban' );
-delete_option( 'solo_api_currency_rate' );
 delete_option( 'solo_api_due_date' );
 delete_option( 'solo_api_mail_gateway' );
 delete_option( 'solo_api_send_pdf' );
+delete_option( 'solo_api_send_control' );
 
 $available_woo_gateways = WC()->payment_gateways->get_available_payment_gateways();
 foreach ( $available_woo_gateways as $gateway_woo_sett => $gateway_woo_val ) {
