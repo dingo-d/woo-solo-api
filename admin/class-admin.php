@@ -178,7 +178,6 @@ class Admin {
     register_setting( 'solo-api-settings-group', 'solo_api_change_mail_from' );
     register_setting( 'solo-api-settings-group', 'solo_api_enable_pin' );
     register_setting( 'solo-api-settings-group', 'solo_api_enable_iban' );
-    register_setting( 'solo-api-settings-group', 'solo_api_currency_rate' );
     register_setting( 'solo-api-settings-group', 'solo_api_due_date' );
     register_setting( 'solo-api-settings-group', 'solo_api_mail_gateway' );
     register_setting( 'solo-api-settings-group', 'solo_api_send_pdf' );

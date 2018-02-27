@@ -31,21 +31,21 @@ class Helpers {
    */
   public function get_exchange_rates() {
 
-    $currency_transient = get_transient( 'exchange_rate_transient' ); // Get transient.
+    $currency_rates = get_transient( 'exchange_rate_transient' ); // Get transient.
 
-    if ( false === $currency_transient ) { // If no valid transient exists, run this.
-      $currency_api_url   = 'http://hnbex.eu/api/v1/rates/daily/';
-      $currency_transient = wp_remote_get( $currency_api_url );
+    if ( false === $currency_rates ) { // If no valid transient exists, run this.
+      $currency_api_url = 'http://hnbex.eu/api/v1/rates/daily/';
+      $currency_remote  = wp_remote_get( $currency_api_url );
 
       // Is the API up?
-      if ( ! 200 === wp_remote_retrieve_response_code( $currency_transient ) ) {
+      if ( ! 200 === wp_remote_retrieve_response_code( $currency_remote ) ) {
         return false;
       }
 
-      set_transient( 'exchange_rate_transient', $currency_transient, 1 * DAY_IN_SECONDS );
-    }
+      $currency_rates = json_decode( wp_remote_retrieve_body( $currency_remote ), true );
 
-    $currency_rates = json_decode( wp_remote_retrieve_body( $currency_transient ), true );
+      set_transient( 'exchange_rate_transient', $currency_rates, 1 * DAY_IN_SECONDS );
+    }
 
     // Are the results in an array?
     if ( ! is_array( $currency_rates ) ) {

@@ -22,7 +22,6 @@ $solo_api_currency_option      = get_option( 'solo_api_currency' );
 $solo_api_service_type_option  = get_option( 'solo_api_service_type' );
 $solo_api_show_taxes_option    = get_option( 'solo_api_show_taxes' );
 $solo_api_invoice_type_option  = get_option( 'solo_api_invoice_type' );
-$solo_api_currency_rate_option = get_option( 'solo_api_currency_rate' );
 $solo_api_due_date_option      = get_option( 'solo_api_due_date' );
 $solo_api_send_pdf_option      = get_option( 'solo_api_send_pdf' );
 $solo_api_send_control_option  = get_option( 'solo_api_send_control' );
@@ -187,8 +186,7 @@ $solo_api_mail_title_option    = get_option( 'solo_api_mail_title' );
               </select>
             </div>
             <div class="option">
-              <label for="solo_api_currency_rate" class="subtitle"><?php printf( '%s <a href="https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista" target="_blank" rel="noopener noreferrer">%s</a> %s', esc_html__( 'You can check the currency rate at', 'woo-solo-api' ), esc_html__( 'Croatian National Bank', 'woo-solo-api' ), esc_html__( 'to see the current currency rates. If the currency is HRK leave the field blank. Limit the number of decimals to 6 places for other currencies (e.g. 6,123456).', 'woo-solo-api' ) ); ?></label>
-              <input type="text" id="solo_api_currency_rate" name="solo_api_currency_rate" value="<?php echo esc_attr( $solo_api_currency_rate_option ); ?>">
+              <div class="subtitle"><?php printf( '%s <a href="https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista" target="_blank" rel="noopener noreferrer">%s</a>. %s', esc_html__( 'You can check the currency rate at', 'woo-solo-api' ), esc_html__( 'Croatian National Bank', 'woo-solo-api' ), esc_html__( 'The currency will be automatically added if the selected currency is different from HRK. Also a note about conversion rate will be added to the invoice/offer.', 'woo-solo-api' ) ); ?></div>
             </div>
           </div>
         </div>

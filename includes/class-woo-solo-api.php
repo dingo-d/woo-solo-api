@@ -115,7 +115,7 @@ class Woo_Solo_Api {
    */
   private function define_admin_hooks() {
     $plugin_admin = new Admin\Admin( $this->get_plugin_name(), $this->get_version() );
-    $api_request  = new Admin\Request( $this->get_plugin_name(), $this->get_version() );
+    $api_request  = new Admin\Request();
 
     $this->loader->add_action( 'woocommerce_email_order_details', $api_request, 'solo_api_send_api_request', 15, 4 );
 

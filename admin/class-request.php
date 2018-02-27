@@ -16,39 +16,28 @@ namespace Woo_Solo_Api\Admin;
  * @package    Woo_Solo_Api\Admin
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  *
- * @since      1.2  Added bill type check in the request method
+ * @since      1.4.0  Added additional methods.
+ * @since      1.2.0  Added bill type check in the request method
  * @since      1.0.0
  */
 class Request {
 
   /**
-   * The ID of this plugin.
+   * Helpers object property.
    *
-   * @since    1.0.0
+   * @since    1.4.0
    * @access   private
-   * @var      string    $plugin_name    The ID of this plugin.
+   * @var      string    $helper    Helper object instance.
    */
-  private $plugin_name;
-
-  /**
-   * The version of this plugin.
-   *
-   * @since    1.0.0
-   * @access   private
-   * @var      string    $version    The current version of this plugin.
-   */
-  private $version;
+  private $helper;
 
   /**
    * Initialize the class and set its properties.
    *
    * @since 1.0.0
-   * @param string $plugin_name  The name of this plugin.
-   * @param string $version      The version of this plugin.
    */
-  public function __construct( $plugin_name, $version ) {
-    $this->plugin_name = $plugin_name;
-    $this->version     = $version;
+  public function __construct() {
+    $this->helper = new Helpers();
   }
 
   /**
@@ -115,17 +104,16 @@ class Request {
   public function execute_solo_api_call( $order ) {
 
     // Options.
-    $solo_api_token         = get_option( 'solo_api_token' );
-    $solo_api_token         = get_option( 'solo_api_token' );
-    $solo_api_measure       = get_option( 'solo_api_measure' );
-    $solo_api_payment_type  = get_option( 'solo_api_payment_type' );
-    $solo_api_languages     = get_option( 'solo_api_languages' );
-    $solo_api_currency      = get_option( 'solo_api_currency' );
-    $solo_api_service_type  = get_option( 'solo_api_service_type' );
-    $solo_api_show_taxes    = get_option( 'solo_api_show_taxes' );
-    $solo_api_invoice_type  = get_option( 'solo_api_invoice_type' );
-    $solo_api_currency_rate = get_option( 'solo_api_currency_rate' );
-    $solo_api_due_date      = get_option( 'solo_api_due_date' );
+    $solo_api_token        = get_option( 'solo_api_token' );
+    $solo_api_token        = get_option( 'solo_api_token' );
+    $solo_api_measure      = get_option( 'solo_api_measure' );
+    $solo_api_payment_type = get_option( 'solo_api_payment_type' );
+    $solo_api_languages    = get_option( 'solo_api_languages' );
+    $solo_api_currency     = get_option( 'solo_api_currency' );
+    $solo_api_service_type = get_option( 'solo_api_service_type' );
+    $solo_api_show_taxes   = get_option( 'solo_api_show_taxes' );
+    $solo_api_invoice_type = get_option( 'solo_api_invoice_type' );
+    $solo_api_due_date     = get_option( 'solo_api_due_date' );
 
     $order_data = $order->get_data(); // The Order data.
 
@@ -266,7 +254,7 @@ class Request {
         $due_date = date( 'Y-m-d', strtotime( '+1 week' ) );
     }
 
-    $post_url .= '&nacin_placanja=' . $solo_api_payment_type . '&rok_placanja=' . $due_date . '&napomene=' . wp_kses_post( $customer_note );
+    $post_url .= '&nacin_placanja=' . $solo_api_payment_type . '&rok_placanja=' . $due_date;
 
     if ( ! empty( $iban_number ) ) {
       $post_url .= '&iban=' . esc_attr( $iban_number );
@@ -278,9 +266,44 @@ class Request {
       $post_url .= '&jezik_racuna=' . $solo_api_languages;
     }
 
-    if ( ! empty( $solo_api_currency_rate ) ) {
-      $num       = (float) str_replace( ',', '.', $solo_api_currency_rate );
-      $post_url .= '&tecaj=' . str_replace( '.', ',', round( $num, 6 ) );
+    if ( $solo_api_currency !== '1' ) { // Only for foreign currency.
+      $currency_helper = array(
+          '1' => 'HRK',
+          '2' => 'AUD',
+          '3' => 'CAD',
+          '4' => 'CZK',
+          '5' => 'DKK',
+          '6' => 'HUF',
+          '7' => 'JPY',
+          '8' => 'NOK',
+          '9' => 'SEK',
+          '10' => 'CHF',
+          '11' => 'GBP',
+          '12' => 'USD',
+          '13' => 'BAM',
+          '14' => 'EUR',
+          '15' => 'PLN',
+      );
+
+      $api_rates = $this->helper->get_exchange_rates();
+      $currency  = $currency_helper[ $solo_api_currency ];
+
+      $currency_rate = array_values( array_filter( array_map( function( $el ) use ( $currency ) {
+        if ( $el['currency_code'] === $currency ) {
+          return $el['median_rate'];
+        }
+      }, $api_rates ) ) );
+
+      if ( ! empty( $currency_rate ) ) {
+        $num       = (float) str_replace( ',', '.', $currency_rate[0] );
+        $post_url .= '&tecaj=' . str_replace( '.', ',', round( $num, 6 ) );
+
+        $customer_note .= "\n" . sprintf( '%1$s (1 %2$s = %3$s HRK)',
+          esc_html__( 'Recalculated at the middle exchange rate of the CNB', 'woo-solo-api' ),
+          esc_html( $currency ),
+          esc_html( str_replace( '.', ',', round( $num, 6 ) ) )
+        );
+      }
     }
 
     if ( $solo_api_bill_type === 'racun' ) {
@@ -290,6 +313,8 @@ class Request {
         $post_url .= '&fiskalizacija=0';
       }
     }
+
+    $post_url .= '&napomene=' . wp_kses_post( $customer_note );
 
     $method_executed = false;
 
