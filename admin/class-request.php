@@ -288,14 +288,10 @@ class Request {
       $api_rates = $this->helper->get_exchange_rates();
       $currency  = $currency_helper[ $solo_api_currency ];
 
-      $currency_rate = array_values( array_filter( array_map( function( $el ) use ( $currency ) {
-        if ( $el['currency_code'] === $currency ) {
-          return $el['median_rate'];
-        }
-      }, $api_rates ) ) );
+      $currency_rate = $api_rates[ $currency ];
 
       if ( ! empty( $currency_rate ) ) {
-        $num       = (float) str_replace( ',', '.', $currency_rate[0] );
+        $num       = (float) str_replace( ',', '.', $currency_rate );
         $post_url .= '&tecaj=' . str_replace( '.', ',', round( $num, 6 ) );
 
         $customer_note .= "\n" . sprintf( '%1$s (1 %2$s = %3$s HRK)',

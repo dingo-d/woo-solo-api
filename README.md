@@ -1,3 +1,5 @@
+[![GitHub tag](https://img.shields.io/github/tag/dingo-d/woo-solo-api.svg)](https://github.com/dingo-d/woo-solo-api)
+
 # Woo Solo Api
 
 **Contributors**: dingo_bastard  
@@ -5,7 +7,7 @@
 **Requires at least**: 4.4  
 **Requires PHP**: 5.6  
 **Tested up to**: 4.9.4  
-**Stable tag**: 1.4  
+**Stable tag**: 1.5  
 **WC requires at least**: 3.0.0  
 **WC tested up to**: 3.3.3  
 **License**: GPLv2 or later  
@@ -59,6 +61,11 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 ## Changelog
 
+### 1.5
+
+* Fixed the currency rate to pull it from the official hnb site
+* Set the transient validity to 6 hours so every 6 hours it will expire and be created again
+
 ### 1.4
 
 * Added automatic conversion rate from Croatian National Bank (https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista)
@@ -90,6 +97,10 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 * Initial release
 
 ## Additional notes
+
+The 1.5 update fixed the currency rate. I parsed the results from https://www.hnb.hr/tecajn/htecajn.htm and created my own currency rate array. I also tested it with included taxes and it seems to be working ok. If for any reason the taxes are not being calculated or pulled in the solo api, there must be some third party plugin that is messing stuff up. Be mindful of that.
+
+----
 
 The 1.4 update fixed a lot of issues with the taxes, and tax rates. Although this has been fixed, the taxes probably wont't be picked up by the SOLO API if you set the option in the WooCommerce to include taxes in the price of the product. This is why you should separate the two. Also when creating a shipping tax class, be sure to create it as aseparate class, and leave the standard tax class for the product. So for instance the product will have a standard tax of 5%, and the shipping can have a separate class with tax rate of 25% (be sure to tick the shipping checkbox in this class).
 The including prices will be fixed in the next update.

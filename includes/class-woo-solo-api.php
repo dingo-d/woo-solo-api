@@ -65,7 +65,7 @@ class Woo_Solo_Api {
     if ( defined( 'SAWI_PLUGIN_VERSION' ) ) {
       $this->version = SAWI_PLUGIN_VERSION;
     } else {
-      $this->version = '1.4';
+      $this->version = '1.5';
     }
 
     if ( defined( 'SAWI_PLUGIN_NAME' ) ) {
@@ -77,6 +77,7 @@ class Woo_Solo_Api {
     $this->load_dependencies();
     $this->set_locale();
     $this->define_admin_hooks();
+
   }
   /**
    * Load the required dependencies for this plugin.
@@ -116,8 +117,11 @@ class Woo_Solo_Api {
   private function define_admin_hooks() {
     $plugin_admin = new Admin\Admin( $this->get_plugin_name(), $this->get_version() );
     $api_request  = new Admin\Request();
+    $api_helpers  = new Admin\Helpers();
 
     $this->loader->add_action( 'woocommerce_email_order_details', $api_request, 'solo_api_send_api_request', 15, 4 );
+
+    $this->loader->add_action( 'init', $api_helpers, 'get_exchange_rates' );
 
     $this->loader->add_filter( 'post_mime_types', $plugin_admin, 'add_pdf_post_mime_type' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );

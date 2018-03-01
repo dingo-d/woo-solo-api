@@ -3,6 +3,7 @@
  * The plugin helpers class.
  *
  * @link       https://madebydenis.com
+ * @since      1.5.0 Added cron job and change hnb API to an official one.
  * @since      1.3.0
  *
  * @package    Woo_Solo_Api\Admin
@@ -22,10 +23,10 @@ class Helpers {
   /**
    * Returns the Croatian exchange rates
    *
-   * The link from which the exchange rates are pulled from
-   * http://hnbex.eu/api/v1/rates/daily/, is not an official API
-   * from HNB, but they are pulling the rates from the official
-   * site.
+   * @link https://www.hnb.hr/tecajn/htecajn.htm
+   *
+   * @since 1.5.0 Change link for the currency fetch.
+   * @since 1.3.0
    *
    * @return array Exchange rates.
    */
@@ -34,17 +35,32 @@ class Helpers {
     $currency_rates = get_transient( 'exchange_rate_transient' ); // Get transient.
 
     if ( false === $currency_rates ) { // If no valid transient exists, run this.
-      $currency_api_url = 'http://hnbex.eu/api/v1/rates/daily/';
-      $currency_remote  = wp_remote_get( $currency_api_url );
+      $url = 'https://www.hnb.hr/tecajn/htecajn.htm';
 
-      // Is the API up?
-      if ( ! 200 === wp_remote_retrieve_response_code( $currency_remote ) ) {
+      $headers = get_headers( $url );
+      $status  = substr( $headers[0], 9, 3 );
+
+      // Is the link up?
+      if ( $status !== '200' ) {
         return false;
       }
 
-      $currency_rates = json_decode( wp_remote_retrieve_body( $currency_remote ), true );
+      $contents = file_get_contents( $url );
 
-      set_transient( 'exchange_rate_transient', $currency_rates, 1 * DAY_IN_SECONDS );
+      $array = explode( "\n", $contents );
+      unset( $array[0] );
+      $array = array_values( $array );
+
+      $currency_rates = [];
+
+      foreach ( $array as $arr_key => $arr_value ) {
+        $single_rate   = array_values( array_filter( explode( ' ', $arr_value ) ) );
+        $currency_name = preg_replace( '/[^a-zA-Z]+/', '', $single_rate[0] );
+
+        $currency_rates[ $currency_name ] = $single_rate[2];
+      }
+
+      set_transient( 'exchange_rate_transient', $currency_rates, 6 * HOUR_IN_SECONDS );
     }
 
     // Are the results in an array?
