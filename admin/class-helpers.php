@@ -3,7 +3,7 @@
  * The plugin helpers class.
  *
  * @link       https://madebydenis.com
- * @since      1.5.0 Added cron job and change hnb API to an official one.
+ * @since      1.5.0 Change hnb API to an official one.
  * @since      1.3.0
  *
  * @package    Woo_Solo_Api\Admin
