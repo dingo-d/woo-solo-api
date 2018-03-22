@@ -263,7 +263,7 @@ class Request {
     if ( $solo_api_bill_type === 'ponuda' ) {
       $post_url .= '&jezik_ponude=' . $solo_api_languages . '&valuta_ponude=' . $solo_api_currency;
     } else {
-      $post_url .= '&jezik_racuna=' . $solo_api_languages;
+      $post_url .= '&jezik_racuna=' . $solo_api_languages . '&valuta_ponude=' . $solo_api_currency;
     }
 
     if ( $solo_api_currency !== '1' ) { // Only for foreign currency.
