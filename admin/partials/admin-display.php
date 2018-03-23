@@ -14,20 +14,20 @@
 $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 
 // List all the options here.
-$solo_api_token_option         = get_option( 'solo_api_token' );
-$solo_api_measure_option       = get_option( 'solo_api_measure' );
-$solo_api_payment_type_option  = get_option( 'solo_api_payment_type' );
-$solo_api_languages_option     = get_option( 'solo_api_languages' );
-$solo_api_currency_option      = get_option( 'solo_api_currency' );
-$solo_api_service_type_option  = get_option( 'solo_api_service_type' );
-$solo_api_show_taxes_option    = get_option( 'solo_api_show_taxes' );
-$solo_api_invoice_type_option  = get_option( 'solo_api_invoice_type' );
-$solo_api_due_date_option      = get_option( 'solo_api_due_date' );
-$solo_api_send_pdf_option      = get_option( 'solo_api_send_pdf' );
-$solo_api_send_control_option  = get_option( 'solo_api_send_control' );
-$solo_api_mail_gateway_option  = get_option( 'solo_api_mail_gateway' );
-$solo_api_message_option       = get_option( 'solo_api_message' );
-$solo_api_mail_title_option    = get_option( 'solo_api_mail_title' );
+$solo_api_token_option        = get_option( 'solo_api_token' );
+$solo_api_measure_option      = get_option( 'solo_api_measure' );
+$solo_api_payment_type_option = get_option( 'solo_api_payment_type' );
+$solo_api_languages_option    = get_option( 'solo_api_languages' );
+$solo_api_currency_option     = get_option( 'solo_api_currency' );
+$solo_api_service_type_option = get_option( 'solo_api_service_type' );
+$solo_api_show_taxes_option   = get_option( 'solo_api_show_taxes' );
+$solo_api_invoice_type_option = get_option( 'solo_api_invoice_type' );
+$solo_api_due_date_option     = get_option( 'solo_api_due_date' );
+$solo_api_send_pdf_option     = get_option( 'solo_api_send_pdf' );
+$solo_api_send_control_option = get_option( 'solo_api_send_control' );
+$solo_api_mail_gateway_option = get_option( 'solo_api_mail_gateway' );
+$solo_api_message_option      = get_option( 'solo_api_message' );
+$solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
 ?>
 <div class="wrap solo-api-options">
   <h1><?php esc_html_e( 'Solo API settings', 'woo-solo-api' ); ?></h1>
