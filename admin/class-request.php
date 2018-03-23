@@ -34,6 +34,7 @@ class Request {
   /**
    * Initialize the class and set its properties.
    *
+   * @since 1.6.0 Fixed the currency on invoices.
    * @since 1.0.0
    */
   public function __construct() {

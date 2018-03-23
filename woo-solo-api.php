@@ -10,7 +10,7 @@
  * Plugin Name:          Woo Solo Api
  * Plugin URI:           https://wordpress.org/plugins/woo-solo-api/
  * Description:          This plugin provides integration of the SOLO API service with WooCommerce.
- * Version:              1.5
+ * Version:              1.6
  * Author:               Denis Žoljom
  * Author URI:           https://madebydenis.com
  * License:              GPL-2.0+
@@ -18,7 +18,7 @@
  * Text Domain:          woo-solo-api
  * Domain Path:          /languages
  * WC requires at least: 3.0.0
- * WC tested up to:      3.3.3
+ * WC tested up to:      3.3.4
  */
 
 namespace Woo_Solo_Api;
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
   die;
 }
 
-define( 'SAWI_PLUGIN_VERSION', '1.5' );
+define( 'SAWI_PLUGIN_VERSION', '1.6' );
 define( 'SAWI_PLUGIN_NAME', 'woo-solo-api' );
 
 // Include the autoloader so we can dynamically include the rest of the classes.
