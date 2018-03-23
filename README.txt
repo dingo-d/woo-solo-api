@@ -4,9 +4,9 @@ Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 4.4
 Requires PHP: 5.6
 Tested up to: 4.9.4
-Stable tag: 1.5
+Stable tag: 1.6
 WC requires at least: 3.0.0
-WC tested up to: 3.3.3
+WC tested up to: 3.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,6 +64,11 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 4. You can add the mail settings that will be send (if you choose to) to the client when the order is completed
 
 == Changelog ==
+
+= 1.6 =
+
+* Fixed language issue on the invoices (props to [ivoks](https://github.com/ivoks))
+* phpcs fixes
 
 = 1.5 =
 
