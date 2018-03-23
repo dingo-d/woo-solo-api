@@ -268,15 +268,15 @@ class Request {
 
     if ( $solo_api_currency !== '1' ) { // Only for foreign currency.
       $currency_helper = array(
-          '1' => 'HRK',
-          '2' => 'AUD',
-          '3' => 'CAD',
-          '4' => 'CZK',
-          '5' => 'DKK',
-          '6' => 'HUF',
-          '7' => 'JPY',
-          '8' => 'NOK',
-          '9' => 'SEK',
+          '1'  => 'HRK',
+          '2'  => 'AUD',
+          '3'  => 'CAD',
+          '4'  => 'CZK',
+          '5'  => 'DKK',
+          '6'  => 'HUF',
+          '7'  => 'JPY',
+          '8'  => 'NOK',
+          '9'  => 'SEK',
           '10' => 'CHF',
           '11' => 'GBP',
           '12' => 'USD',
@@ -294,7 +294,8 @@ class Request {
         $num       = (float) str_replace( ',', '.', $currency_rate );
         $post_url .= '&tecaj=' . str_replace( '.', ',', round( $num, 6 ) );
 
-        $customer_note .= "\n" . sprintf( '%1$s (1 %2$s = %3$s HRK)',
+        $customer_note .= "\n" . sprintf(
+          '%1$s (1 %2$s = %3$s HRK)',
           esc_html__( 'Recalculated at the middle exchange rate of the CNB', 'woo-solo-api' ),
           esc_html( $currency ),
           esc_html( str_replace( '.', ',', round( $num, 6 ) ) )
