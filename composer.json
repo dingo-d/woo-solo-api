@@ -1,0 +1,38 @@
+{
+  "name": "dingo-d/woo-solo-api",
+  "type": "wordpress-plugin",
+  "description": "Plugin that provides integration of the SOLO service with WooCommerce store.",
+  "keywords": [
+    "plugin",
+    "WordPress",
+    "WooCommerce",
+    "solo",
+    "API",
+    "store",
+    "ecommerce"
+  ],
+  "homepage": "https://github.com/dingo-d/woo-solo-api",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "Denis Žoljom",
+      "homepage": "https://madebydenis.com",
+      "email": "denis.zoljom@gmail.com"
+    },
+    {
+      "name": "Contributors",
+      "homepage": "https://github.com/dingo-d/woo-solo-api/graphs/contributors"
+    }
+  ],
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "*",
+    "jakub-onderka/php-console-highlighter": "*",
+    "jakub-onderka/php-parallel-lint": "*",
+    "infinum/coding-standards-wp": "*"
+  },
+  "support": {
+    "issues": "https://github.com/dingo-d/woo-solo-api/issues",
+    "wiki": "https://github.com/dingo-d/woo-solo-api/wiki",
+    "source": "https://github.com/dingo-d/woo-solo-api"
+  }
+}

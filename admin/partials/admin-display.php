@@ -5,6 +5,7 @@
  * This file is used to markup the admin-facing aspects of the plugin.
  *
  * @link       https://madebydenis.com
+ * @since      1.7.0 Move payment type with each payment gateway
  * @since      1.4.0 Add additional options for send pdf control.
  * @since      1.0.0
  *
@@ -16,7 +17,6 @@ $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
 // List all the options here.
 $solo_api_token_option        = get_option( 'solo_api_token' );
 $solo_api_measure_option      = get_option( 'solo_api_measure' );
-$solo_api_payment_type_option = get_option( 'solo_api_payment_type' );
 $solo_api_languages_option    = get_option( 'solo_api_languages' );
 $solo_api_currency_option     = get_option( 'solo_api_currency' );
 $solo_api_service_type_option = get_option( 'solo_api_service_type' );
@@ -90,16 +90,6 @@ $solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
               </select>
             </div>
             <div class="option">
-              <label for="solo_api_payment_type" class="subtitle"><?php esc_html_e( 'Payment options', 'woo-solo-api' ); ?></label>
-              <select name="solo_api_payment_type" id="solo_api_payment_type">
-                <option value="1" <?php selected( '1', $solo_api_payment_type_option, true ); ?>><?php esc_html_e( 'Transactional account', 'woo-solo-api' ); ?></option>
-                <option value="2" <?php selected( '2', $solo_api_payment_type_option, true ); ?>><?php esc_html_e( 'Cash', 'woo-solo-api' ); ?></option>
-                <option value="3" <?php selected( '3', $solo_api_payment_type_option, true ); ?>><?php esc_html_e( 'Cards', 'woo-solo-api' ); ?></option>
-                <option value="4" <?php selected( '4', $solo_api_payment_type_option, true ); ?>><?php esc_html_e( 'Cheque', 'woo-solo-api' ); ?></option>
-                <option value="5" <?php selected( '5', $solo_api_payment_type_option, true ); ?>><?php esc_html_e( 'Other', 'woo-solo-api' ); ?></option>
-              </select>
-            </div>
-            <div class="option">
               <label for="solo_api_languages" class="subtitle"><?php esc_html_e( 'Languages', 'woo-solo-api' ); ?></label>
               <select name="solo_api_languages" id="solo_api_languages">
                 <option value="1" <?php selected( '1', $solo_api_languages_option, true ); ?>><?php esc_html_e( 'Croatian', 'woo-solo-api' ); ?></option>
@@ -137,16 +127,31 @@ $solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
               foreach ( $available_gateways as $gateway_key_payment => $gateway_value_payment ) {
                 $solo_api_bill_offer    = get_option( 'solo_api_bill_offer-' . esc_attr( $gateway_value_payment->id ) );
                 $solo_api_fiscalization = get_option( 'solo_api_fiscalization-' . esc_attr( $gateway_value_payment->id ) );
+                $solo_api_payment_type  = get_option( 'solo_api_payment_type-' . esc_attr( $gateway_value_payment->id ) );
                 ?>
                 <div class="fields__single">
                   <div class="fields__subtitle fields__subtitle--main"><?php echo esc_html( $gateway_value_payment->title ); ?></div>
-                  <input type="hidden" name="solo_api_payment_gateway[]" value="<?php echo esc_html( $gateway_value_payment->id ); ?>">
-                  <label for="offer-<?php echo esc_html( $gateway_value_payment->id ); ?>" class="fields__subtitle"><?php esc_html_e( 'Type of payment document', 'woo-solo-api' ); ?></label>
-                  <select name="solo_api_bill_offer-<?php echo esc_attr( $gateway_value_payment->id ); ?>" id="offer-<?php echo esc_html( $gateway_value_payment->id ); ?>">
-                    <option value="ponuda" <?php selected( 'ponuda', $solo_api_bill_offer, true ); ?>><?php esc_html_e( 'Offer', 'woo-solo-api' ); ?></option>
-                    <option value="racun" <?php selected( 'racun', $solo_api_bill_offer, true ); ?>><?php esc_html_e( 'Invoice', 'woo-solo-api' ); ?></option>
-                  </select>
+                  <div class="fields__single--part">
+                    <input type="hidden" name="solo_api_payment_gateway[]" value="<?php echo esc_html( $gateway_value_payment->id ); ?>">
+                    <label for="offer-<?php echo esc_html( $gateway_value_payment->id ); ?>" class="fields__subtitle"><?php esc_html_e( 'Type of payment document', 'woo-solo-api' ); ?></label>
+                    <select name="solo_api_bill_offer-<?php echo esc_attr( $gateway_value_payment->id ); ?>" id="offer-<?php echo esc_html( $gateway_value_payment->id ); ?>">
+                      <option value="ponuda" <?php selected( 'ponuda', $solo_api_bill_offer, true ); ?>><?php esc_html_e( 'Offer', 'woo-solo-api' ); ?></option>
+                      <option value="racun" <?php selected( 'racun', $solo_api_bill_offer, true ); ?>><?php esc_html_e( 'Invoice', 'woo-solo-api' ); ?></option>
+                    </select>
+                  </div>
+                  <div class="fields__single--part">
+                    <label for="solo_api_payment_type-<?php echo esc_attr( $gateway_value_payment->id ); ?>" class="fields__subtitle"><?php esc_html_e( 'Payment option types', 'woo-solo-api' ); ?></label>
+                    <select name="solo_api_payment_type-<?php echo esc_attr( $gateway_value_payment->id ); ?>" id="solo_api_payment_type-<?php echo esc_attr( $gateway_value_payment->id ); ?>">
+                      <option value="1" <?php selected( '1', $solo_api_payment_type, true ); ?>><?php esc_html_e( 'Transactional account', 'woo-solo-api' ); ?></option>
+                      <option value="2" <?php selected( '2', $solo_api_payment_type, true ); ?>><?php esc_html_e( 'Cash', 'woo-solo-api' ); ?></option>
+                      <option value="3" <?php selected( '3', $solo_api_payment_type, true ); ?>><?php esc_html_e( 'Cards', 'woo-solo-api' ); ?></option>
+                      <option value="4" <?php selected( '4', $solo_api_payment_type, true ); ?>><?php esc_html_e( 'Cheque', 'woo-solo-api' ); ?></option>
+                      <option value="5" <?php selected( '5', $solo_api_payment_type, true ); ?>><?php esc_html_e( 'Other', 'woo-solo-api' ); ?></option>
+                    </select>
+                  </div>
+                  <div class="fields__single--part">
                   <label for="fiscal-<?php echo esc_html( $gateway_value_payment->id ); ?>" class="fields__subtitle"><input type="checkbox" id="fiscal-<?php echo esc_html( $gateway_value_payment->id ); ?>" name="solo_api_fiscalization-<?php echo esc_attr( $gateway_value_payment->id ); ?>" value="fiscal-<?php echo esc_attr( $gateway_value_payment->id ); ?>" <?php checked( 'fiscal-' . esc_attr( $gateway_value_payment->id ), esc_attr( $solo_api_fiscalization ), true ); ?>><?php esc_html_e( 'Check if you want the invoice to be fiscalized.*', 'woo-solo-api' ); ?></label>
+                  </div>
                 </div>
               <?php
               }

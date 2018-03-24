@@ -38,7 +38,6 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
  */
 delete_option( 'solo_api_token' );
 delete_option( 'solo_api_measure' );
-delete_option( 'solo_api_payment_type' );
 delete_option( 'solo_api_languages' );
 delete_option( 'solo_api_currency' );
 delete_option( 'solo_api_service_type' );
@@ -58,6 +57,7 @@ $available_woo_gateways = WC()->payment_gateways->get_available_payment_gateways
 foreach ( $available_woo_gateways as $gateway_woo_sett => $gateway_woo_val ) {
   delete_option( 'solo_api_bill_offer-' . esc_attr( $gateway_woo_val->id ) );
   delete_option( 'solo_api_fiscalization-' . esc_attr( $gateway_woo_val->id ) );
+  delete_option( 'solo_api_payment_type-' . esc_attr( $gateway_woo_val->id ) );
 }
 
 add_action( 'wp_mail_from_name', 'solo_api_revert_mail_from_name' );

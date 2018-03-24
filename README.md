@@ -1,4 +1,6 @@
-[![GitHub tag](https://img.shields.io/github/tag/dingo-d/woo-solo-api.svg)](https://github.com/dingo-d/woo-solo-api)
+[![GitHub tag](https://img.shields.io/github/tag/dingo-d/woo-solo-api.svg?style=for-the-badge)](https://github.com/dingo-d/woo-solo-api)
+[![Travis](https://img.shields.io/travis/dingo-d/woo-solo-api.svg?style=for-the-badge)](https://github.com/dingo-d/woo-solo-api)
+
 
 # Woo Solo Api
 
@@ -7,11 +9,11 @@
 **Requires at least**: 4.4  
 **Requires PHP**: 5.6  
 **Tested up to**: 4.9.4  
-**Stable tag**: 1.6  
+**Stable tag**: 1.7.0  
 **WC requires at least**: 3.0.0  
 **WC tested up to**: 3.3.4  
 **License**: GPLv2 or later  
-**License URI**: http://www.gnu.org/licenses/gpl-3.0.html  
+**License URI**: http://www.gnu.org/licenses/gpl-2.0.txt
 
 This plugin provides integration of the SOLO service with WooCommerce store.
 
@@ -60,6 +62,13 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 * jQuery 1.11.x
 
 ## Changelog
+
+### 1.7
+
+* Added payment types for each payment gateway
+* Tax fixes - tax class wasn't working on changing the order to complete
+* Added travis integration (development)
+* Added code standards definition (development)
 
 ### 1.6
 

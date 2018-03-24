@@ -45,7 +45,10 @@ class Helpers {
         return false;
       }
 
+      // phpcs:disable WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+      // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_file_get_contents
       $contents = file_get_contents( $url );
+      // phpcs:enable
 
       $array = explode( "\n", $contents );
       unset( $array[0] );
