@@ -1,4 +1,6 @@
-[![GitHub tag](https://img.shields.io/github/tag/dingo-d/woo-solo-api.svg)](https://github.com/dingo-d/woo-solo-api)
+[![GitHub tag](https://img.shields.io/github/tag/dingo-d/woo-solo-api.svg?style=for-the-badge)](https://github.com/dingo-d/woo-solo-api)
+[![Travis](https://img.shields.io/travis/dingo-d/woo-solo-api.svg?style=for-the-badge)](https://github.com/dingo-d/woo-solo-api)
+
 
 # Woo Solo Api
 
