@@ -23,7 +23,7 @@ mail to the client.
 There is an entire options page where you can specify the details of the order or the invoice such as unit measure, payment
 options, language of the invoice, currency and others.
 
-The plugin is translated to Croatian, since the SOLO service is primarily used by Croatian users.
+The plugin is translated to Croatian, since the SOLO service is primarily used by Croatian users. You can contribute and add additional languages.
 
 For more information about the SOLO API visit this link: https://solo.com.hr/api-dokumentacija
 
