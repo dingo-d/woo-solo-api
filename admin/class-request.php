@@ -98,6 +98,7 @@ class Request {
    * Execute the call to the SOLO API
    *
    * @param  WC_Order $order Order data.
+   * @since  1.7.0 Fixed tax rates and payment types per payment gateway.
    * @since  1.4.0 Separated the send method for more control. Add
    *               Check to send the mail in this method, so that the
    *               method that controls the send is not called at all.
@@ -108,7 +109,6 @@ class Request {
     $solo_api_token        = get_option( 'solo_api_token' );
     $solo_api_token        = get_option( 'solo_api_token' );
     $solo_api_measure      = get_option( 'solo_api_measure' );
-    $solo_api_payment_type = get_option( 'solo_api_payment_type' );
     $solo_api_languages    = get_option( 'solo_api_languages' );
     $solo_api_currency     = get_option( 'solo_api_currency' );
     $solo_api_service_type = get_option( 'solo_api_service_type' );
@@ -179,6 +179,7 @@ class Request {
 
     $solo_api_bill_type     = get_option( 'solo_api_bill_offer-' . esc_attr( $order_data['payment_method'] ) );
     $solo_api_fiscalization = get_option( 'solo_api_fiscalization-' . esc_attr( $order_data['payment_method'] ) );
+    $solo_api_payment_type  = get_option( 'solo_api_payment_type-' . esc_attr( $order_data['payment_method'] ) );
 
     $url = 'https://api.solo.com.hr/' . $solo_api_bill_type;
 
@@ -196,23 +197,23 @@ class Request {
     $item_no = 1;
 
     foreach ( array_unique( $order->get_items() ) as $item_key => $item_values ) {
+
       $item_name = $item_values->get_name(); // Name of the product.
       $item_data = $item_values->get_data(); // Product data.
 
-      $tax_rates = \WC_Tax::get_rates( $item_values->get_tax_class() );
-
-      foreach ( $tax_rates as $tax_rate_key => $tax_rate_value ) {
-        $tax_rate = (double) $tax_rate_value['rate'];
-      }
+      $tax_rates = array_values( \WC_Tax::get_base_tax_rates( $item_values->get_tax_class() ) );
+      $tax_rate  = (double) $tax_rates[0]['rate'];
 
       $product_name = $item_data['name'];
       $quantity     = (double) ( $item_data['quantity'] !== 0 ) ? $item_data['quantity'] : 1;
       $single_price = (double) $item_data['total'] / $quantity;
 
       // If the tax rate is not 5%, 13% or 25% then the set tax will be 0.
+      // phpcs:disable WordPress.PHP.StrictInArray.MissingTrueStrict
       if ( ! in_array( $tax_rate, array( 5, 13, 25 ) ) ) {
         $tax_rate = 0;
       }
+      // phpcs:enable
 
       $line_total = number_format( $single_price, 2, ',', '.' );
 
@@ -225,19 +226,20 @@ class Request {
     $total_shipping = $order->get_total_shipping();
     if ( (double) $total_shipping > 0 ) {
       $shipping_items = $order->get_items( 'shipping' );
+
       foreach ( $shipping_items as $shipping_key => $shipping_object ) {
-        $shipping_tax_rates = \WC_Tax::get_rates( $shipping_object->get_tax_class() );
+        $shipping_tax_rates = array_values( \WC_Tax::get_base_tax_rates( $shipping_object->get_tax_class() ) );
       }
 
-      foreach ( $shipping_tax_rates as $shipping_tax_rates_key => $shipping_tax_rates_value ) {
-        $shipping_tax_rate = (double) $shipping_tax_rates_value['rate'];
-      }
+      $shipping_tax_rate = (double) $shipping_tax_rates[0]['rate'];
 
       $shipping_price = number_format( $total_shipping, 2, ',', '.' );
 
+      // phpcs:disable WordPress.PHP.StrictInArray.MissingTrueStrict
       if ( ! in_array( $shipping_tax_rate, array( 5, 13, 25 ) ) ) {
         $shipping_tax_rate = 0;
       }
+      // phpcs:enable
 
       $post_url .= '&usluga=' . $item_no . '&opis_usluge_' . $item_no . '=' . esc_html__( 'Shipping fee', 'woo-solo-api' ) . '&jed_mjera_' . $item_no . '=' . $solo_api_measure . '&cijena_' . $item_no . '=' . $shipping_price . '&kolicina_' . $item_no . '=1&popust_' . $item_no . '=0&porez_stopa_' . $item_no . '=' . $shipping_tax_rate;
     }

@@ -187,6 +187,7 @@ class Admin {
     foreach ( $available_gateways as $gateway_sett => $gateway_val ) {
       register_setting( 'solo-api-settings-group', 'solo_api_bill_offer-' . esc_attr( $gateway_val->id ) );
       register_setting( 'solo-api-settings-group', 'solo_api_fiscalization-' . esc_attr( $gateway_val->id ) );
+      register_setting( 'solo-api-settings-group', 'solo_api_payment_type-' . esc_attr( $gateway_val->id ) );
     }
   }
 

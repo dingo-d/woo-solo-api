@@ -4,11 +4,11 @@ Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 4.4
 Requires PHP: 5.6
 Tested up to: 4.9.4
-Stable tag: 1.6
+Stable tag: 1.7.0
 WC requires at least: 3.0.0
 WC tested up to: 3.3.4
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
 This plugin provides integration of the SOLO service with WooCommerce store.
 
@@ -64,6 +64,13 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 4. You can add the mail settings that will be send (if you choose to) to the client when the order is completed
 
 == Changelog ==
+
+= 1.7 =
+
+* Added payment types for each payment gateway
+* Tax fixes - tax class wasn't working on changing the order to complete
+* Added travis integration (development)
+* Added code standards definition (development)
 
 = 1.6 =
 

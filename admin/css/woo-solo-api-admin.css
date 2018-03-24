@@ -121,15 +121,22 @@
   margin-bottom: 10px;
 }
 
+.solo-api-options .fields__single .fields__single--part {
+  display: block;
+  margin-bottom: 15px;
+}
+
 .solo-api-options .fields__subtitle {
   display: inline-block;
+  min-width: 200px;
   margin: 0 20px;
 }
 
 .solo-api-options .fields__subtitle--main {
   font-weight: 600;
-  min-width: 180px;
-  margin-right: 20px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  display: block;
 }
 
 .solo-api-options .fields__note {
