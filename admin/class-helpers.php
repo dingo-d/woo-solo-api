@@ -25,6 +25,7 @@ class Helpers {
    *
    * @link https://www.hnb.hr/tecajn/htecajn.htm
    *
+   * @since 1.7.5 Add fallback method in case the allow_url_fopen is disabled.
    * @since 1.5.0 Change link for the currency fetch.
    * @since 1.3.0
    *
@@ -37,18 +38,45 @@ class Helpers {
     if ( false === $currency_rates ) { // If no valid transient exists, run this.
       $url = 'https://www.hnb.hr/tecajn/htecajn.htm';
 
-      $headers = get_headers( $url );
-      $status  = substr( $headers[0], 9, 3 );
+      if ( ini_get( 'allow_url_fopen' ) ) {
+        $headers = get_headers( $url );
+        $status  = substr( $headers[0], 9, 3 );
 
-      // Is the link up?
-      if ( $status !== '200' ) {
-        return false;
+        // Is the link up?
+        if ( $status !== '200' ) {
+          return false;
+        }
+
+        // phpcs:disable WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+        // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_file_get_contents
+        $contents = file_get_contents( $url );
+        // phpcs:enable
+      } else {
+        // phpcs:disable
+        $ch = curl_init();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 5 );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+
+        $contents = curl_exec( $ch );
+
+        if ( curl_errno( $ch ) ) {
+          return false;
+          $contents = '';
+        } else {
+          curl_close( $ch );
+        }
+
+        if ( ! is_string( $contents ) || ! strlen( $contents ) ) {
+          return false;
+          $contents = '';
+        }
+        // phpcs:enable
       }
 
-      // phpcs:disable WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
-      // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_file_get_contents
-      $contents = file_get_contents( $url );
-      // phpcs:enable
+      if ( empty( $contents ) ) {
+        return false;
+      }
 
       $array = explode( "\n", $contents );
       unset( $array[0] );
