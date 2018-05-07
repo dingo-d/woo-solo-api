@@ -41,6 +41,7 @@ $solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
         <div href="#tab2" class="tab"><?php esc_html_e( 'Solo API options', 'woo-solo-api' ); ?></div>
         <div href="#tab3" class="tab"><?php esc_html_e( 'Additional settings', 'woo-solo-api' ); ?></div>
         <div href="#tab4" class="tab"><?php esc_html_e( 'Mail settings', 'woo-solo-api' ); ?></div>
+        <div href="#tab5" class="tab"><?php esc_html_e( 'Solo API test', 'woo-solo-api' ); ?></div>
       </div>
       <div class="options-wrapper__content">
         <div id="tab1" class="tab-content active">
@@ -240,6 +241,14 @@ $solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
             <label for="solo_api_change_mail_from" class="subtitle"><?php esc_html_e( 'Change the \'from\' name that shows when WordPress sends the mail.', 'woo-solo-api' ); ?></label>
             <div class="caution"><?php esc_html_e( 'CAUTION: This change is global, every mail send from your WordPress will have this \'from\' name.', 'woo-solo-api' ); ?></div>
             <input type="text" id="solo_api_change_mail_from" name="solo_api_change_mail_from" value="<?php echo esc_attr( get_option( 'solo_api_change_mail_from' ) ); ?>">
+          </div>
+        </div>
+        <div id="tab5" class="tab-content">
+          <div class="option">
+            <h4><?php esc_html_e( 'This serves for testing purposes only', 'woo-solo-api' ); ?></h4>
+            <p><?php esc_html_e( 'Pressing the button will make a request to your Solo API account and will list all the reciepes you have' ); ?></p>
+            <button class="button button-primary js-solo-api-send"><?php esc_html_e( 'Make a request', 'woo-solo-api' ); ?></button>
+            <pre class="js-solo-api-request" readonly></pre>
           </div>
         </div>
       </div>

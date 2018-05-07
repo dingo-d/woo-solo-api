@@ -248,4 +248,31 @@ class Admin {
   public function enqueue_scripts() {
     wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/woo-solo-api-admin.js', array( 'jquery' ), $this->version, false );
   }
+
+  /**
+   * Make request towards Solo API for testing purposes
+   *
+   * @since  1.8.0
+   */
+  public function get_solo_data() {
+    // Nonce check.
+    if ( ! isset( $_POST['_wpnonce'] ) && ! wp_verify_nonce( sanitize_key( $_POST['_wpnonce'] ) ) ) {
+      return false;
+    }
+
+    $solo_api_token = get_option( 'solo_api_token' );
+
+    $response = wp_remote_get( 'https://api.solo.com.hr/racun?token=' . $solo_api_token );
+
+    if ( is_wp_error( $response ) ) {
+      $error_code    = wp_remote_retrieve_response_code( $response );
+      $error_message = wp_remote_retrieve_response_message( $response );
+
+      $data = $error_code . ': ' . $error_message;
+    } else {
+      $data = json_decode( $response['body'], true );
+    }
+
+    wp_die( wp_json_encode( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
+  }
 }

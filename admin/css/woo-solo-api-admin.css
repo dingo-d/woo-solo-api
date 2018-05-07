@@ -146,3 +146,20 @@
 .solo-info {
   margin-bottom: 10px;
 }
+
+.solo-api-options pre {
+  background: #e2e2e2;
+  color: #626262;
+  background-size: 42px 42px;
+  padding: 21px 15px 20px;
+  margin: 15px 0;
+  display: block;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  font-size: 13px;
+  line-height: 21px;
+  max-height: 480px;
+  overflow-y: scroll;
+}

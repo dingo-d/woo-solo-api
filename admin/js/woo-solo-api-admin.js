@@ -1,8 +1,10 @@
-jQuery(document).ready(function($){
+jQuery(document).ready(function($) {
   'use strict';
 
   var $tab = $('.solo-api-options .options-wrapper__tabs .tab');
-  var $content = $('.solo-api-options .options-wrapper__tabs .tab-content');
+  var $content = $('.solo-api-options .tab-content');
+  var $wrapperContent = $('.solo-api-options .options-wrapper__content');
+  var $apiRequestContent = $('.js-solo-api-request');
 
   function toggleTab( $currentTab ) {
     if(!$currentTab.hasClass('active')) {
@@ -19,7 +21,6 @@ jQuery(document).ready(function($){
 
   function selectFiscalization() {
     var $select = $(this);
-    console.log($select.val());
     if ($select.val() === 'racun') {
       $select.parents('.fields__single').find('input[type="checkbox"]').prop('disabled', false);
     } else {
@@ -30,5 +31,45 @@ jQuery(document).ready(function($){
 
   $('select[name*=solo_api_bill_offer-]').on('change', selectFiscalization);
   $('select[name*=solo_api_bill_offer-]').each(selectFiscalization);
+
+  var maxHeight = 0;
+
+  $content.each(function() {
+    var height = $(this).outerHeight(true);
+    if (height > maxHeight) {
+      maxHeight = height;
+    }
+  });
+
+  $wrapperContent.css('height', maxHeight);
+
+  function makeRequest() {
+    if (!$wrapperContent.hasClass('sending')) {
+      $.ajax({
+        type: 'POST',
+        dataType: 'html',
+        url: ajaxurl,
+        data: {
+          'action': 'get_solo_data',
+          '_wpnonce': $('#_wpnonce').val(),
+        },
+        success: function(data) {
+          $apiRequestContent.html(data);
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+          $apiRequestContent.html( jqXHR + ' :: ' + textStatus + ' :: ' + errorThrown );
+        },
+        complete : function() {
+          $wrapperContent.removeClass('sending');
+        }
+      });
+    }
+  }
+
+  $('.js-solo-api-send').on('click', function(event) {
+    event.preventDefault();
+    if (true) {}
+    makeRequest();
+  });
 
 });

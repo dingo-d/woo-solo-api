@@ -107,7 +107,6 @@ class Request {
 
     // Options.
     $solo_api_token        = get_option( 'solo_api_token' );
-    $solo_api_token        = get_option( 'solo_api_token' );
     $solo_api_measure      = get_option( 'solo_api_measure' );
     $solo_api_languages    = get_option( 'solo_api_languages' );
     $solo_api_currency     = get_option( 'solo_api_currency' );
@@ -329,11 +328,7 @@ class Request {
     /**
      * For more info go to: https://solo.com.hr/api-dokumentacija/izrada-racuna
      */
-    $response = wp_remote_post(
-      $regular_url, array(
-          'method' => 'POST',
-      )
-    );
+    $response = wp_remote_post( $regular_url );
 
     if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
       // phpcs:disable WordPress.PHP.DevelopmentFunctions

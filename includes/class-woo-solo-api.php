@@ -65,7 +65,7 @@ class Woo_Solo_Api {
     if ( defined( 'SAWI_PLUGIN_VERSION' ) ) {
       $this->version = SAWI_PLUGIN_VERSION;
     } else {
-      $this->version = '1.7.5';
+      $this->version = '1.8.0';
     }
 
     if ( defined( 'SAWI_PLUGIN_NAME' ) ) {
@@ -139,6 +139,7 @@ class Woo_Solo_Api {
     if ( get_option( 'solo_api_enable_pin' ) || get_option( 'solo_api_enable_iban' ) ) {
       $this->loader->add_action( 'woocommerce_admin_order_data_after_shipping_address', $plugin_admin, 'checkout_field_display_admin_order_meta' );
     }
+    $this->loader->add_action( 'wp_ajax_get_solo_data', $plugin_admin, 'get_solo_data' );
   }
 
   /**
