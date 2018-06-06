@@ -16,6 +16,7 @@ namespace Woo_Solo_Api\Admin;
  * @package    Woo_Solo_Api\Admin
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  *
+ * @since      1.8.1  Added check for no taxes.
  * @since      1.4.0  Added additional methods.
  * @since      1.2.0  Added bill type check in the request method
  * @since      1.0.0
@@ -98,6 +99,7 @@ class Request {
    * Execute the call to the SOLO API
    *
    * @param  WC_Order $order Order data.
+   * @since  1.8.1 Added a check for no taxes on items.
    * @since  1.7.0 Fixed tax rates and payment types per payment gateway.
    * @since  1.4.0 Separated the send method for more control. Add
    *               Check to send the mail in this method, so that the
@@ -195,14 +197,15 @@ class Request {
     // Individual order.
     $item_no = 1;
 
+    $calculate_taxes = get_option( 'woocommerce_calc_taxes' );
+
     foreach ( array_unique( $order->get_items() ) as $item_key => $item_values ) {
 
       $item_name = $item_values->get_name(); // Name of the product.
       $item_data = $item_values->get_data(); // Product data.
 
-      $tax_rates = array_values( \WC_Tax::get_base_tax_rates( $item_values->get_tax_class() ) );
-      $tax_rate  = (double) $tax_rates[0]['rate'];
-
+      $tax_rates    = array_values( \WC_Tax::get_base_tax_rates( $item_values->get_tax_class() ) );
+      $tax_rate     = (double) $tax_rates[0]['rate'];
       $product_name = $item_data['name'];
       $quantity     = (double) ( $item_data['quantity'] !== 0 ) ? $item_data['quantity'] : 1;
       $single_price = (double) $item_data['total'] / $quantity;
@@ -213,6 +216,10 @@ class Request {
         $tax_rate = 0;
       }
       // phpcs:enable
+
+      if ( $calculate_taxes === 'no' ) {
+        $tax_rate = 0;
+      }
 
       $line_total = number_format( $single_price, 2, ',', '.' );
 

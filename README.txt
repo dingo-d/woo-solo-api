@@ -4,9 +4,9 @@ Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 4.4
 Requires PHP: 5.6
 Tested up to: 4.9.4
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 WC requires at least: 3.0.0
-WC tested up to: 3.3.5
+WC tested up to: 3.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -64,6 +64,12 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 4. You can add the mail settings that will be send (if you choose to) to the client when the order is completed
 
 == Changelog ==
+
+= 1.8.1 =
+
+* Add a check if no shipping is selected in the WooCommerce options
+* Minor code refactor (constants instead of properties in the main class)
+* Replaced built in autoloader for composers autoloader
 
 = 1.8.0 =
 

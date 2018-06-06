@@ -34,5 +34,11 @@
     "issues": "https://github.com/dingo-d/woo-solo-api/issues",
     "wiki": "https://github.com/dingo-d/woo-solo-api/wiki",
     "source": "https://github.com/dingo-d/woo-solo-api"
+  },
+  "autoload": {
+    "classmap": [
+      "admin/",
+      "includes/"
+    ]
   }
 }

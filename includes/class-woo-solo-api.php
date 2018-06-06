@@ -6,6 +6,7 @@
  * public-facing side of the site and the admin area.
  *
  * @link       https://madebydenis.com
+ * @since      1.8.1 Removed unnecessary methods, added contstants.
  * @since      1.0.0
  *
  * @package    Woo_Solo_Api\Includes
@@ -18,11 +19,25 @@ use Woo_Solo_Api\Admin as Admin;
 /**
  * The core plugin class.
  *
+ * @since      1.8.1 Removed unnecessary methods, added contstants.
  * @since      1.0.0
  * @package    Woo_Solo_Api\Includes
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
 class Woo_Solo_Api {
+  /**
+   * Plugin name
+   *
+   * @since 1.8.1
+   */
+  const PLUGIN_NAME = 'woo-solo-api';
+
+  /**
+   * Plugin version
+   *
+   * @since 1.8.1
+   */
+  const PLUGIN_VERSION = '1.8.1';
 
   /**
    * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,24 +50,6 @@ class Woo_Solo_Api {
   protected $loader;
 
   /**
-   * The unique identifier of this plugin.
-   *
-   * @since    1.0.0
-   * @access   protected
-   * @var      string    $plugin_name    The string used to uniquely identify this plugin.
-   */
-  protected $plugin_name;
-
-  /**
-   * The current version of the plugin.
-   *
-   * @since    1.0.0
-   * @access   protected
-   * @var      string    $version    The current version of the plugin.
-   */
-  protected $version;
-
-  /**
    * Define the core functionality of the plugin.
    *
    * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -62,22 +59,9 @@ class Woo_Solo_Api {
    * @since    1.0.0
    */
   public function __construct() {
-    if ( defined( 'SAWI_PLUGIN_VERSION' ) ) {
-      $this->version = SAWI_PLUGIN_VERSION;
-    } else {
-      $this->version = '1.8.0';
-    }
-
-    if ( defined( 'SAWI_PLUGIN_NAME' ) ) {
-      $this->plugin_name = SAWI_PLUGIN_NAME;
-    } else {
-      $this->plugin_name = 'woo-solo-api';
-    }
-
     $this->load_dependencies();
     $this->set_locale();
     $this->define_admin_hooks();
-
   }
   /**
    * Load the required dependencies for this plugin.
@@ -115,7 +99,7 @@ class Woo_Solo_Api {
    * @access   private
    */
   private function define_admin_hooks() {
-    $plugin_admin = new Admin\Admin( $this->get_plugin_name(), $this->get_version() );
+    $plugin_admin = new Admin\Admin( self::PLUGIN_NAME, self::PLUGIN_VERSION );
     $api_request  = new Admin\Request();
     $api_helpers  = new Admin\Helpers();
 
@@ -130,15 +114,19 @@ class Woo_Solo_Api {
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_options_page' );
     $this->loader->add_action( 'plugin_action_links_woo-solo-api/woo-solo-api.php', $plugin_admin, 'add_action_links' );
     $this->loader->add_action( 'wp_mail_from_name', $plugin_admin, 'solo_api_mail_from_name' );
+
     if ( get_option( 'solo_api_enable_pin' ) ) {
       $this->loader->add_action( 'woocommerce_checkout_fields', $plugin_admin, 'add_pin_field' );
     }
+
     if ( get_option( 'solo_api_enable_iban' ) ) {
       $this->loader->add_action( 'woocommerce_checkout_fields', $plugin_admin, 'add_iban_field' );
     }
+
     if ( get_option( 'solo_api_enable_pin' ) || get_option( 'solo_api_enable_iban' ) ) {
       $this->loader->add_action( 'woocommerce_admin_order_data_after_shipping_address', $plugin_admin, 'checkout_field_display_admin_order_meta' );
     }
+
     $this->loader->add_action( 'wp_ajax_get_solo_data', $plugin_admin, 'get_solo_data' );
   }
 
@@ -150,36 +138,4 @@ class Woo_Solo_Api {
   public function run() {
     $this->loader->run();
   }
-
-  /**
-   * The name of the plugin used to uniquely identify it within the context of
-   * WordPress and to define internationalization functionality.
-   *
-   * @since     1.0.0
-   * @return    string    The name of the plugin.
-   */
-  public function get_plugin_name() {
-    return $this->plugin_name;
-  }
-
-  /**
-   * The reference to the class that orchestrates the hooks with the plugin.
-   *
-   * @since     1.0.0
-   * @return    Loader    Orchestrates the hooks of the plugin.
-   */
-  public function get_loader() {
-    return $this->loader;
-  }
-
-  /**
-   * Retrieve the version number of the plugin.
-   *
-   * @since     1.0.0
-   * @return    string    The version number of the plugin.
-   */
-  public function get_version() {
-    return $this->version;
-  }
-
 }
