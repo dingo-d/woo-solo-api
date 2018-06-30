@@ -186,6 +186,12 @@ $solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
             <div class="option">
               <label for="solo_api_due_date" class="subtitle"><?php esc_html_e( 'Invoice/Offer due date', 'woo-solo-api' ); ?></label>
               <select name="solo_api_due_date" id="solo_api_due_date">
+                <option value="1d" <?php selected( '1d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '1 day', 'woo-solo-api' ); ?></option>
+                <option value="2d" <?php selected( '2d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '2 days', 'woo-solo-api' ); ?></option>
+                <option value="3d" <?php selected( '3d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '3 days', 'woo-solo-api' ); ?></option>
+                <option value="4d" <?php selected( '4d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '4 days', 'woo-solo-api' ); ?></option>
+                <option value="5d" <?php selected( '5d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '5 days', 'woo-solo-api' ); ?></option>
+                <option value="6d" <?php selected( '6d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '6 days', 'woo-solo-api' ); ?></option>
                 <option value="1" <?php selected( '1', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '1 week', 'woo-solo-api' ); ?></option>
                 <option value="2" <?php selected( '2', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '2 weeks', 'woo-solo-api' ); ?></option>
                 <option value="3" <?php selected( '3', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '3 weeks', 'woo-solo-api' ); ?></option>

@@ -39,15 +39,28 @@ class Admin {
   private $version;
 
   /**
+   * Helpers object property.
+   *
+   * @since    1.9.0
+   * @access   private
+   * @var      string    $helper    Helper object instance.
+   */
+  private $helper;
+
+  /**
    * Initialize the class and set its properties.
    *
+   * @since 1.9.0 Added helper object as a dependency.
    * @since 1.0.0
-   * @param string $plugin_name  The name of this plugin.
-   * @param string $version      The version of this plugin.
+   *
+   * @param string  $plugin_name  The name of this plugin.
+   * @param string  $version      The version of this plugin.
+   * @param Helpers $helper Helpers class instance.
    */
-  public function __construct( $plugin_name, $version ) {
+  public function __construct( string $plugin_name, string $version, Helpers $helper ) {
     $this->plugin_name = $plugin_name;
     $this->version     = $version;
+    $this->helper      = $helper;
   }
 
   /**
@@ -194,10 +207,12 @@ class Admin {
   /**
    * Add plugin options page
    *
+   * @since  1.9.0 Moved the Settings menu under WooCommerce
    * @since  1.0.0
    */
   public function add_plugin_options_page() {
-    add_options_page(
+    add_submenu_page(
+      'woocommerce',
       esc_html__( 'Woo Solo Api Options', 'woo-solo-api' ),
       esc_html__( 'Solo API Options', 'woo-solo-api' ),
       'manage_options',
@@ -274,5 +289,52 @@ class Admin {
     }
 
     wp_die( wp_json_encode( $data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE ) );
+  }
+
+  /**
+   * Set the locale based on the selected language and available translations.
+   *
+   * @since 1.9.0
+   * @return string The language code string.
+   */
+  public function set_my_locale() {
+    /**
+     * Language variable
+     *
+     * The values are from 1-6 (Croatian, English, German, French, Italian, Spanish).
+     *
+     * @var int
+     */
+    $language     = (int) get_option( 'solo_api_languages' );
+    $translations = $this->helper->get_translations();
+
+    switch ( $language ) {
+      case '2':
+        $key = 'en';
+            break;
+      case '3':
+        $key = 'de';
+            break;
+      case '4':
+        $key = 'fr';
+            break;
+      case '5':
+        $key = 'it';
+            break;
+      case '6':
+        $key = 'es';
+            break;
+      default:
+        $key = 'hr';
+            break;
+    }
+
+    $code = 'hr'; // Default language.
+
+    if ( ! empty( $translations[ $key ] ) ) {
+      $code = $key;
+    }
+
+    return $code;
   }
 }
