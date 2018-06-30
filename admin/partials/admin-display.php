@@ -154,7 +154,7 @@ $solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
                   <label for="fiscal-<?php echo esc_html( $gateway_value_payment->id ); ?>" class="fields__subtitle"><input type="checkbox" id="fiscal-<?php echo esc_html( $gateway_value_payment->id ); ?>" name="solo_api_fiscalization-<?php echo esc_attr( $gateway_value_payment->id ); ?>" value="fiscal-<?php echo esc_attr( $gateway_value_payment->id ); ?>" <?php checked( 'fiscal-' . esc_attr( $gateway_value_payment->id ), esc_attr( $solo_api_fiscalization ), true ); ?>><?php esc_html_e( 'Check if you want the invoice to be fiscalized.*', 'woo-solo-api' ); ?></label>
                   </div>
                 </div>
-              <?php
+                <?php
               }
               ?>
               </div>
@@ -219,9 +219,9 @@ $solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
             <?php
             $checked_gateways = $solo_api_mail_gateway_option;
             foreach ( $available_gateways as $gateway_key => $gateway_value ) {
-            ?>
+              ?>
             <label class="multi_checkbox"><input type="checkbox" name="solo_api_mail_gateway[]" value="<?php echo esc_attr( $gateway_key ); ?>" <?php echo ( is_array( $checked_gateways ) && in_array( esc_attr( $gateway_key ), $checked_gateways, true ) ) ? 'checked' : ''; ?> ><?php echo esc_html( $gateway_value->title ); ?></label><br>
-            <?php
+              <?php
             }
             ?>
           </div>
