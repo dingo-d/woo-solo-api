@@ -37,7 +37,7 @@ class Woo_Solo_Api {
    *
    * @since 1.8.1
    */
-  const PLUGIN_VERSION = '1.8.1';
+  const PLUGIN_VERSION = '1.9.0';
 
   /**
    * The loader that's responsible for maintaining and registering all hooks that power
@@ -95,23 +95,28 @@ class Woo_Solo_Api {
    * Register all of the hooks related to the admin area functionality
    * of the plugin.
    *
+   * @since    1.9.0 Added a check if the email order hook was called. Added languages
    * @since    1.0.0
    * @access   private
    */
   private function define_admin_hooks() {
-    $plugin_admin = new Admin\Admin( self::PLUGIN_NAME, self::PLUGIN_VERSION );
-    $api_request  = new Admin\Request();
-    $api_helpers  = new Admin\Helpers();
+    $api_helpers  = new Admin\Helpers( self::PLUGIN_NAME );
+    $api_request  = new Admin\Request( $api_helpers );
+    $plugin_admin = new Admin\Admin( self::PLUGIN_NAME, self::PLUGIN_VERSION, $api_helpers );
 
     $this->loader->add_action( 'woocommerce_email_order_details', $api_request, 'solo_api_send_api_request', 15, 4 );
 
     $this->loader->add_action( 'init', $api_helpers, 'get_exchange_rates' );
 
+    if ( ! is_admin() ) {
+      $this->loader->add_filter( 'locale', $plugin_admin, 'set_my_locale' );
+    }
+
     $this->loader->add_filter( 'post_mime_types', $plugin_admin, 'add_pdf_post_mime_type' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
     $this->loader->add_action( 'admin_init', $plugin_admin, 'register_plugin_settings' );
-    $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_options_page' );
+    $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_options_page', 99 );
     $this->loader->add_action( 'plugin_action_links_woo-solo-api/woo-solo-api.php', $plugin_admin, 'add_action_links' );
     $this->loader->add_action( 'wp_mail_from_name', $plugin_admin, 'solo_api_mail_from_name' );
 

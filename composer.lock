@@ -77,16 +77,16 @@
         },
         {
             "name": "infinum/coding-standards-wp",
-            "version": "0.2.7",
+            "version": "0.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/infinum/coding-standards-wp.git",
-                "reference": "a741e2fb46db966145f5bfa6237504018ec74308"
+                "reference": "654d20624e069e731fa49120b1a700858f4acc42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/infinum/coding-standards-wp/zipball/a741e2fb46db966145f5bfa6237504018ec74308",
-                "reference": "a741e2fb46db966145f5bfa6237504018ec74308",
+                "url": "https://api.github.com/repos/infinum/coding-standards-wp/zipball/654d20624e069e731fa49120b1a700858f4acc42",
+                "reference": "654d20624e069e731fa49120b1a700858f4acc42",
                 "shasum": ""
             },
             "require": {
@@ -112,7 +112,7 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2018-02-20T12:36:10+00:00"
+            "time": "2018-06-21T07:43:50+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -251,16 +251,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.2.3",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "4842476c434e375f9d3182ff7b89059583aa8b27"
+                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4842476c434e375f9d3182ff7b89059583aa8b27",
-                "reference": "4842476c434e375f9d3182ff7b89059583aa8b27",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
+                "reference": "d86873af43b4aa9d1f39a3601cc0cfcf02b25266",
                 "shasum": ""
             },
             "require": {
@@ -298,7 +298,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-02-20T21:35:23+00:00"
+            "time": "2018-06-06T23:58:19+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",

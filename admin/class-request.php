@@ -16,6 +16,7 @@ namespace Woo_Solo_Api\Admin;
  * @package    Woo_Solo_Api\Admin
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  *
+ * @since      1.9.0  Added a dependancy on the helper class.
  * @since      1.8.1  Added check for no taxes.
  * @since      1.4.0  Added additional methods.
  * @since      1.2.0  Added bill type check in the request method
@@ -35,11 +36,14 @@ class Request {
   /**
    * Initialize the class and set its properties.
    *
+   * @since 1.9.0 Added a dependancy on the helper class.
    * @since 1.6.0 Fixed the currency on invoices.
    * @since 1.0.0
+   *
+   * @param Helpers $helper Helpers class instance.
    */
-  public function __construct() {
-    $this->helper = new Helpers();
+  public function __construct( Helpers $helper ) {
+    $this->helper = $helper;
   }
 
   /**
@@ -253,11 +257,29 @@ class Request {
     $customer_note = ( isset( $order->data['customer_note'] ) && '' !== $order->data['customer_note'] ) ? $order->data['customer_note'] : '';
 
     switch ( $solo_api_due_date ) {
+      case '1d':
+        $due_date = date( 'Y-m-d', strtotime( '+1 day' ) );
+            break;
+      case '2d':
+        $due_date = date( 'Y-m-d', strtotime( '+2 days' ) );
+            break;
+      case '3d':
+        $due_date = date( 'Y-m-d', strtotime( '+3 days' ) );
+            break;
+      case '4d':
+        $due_date = date( 'Y-m-d', strtotime( '+4 days' ) );
+            break;
+      case '5d':
+        $due_date = date( 'Y-m-d', strtotime( '+5 days' ) );
+            break;
+      case '6d':
+        $due_date = date( 'Y-m-d', strtotime( '+6 days' ) );
+            break;
       case '2':
-            $due_date = date( 'Y-m-d', strtotime( '+2 weeks' ) );
+        $due_date = date( 'Y-m-d', strtotime( '+2 weeks' ) );
             break;
       case '3':
-            $due_date = date( 'Y-m-d', strtotime( '+3 weeks' ) );
+        $due_date = date( 'Y-m-d', strtotime( '+3 weeks' ) );
             break;
       default:
         $due_date = date( 'Y-m-d', strtotime( '+1 week' ) );

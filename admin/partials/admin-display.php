@@ -154,7 +154,7 @@ $solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
                   <label for="fiscal-<?php echo esc_html( $gateway_value_payment->id ); ?>" class="fields__subtitle"><input type="checkbox" id="fiscal-<?php echo esc_html( $gateway_value_payment->id ); ?>" name="solo_api_fiscalization-<?php echo esc_attr( $gateway_value_payment->id ); ?>" value="fiscal-<?php echo esc_attr( $gateway_value_payment->id ); ?>" <?php checked( 'fiscal-' . esc_attr( $gateway_value_payment->id ), esc_attr( $solo_api_fiscalization ), true ); ?>><?php esc_html_e( 'Check if you want the invoice to be fiscalized.*', 'woo-solo-api' ); ?></label>
                   </div>
                 </div>
-              <?php
+                <?php
               }
               ?>
               </div>
@@ -186,6 +186,12 @@ $solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
             <div class="option">
               <label for="solo_api_due_date" class="subtitle"><?php esc_html_e( 'Invoice/Offer due date', 'woo-solo-api' ); ?></label>
               <select name="solo_api_due_date" id="solo_api_due_date">
+                <option value="1d" <?php selected( '1d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '1 day', 'woo-solo-api' ); ?></option>
+                <option value="2d" <?php selected( '2d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '2 days', 'woo-solo-api' ); ?></option>
+                <option value="3d" <?php selected( '3d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '3 days', 'woo-solo-api' ); ?></option>
+                <option value="4d" <?php selected( '4d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '4 days', 'woo-solo-api' ); ?></option>
+                <option value="5d" <?php selected( '5d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '5 days', 'woo-solo-api' ); ?></option>
+                <option value="6d" <?php selected( '6d', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '6 days', 'woo-solo-api' ); ?></option>
                 <option value="1" <?php selected( '1', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '1 week', 'woo-solo-api' ); ?></option>
                 <option value="2" <?php selected( '2', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '2 weeks', 'woo-solo-api' ); ?></option>
                 <option value="3" <?php selected( '3', $solo_api_due_date_option, true ); ?>><?php esc_html_e( '3 weeks', 'woo-solo-api' ); ?></option>
@@ -213,9 +219,9 @@ $solo_api_mail_title_option   = get_option( 'solo_api_mail_title' );
             <?php
             $checked_gateways = $solo_api_mail_gateway_option;
             foreach ( $available_gateways as $gateway_key => $gateway_value ) {
-            ?>
+              ?>
             <label class="multi_checkbox"><input type="checkbox" name="solo_api_mail_gateway[]" value="<?php echo esc_attr( $gateway_key ); ?>" <?php echo ( is_array( $checked_gateways ) && in_array( esc_attr( $gateway_key ), $checked_gateways, true ) ) ? 'checked' : ''; ?> ><?php echo esc_html( $gateway_value->title ); ?></label><br>
-            <?php
+              <?php
             }
             ?>
           </div>
