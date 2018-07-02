@@ -37,7 +37,7 @@ class Woo_Solo_Api {
    *
    * @since 1.8.1
    */
-  const PLUGIN_VERSION = '1.9.0';
+  const PLUGIN_VERSION = '1.9.1';
 
   /**
    * The loader that's responsible for maintaining and registering all hooks that power
