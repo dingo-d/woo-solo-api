@@ -57,7 +57,7 @@ class Admin {
    * @param string  $version      The version of this plugin.
    * @param Helpers $helper Helpers class instance.
    */
-  public function __construct( string $plugin_name, string $version, Helpers $helper ) {
+  public function __construct( $plugin_name, $version, Helpers $helper ) {
     $this->plugin_name = $plugin_name;
     $this->version     = $version;
     $this->helper      = $helper;
