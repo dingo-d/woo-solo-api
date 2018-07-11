@@ -395,14 +395,15 @@ class Request {
    * @param  string $payment_method Payment method type.
    * @param  string $bill_type      Bill type. Important for sending the email.
    *
-   * @since  1.4  Remove the check to send the mail or not.
-   * @since  1.2  Added bill type check
+   * @since  1.9.2 Made WC() global method.
+   * @since  1.4   Remove the check to send the mail or not.
+   * @since  1.2   Added bill type check
    * @since  1.0.0
    */
   public function solo_api_send_mail( $body, $email, $payment_method, $bill_type ) {
 
     $checked_gateways   = get_option( 'solo_api_mail_gateway' );
-    $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
+    $available_gateways = \WC()->payment_gateways->get_available_payment_gateways();
 
     $in_gateway = false;
 

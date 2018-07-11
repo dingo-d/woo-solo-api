@@ -19,7 +19,9 @@
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
  * @link       https://madebydenis.com
- * @since      1.0.0
+ *
+ * @since 1.9.2 Made WC() global method.
+ * @since 1.0.0
  *
  * @package    Woo_Solo_Api
  */
@@ -53,7 +55,7 @@ delete_option( 'solo_api_mail_gateway' );
 delete_option( 'solo_api_send_pdf' );
 delete_option( 'solo_api_send_control' );
 
-$available_woo_gateways = WC()->payment_gateways->get_available_payment_gateways();
+$available_woo_gateways = \WC()->payment_gateways->get_available_payment_gateways();
 foreach ( $available_woo_gateways as $gateway_woo_sett => $gateway_woo_val ) {
   delete_option( 'solo_api_bill_offer-' . esc_attr( $gateway_woo_val->id ) );
   delete_option( 'solo_api_fiscalization-' . esc_attr( $gateway_woo_val->id ) );

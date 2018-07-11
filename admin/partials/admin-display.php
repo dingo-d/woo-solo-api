@@ -5,14 +5,16 @@
  * This file is used to markup the admin-facing aspects of the plugin.
  *
  * @link       https://madebydenis.com
- * @since      1.7.0 Move payment type with each payment gateway
- * @since      1.4.0 Add additional options for send pdf control.
- * @since      1.0.0
+ *
+ * @since 1.9.2 Made WC() global method.
+ * @since 1.7.0 Move payment type with each payment gateway
+ * @since 1.4.0 Add additional options for send pdf control.
+ * @since 1.0.0
  *
  * @package    Woo_Solo_Api
  */
 
-$available_gateways = WC()->payment_gateways->get_available_payment_gateways();
+$available_gateways = \WC()->payment_gateways->get_available_payment_gateways();
 
 // List all the options here.
 $solo_api_token_option        = get_option( 'solo_api_token' );

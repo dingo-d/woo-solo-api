@@ -175,6 +175,7 @@ class Admin {
   /**
    * Register plugin settings
    *
+   * @since 1.9.2 Made WC() global method.
    * @since 1.0.0
    */
   public function register_plugin_settings() {
@@ -196,7 +197,7 @@ class Admin {
     register_setting( 'solo-api-settings-group', 'solo_api_send_pdf' );
     register_setting( 'solo-api-settings-group', 'solo_api_send_control' );
 
-    $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
+    $available_gateways = \WC()->payment_gateways->get_available_payment_gateways();
     foreach ( $available_gateways as $gateway_sett => $gateway_val ) {
       register_setting( 'solo-api-settings-group', 'solo_api_bill_offer-' . esc_attr( $gateway_val->id ) );
       register_setting( 'solo-api-settings-group', 'solo_api_fiscalization-' . esc_attr( $gateway_val->id ) );

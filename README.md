@@ -9,7 +9,7 @@
 **Requires at least**: 4.4  
 **Requires PHP**: 5.6  
 **Tested up to**: 4.9.6  
-**Stable tag**: 1.9.1  
+**Stable tag**: 1.9.2  
 **WC requires at least**: 3.0.0  
 **WC tested up to**: 3.4.3  
 **License**: GPLv2 or later  
@@ -62,6 +62,10 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 * jQuery 1.11.x
 
 ## Changelog
+
+### 1.9.2
+
+* Minor fix - put WC() in the global scope
 
 ### 1.9.1
 
