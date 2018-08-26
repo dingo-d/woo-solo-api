@@ -348,7 +348,6 @@ class Request {
                 break;
         }
 
-
         $customer_note .= "\n" . sprintf(
           '%1$s (1 %2$s = %3$s HRK)',
           esc_html( $translated_currency_note ),
@@ -405,7 +404,7 @@ class Request {
     $solo_api_send_pdf = get_option( 'solo_api_send_pdf' );
 
     if ( $solo_api_send_pdf === '1' ) {
-      $this->solo_api_send_mail( $body, sanitize_email( $email ), $order_data['payment_method'], $solo_api_bill_type );
+      $this->solo_api_send_mail( $body, sanitize_email( $email ), $solo_api_bill_type );
     }
   }
 
@@ -416,16 +415,15 @@ class Request {
    *
    * @param  object $body           The body of response.
    * @param  string $email          Customer email.
-   * @param  string $payment_method Payment method type.
    * @param  string $bill_type      Bill type. Important for sending the email.
    *
-   * @since  1.9.3 Made method private.
+   * @since  1.9.3 Made method private. Minor modification to the random function. Removed unused parameter.
    * @since  1.9.2 Made WC() global method.
    * @since  1.4   Remove the check to send the mail or not.
    * @since  1.2   Added bill type check
    * @since  1.0.0
    */
-  private function solo_api_send_mail( $body, $email, $payment_method, $bill_type ) {
+  private function solo_api_send_mail( $body, $email, $bill_type ) {
 
     $checked_gateways   = get_option( 'solo_api_mail_gateway' );
     $available_gateways = \WC()->payment_gateways->get_available_payment_gateways();
@@ -494,7 +492,7 @@ class Request {
     $attachment = $new_dir . '/' . $pdf_name . '.pdf';
 
     if ( file_exists( $attachment ) ) {
-      $attachment = $new_dir . '/' . $pdf_name . '-' . mt_rand() . '.pdf';
+      $attachment = $new_dir . '/' . $pdf_name . '-' . wp_rand() . '.pdf';
     }
 
     WP_Filesystem( $creds );

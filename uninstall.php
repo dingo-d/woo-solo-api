@@ -71,6 +71,6 @@ add_action( 'wp_mail_from_name', 'solo_api_revert_mail_from_name' );
  * @return string       Changed name.
  */
 function solo_api_revert_mail_from_name( $name ) {
-  $from_name = 'WordPress';
-  return $from_name;
+  $name = 'WordPress';
+  return $name;
 }

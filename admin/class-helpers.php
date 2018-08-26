@@ -62,7 +62,7 @@ class Helpers {
         $status  = substr( $headers[0], 9, 3 );
 
         // Is the link up?
-        if ($status < 200 && $status >= '400') {
+        if ( $status < 200 && $status >= '400' ) {
           return false;
         }
 

@@ -25,9 +25,6 @@
     }
   ],
   "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "*",
-    "jakub-onderka/php-console-highlighter": "*",
-    "jakub-onderka/php-parallel-lint": "*",
     "infinum/coding-standards-wp": "*"
   },
   "support": {
