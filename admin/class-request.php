@@ -16,6 +16,7 @@ namespace Woo_Solo_Api\Admin;
  * @package    Woo_Solo_Api\Admin
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  *
+ * @since      1.9.3  Modified methods
  * @since      1.9.0  Added a dependancy on the helper class.
  * @since      1.8.1  Added check for no taxes.
  * @since      1.4.0  Added additional methods.
@@ -103,6 +104,7 @@ class Request {
    * Execute the call to the SOLO API
    *
    * @param  WC_Order $order Order data.
+   * @since  1.9.3 Added translated notes for recalculating rates.
    * @since  1.8.1 Added a check for no taxes on items.
    * @since  1.7.0 Fixed tax rates and payment types per payment gateway.
    * @since  1.4.0 Separated the send method for more control. Add
@@ -325,9 +327,31 @@ class Request {
         $num       = (float) str_replace( ',', '.', $currency_rate );
         $post_url .= '&tecaj=' . str_replace( '.', ',', round( $num, 6 ) );
 
+        switch ( $solo_api_languages ) {
+          case '2':
+            $translated_currency_note = esc_html__( 'Recalculated at the middle exchange rate of the CNB', 'woo-solo-api' );
+                break;
+          case '3':
+            $translated_currency_note = esc_html__( 'Zum mittleren Wechselkurs der KNB neu berechnet', 'woo-solo-api' );
+                break;
+          case '4':
+            $translated_currency_note = esc_html__( 'Recalculé au taux de change moyen de la BNC', 'woo-solo-api' );
+                break;
+          case '5':
+            $translated_currency_note = esc_html__( 'Ricalcolato al tasso di cambio medio del BNC', 'woo-solo-api' );
+                break;
+          case '6':
+            $translated_currency_note = esc_html__( 'Recalculado al tipo de cambio medio del BNC', 'woo-solo-api' );
+                break;
+          default:
+            $translated_currency_note = esc_html__( 'Preračunato po srednjem tečaju HNB-a', 'woo-solo-api' );
+                break;
+        }
+
+
         $customer_note .= "\n" . sprintf(
           '%1$s (1 %2$s = %3$s HRK)',
-          esc_html__( 'Recalculated at the middle exchange rate of the CNB', 'woo-solo-api' ),
+          esc_html( $translated_currency_note ),
           esc_html( $currency ),
           esc_html( str_replace( '.', ',', round( $num, 6 ) ) )
         );
@@ -395,12 +419,13 @@ class Request {
    * @param  string $payment_method Payment method type.
    * @param  string $bill_type      Bill type. Important for sending the email.
    *
+   * @since  1.9.3 Made method private.
    * @since  1.9.2 Made WC() global method.
    * @since  1.4   Remove the check to send the mail or not.
    * @since  1.2   Added bill type check
    * @since  1.0.0
    */
-  public function solo_api_send_mail( $body, $email, $payment_method, $bill_type ) {
+  private function solo_api_send_mail( $body, $email, $payment_method, $bill_type ) {
 
     $checked_gateways   = get_option( 'solo_api_mail_gateway' );
     $available_gateways = \WC()->payment_gateways->get_available_payment_gateways();

@@ -37,7 +37,7 @@ class Woo_Solo_Api {
    *
    * @since 1.8.1
    */
-  const PLUGIN_VERSION = '1.9.2';
+  const PLUGIN_VERSION = '1.9.3';
 
   /**
    * The loader that's responsible for maintaining and registering all hooks that power
@@ -107,10 +107,6 @@ class Woo_Solo_Api {
     $this->loader->add_action( 'woocommerce_email_order_details', $api_request, 'solo_api_send_api_request', 15, 4 );
 
     $this->loader->add_action( 'init', $api_helpers, 'get_exchange_rates' );
-
-    if ( ! is_admin() ) {
-      $this->loader->add_filter( 'locale', $plugin_admin, 'set_my_locale' );
-    }
 
     $this->loader->add_filter( 'post_mime_types', $plugin_admin, 'add_pdf_post_mime_type' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
