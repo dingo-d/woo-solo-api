@@ -62,7 +62,7 @@ class Request {
    * @since 1.3.0 Added tax checks and additional debug options.
    * @since 1.0.0
    */
-  public function solo_api_send_api_request( $order, $sent_to_admin, $plain_text, $email ) {
+  public function solo_api_send_api_request( $order, $sent_to_admin, $plain_text, $email ) { // phpcs:ignore
 
     $method_executed = get_transient( 'solo_api_method_executed' );
     if ( $method_executed === false ) {
@@ -77,26 +77,26 @@ class Request {
 
     // First check if the pdf should be send on checkout or on status change.
     if ( $solo_api_send_control === 'status_change' ) {
-      // If the option is selected to sed pdf on admin we should only run it on admin.
-      if ( is_admin() ) {
-        // Execute only if status is changed to completed!
-        $order        = $email->object;
-        $order_data   = $order->get_data(); // The Order data.
-        $order_status = $order_data['status'];
-
-        if ( $order_status === 'completed' ) {
-          $this->execute_solo_api_call( $order );
-        }
-      } else {
+      // If the option is selected to send pdf on admin we should only run it on admin.
+      if ( ! is_admin() ) {
         return;
+      }
+
+      // Execute only if status is changed to completed!
+      $order        = $email->object;
+      $order_data   = $order->get_data(); // The Order data.
+      $order_status = $order_data['status'];
+
+      if ( $order_status === 'completed' ) {
+        $this->execute_solo_api_call( $order );
       }
     } else {
       // This should run only on the front facing side.
       if ( is_admin() ) {
         return;
-      } else {
-        $this->execute_solo_api_call( $order );
       }
+
+      $this->execute_solo_api_call( $order );
     }
   }
 
@@ -417,6 +417,7 @@ class Request {
    * @param  string $email          Customer email.
    * @param  string $bill_type      Bill type. Important for sending the email.
    *
+   * @since  1.9.4 Made offer and invoice pdf names different.
    * @since  1.9.3 Made method private. Minor modification to the random function. Removed unused parameter.
    * @since  1.9.2 Made WC() global method.
    * @since  1.4   Remove the check to send the mail or not.
@@ -458,8 +459,12 @@ class Request {
     $pdf_link = esc_url( $response_body[ $bill_type ]->pdf );
     if ( $bill_type === 'racun' ) {
       $pdf_name = esc_html( $response_body[ $bill_type ]->broj_racuna );
+      /* translators: name of the invoice file, don't use diacritics! */
+      $pdf_name = esc_html__( 'invoice-', 'woo-solo-api' ) . $pdf_name;
     } else {
       $pdf_name = esc_html( $response_body[ $bill_type ]->broj_ponude );
+      /* translators: name of the offer file, don't use diacritics! */
+      $pdf_name = esc_html__( 'offer-', 'woo-solo-api' ) . $pdf_name;
     }
 
     $pdf_get = wp_remote_get( $pdf_link );
@@ -471,8 +476,6 @@ class Request {
     }
 
     $pdf_contents = $pdf_get['body'];
-
-    $pdf_name = 'ponuda-' . $pdf_name;
 
     // Now we have some credentials, try to get the wp_filesystem running.
     if ( ! WP_Filesystem( $creds ) ) {
@@ -522,11 +525,48 @@ class Request {
       $solo_api_message    = get_option( 'solo_api_message' );
       $solo_api_mail_title = get_option( 'solo_api_mail_title' );
 
+      $bill_type = ( $bill_type === 'racun' ) ? esc_html__( 'invoice', 'woo-solo-api' ) : esc_html__( 'offer', 'woo-solo-api' );
+
+      /* translators: 1:Bill type */
+      $default_message = sprintf( esc_html__( 'Your %s is in the attachment.', 'woo-solo-api' ), $bill_type );
+      /* translators: 1:Bill type 2:Your site name */
+      $default_title = sprintf( esc_html__( 'Your %1$s from %2$s', 'woo-solo-api' ), $bill_type, get_bloginfo( 'name' ) );
+
+      $solo_api_message    = ! empty( $solo_api_message ) ? $solo_api_message : $default_message;
+      $solo_api_mail_title = ! empty( $solo_api_mail_title ) ? $solo_api_mail_title : $default_title;
+
       // Send mail with the attachment.
       $headers  = 'MIME-Version: 1.0' . "\r\n";
       $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 
       wp_mail( $email, $solo_api_mail_title, $solo_api_message, $headers, array( $attachment ) );
     }
+
+    // Now we delete the saved attachment because of GDPR :).
+    $deleted = wp_delete_attachment( $attachment_id, true );
+
+    // If for some reason WP won't delete it, try to force deletion.
+    if ( $deleted === false || $deleted === null ) {
+      if ( ! file_exists( $attachment ) ) {
+        return;
+      }
+
+      unlink( $attachment );
+    }
+
+    // Remove directory as well.
+    $dir   = $upload_dir['basedir'] . '/ponude/';
+    $it    = new \RecursiveDirectoryIterator( $dir, \RecursiveDirectoryIterator::SKIP_DOTS );
+    $files = new \RecursiveIteratorIterator( $it, \RecursiveIteratorIterator::CHILD_FIRST );
+
+    foreach ( $files as $file ) {
+      if ( $file->isDir() ) {
+        rmdir( $file->getRealPath() );
+      } else {
+        unlink( $file->getRealPath() );
+      }
+    }
+
+    rmdir( $dir );
   }
 }

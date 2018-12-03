@@ -4,9 +4,9 @@ Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 4.4
 Requires PHP: 5.6
 Tested up to: 4.9.6
-Stable tag: 1.9.3
+Stable tag: 1.9.4
 WC requires at least: 3.0.0
-WC tested up to: 3.4.4
+WC tested up to: 3.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -64,6 +64,12 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 4. You can add the mail settings that will be send (if you choose to) to the client when the order is completed
 
 == Changelog ==
+
+= 1.9.4 =
+
+* Changed the name of the offers and invoices
+* Fixed important GDPR issue - no longer saving offers and invoices becuase they contain sensitive information, and google will crawl your site and make them public
+* Added removal of all offers
 
 = 1.9.3 =
 
@@ -147,6 +153,21 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 * Initial release
 
 == Additional notes ==
+
+=== ⚠️ Important update notice ⚠️ ===
+
+Pre 1.9.4 update the offers were saved to a `wp-content/uploads/ponude` folder and sent to clients. An oversight on my part was not counting on the GDPR and the people's privacy. It was an honest mistake. And one I learned about because one of my client notified me about that due to the fact that his customer could see hers personal information coming from the sent pdf's.
+Because of that fact I will no longer force the plugin to save the pdf's. Once they were sent to the customer the plugin will delete them from the server.
+
+**Caution**
+
+The new update will delete your old offers, so if you want to save them, you need to do that manually before a new offer is sent.
+
+Then you should go to https://www.google.com/webmasters/tools/removals and request google to remove the search results for your invoices or offers.
+
+I am truly sorry for this oversight, it wasn't done with intention.
+
+----
 
 The 1.5 update fixed the currency rate. I parsed the results from https://www.hnb.hr/tecajn/htecajn.htm and created my own currency rate array. I also tested it with included taxes and it seems to be working ok. If for any reason the taxes are not being calculated or pulled in the solo api, there must be some third party plugin that is messing stuff up. Be mindful of that.
 
