@@ -211,10 +211,10 @@ class Request {
       $item_data = $item_values->get_data(); // Product data.
 
       $tax_rates    = array_values( \WC_Tax::get_base_tax_rates( $item_values->get_tax_class() ) );
-      $tax_rate     = (double) $tax_rates[0]['rate'];
+      $tax_rate     = (float) $tax_rates[0]['rate'];
       $product_name = $item_data['name'];
-      $quantity     = (double) ( $item_data['quantity'] !== 0 ) ? $item_data['quantity'] : 1;
-      $single_price = (double) $item_data['total'] / $quantity;
+      $quantity     = (float) ( $item_data['quantity'] !== 0 ) ? $item_data['quantity'] : 1;
+      $single_price = (float) $item_data['total'] / $quantity;
 
       // If the tax rate is not 5%, 13% or 25% then the set tax will be 0.
       // phpcs:disable WordPress.PHP.StrictInArray.MissingTrueStrict
@@ -236,14 +236,14 @@ class Request {
 
     // Shipping.
     $total_shipping = $order->get_total_shipping();
-    if ( (double) $total_shipping > 0 ) {
+    if ( (float) $total_shipping > 0 ) {
       $shipping_items = $order->get_items( 'shipping' );
 
       foreach ( $shipping_items as $shipping_key => $shipping_object ) {
         $shipping_tax_rates = array_values( \WC_Tax::get_base_tax_rates( $shipping_object->get_tax_class() ) );
       }
 
-      $shipping_tax_rate = (double) $shipping_tax_rates[0]['rate'];
+      $shipping_tax_rate = (float) $shipping_tax_rates[0]['rate'];
 
       $shipping_price = number_format( $total_shipping, 2, ',', '.' );
 
@@ -301,21 +301,21 @@ class Request {
 
     if ( $solo_api_currency !== '1' ) { // Only for foreign currency.
       $currency_helper = array(
-          '1'  => 'HRK',
-          '2'  => 'AUD',
-          '3'  => 'CAD',
-          '4'  => 'CZK',
-          '5'  => 'DKK',
-          '6'  => 'HUF',
-          '7'  => 'JPY',
-          '8'  => 'NOK',
-          '9'  => 'SEK',
-          '10' => 'CHF',
-          '11' => 'GBP',
-          '12' => 'USD',
-          '13' => 'BAM',
-          '14' => 'EUR',
-          '15' => 'PLN',
+        '1'  => 'HRK',
+        '2'  => 'AUD',
+        '3'  => 'CAD',
+        '4'  => 'CZK',
+        '5'  => 'DKK',
+        '6'  => 'HUF',
+        '7'  => 'JPY',
+        '8'  => 'NOK',
+        '9'  => 'SEK',
+        '10' => 'CHF',
+        '11' => 'GBP',
+        '12' => 'USD',
+        '13' => 'BAM',
+        '14' => 'EUR',
+        '15' => 'PLN',
       );
 
       $api_rates = $this->helper->get_exchange_rates();
@@ -510,11 +510,11 @@ class Request {
     $filetype = wp_check_filetype( $pdf_name, null );
 
     $attachment_array = array(
-        'guid'           => $attachment,
-        'post_mime_type' => $filetype['type'],
-        'post_title'     => $pdf_name,
-        'post_content'   => '',
-        'post_status'    => 'inherit',
+      'guid'           => $attachment,
+      'post_mime_type' => $filetype['type'],
+      'post_title'     => $pdf_name,
+      'post_content'   => '',
+      'post_status'    => 'inherit',
     );
 
     $url_parse = wp_parse_url( $attachment );

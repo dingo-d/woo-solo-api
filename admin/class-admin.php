@@ -97,19 +97,19 @@ class Admin {
    */
   public function add_pin_field( $fields ) {
     $fields['shipping']['shipping_pin_number'] = array(
-        'label'       => esc_html__( 'PIN number', 'woo-solo-api' ),
-        'placeholder' => _x( '01234567891', 'placeholder', 'woo-solo-api' ),
-        'required'    => false,
-        'class'       => array( 'form-row-wide' ),
-        'clear'       => true,
+      'label'       => esc_html__( 'PIN number', 'woo-solo-api' ),
+      'placeholder' => _x( '01234567891', 'placeholder', 'woo-solo-api' ),
+      'required'    => false,
+      'class'       => array( 'form-row-wide' ),
+      'clear'       => true,
     );
 
     $fields['billing']['billing_pin_number'] = array(
-        'label'       => esc_html__( 'PIN number', 'woo-solo-api' ),
-        'placeholder' => _x( '01234567891', 'placeholder', 'woo-solo-api' ),
-        'required'    => false,
-        'class'       => array( 'form-row-wide' ),
-        'clear'       => true,
+      'label'       => esc_html__( 'PIN number', 'woo-solo-api' ),
+      'placeholder' => _x( '01234567891', 'placeholder', 'woo-solo-api' ),
+      'required'    => false,
+      'class'       => array( 'form-row-wide' ),
+      'clear'       => true,
     );
 
     return $fields;
@@ -125,19 +125,19 @@ class Admin {
    */
   public function add_iban_field( $fields ) {
     $fields['shipping']['shipping_iban_number'] = array(
-        'label'       => esc_html__( 'IBAN number', 'woo-solo-api' ),
-        'placeholder' => _x( 'HR12345678901234567890', 'placeholder', 'woo-solo-api' ),
-        'required'    => false,
-        'class'       => array( 'form-row-wide' ),
-        'clear'       => true,
+      'label'       => esc_html__( 'IBAN number', 'woo-solo-api' ),
+      'placeholder' => _x( 'HR12345678901234567890', 'placeholder', 'woo-solo-api' ),
+      'required'    => false,
+      'class'       => array( 'form-row-wide' ),
+      'clear'       => true,
     );
 
     $fields['billing']['billing_iban_number'] = array(
-        'label'       => esc_html__( 'IBAN number', 'woo-solo-api' ),
-        'placeholder' => _x( 'HR12345678901234567890', 'placeholder', 'woo-solo-api' ),
-        'required'    => false,
-        'class'       => array( 'form-row-wide' ),
-        'clear'       => true,
+      'label'       => esc_html__( 'IBAN number', 'woo-solo-api' ),
+      'placeholder' => _x( 'HR12345678901234567890', 'placeholder', 'woo-solo-api' ),
+      'required'    => false,
+      'class'       => array( 'form-row-wide' ),
+      'clear'       => true,
     );
 
     return $fields;
