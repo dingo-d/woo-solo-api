@@ -51,8 +51,8 @@ before_install:
   # https://twitter.com/kelunik/status/954242454676475904
   - phpenv config-rm xdebug.ini || echo 'No xdebug config.'
   # Install PHP CodeSniffer.
-  - then composer self-update; fi
-  - then composer install; fi
+  - composer self-update
+  - composer install
   - phpenv rehash
 
 script:
