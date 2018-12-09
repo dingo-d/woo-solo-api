@@ -3,8 +3,8 @@ Contributors: dingo_bastard
 Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 4.4
 Requires PHP: 5.6
-Tested up to: 4.9.6
-Stable tag: 1.9.4
+Tested up to: 5.0
+Stable tag: 1.9.5
 WC requires at least: 3.0.0
 WC tested up to: 3.5.2
 License: GPLv2 or later
@@ -64,6 +64,18 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 4. You can add the mail settings that will be send (if you choose to) to the client when the order is completed
 
 == Changelog ==
+
+= 1.9.5 =
+
+* Tested with WordPress 5.0
+* Fixed issue with multiple requests being made towards the SOLO service
+* Fixed the issue with no emails being send on order status change
+* Fixed the wrong plugin settings link on the plugins admin page
+* Added excaping to activation messages
+* Minor autoload fixes (removed manual requirement for activation hook)
+* Fixed .travis build (development only)
+* Updated composer.json (development only)
+* Updated phpcs.xml.dist (development only)
 
 = 1.9.4 =
 

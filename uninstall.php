@@ -54,6 +54,7 @@ delete_option( 'solo_api_due_date' );
 delete_option( 'solo_api_mail_gateway' );
 delete_option( 'solo_api_send_pdf' );
 delete_option( 'solo_api_send_control' );
+delete_option( 'solo_sent_orders' );
 
 $available_woo_gateways = \WC()->payment_gateways->get_available_payment_gateways();
 foreach ( $available_woo_gateways as $gateway_woo_sett => $gateway_woo_val ) {

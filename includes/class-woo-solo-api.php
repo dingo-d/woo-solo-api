@@ -37,7 +37,7 @@ class Woo_Solo_Api {
    *
    * @since 1.8.1
    */
-  const PLUGIN_VERSION = '1.9.4';
+  const PLUGIN_VERSION = '1.9.5';
 
   /**
    * The loader that's responsible for maintaining and registering all hooks that power
@@ -95,6 +95,7 @@ class Woo_Solo_Api {
    * Register all of the hooks related to the admin area functionality
    * of the plugin.
    *
+   * @since    1.9.5 Added separate hook for connecting to SOLO service on status change
    * @since    1.9.0 Added a check if the email order hook was called. Added languages
    * @since    1.0.0
    * @access   private
@@ -105,6 +106,7 @@ class Woo_Solo_Api {
     $plugin_admin = new Admin\Admin( self::PLUGIN_NAME, self::PLUGIN_VERSION, $api_helpers );
 
     $this->loader->add_action( 'woocommerce_email_order_details', $api_request, 'solo_api_send_api_request', 15, 4 );
+    $this->loader->add_action( 'woocommerce_order_status_completed', $api_request, 'send_api_request_on_completed', 10, 1 );
 
     $this->loader->add_action( 'init', $api_helpers, 'get_exchange_rates' );
 

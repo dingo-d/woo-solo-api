@@ -35,7 +35,7 @@ class Activator {
       // Deactivate the plugin.
       deactivate_plugins( plugin_basename( __FILE__ ) );
 
-      $error_message = __( 'You do not have proper authorization to activate a plugin!', 'woo-solo-api' );
+      $error_message = esc_html__( 'You do not have proper authorization to activate a plugin!', 'woo-solo-api' );
       die( esc_html( $error_message ) );
     }
 
@@ -43,7 +43,7 @@ class Activator {
       // Deactivate the plugin.
       deactivate_plugins( plugin_basename( __FILE__ ) );
       // Throw an error in the WordPress admin console.
-      $error_message = __( 'This plugin requires ', 'woo-solo-api' ) . '<a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '">WooCommerce</a>' . __( ' plugin to be active!', 'woo-solo-api' );
+      $error_message = esc_html__( 'This plugin requires ', 'woo-solo-api' ) . '<a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '">WooCommerce</a>' . esc_html__( ' plugin to be active!', 'woo-solo-api' );
       die( wp_kses_post( $error_message ) );
     }
   }

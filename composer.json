@@ -25,7 +25,13 @@
     }
   ],
   "require-dev": {
-    "infinum/coding-standards-wp": "*"
+    "infinum/coding-standards-wp": "*",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.5"
+  },
+  "scripts": {
+    "phpcs-i": "@php ./vendor/bin/phpcs -i",
+    "check-cs": "@php ./vendor/bin/phpcs",
+    "fix-cs": "@php ./vendor/bin/phpcbf"
   },
   "support": {
     "issues": "https://github.com/dingo-d/woo-solo-api/issues",

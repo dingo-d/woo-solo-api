@@ -228,7 +228,7 @@ class Admin {
    * @param array $links Plugin action links.
    */
   public function add_action_links( $links ) {
-     $links[] = '<a href="' . admin_url( 'options-general.php?page=solo_api_options' ) . '">' . esc_html__( 'SOLO API Settings', 'woo-solo-api' ) . '</a>';
+     $links[] = '<a href="' . admin_url( 'admin.php?page=solo_api_options' ) . '">' . esc_html__( 'SOLO API Settings', 'woo-solo-api' ) . '</a>';
     return $links;
   }
 
@@ -273,6 +273,11 @@ class Admin {
   public function get_solo_data() {
     // Nonce check.
     if ( ! isset( $_POST['_wpnonce'] ) && ! wp_verify_nonce( sanitize_key( $_POST['_wpnonce'] ) ) ) {
+      return false;
+    }
+
+    // Only run on admin.
+    if ( ! is_admin() ) {
       return false;
     }
 

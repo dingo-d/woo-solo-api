@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <ruleset name="Woo Solo API ruleset">
 
+  <description>A ruleset for checking the plugin against coding standards.</description>
+
+  <exclude-pattern>*/node_modules/*</exclude-pattern>
+  <exclude-pattern>*/vendor/*</exclude-pattern>
+
   <rule ref="Infinum" />
 
 </ruleset>
