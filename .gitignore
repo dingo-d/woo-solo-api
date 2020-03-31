@@ -5,15 +5,6 @@
 # Project build folder
 /build/
 
-# Vagrantfile
-Vagrantfile
-
-# Test install files
-/bin/
-
-# Build files
-/build/
-
 # Mac OS custom attribute store and thumbnails
 *.DS_Store
 ._*
