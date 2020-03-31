@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Define the internationalization functionality
  *
@@ -20,18 +21,20 @@ namespace Woo_Solo_Api\Includes;
  * @package    Woo_Solo_Api\Includes
  * @author     Denis Žoljom <denis.zoljom@gmail.com>
  */
-class Internationalization {
+class Internationalization
+{
 
   /**
    * Load the plugin text domain for translation.
    *
    * @since    1.0.0
    */
-  public function load_plugin_textdomain() {
-    load_plugin_textdomain(
-      'woo-solo-api',
-      false,
-      dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-    );
-  }
+    public function load_plugin_textdomain()
+    {
+        load_plugin_textdomain(
+            'woo-solo-api',
+            false,
+            dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
+        );
+    }
 }

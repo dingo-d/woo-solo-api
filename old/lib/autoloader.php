@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Autoloader
  *
@@ -16,7 +17,7 @@
 
 namespace Woo_Solo_Api\Lib;
 
-spl_autoload_register( __NAMESPACE__ . '\\woo_solo_api_autoloader' );
+spl_autoload_register(__NAMESPACE__ . '\\woo_solo_api_autoloader');
 
 /**
  * Dynamically loads the class attempting to be instantiated elsewhere in the
@@ -24,34 +25,35 @@ spl_autoload_register( __NAMESPACE__ . '\\woo_solo_api_autoloader' );
  *
  * @param string $filename The fully-qualified name of the file that contains the class.
  */
-function woo_solo_api_autoloader( $filename ) {
-  $file_path = explode( '\\', $filename );
+function woo_solo_api_autoloader($filename)
+{
+    $file_path = explode('\\', $filename);
 
-  if ( isset( $file_path[ count( $file_path ) - 1 ] ) ) {
-    $class_file = strtolower(
-      $file_path[ count( $file_path ) - 1 ]
+    if (isset($file_path[ count($file_path) - 1 ])) {
+        $class_file = strtolower(
+            $file_path[ count($file_path) - 1 ]
+        );
+      // The classname has an underscore, so we need to replace it with a hyphen for the file name.
+        $class_file = str_ireplace('_', '-', $class_file);
+        $class_file = "class-$class_file.php";
+    }
+
+    $fully_qualified_path = trailingslashit(
+        dirname(
+            dirname(__FILE__)
+        )
     );
-    // The classname has an underscore, so we need to replace it with a hyphen for the file name.
-    $class_file = str_ireplace( '_', '-', $class_file );
-    $class_file = "class-$class_file.php";
-  }
 
-  $fully_qualified_path = trailingslashit(
-    dirname(
-      dirname( __FILE__ )
-    )
-  );
+    $file_count = count($file_path);
+    for ($i = 1; $i < $file_count - 1; $i++) {
+        $dir = strtolower($file_path[ $i ]);
+        $fully_qualified_path .= trailingslashit($dir);
+    }
 
-  $file_count = count( $file_path );
-  for ( $i = 1; $i < $file_count - 1; $i++ ) {
-    $dir = strtolower( $file_path[ $i ] );
-    $fully_qualified_path .= trailingslashit( $dir );
-  }
-
-  $fully_qualified_path .= $class_file;
+    $fully_qualified_path .= $class_file;
 
   // Now we include the file.
-  if ( file_exists( $fully_qualified_path ) ) {
-    include_once( $fully_qualified_path );
-  }
+    if (file_exists($fully_qualified_path)) {
+        include_once($fully_qualified_path);
+    }
 }
