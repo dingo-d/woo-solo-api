@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Woo Solo Api Plugin" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+
+	<description>The Coding standard for the Woo Solo Api plugin.</description>
+
+	<file>.</file>
+
+	<arg value="sp"/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+	<arg name="basepath" value="./"/>
+
+	<!-- Exclude Composer vendor directory. -->
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+
+	<!-- Enforce PSR12 ruleset. -->
+	<rule ref="PSR12"/>
+
+	<arg name="tab-width" value="4"/>
+
+	<!-- Tabs should represent 4 spaces. -->
+	<rule ref="Generic.WhiteSpace.ScopeIndent">
+		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
+        <properties>
+            <property name="indent" value="4"/>
+            <property name="tabIndent" value="true"/>
+        </properties>
+    </rule>
+
+	<!-- Check code for cross-version PHP compatibility. -->
+	<config name="testVersion" value="7.2-"/>
+	<rule ref="PHPCompatibility"/>
+
+	<rule ref="PHPCompatibilityWP">
+		<include-pattern>*\.(php|inc)$</include-pattern>
+	</rule>
+
+	<!-- Check against minimum WP version. -->
+	<config name="minimum_supported_wp_version" value="5.1"/>
+</ruleset>
