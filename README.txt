@@ -1,14 +1,14 @@
 === Woo Solo Api ===
 Contributors: dingo_bastard
 Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
-Requires at least: 4.4
-Requires PHP: 5.6
-Tested up to: 4.9.4
-Stable tag: 1.2
-WC requires at least: 3.0.0
-WC tested up to: 3.3.1
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Requires at least: 5.1
+Requires PHP: 7.2
+Tested up to: 5.4
+Stable tag: 2.0
+WC requires at least: 3.9.0
+WC tested up to: 4.0.0
+License: MIT
+License URI: https://opensource.org/licenses/MIT
 
 This plugin provides integration of the SOLO service with WooCommerce store.
 
