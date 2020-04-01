@@ -1,74 +1,70 @@
 {
-  "name": "dingo-d/woo-solo-api",
-  "type": "wordpress-plugin",
-  "description": "Plugin that provides integration of the SOLO service with WooCommerce store.",
-  "keywords": [
-    "plugin",
-    "WordPress",
-    "WooCommerce",
-    "solo",
-    "API",
-    "store",
-    "ecommerce"
-  ],
-  "homepage": "https://github.com/dingo-d/woo-solo-api",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Denis Žoljom",
-      "homepage": "https://madebydenis.com",
-      "email": "denis.zoljom@gmail.com"
-    },
-    {
-      "name": "Contributors",
-      "homepage": "https://github.com/dingo-d/woo-solo-api/graphs/contributors"
-    }
-  ],
-  "require": {
-    "php": ">=7.2",
-    "php-di/php-di": "^6.0"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^7.0",
-    "pcov/clobber": "^2.0",
-    "codedungeon/phpunit-result-printer": "^0.20.1",
-    "squizlabs/php_codesniffer": "^3.5.0",
-    "phpcompatibility/php-compatibility": "^9.0",
-    "phpcompatibility/phpcompatibility-wp": "^2.0",
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.6",
-    "szepeviktor/phpstan-wordpress": "^0.2.0",
-    "roave/security-advisories": "dev-master"
-  },
-  "config": {
-    "sort-packages": true,
-    "optimize-autoloader": true,
-    "process-timeout": 2000
-  },
-  "scripts": {
-    "post-install-cmd": "PHPStan\\WordPress\\Composer\\FixWpStubs::php73Polyfill",
-    "post-update-cmd": "PHPStan\\WordPress\\Composer\\FixWpStubs::php73Polyfill",
-    "standards:check": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
-    "standards:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
-    "analyse": "@php ./vendor/bin/phpstan analyze",
-    "tests:setup": "bash bin/install-wp-tests.sh wordpress_test root '' localhost latest",
-    "tests:prepare": "@php ./vendor/bin/pcov clobber",
-    "tests:revert": "@php ./vendor/bin/pcov unclobber",
-    "tests:run": "@php ./vendor/bin/phpunit -c phpunit.xml.dist --no-coverage --colors=always --testdox",
-    "tests:coverage": "@php ./vendor/bin/phpunit -c phpunit.xml.dist --colors=always"
-  },
-  "support": {
-    "issues": "https://github.com/dingo-d/woo-solo-api/issues",
-    "wiki": "https://github.com/dingo-d/woo-solo-api/wiki",
-    "source": "https://github.com/dingo-d/woo-solo-api"
-  },
-  "autoload": {
-    "psr-4": {
-      "MadeByDenis\\WooSoloApi\\": "src/"
-    }
-  },
-  "autoload-dev": {
-      "psr-4": {
-          "Tests\\": "tests/"
-      }
-  }
+	"name": "dingo-d/woo-solo-api",
+	"type": "wordpress-plugin",
+	"description": "Plugin that provides integration of the SOLO service with WooCommerce store.",
+	"keywords": ["plugin", "WordPress", "WooCommerce", "solo", "API", "store", "ecommerce"],
+	"homepage": "https://github.com/dingo-d/woo-solo-api",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Denis Žoljom",
+			"homepage": "https://madebydenis.com",
+			"email": "denis.zoljom@gmail.com"
+		},
+		{
+			"name": "Contributors",
+			"homepage": "https://github.com/dingo-d/woo-solo-api/graphs/contributors"
+		}
+	],
+	"require": {
+		"php": ">=7.2",
+		"php-di/php-di": "^6.0"
+	},
+	"require-dev": {
+		"codedungeon/phpunit-result-printer": "^0.20.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.6",
+		"lucatume/wp-browser": "^2.3",
+		"pcov/clobber": "^2.0",
+		"phpcompatibility/php-compatibility": "^9.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.0",
+		"phpunit/phpunit": "^7.0",
+		"roave/security-advisories": "dev-master",
+		"squizlabs/php_codesniffer": "^3.5.0",
+		"szepeviktor/phpstan-wordpress": "^0.2.0"
+	},
+	"autoload-dev": {
+			"psr-4": {
+					"Tests\\": "tests/"
+			}
+	},
+	"autoload": {
+		"psr-4": {
+			"MadeByDenis\\WooSoloApi\\": "src/"
+		}
+	},
+	"minimum-stability": "stable",
+	"config": {
+		"sort-packages": true,
+		"optimize-autoloader": true,
+		"process-timeout": 2000
+	},
+	"scripts": {
+		"post-install-cmd": "PHPStan\\WordPress\\Composer\\FixWpStubs::php73Polyfill",
+		"post-update-cmd": "PHPStan\\WordPress\\Composer\\FixWpStubs::php73Polyfill",
+		"standards:check": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+		"standards:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
+		"analyse": "@php ./vendor/bin/phpstan analyze",
+		"tests:setup": "@php ./vendor/bin/codecept init wpbrowser",
+		"tests:prepare": "@php ./vendor/bin/pcov clobber",
+		"tests:revert": "@php ./vendor/bin/pcov unclobber",
+		"tests:acceptance": "codecept run acceptance",
+		"tests:functional": "codecept run functional",
+		"tests:integration": "codecept run wpunit",
+		"tests:coverage": "@php ./vendor/bin/phpunit -c phpunit.xml.dist --colors=always"
+	},
+	"support": {
+		"issues": "https://github.com/dingo-d/woo-solo-api/issues",
+		"wiki": "https://github.com/dingo-d/woo-solo-api/wiki",
+		"source": "https://github.com/dingo-d/woo-solo-api"
+	}
 }
