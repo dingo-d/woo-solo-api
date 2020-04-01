@@ -20,7 +20,7 @@
 
 	<!-- Tabs should represent 4 spaces. -->
 	<rule ref="Generic.WhiteSpace.ScopeIndent">
-		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent"/>
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
         <properties>
             <property name="indent" value="4"/>
             <property name="tabIndent" value="true"/>
