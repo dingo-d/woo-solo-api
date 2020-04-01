@@ -4,9 +4,13 @@
 # https://blog.madewithlove.be/post/gitattributes/
 #
 /.travis.yml export-ignore
-/phpcs.xml.dist export-ignore
+/.editorconfig export-ignore
+/phpstan.neon export-ignore
+/.phpcs.xml.dist export-ignore
+/phpunit-printer.yml export-ignore
 /phpunit.xml.dist export-ignore
 /.github export-ignore
+/.env.testing export-ignore
 /bin export-ignore
 /tests export-ignore
 
