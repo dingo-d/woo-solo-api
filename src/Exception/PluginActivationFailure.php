@@ -22,7 +22,7 @@ class PluginActivationFailure extends \RuntimeException implements GeneralExcept
 {
 
 	/**
-	* Create a new instance of the exception in case plugin cannot be activated.
+	* Create a new instance of the exception in case plugin cannot be activated
 	*
 	* @param string $message Error message to show on plugin activation failure.
 	*

@@ -11,6 +11,13 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Exception;
 
+/**
+ * Class InvalidService
+ *
+ * Exception that happens when a service is encountered that doesn't have register() method.
+ *
+ * @package MadeByDenis\WooSoloApi\Exception
+ */
 class InvalidService extends \InvalidArgumentException implements GeneralException
 {
 	/**
@@ -25,7 +32,7 @@ class InvalidService extends \InvalidArgumentException implements GeneralExcepti
 	{
 		$message = sprintf(
 			'The service "%s" is not recognized and cannot be registered.',
-			is_object( $service ) ? get_class( $service ) : (string) $service
+			is_object($service) ? get_class($service) : (string) $service
 		);
 
 		return new static($message);

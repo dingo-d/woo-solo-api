@@ -47,9 +47,9 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
           	// Deactivate the plugin.
             deactivate_plugins(plugin_basename(__FILE__));
 
-            $errorMessage = __( 'This plugin requires ', 'woo-solo-api' ) .
-				'<a href="' . esc_url( 'https://wordpress.org/plugins/woocommerce/' ) . '">WooCommerce</a>'
-				. __( ' plugin to be active.', 'woo-solo-api' );
+            $errorMessage = __('This plugin requires ', 'woo-solo-api') .
+				'<a href="' . esc_url('https://wordpress.org/plugins/woocommerce/') . '">WooCommerce</a>'
+				. __(' plugin to be active.', 'woo-solo-api');
 
             throw PluginActivationFailure::activationMessage($errorMessage);
         }
@@ -110,7 +110,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
     public function registerAssetsManifestData()
     {
 
-      	$response = file_get_contents( rtrim( plugin_dir_path( __DIR__ ), '/' ) . '/assets/public/manifest.json' );
+      	$response = file_get_contents(rtrim(plugin_dir_path(__DIR__), '/') . '/assets/public/manifest.json');
 
         if (! $response) {
             $error_message = __('manifest.json is missing. Bundle the plugin before using it.', 'developer-portal');

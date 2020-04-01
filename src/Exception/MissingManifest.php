@@ -11,7 +11,13 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Exception;
 
-
+/**
+ * Class MissingManifest
+ *
+ * Exception when manifest.json is missing. Usually means that assets are not bundled correctly.
+ *
+ * @package MadeByDenis\WooSoloApi\Exception
+ */
 class MissingManifest extends \InvalidArgumentException implements GeneralException
 {
 	/**
