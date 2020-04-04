@@ -14,4 +14,4 @@ Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
 
-src/CompiledContainer.php
+src/Core/CompiledContainer.php
