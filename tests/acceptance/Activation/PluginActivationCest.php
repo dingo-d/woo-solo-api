@@ -8,20 +8,23 @@ use AcceptanceTester;
 
 class PluginActivationCest
 {
-	function _before(AcceptanceTester $I)
+	public function _before(AcceptanceTester $I)
     {
 		$I->loginAsAdmin();
 		$I->amOnPluginsPage();
 		$I->seePluginInstalled('woo-solo-api');
+    }
+
+	public function activatePluginSuccessfully(AcceptanceTester $I)
+	{
 		$I->activatePlugin('woo-solo-api');
 		$I->seePluginActivated('woo-solo-api');
-    }
+	}
 
-    public function _after(AcceptanceTester $I)
-    {
-    }
-
-	public function pluginCanBeActivated(AcceptanceTester $I)
+	public function seeErrorBeingThrownOnPluginActivationIfWooCommerceIsntActivated(AcceptanceTester $I)
 	{
+		$I->deactivatePlugin('woocommerce');
+		$I->activatePlugin('woo-solo-api');
+		$I->see('Plugin could not be activated because it triggered a fatal error.');
 	}
 }
