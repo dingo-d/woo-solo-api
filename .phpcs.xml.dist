@@ -12,7 +12,17 @@
 
 	<!-- Exclude Composer vendor directory. -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
+
+	<!-- Exclude dependency injection compiled container. -->
 	<exclude-pattern>src/Core/CompiledContainer.php</exclude-pattern>
+
+	<!-- Exclude the rule about underscore method declaration for acceptance tests. -->
+	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+		<exclude-pattern>tests/acceptance/*</exclude-pattern>
+	</rule>
+
+	<!-- Exclude the _support test folder. -->
+	<exclude-pattern>tests/_support/*</exclude-pattern>
 
 	<!-- Enforce PSR12 ruleset. -->
 	<rule ref="PSR12"/>
@@ -38,4 +48,5 @@
 
 	<!-- Check against minimum WP version. -->
 	<config name="minimum_supported_wp_version" value="5.1"/>
+
 </ruleset>
