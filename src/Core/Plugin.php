@@ -113,7 +113,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
       	$response = file_get_contents(rtrim(plugin_dir_path(__DIR__), '/') . '/assets/public/manifest.json');
 
         if (! $response) {
-            $error_message = __('manifest.json is missing. Bundle the plugin before using it.', 'developer-portal');
+            $error_message = __('manifest.json is missing. Bundle the plugin before using it.', 'woo-solo-api');
             throw MissingManifest::message($error_message);
         }
 
