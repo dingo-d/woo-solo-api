@@ -12,6 +12,7 @@
 
 	<!-- Exclude Composer vendor directory. -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>src/Core/CompiledContainer.php</exclude-pattern>
 
 	<!-- Enforce PSR12 ruleset. -->
 	<rule ref="PSR12"/>
