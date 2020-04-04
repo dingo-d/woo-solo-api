@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Core;
 
+use DI\Container;
 use DI\ContainerBuilder;
 use Exception;
 
@@ -54,7 +55,7 @@ final class DiContainer
      *
      * @param array $services Array of service.
      *
-     * @return object
+	 * @return Container
      *
      * @throws Exception Throws exception in case of DI error.
 	 *

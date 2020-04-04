@@ -18,7 +18,7 @@ namespace MadeByDenis\WooSoloApi\Exception;
  *
  * @package MadeByDenis\WooSoloApi\Exception
  */
-class MissingManifest extends \InvalidArgumentException implements GeneralException
+final class MissingManifest extends \InvalidArgumentException implements GeneralException
 {
 	/**
      * Create a new instance of the exception in case

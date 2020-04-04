@@ -28,7 +28,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
     /**
      * Array of instantiated services.
      *
-     * @var Service[]
+     * @var array
      */
     private $services = [];
 

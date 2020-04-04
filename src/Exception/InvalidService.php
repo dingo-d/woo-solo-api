@@ -18,13 +18,13 @@ namespace MadeByDenis\WooSoloApi\Exception;
  *
  * @package MadeByDenis\WooSoloApi\Exception
  */
-class InvalidService extends \InvalidArgumentException implements GeneralException
+final class InvalidService extends \InvalidArgumentException implements GeneralException
 {
 	/**
      * Create a new instance of the exception for a service class name that is
      * not recognized.
      *
-     * @param string $service Class name of the service that was not recognized.
+     * @param string $service Fully qualified class name of the service that was not recognized.
      *
      * @return static
      */

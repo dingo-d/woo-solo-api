@@ -18,7 +18,7 @@ namespace MadeByDenis\WooSoloApi\Exception;
  *
  * @package MadeByDenis\WooSoloApi\Exception
  */
-class PluginActivationFailure extends \RuntimeException implements GeneralException
+final class PluginActivationFailure extends \RuntimeException implements GeneralException
 {
 
 	/**
