@@ -1,5 +1,0 @@
-I WANT TO ACTIVATE PLUGIN SUCCESSFULLY
-
-I activate plugin 'woo-solo-api' 
-I see plugin activated 'woo-solo-api'
-

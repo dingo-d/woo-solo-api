@@ -1,6 +1,0 @@
-I WANT TO SEE ERROR BEING THROWN ON PLUGIN ACTIVATION IF WOO COMMERCE ISNT ACTIVATED
-
-I deactivate plugin 'woocommerce' 
-I activate plugin 'woo-solo-api' 
-I see 'Plugin could not be activated because it triggered a fatal error.'
-
