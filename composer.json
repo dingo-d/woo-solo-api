@@ -21,6 +21,13 @@
 		"php-di/php-di": "^6.0"
 	},
 	"require-dev": {
+		"codeception/module-asserts": "^1.1",
+		"codeception/module-cli": "^1.0",
+		"codeception/module-db": "^1.0",
+		"codeception/module-filesystem": "^1.0",
+		"codeception/module-phpbrowser": "^1.0",
+		"codeception/module-webdriver": "^1.0",
+		"codeception/util-universalframework": "^1.0",
 		"codedungeon/phpunit-result-printer": "^0.20.1",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.6",
 		"lucatume/wp-browser": "^2.3",
@@ -57,10 +64,12 @@
 		"test:setup": "@php ./vendor/bin/codecept init wpbrowser",
 		"test:prepare": "@php ./vendor/bin/pcov clobber",
 		"test:revert": "@php ./vendor/bin/pcov unclobber",
+		"test:build": "@php ./vendor/bin/codecept build",
 		"test:acceptance": "@php ./vendor/bin/codecept run acceptance",
 		"test:functional": "@php ./vendor/bin/codecept run functional",
-		"test:integration": "@php ./vendor/bin/codecept run wpunit",
-		"test:coverage": "@php ./vendor/bin/codecept run wpunit --coverage --coverage-xml --coverage-html",
+		"test:integration": "@php ./vendor/bin/codecept run integration",
+		"test:unit": "@php ./vendor/bin/codecept run unit",
+		"test:coverage": "@php ./vendor/bin/codecept run integration --coverage --coverage-xml --coverage-html",
 		"test:generate-scenarios": "@php vendor/bin/codecept generate:scenarios"
 	},
 	"support": {
