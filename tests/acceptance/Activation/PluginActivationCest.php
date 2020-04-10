@@ -14,7 +14,6 @@ class PluginActivationCest
 		$I->amOnPluginsPage();
 		$I->seePluginInstalled('woo-solo-api');
 		$I->seePluginInstalled('woocommerce');
-		$I->seePluginInstalled('action-scheduler');
     }
 
 	public function activatePluginSuccessfully(AcceptanceTester $I)

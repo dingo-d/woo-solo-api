@@ -17,6 +17,6 @@ modules:
             tablePrefix: "%TEST_TABLE_PREFIX%"
             domain: "%TEST_SITE_WP_DOMAIN%"
             adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
-            title: "Test"        
-            plugins: ['woo-solo-api/woo-solo-api.php']
-            activatePlugins: ['woo-solo-api/woo-solo-api.php']
+            title: "Test"
+            plugins: ['woocommerce/woocommerce.php', 'woo-solo-api/woo-solo-api.php']
+            activatePlugins: ['woocommerce/woocommerce.php', 'woo-solo-api/woo-solo-api.php']
