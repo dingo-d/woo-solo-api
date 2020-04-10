@@ -2,9 +2,10 @@
 
 namespace Tests\WPUnit\Activation;
 
+use Codeception\TestCase\WPTestCase;
 use MadeByDenis\WooSoloApi\Core\Plugin;
 
-class ActivationTest extends \Codeception\TestCase\WPTestCase
+class ActivationTest extends WPTestCase
 {
     /**
      * @var \WpunitTester
@@ -15,7 +16,7 @@ class ActivationTest extends \Codeception\TestCase\WPTestCase
     {
         // Before...
         parent::setUp();
-
+		error_log( print_r( _get_dropins(), true ) );
         // Your set up methods here.
     }
 
@@ -27,18 +28,15 @@ class ActivationTest extends \Codeception\TestCase\WPTestCase
         parent::tearDown();
     }
 
-    // Tests
-    public function testItWorks()
-    {
-        $post = static::factory()->post->create_and_get();
-
-        $this->assertInstanceOf(\WP_Post::class, $post);
-    }
-
 	public function testPluginCanBeActivated()
 	{
 		$plugin = new Plugin();
 
 		$this->assertInstanceOf(Plugin::class, $plugin);
+    }
+
+	public function testActionSchedulerWorks()
+	{
+		error_log( print_r( $GLOBALS['wp_actions'], true ) );
     }
 }

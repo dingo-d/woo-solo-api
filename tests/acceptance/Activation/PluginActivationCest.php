@@ -13,6 +13,8 @@ class PluginActivationCest
 		$I->loginAsAdmin();
 		$I->amOnPluginsPage();
 		$I->seePluginInstalled('woo-solo-api');
+		$I->seePluginInstalled('woocommerce');
+		$I->seePluginInstalled('action-scheduler');
     }
 
 	public function activatePluginSuccessfully(AcceptanceTester $I)
@@ -21,10 +23,17 @@ class PluginActivationCest
 		$I->seePluginActivated('woo-solo-api');
 	}
 
-	public function seeErrorBeingThrownOnPluginActivationIfWooCommerceIsntActivated(AcceptanceTester $I)
+	public function seeErrorBeingThrownOnPluginActivationIfWooCommerceIsNotActivated(AcceptanceTester $I)
 	{
 		$I->deactivatePlugin('woocommerce');
 		$I->activatePlugin('woo-solo-api');
 		$I->see('Plugin could not be activated because it triggered a fatal error.');
+	}
+
+	public function seeScheduledActionsPage(AcceptanceTester $I)
+	{
+		$I->activatePlugin('action-scheduler');
+		$I->amOnPage('/wp-admin/tools.php?page=action-scheduler');
+		$I->see('Scheduled Actions');
 	}
 }
