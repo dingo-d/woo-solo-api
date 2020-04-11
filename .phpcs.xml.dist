@@ -15,6 +15,8 @@
 
 	<!-- Exclude dependency injection compiled container. -->
 	<exclude-pattern>src/Core/CompiledContainer.php</exclude-pattern>
+	<exclude-pattern>old/</exclude-pattern>
+	<exclude-pattern>uninstall.php</exclude-pattern>
 
 	<!-- Exclude the rule about underscore method declaration for acceptance tests. -->
 	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
