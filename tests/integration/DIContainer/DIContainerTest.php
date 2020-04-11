@@ -3,20 +3,27 @@
 namespace Tests\WPUnit\Activation;
 
 use Codeception\TestCase\WPTestCase;
-use MadeByDenis\WooSoloApi\Core\{Plugin, PluginFactory};
 use IntegrationTester;
+use MadeByDenis\WooSoloApi\Core\DiContainer;
 
-class ActivationTest extends WPTestCase
+class DIContainerTest extends WPTestCase
 {
     /**
      * @var IntegrationTester
      */
     protected $tester;
 
-    public function setUp()
+	/**
+	 * @var DiContainer
+	 */
+	private $container;
+
+	public function setUp()
     {
         // Before...
         parent::setUp();
+
+        $this->container = new DiContainer();
 
         // Your set up methods here.
     }
@@ -29,10 +36,13 @@ class ActivationTest extends WPTestCase
         parent::tearDown();
     }
 
-	public function testPluginFactoryReturnsPluginInstance(IntegrationTester $tester)
+	public function testServicesWillBePreparedCorrectly()
 	{
-		$plugin = PluginFactory::create();
+		// Add some service classes.
+		$services = [];
 
-		$this->assertInstanceOf(Plugin::class, $plugin);
+		$preparedServices = $this->container->getDiServices($services);
+
+
     }
 }
