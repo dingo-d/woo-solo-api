@@ -47,9 +47,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
           	// Deactivate the plugin.
             deactivate_plugins(plugin_basename(__FILE__));
 
-            $errorMessage = __('This plugin requires ', 'woo-solo-api') .
-				'<a href="' . esc_url('https://wordpress.org/plugins/woocommerce/') . '">WooCommerce</a>'
-				. __(' plugin to be active.', 'woo-solo-api');
+            $errorMessage = __('This plugin requires WooCommerce plugin to be active.', 'woo-solo-api');
 
             throw PluginActivationFailure::activationMessage($errorMessage);
         }
@@ -91,8 +89,6 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
      * The register_service method will call the register() method in every service class,
      * which holds the actions and filters - effectively replacing the need to manually add
      * them in one place.
-     *
-     * @throws InvalidService If a service is not valid.
      */
     public function register(): void
     {
@@ -134,7 +130,11 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
             return;
         }
 
-        $container = new DiContainer();
+        static $container = null;
+
+        if ($container === null) {
+            $container = new DiContainer();
+        }
 
         $this->services = $container->getDiServices($this->getServiceClasses());
 
