@@ -10,6 +10,7 @@ parameters:
         - %rootDir%/../../../vendor/
         - %rootDir%/../../../node_modules/
         - %rootDir%/../../../bin/
+        - %rootDir%/../../../src/Core/CompiledContainer.php
     autoload_files:
         - %currentWorkingDirectory%/vendor/autoload.php
     ignoreErrors:
