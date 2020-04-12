@@ -1,6 +1,8 @@
 <?php
 
-namespace Tests\WPUnit\Activation;
+declare(strict_types=1);
+
+namespace Tests\Integration\Activation;
 
 use Codeception\TestCase\WPTestCase;
 use IntegrationTester;
@@ -20,19 +22,13 @@ class DIContainerTest extends WPTestCase
 
 	public function setUp()
     {
-        // Before...
         parent::setUp();
 
         $this->container = new DiContainer();
-
-        // Your set up methods here.
     }
 
     public function tearDown()
     {
-        // Your tear down methods here.
-
-        // Then...
         parent::tearDown();
     }
 

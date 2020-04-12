@@ -1,6 +1,8 @@
 <?php
 
-namespace Tests\WPUnit\Activation;
+declare(strict_types=1);
+
+namespace Tests\Integration\Activation;
 
 use Codeception\TestCase\WPTestCase;
 use MadeByDenis\WooSoloApi\Core\{Plugin, PluginFactory};
@@ -15,21 +17,15 @@ class ActivationTest extends WPTestCase
 
     public function setUp()
     {
-        // Before...
         parent::setUp();
-
-        // Your set up methods here.
     }
 
     public function tearDown()
     {
-        // Your tear down methods here.
-
-        // Then...
         parent::tearDown();
     }
 
-	public function testPluginFactoryReturnsPluginInstance(IntegrationTester $tester)
+	public function testPluginFactoryReturnsPluginInstance()
 	{
 		$plugin = PluginFactory::create();
 
