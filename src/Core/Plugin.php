@@ -12,7 +12,9 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Core;
 
 use Exception;
-use MadeByDenis\WooSoloApi\Exception\{PluginActivationFailure, MissingManifest, InvalidService};
+use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
+use MadeByDenis\WooSoloApi\ECommerce\WooPaymentGateways;
+use MadeByDenis\WooSoloApi\Exception\{PluginActivationFailure, MissingManifest};
 
 /**
  * Class Plugin.
@@ -161,7 +163,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
     private function getServiceClasses(): array
     {
         $services = [
-
+			OptionsSubmenu::class => [WooPaymentGateways::class],
         ];
 
         // Test mocks.
