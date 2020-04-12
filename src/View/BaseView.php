@@ -18,6 +18,8 @@ use MadeByDenis\WooSoloApi\Exception\InvalidURI;
  * Base view class
  *
  * Basic View class to abstract away the PHP view rendering.
+ *
+ * @package MadeByDenis\WooSoloApi\View
  */
 class BaseView implements View
 {
