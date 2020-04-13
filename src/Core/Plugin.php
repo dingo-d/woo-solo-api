@@ -13,6 +13,7 @@ namespace MadeByDenis\WooSoloApi\Core;
 
 use Exception;
 use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
+use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
 use MadeByDenis\WooSoloApi\ECommerce\WooPaymentGateways;
 use MadeByDenis\WooSoloApi\Exception\{PluginActivationFailure, MissingManifest};
 
@@ -49,7 +50,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
           	// Deactivate the plugin.
             deactivate_plugins(plugin_basename(__FILE__));
 
-            $errorMessage = __('This plugin requires WooCommerce plugin to be active.', 'woo-solo-api');
+            $errorMessage = esc_html__('This plugin requires WooCommerce plugin to be active.', 'woo-solo-api');
 
             throw PluginActivationFailure::activationMessage($errorMessage);
         }
@@ -94,9 +95,9 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
      */
     public function register(): void
     {
-        add_action('plugins_loaded', [ $this, 'registerServices']);
+        add_action('plugins_loaded', [$this, 'registerServices']);
 
-//        $this->registerAssetsManifestData();
+        $this->registerAssetsManifestData();
     }
 
     /**
@@ -108,10 +109,10 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
     public function registerAssetsManifestData()
     {
 
-      	$response = file_get_contents(rtrim(plugin_dir_path(__DIR__), '/') . '/assets/public/manifest.json');
+      	$response = file_get_contents(dirname(__DIR__, 2) . '/assets/public/manifest.json');
 
         if (! $response) {
-            $error_message = __('manifest.json is missing. Bundle the plugin before using it.', 'woo-solo-api');
+            $error_message = esc_html__('manifest.json is missing. Bundle the plugin before using it.', 'woo-solo-api');
             throw MissingManifest::message($error_message);
         }
 
@@ -163,6 +164,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
     private function getServiceClasses(): array
     {
         $services = [
+        	EnqueueResources::class,
 			OptionsSubmenu::class => [WooPaymentGateways::class],
         ];
 
