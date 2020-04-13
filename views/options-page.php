@@ -34,5 +34,8 @@ namespace MadeByDenis\WooSoloApi\Views;
 		<div class="options-wrapper__tab">
 			<?php echo $this->renderPartial( 'views/partials/fifth-option-group' ); // phpcs:ignore ?>
 		</div>
+		<button class="button button-primary js-save-options">
+			<?php esc_html_e('Save settings', 'woo-solo-api'); ?>
+		</button>
 	</div>
 </div>
