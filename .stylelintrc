@@ -3,6 +3,8 @@
 	"rules": {
 		"color-hex-length": "long",
 		"color-hex-case": "upper",
+		"at-rule-no-unknown": null,
+		"at-rule-empty-line-before": "never",
     	"indentation": "tab",
     	"number-leading-zero": null,
 		"string-quotes": "single"
