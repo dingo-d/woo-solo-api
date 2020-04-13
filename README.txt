@@ -27,34 +27,11 @@ The plugin is translated to Croatian, since the SOLO service is primarily used b
 
 For more information about the SOLO API visit this link: https://solo.com.hr/api-dokumentacija
 
-== Installation ==
-
-= Install & Activate =
-
-Installing the plugin is easy. Just follow these steps:
-
-**Installing from WordPress repository:**
-
-Be sure you have WooCommerce plugin installed first, otherwise you'll get an error on the plugin activation.
-
-1. From the dashboard of your site, navigate to Plugins --> Add New.
-2. In the Search type Woo Solo Api
-3. Click Install Now
-4. When it's finished, activate the plugin via the prompt. A message will show confirming activation was successful.
-
-**Uploading the .zip file:**
-
-1. From the dashboard of your site, navigate to Plugins --> Add New.
-2. Select the Upload option and hit "Choose File."
-3. When the popup appears select the woo-solo-api.x.x.zip file from your desktop. (The 'x.x' will change depending on the current version number).
-4. Follow the on-screen instructions and wait as the upload completes.
-5. When it's finished, activate the plugin via the prompt. A message will show confirming activation was successful.
-
 = Requirements =
 
-* PHP 5.6 or greater (recommended: PHP 7 or greater)
-* WordPress 4.4 or above (because of the built in REST interface)
-* jQuery 1.11.x
+* PHP 7.2 or greater
+* WordPress 5.1 or above
+* Non IE browser -
 
 == Screenshots ==
 
