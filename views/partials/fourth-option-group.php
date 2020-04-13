@@ -12,10 +12,10 @@
 namespace MadeByDenis\WooSoloApi\Views;
 
 ?>
-<input id="email" type="radio" name="tabs" />
-<label for="email"><?php _e('Email settings', 'woo-solo-api'); ?></label>
-<div class="content">
-	<div class="option">
+<input class="options-wrapper__input" id="email" type="radio" name="tabs" />
+<label class="options-wrapper__label" for="email"><?php _e('Email settings', 'woo-solo-api'); ?></label>
+<div class="options-wrapper__content">
+	<div class="content__option">
 		<label for="email-title" class="subtitle">
 			<?php esc_html_e('Set the title of the mail that will be send with the PDF invoice.', 'woo-solo-api'); ?>
 		</label>
@@ -27,7 +27,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			value="<?php echo esc_attr($this->mailTitle); ?>"
 		/>
 	</div>
-	<div class="option">
+	<div class="content__option">
 		<label for="this-message" class="subtitle">
 			<?php esc_html_e('Type the message that will appear on the mail with the invoice PDF attached.', 'woo-solo-api'); ?>
 		</label>
@@ -40,7 +40,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			<?php echo wp_kses_post($this->message); ?>
 		</textarea>
 	</div>
-	<div class="option">
+	<div class="content__option">
 		<label for="change-mail-from" class="subtitle">
 			<?php esc_html_e('Change the \'from\' name that shows when WordPress sends the mail.', 'woo-solo-api'); ?>
 		</label>

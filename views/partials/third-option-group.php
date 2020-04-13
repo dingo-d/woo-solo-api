@@ -12,11 +12,11 @@
 namespace MadeByDenis\WooSoloApi\Views;
 
 ?>
-<input id="extra" type="radio" name="tabs" />
-<label for="extra"><?php _e('Additional settings', 'woo-solo-api'); ?></label>
-<div class="content">
+<input class="options-wrapper__input" id="extra" type="radio" name="tabs" />
+<label class="options-wrapper__label" for="extra"><?php _e('Additional settings', 'woo-solo-api'); ?></label>
+<div class="options-wrapper__content">
 	<h4><?php esc_html_e('WooCommerce checkout settings', 'woo-solo-api'); ?></h4>
-	<div class="option">
+	<div class="content__option">
 		<label for="enable-pin">
 			<input
 				class="js-enable-pin"
@@ -28,7 +28,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			<?php esc_html_e('Enable the PIN field on the billing and shipping from in the checkout.', 'woo-solo-api'); ?>
 		</label>
 	</div>
-	<div class="option">
+	<div class="content__option">
 		<label for="enable-iban">
 			<input
 				class="js-enable-iban"
@@ -41,7 +41,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 		</label>
 	</div>
 	<h4><?php esc_html_e('PDF settings', 'woo-solo-api'); ?></h4>
-	<div class="option">
+	<div class="content__option">
 		<label for="send-pdf">
 			<input
 				class="js-send-pdf"
@@ -53,7 +53,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			<?php esc_html_e('Send the email to the client with the PDF of the order or the invoice.', 'woo-solo-api'); ?>
 		</label>
 	</div>
-	<div class="option">
+	<div class="content__option">
 		<label for="email-gateway[]" class="subtitle">
 			<?php esc_html_e('Create pdf and send mail to the customer only if these payment gateways are selected.', 'woo-solo-api'); ?>
 		</label>
@@ -72,8 +72,8 @@ namespace MadeByDenis\WooSoloApi\Views;
 			</label><br>
 		<?php } ?>
 	</div>
-	<div class="option">
-		<label for="pdf-send-control" class="subtitle"><?php esc_html_e('PDF send control', 'woo-solo-api'); ?></label>
+	<div class="content__option">
+		<h4><?php esc_html_e('PDF send control', 'woo-solo-api'); ?></h4>
 		<div class="solo-info">
 		<?php printf(
 			'%1$s <br> %2$s',
