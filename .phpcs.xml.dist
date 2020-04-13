@@ -12,6 +12,8 @@
 
 	<!-- Exclude Composer vendor directory. -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/webpack/*</exclude-pattern>
+	<exclude-pattern>*/assets/*</exclude-pattern>
 
 	<!-- Exclude dependency injection compiled container. -->
 	<exclude-pattern>src/Core/CompiledContainer.php</exclude-pattern>
