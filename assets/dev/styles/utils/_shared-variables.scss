@@ -1,0 +1,134 @@
+/* stylelint-disable value-keyword-case */
+//Base
+$base-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+
+// Container
+$base-content-padding: 30px;
+$base-content-full-width: 1075px;
+$base-content-width: $base-content-full-width + ($base-content-padding * 2);
+
+$base-section-padding: 100px;
+$base-section-container-width: 1175px;
+$base-section-container-width-less: 1125px;
+$base-section-container-width-narrow: 700px;
+
+$landscape-height-breakpoint: 500px;
+
+//Typography
+$typography-map: (
+	mobile: (
+		giant: 44px,
+		huge: 44px,
+		biggest: 34px,
+		bigger: 30px,
+		big: 24px,
+		small-big: 22px,
+		largest: 22px,
+		larger: 20px,
+		large: 18px,
+		default: 16px,
+		medium: 14px,
+		small: 14px,
+		smallish: 13px,
+		smaller: 12px,
+		tiny: 11px,
+		micro: 9px,
+	),
+	tablet: (
+		giant: 92px,
+		huge: 78px,
+		biggest: 44px,
+		bigger: 34px,
+		big: 26px,
+		small-big: 25px,
+		largest: 24px,
+		larger: 22px,
+		large: 20px,
+		default: 18px,
+		medium: 16px,
+		small: 14px,
+		smallish: 13px,
+		smaller: 12px,
+		tiny: 11px,
+		micro: 9px,
+	)
+);
+
+// Buttons
+$button-size-map: (
+	mobile: (
+		default: (
+			text-size: 18px,
+			line-height: 1.4,
+			height: 40px,
+		)
+	),
+	tablet: (
+		default: (
+			text-size: 20px,
+			line-height: 1.4,
+			height: 52px,
+		)
+	)
+);
+
+//Section
+$section-spacing-map: (
+	mobile: (
+		default: 80px,
+		big: 60px,
+		large: 40px,
+		medium: 20px,
+		small: 10px,
+		no-spacing: 0
+	),
+	tablet: (
+		default: 145px,
+		big: 120px,
+		large: 80px,
+		medium: 40px,
+		small: 20px,
+		no-spacing: 0
+	),
+);
+
+//WP admin bar
+$wpAdminBar-sm: 782px;
+
+// Forms
+$form-field-spacing: 30px;
+
+// Input
+$input-height-map: (
+	mobile: (
+		default: (
+			text-size: 16px,
+			height: 36px,
+		)
+	),
+	tablet: (
+		default: (
+			text-size: 18px,
+			height: 45px,
+		)
+	)
+);
+
+$header-height: 54px;
+$header-height-tablet: 54px;
+$header-height-mobile: 54px;
+$header-scrolled-height: 50px;
+$mobile-menu-padding: 18px;
+
+$wpAdminBar-height: 46px;
+$wpAdminBar-height-tablet-up: 32px;
+
+$next-section-link-position: 30px;
+$fullpage-slides-nav-position: 25px;
+
+$content-section-limit-width: (
+	default: 870px,
+	large: 720px,
+	medium: 580px,
+	big: 1015px,
+);

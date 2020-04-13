@@ -1,0 +1,9 @@
+$options-page: (
+	background-color: $base-white-color,
+);
+
+
+.options-wrapper {
+	padding: 30px;
+	background-color: map-get-strict($options-page, 'background-color');
+}
