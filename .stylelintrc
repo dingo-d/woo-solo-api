@@ -1,0 +1,11 @@
+{
+	"extends": "stylelint-config-wordpress",
+	"rules": {
+		"color-hex-length": "long",
+		"color-hex-case": "upper",
+    	"indentation": "tab",
+    	"number-leading-zero": null,
+		"string-quotes": "single"
+  	},
+	"ignoreFiles": "assets/public/**/*.css"
+}
