@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-$(function() {
+// $(function() {
 
   // ---------------------------------------------------------
   // OPTIONS PAGE SAVING.
@@ -40,4 +40,4 @@ $(function() {
   //   });
   // }
 
-});
+// });
