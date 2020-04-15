@@ -1,17 +1,68 @@
-
+$content: (
+	border-color: $base-silver-color,
+);
 
 .content {
+	display: grid;
+	grid-template-rows: min-content;
 
-	&__subtitle {
-		margin: 1.5em 0 1em;
+	&--two-columns {
+		grid-template-areas: 'area area';
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 2em;
 	}
 
-	&__label {
+	&__item {
+		display: grid;
+		grid-template-rows: min-content;
+		grid-template-areas: 'label content';
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 1em;
+		margin-bottom: 20px;
+
+		&--one-column {
+			grid-template-areas: 'content';
+			grid-template-columns: 1fr;
+		}
+
+		&--has-bottom-border {
+			border-bottom: 1px solid map-get-deep($content, 'border-color');
+			padding-bottom: 20px;
+			margin-bottom: 0;
+		}
+	}
+
+	&__item-label {
 		font-weight: 600;
+		font-size: 15px;
+		line-height: 1.5;
 		margin-right: 2em;
+
+		&--notice {
+			font-weight: 400;
+		}
+
+		&--heading {
+			font-size: 18px;
+		}
 	}
 
-	&__option {
-		margin: 2em 0;
+	&__item-content {
+
+		&--input {
+			min-width: 75%;
+		}
+
+		&--input-full {
+			min-width: 100%;
+		}
+
+		&--select {
+			min-width: 100%;
+		}
+
+		&--select-half {
+			min-width: 50%;
+		}
 	}
 }

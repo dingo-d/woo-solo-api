@@ -6,7 +6,6 @@ $options-page: (
 	tab-color-hover: $base-white-color,
 );
 
-
 .options-wrapper {
 	display: grid;
 	min-height: 400px;
@@ -65,7 +64,7 @@ $options-page: (
 	&__content {
 		grid-area: content;
 		display: none;
-		margin: 1.5em 0 1em;
+		margin: 2em 0 1em;
 	}
 
 	&__input:checked ~ &__content {
