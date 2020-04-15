@@ -143,14 +143,7 @@ abstract class AdminMenu implements Registrable, Renderable
 	 */
 	protected function renderNonce(): string
 	{
-		ob_start();
-
-		wp_nonce_field(
-			$this->getNonceAction(),
-			$this->getNonceName()
-		);
-
-		return ob_get_clean();
+		return wp_nonce_field($this->getNonceAction(), $this->getNonceName(), true, false);
 	}
 
 	/**
