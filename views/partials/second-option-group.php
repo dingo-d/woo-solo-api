@@ -15,13 +15,18 @@ namespace MadeByDenis\WooSoloApi\Views;
 <input class="options-wrapper__input" id="options" type="radio" name="tabs" />
 <label class="options-wrapper__label" for="options"><?php _e('Solo API options', 'woo-solo-api'); ?></label>
 <div class="options-wrapper__content">
-	<div class="content-wrapper">
-		<div class="content-wrapper--left">
-			<div class="content__option">
-				<label for="measure" class="content__label">
-					<?php esc_html_e('Unit measure - select the default measure in your shop (e.g. piece, hour, m^3 etc.)', 'woo-solo-api'); ?>
+	<div class="content content--two-columns">
+		<div class="content__item">
+			<div class="content__item-label">
+				<label for="measure">
+					<?php esc_html_e('Unit measure', 'woo-solo-api'); ?>
 				</label>
-				<select class="js-measure" name="measure" id="measure">
+				<p class="content__item-label--notice">
+					<?php esc_html_e('Select the default measure in your shop (e.g. piece, hour, m^3 etc.)', 'woo-solo-api'); ?>
+				</p>
+			</div>
+			<div class="content__item-content">
+				<select class="js-measure content__item-content--select" name="measure" id="measure">
 					<option value="1" <?php selected('1', $this->measure, true); ?>>
 						<?php esc_html_e('-', 'woo-solo-api'); ?>
 					</option>
@@ -123,9 +128,32 @@ namespace MadeByDenis\WooSoloApi\Views;
 					</option>
 				</select>
 			</div>
-			<div class="content__option">
-				<label for="languages" class="content__label"><?php esc_html_e('Languages', 'woo-solo-api'); ?></label>
-				<select class="js-languages" name="languages" id="languages">
+		</div>
+		<div class="content__item">
+			<div class="content__item-label">
+				<label for="service-type">
+					<?php esc_html_e('Enter the type of the service', 'woo-solo-api'); ?>
+				</label>
+				<p class="content__item-label--notice">
+					<?php esc_html_e('You can find it in your account settings (Usluge -> Tipovi usluga). Has to be unique ID of the service.', 'woo-solo-api'); ?>
+				</p>
+			</div>
+			<div class="content__item-content">
+				<input
+					class="js-service-type content__item-content--input-full"
+					type="text"
+					id="service-type"
+					name="service-type"
+					value="<?php echo esc_attr($this->serviceType); ?>"
+				/>
+			</div>
+		</div>
+		<div class="content__item">
+			<div class="content__item-label">
+				<label for="languages"><?php esc_html_e('Languages', 'woo-solo-api'); ?></label>
+			</div>
+			<div class="content__item-content">
+				<select class="js-languages content__item-content--select" name="languages" id="languages">
 					<option value="1" <?php selected('1', $this->languages, true); ?>>
 						<?php esc_html_e('Croatian', 'woo-solo-api'); ?>
 					</option>
@@ -146,9 +174,28 @@ namespace MadeByDenis\WooSoloApi\Views;
 					</option>
 				</select>
 			</div>
-			<div class="content__option">
-				<label for="currency" class="content__label"><?php esc_html_e('Currency', 'woo-solo-api'); ?></label>
-				<select class="je-currency" name="currency" id="currency">
+		</div>
+		<div class="content__item">
+			<div class="content__item-label">
+				<label for="show-taxes"><?php esc_html_e('Show taxes', 'woo-solo-api'); ?></label>
+			</div>
+			<div class="content__item-content">
+				<select class="js-show-taxes content__item-content--select" name="show-taxes" id="show-taxes">
+					<option value="0" <?php selected('0', $this->showTaxes, true); ?>>
+						<?php esc_html_e('Don\'t show tax', 'woo-solo-api'); ?>
+					</option>
+					<option value="1" <?php selected('1', $this->showTaxes, true); ?>>
+						<?php esc_html_e('Show tax', 'woo-solo-api'); ?>
+					</option>
+				</select>
+			</div>
+		</div>
+		<div class="content__item">
+			<div class="content__item-label">
+				<label for="currency"><?php esc_html_e('Currency', 'woo-solo-api'); ?></label>
+			</div>
+			<div class="content__item-content">
+				<select class="je-currency content__item-content--select" name="currency" id="currency">
 					<option value="1" <?php selected('1', $this->currency, true); ?>>
 						<?php esc_html_e('HRK - kn', 'woo-solo-api'); ?>
 					</option>
@@ -196,129 +243,18 @@ namespace MadeByDenis\WooSoloApi\Views;
 					</option>
 				</select>
 			</div>
-			<div class="content__option">
-				<div class="content__label">
-					<?php esc_html_e('Choose the type of payment for each enabled payment gateway', 'woo-solo-api'); ?>
-				</div>
-				<div class="fields">
-					<?php
-					foreach ($this->availableGateways as $gatewayType => $gatewayOptions) {
-						$gatewayID = $gatewayOptions->id;
-						$gatewayTitle = $gatewayOptions->title;
-
-						$offer = "billOffer{$gatewayID}";
-						$fiscal = "fiscalization{$gatewayID}";
-						$payment = "paymentType{$gatewayID}";
-
-						$billOffer    = $this->$offer;
-						$fiscalization = $this->$fiscal;
-						$paymentType  = $this->$payment;
-						?>
-						<div class="fields__single">
-							<div class="fields__subtitle fields__subtitle--main">
-								<?php echo esc_html($gatewayTitle); ?>
-							</div>
-							<div class="fields__single--part">
-								<input
-									class="js-payment-gateway"
-									type="hidden"
-									name="payment-gateway[]"
-									value="<?php echo esc_html($gatewayID); ?>"
-								/>
-								<label for="bill-offer-<?php echo esc_html($gatewayID); ?>" class="fields__subtitle">
-									<?php esc_html_e('Type of payment document', 'woo-solo-api'); ?>
-								</label>
-								<select
-									class="js-bill-offer"
-									name="bill-offer-<?php echo esc_attr($gatewayID); ?>"
-									id="bill-offer-<?php echo esc_html($gatewayID); ?>"
-								>
-									<option value="ponuda" <?php selected('ponuda', $billOffer, true); ?>>
-										<?php esc_html_e('Offer', 'woo-solo-api'); ?>
-									</option>
-									<option value="racun" <?php selected('racun', $billOffer, true); ?>>
-										<?php esc_html_e('Invoice', 'woo-solo-api'); ?>
-									</option>
-								</select>
-							</div>
-							<div class="fields__single--part">
-								<label
-									for="payment-type-<?php echo esc_attr($gatewayID); ?>"
-									class="fields__subtitle"><?php esc_html_e('Payment option types', 'woo-solo-api'); ?>
-								</label>
-								<select
-									class="js-payment-type"
-									name="payment-type-<?php echo esc_attr($gatewayID); ?>"
-									id="payment-type-<?php echo esc_attr($gatewayID); ?>"
-								>
-									<option value="1" <?php selected('1', $paymentType, true); ?>>
-										<?php esc_html_e('Transactional account', 'woo-solo-api'); ?>
-									</option>
-									<option value="2" <?php selected('2', $paymentType, true); ?>>
-										<?php esc_html_e('Cash', 'woo-solo-api'); ?>
-									</option>
-									<option value="3" <?php selected('3', $paymentType, true); ?>>
-										<?php esc_html_e('Cards', 'woo-solo-api'); ?>
-									</option>
-									<option value="4" <?php selected('4', $paymentType, true); ?>>
-										<?php esc_html_e('Cheque', 'woo-solo-api'); ?>
-									</option>
-									<option value="5" <?php selected('5', $paymentType, true); ?>>
-										<?php esc_html_e('Other', 'woo-solo-api'); ?>
-									</option>
-								</select>
-							</div>
-							<div class="fields__single--part">
-								<label for="fiscalization-<?php echo esc_html($gatewayID); ?>" class="fields__subtitle">
-									<input
-										class="js-fiscalization"
-										type="checkbox"
-										id="fiscalization-<?php echo esc_html($gatewayID); ?>"
-										name="fiscalization-<?php echo esc_attr($gatewayID); ?>"
-										value="fiscalization-<?php echo esc_attr($gatewayID); ?>"
-										<?php checked('fiscal-' . esc_attr($gatewayID), esc_attr($fiscalization), true); ?>
-									/>
-									<?php esc_html_e('Check if you want the invoice to be fiscalized.*', 'woo-solo-api'); ?>
-								</label>
-							</div>
-						</div>
-						<?php
-					}
-					?>
-				</div>
-				<div class="fields__note">
-					<?php esc_html_e('* Fiscalization certificate must be added in the SOLO options, and it only applies to invoices.', 'woo-solo-api'); ?>
-				</div>
-			</div>
 		</div>
-		<div class="content-wrapper--right">
-			<div class="content__option">
-				<label for="service-type" class="content__label">
-					<?php esc_html_e('Enter the type of the service - you can find it in your account settings (Usluge -> Tipovi usluga). Has to be unique ID of the service.', 'woo-solo-api'); ?>
-				</label>
-				<input
-					class="js-service-type"
-					type="text"
-					id="service-type"
-					name="service-type"
-					value="<?php echo esc_attr($this->serviceType); ?>">
-			</div>
-			<div class="content__option">
-				<label for="show-taxes" class="content__label"><?php esc_html_e('Show taxes', 'woo-solo-api'); ?></label>
-				<select class="js-show-taxes" name="show-taxes" id="show-taxes">
-					<option value="0" <?php selected('0', $this->showTaxes, true); ?>>
-						<?php esc_html_e('Don\'t show tax', 'woo-solo-api'); ?>
-					</option>
-					<option value="1" <?php selected('1', $this->showTaxes, true); ?>>
-						<?php esc_html_e('Show tax', 'woo-solo-api'); ?>
-					</option>
-				</select>
-			</div>
-			<div class="content__option">
+		<div class="content__item">
+			<div class="content__item-label">
 				<label for="invoice-type" class="content__label">
-					<?php esc_html_e('Type of reciepe (only works with reciepe, not with offer)', 'woo-solo-api'); ?>
+					<?php esc_html_e('Type of invoice', 'woo-solo-api'); ?>
 				</label>
-				<select class="js-invoice-type" name="invoice-type" id="invoice-type">
+				<p class="content__item-label--notice">
+					<?php esc_html_e('Only works with invoice, not with offer', 'woo-solo-api'); ?>
+				</p>
+			</div>
+			<div class="content__item-content">
+				<select class="js-invoice-type content__item-content--select" name="invoice-type" id="invoice-type">
 					<option value="1" <?php selected('1', $this->invoiceType, true); ?>>
 						<?php esc_html_e('R', 'woo-solo-api'); ?>
 					</option>
@@ -336,11 +272,20 @@ namespace MadeByDenis\WooSoloApi\Views;
 					</option>
 				</select>
 			</div>
-			<div class="content__option">
+		</div>
+		<div class="content__item content__item--one-column">
+			<div class="content__item-label">
+				<?php esc_html_e('Choose the type of payment for each enabled payment gateway', 'woo-solo-api'); ?>
+			</div>
+		</div>
+		<div class="content__item content_item--one-column">
+			<div class="content__item-label">
 				<label for="due-date" class="content__label">
 					<?php esc_html_e('Invoice/Offer due date', 'woo-solo-api'); ?>
 				</label>
-				<select class="js-due-date" name="due-date" id="due-date">
+			</div>
+			<div class="content__item-content">
+				<select class="js-due-date content__item-content--select" name="due-date" id="due-date">
 					<option value="1d" <?php selected('1d', $this->dueDate, true); ?>>
 						<?php esc_html_e('1 day', 'woo-solo-api'); ?>
 					</option>
@@ -370,15 +315,118 @@ namespace MadeByDenis\WooSoloApi\Views;
 					</option>
 				</select>
 			</div>
-			<div class="content__option">
-				<div class="content__label">
-					<?php printf(
-						'%s <a href="https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista" target="_blank" rel="noopener noreferrer">%s</a>. %s',
-						esc_html__('You can check the currency rate at', 'woo-solo-api'),
-						esc_html__('Croatian National Bank', 'woo-solo-api'),
-						esc_html__('The currency will be automatically added if the selected currency is different from HRK. Also a note about conversion rate will be added to the invoice/offer.', 'woo-solo-api')
-					); ?>
+		</div>
+		<div class="content__item content__item--one-column">
+			<?php
+			foreach ($this->availableGateways as $gatewayType => $gatewayOptions) {
+				$gatewayID = $gatewayOptions->id;
+				$gatewayTitle = $gatewayOptions->title;
+
+				$offer = "billOffer{$gatewayID}";
+				$fiscal = "fiscalization{$gatewayID}";
+				$payment = "paymentType{$gatewayID}";
+
+				$billOffer = $this->$offer;
+				$fiscalization = $this->$fiscal;
+				$paymentType = $this->$payment;
+				?>
+				<div class="content__item content__item--one-column">
+					<div class="content__item-label">
+						<h3 class="content__item-label--heading"><?php echo esc_html($gatewayTitle); ?></h3>
+					</div>
 				</div>
+				<div class="content__item">
+					<div class="content__item-label">
+						<label for="bill-offer-<?php echo esc_html($gatewayID); ?>">
+							<?php esc_html_e('Type of payment document', 'woo-solo-api'); ?>
+						</label>
+					</div>
+					<div class="content__item-content">
+						<input
+							class="js-payment-gateway"
+							type="hidden"
+							name="payment-gateway[]"
+							value="<?php echo esc_html($gatewayID); ?>"
+						/>
+						<select
+							class="js-bill-offer content__item-content--select"
+							name="bill-offer-<?php echo esc_attr($gatewayID); ?>"
+							id="bill-offer-<?php echo esc_html($gatewayID); ?>"
+						>
+							<option value="ponuda" <?php selected('ponuda', $billOffer, true); ?>>
+								<?php esc_html_e('Offer', 'woo-solo-api'); ?>
+							</option>
+							<option value="racun" <?php selected('racun', $billOffer, true); ?>>
+								<?php esc_html_e('Invoice', 'woo-solo-api'); ?>
+							</option>
+						</select>
+					</div>
+				</div>
+				<div class="content__item">
+					<div class="content__item-label">
+						<label for="payment-type-<?php echo esc_attr($gatewayID); ?>">
+							<?php esc_html_e('Payment option types', 'woo-solo-api'); ?>
+						</label>
+					</div>
+					<div class="content__item-content">
+						<select
+							class="js-payment-type content__item-content--select"
+							name="payment-type-<?php echo esc_attr($gatewayID); ?>"
+							id="payment-type-<?php echo esc_attr($gatewayID); ?>"
+						>
+							<option value="1" <?php selected('1', $paymentType, true); ?>>
+								<?php esc_html_e('Transactional account', 'woo-solo-api'); ?>
+							</option>
+							<option value="2" <?php selected('2', $paymentType, true); ?>>
+								<?php esc_html_e('Cash', 'woo-solo-api'); ?>
+							</option>
+							<option value="3" <?php selected('3', $paymentType, true); ?>>
+								<?php esc_html_e('Cards', 'woo-solo-api'); ?>
+							</option>
+							<option value="4" <?php selected('4', $paymentType, true); ?>>
+								<?php esc_html_e('Cheque', 'woo-solo-api'); ?>
+							</option>
+							<option value="5" <?php selected('5', $paymentType, true); ?>>
+								<?php esc_html_e('Other', 'woo-solo-api'); ?>
+							</option>
+						</select>
+					</div>
+				</div>
+				<div class="content__item content__item--has-bottom-border">
+					<div class="content__item-label">
+						<label for="fiscalization-<?php echo esc_html($gatewayID); ?>">
+							<?php esc_html_e('Check if you want the invoice to be fiscalized.*', 'woo-solo-api'); ?>
+						</label>
+					</div>
+					<div class="content__item-content">
+						<input
+							class="js-fiscalization"
+							type="checkbox"
+							id="fiscalization-<?php echo esc_html($gatewayID); ?>"
+							name="fiscalization-<?php echo esc_attr($gatewayID); ?>"
+							value="fiscalization-<?php echo esc_attr($gatewayID); ?>"
+							<?php checked('fiscal-' . esc_attr($gatewayID), esc_attr($fiscalization), true); ?>
+						/>
+					</div>
+				</div>
+				<hr>
+				<?php
+			}
+			?>
+		</div>
+		<div class="content__item content__item--one-column">
+			<div class="content__item-label content__item-label--notice">
+				<?php printf(
+					'%s <a href="https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista" target="_blank" rel="noopener noreferrer">%s</a>. %s',
+					esc_html__('You can check the currency rate at', 'woo-solo-api'),
+					esc_html__('Croatian National Bank', 'woo-solo-api'),
+					esc_html__('The currency will be automatically added if the selected currency is different from HRK. Also a note about conversion rate will be added to the invoice/offer.', 'woo-solo-api')
+				); ?>
+			</div>
+		</div>
+		<div class="content__item content__item--one-column">
+			<div class="content__item-label content__item-label--notice">
+				<?php esc_html_e('* Fiscalization certificate must be added in the SOLO options, and it only applies to invoices.', 'woo-solo-api'); ?>
 			</div>
 		</div>
 	</div>
