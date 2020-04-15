@@ -38,7 +38,5 @@ class DIContainerTest extends WPTestCase
 		$services = [];
 
 		$preparedServices = $this->container->getDiServices($services);
-
-
     }
 }

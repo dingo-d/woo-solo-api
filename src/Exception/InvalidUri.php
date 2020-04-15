@@ -36,4 +36,3 @@ final class InvalidURI extends \InvalidArgumentException implements GeneralExcep
 		return new static($message);
 	}
 }
-

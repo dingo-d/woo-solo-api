@@ -417,10 +417,11 @@ namespace MadeByDenis\WooSoloApi\Views;
 		<div class="content__item content__item--one-column">
 			<div class="content__item-label content__item-label--notice">
 				<?php printf(
-					'%s <a href="https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista" target="_blank" rel="noopener noreferrer">%s</a>. %s',
+					'%s <a href="https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista" target="_blank" rel="noopener noreferrer">%s</a>. %s %s',
 					esc_html__('You can check the currency rate at', 'woo-solo-api'),
 					esc_html__('Croatian National Bank', 'woo-solo-api'),
-					esc_html__('The currency will be automatically added if the selected currency is different from HRK. Also a note about conversion rate will be added to the invoice/offer.', 'woo-solo-api')
+					esc_html__('The currency will be automatically added if the selected currency is different from HRK.', 'woo-solo-api'),
+					esc_html__('Also, a note about conversion rate will be added to the invoice/offer.', 'woo-solo-api')
 				); ?>
 			</div>
 		</div>

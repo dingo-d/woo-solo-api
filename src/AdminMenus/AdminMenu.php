@@ -208,5 +208,4 @@ abstract class AdminMenu implements Registrable, Renderable
 	{
 		return 100;
 	}
-
 }

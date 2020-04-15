@@ -127,8 +127,9 @@ namespace MadeByDenis\WooSoloApi\Views;
 			<div class="content__item-label content__item-label--notice">
 				<?php
 				printf(
-					'%1$s <br> %2$s',
-					esc_html__('Decide when to send the PDF of the order or invoice - on customer checkout, or when you approve the order in the WooCommerce admin.', 'woo-solo-api'),
+					'%1$s <br> %2$s %3$s',
+					esc_html__('Decide when to send the PDF of the order or invoice.', 'woo-solo-api'),
+					esc_html__('On customer checkout, or when you approve the order in the WooCommerce admin.', 'woo-solo-api'),
 					esc_html__('This will determine when the call to the SOLO API will be made.', 'woo-solo-api')
 				);
 				?>
