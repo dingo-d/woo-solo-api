@@ -42,6 +42,14 @@
         </properties>
     </rule>
 
+	<!-- Line length config. -->
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="175" />
+			<property name="absoluteLineLimit" value="0" />
+		</properties>
+	</rule>
+
 	<!-- Check code for cross-version PHP compatibility. -->
 	<config name="testVersion" value="7.2-"/>
 	<rule ref="PHPCompatibility"/>
