@@ -38,4 +38,5 @@ namespace MadeByDenis\WooSoloApi\Views;
 	<button class="button button-primary js-save-options">
 		<?php esc_html_e('Save settings', 'woo-solo-api'); ?>
 	</button>
+	<?php echo $this->nonceField; // phpcs:ignore ?>
 </div>
