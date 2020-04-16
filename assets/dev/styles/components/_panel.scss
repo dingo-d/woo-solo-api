@@ -1,0 +1,16 @@
+$panel: (
+	body-title-background: $base-dove-color,
+);
+
+.components-panel {
+	$this: &;
+
+	&__body{
+		&.is-opened {
+			#{$this}__body-title {
+				background-color: map-get-strict($panel, 'body-title-background') !important;
+				margin-bottom: 20px !important;
+			}
+		}
+	}
+}

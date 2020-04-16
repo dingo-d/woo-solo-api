@@ -2,4 +2,4 @@
 import './styles/application.scss';
 
 // Load Scripts
-import './scripts';
+import './scripts/index.jsx';

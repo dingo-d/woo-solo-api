@@ -6,80 +6,12 @@ $options-page: (
 
 .options-wrapper {
 	background: map-get-strict($options-page, 'background-color');
-	border-left: 1px solid map-get-strict($options-page, 'border-color') ;
-	border-right: 1px solid map-get-strict($options-page, 'border-color') ;
-}
+	border-bottom: 1px solid map-get-strict($options-page, 'border-color');
+	border-left: 1px solid map-get-strict($options-page, 'border-color');
+	border-right: 1px solid map-get-strict($options-page, 'border-color');
+	padding-bottom: 20px;
 
-//
-//.options-wrapper {
-//	display: grid;
-//	min-height: 400px;
-//	max-width: 1070px;
-//	height: auto;
-//	margin-top: 20px;
-//	grid-template-areas: 'label label label label label'
-//		'content content content content content';
-//	grid-template-rows: min-content min-content;
-//	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-//
-//	&__tab {
-//		display: contents;
-//	}
-//
-//	&__label {
-//		cursor: pointer;
-//		padding: 10px 20px;
-//		text-align: center;
-//		user-select: none;
-//		position: relative;
-//		margin-left: 0.5em;
-//		font-weight: 600;
-//		background: map-get-strict($options-page, 'tab-color-inactive');
-//		border: 1px solid map-get-strict($options-page, 'border-color');
-//		transition: {
-//			property: background;
-//			duration: .05s;
-//			timing-function: ease-in-out;
-//		}
-//
-//		&::after {
-//			content: '';
-//			position: absolute;
-//			bottom: -1px;
-//			left: -0.6em;
-//			height: 1px;
-//			width: 0.6em;
-//			background-color: map-get-strict($options-page, 'border-color');
-//		}
-//
-//		&:hover {
-//			background-color: map-get-strict($options-page, 'tab-color-hover');
-//		}
-//	}
-//
-//	&__input:checked + &__label {
-//		background: map-get-strict($options-page, 'tab-color-active');
-//		border-bottom: 1px solid map-get-strict($options-page, 'tab-color-active');
-//	}
-//
-//	&__input {
-//		display: none !important;
-//	}
-//
-//	&__content {
-//		grid-area: content;
-//		display: none;
-//		margin: 2em 0 1em;
-//	}
-//
-//	&__input:checked ~ &__content {
-//		display: block;
-//	}
-//}
-//
-//.plugin-notice {
-//	padding: 10px;
-//	margin: 15px 0 10px;
-//	background-color: map-get-strict($options-page, 'notice-color');
-//	border-left: 5px solid map-get-strict($options-page, 'notice-border-color');
-//}
+	&__item {
+		margin: 20px 20px 0;
+	}
+}
