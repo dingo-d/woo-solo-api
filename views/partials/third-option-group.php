@@ -13,7 +13,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 
 ?>
 <input class="options-wrapper__input" id="extra" type="radio" name="tabs" />
-<label class="options-wrapper__label" for="extra"><?php _e('Additional settings', 'woo-solo-api'); ?></label>
+<label class="options-wrapper__label" tabindex="0" for="extra"><?php _e('Additional settings', 'woo-solo-api'); ?></label>
 <div class="options-wrapper__content">
 	<div class="content">
 		<div class="content__item content__item--one-column">
@@ -31,7 +31,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			</div>
 			<div class="content__item-content">
 				<input
-					class="js-enable-pin"
+					class="js-solo-enable-pin"
 					type="checkbox"
 					id="enable-pin"
 					name="enable-pin"
@@ -47,7 +47,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			</div>
 			<div class="content__item-content">
 				<input
-					class="js-enable-iban"
+					class="js-solo-enable-iban"
 					type="checkbox"
 					id="enable-iban"
 					name="enable-iban"
@@ -70,7 +70,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			</div>
 			<div class="content__item-content">
 				<input
-					class="js-send-pdf"
+					class="js-solo-send-pdf"
 					type="checkbox"
 					id="send-pdf"
 					name="send-pdf"
@@ -106,7 +106,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 					<div class="content__item-content">
 						<input
 							type="checkbox"
-							class="js-mail-gateway"
+							class="js-solo-mail-gateway"
 							id="<?php echo esc_attr($gatewayKey); ?>"
 							name="email-gateway[]"
 							value="<?php echo esc_attr($gatewayKey); ?>"
@@ -143,7 +143,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			</div>
 			<div class="content__item-content">
 				<select
-					class="js-pdf-send-control content__item-content--select-half"
+					class="js-solo-pdf-send-control content__item-content--select-half"
 					name="pdf-send-control"
 					id="pdf-send-control"
 				>

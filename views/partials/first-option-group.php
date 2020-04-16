@@ -13,7 +13,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 
 ?>
 <input class="options-wrapper__input" id="token" type="radio" name="tabs" checked="checked"/>
-<label class="options-wrapper__label" for="token"><?php _e('Solo API token', 'woo-solo-api'); ?></label>
+<label class="options-wrapper__label" tabindex="0" for="token"><?php _e('Solo API token', 'woo-solo-api'); ?></label>
 <div class="options-wrapper__content">
 	<div class="content">
 		<div class="content__item">
@@ -27,7 +27,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			</div>
 			<div class="content__item-content">
 				<input
-					class="js-api-token content__item-content--input"
+					class="js-solo-api-token content__item-content--input"
 					type="text"
 					id="apiToken"
 					name="apiToken"

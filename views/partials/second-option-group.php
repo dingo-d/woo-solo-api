@@ -13,7 +13,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 
 ?>
 <input class="options-wrapper__input" id="options" type="radio" name="tabs" />
-<label class="options-wrapper__label" for="options"><?php _e('Solo API options', 'woo-solo-api'); ?></label>
+<label class="options-wrapper__label" tabindex="0" for="options"><?php _e('Solo API options', 'woo-solo-api'); ?></label>
 <div class="options-wrapper__content">
 	<div class="content content--two-columns">
 		<div class="content__item">
@@ -26,7 +26,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 				</p>
 			</div>
 			<div class="content__item-content">
-				<select class="js-measure content__item-content--select" name="measure" id="measure">
+				<select class="js-solo-measure content__item-content--select" name="measure" id="measure">
 					<option value="1" <?php selected('1', $this->measure, true); ?>>
 						<?php esc_html_e('-', 'woo-solo-api'); ?>
 					</option>
@@ -140,7 +140,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			</div>
 			<div class="content__item-content">
 				<input
-					class="js-service-type content__item-content--input-full"
+					class="js-solo-service-type content__item-content--input-full"
 					type="text"
 					id="service-type"
 					name="service-type"
@@ -153,7 +153,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 				<label for="languages"><?php esc_html_e('Languages', 'woo-solo-api'); ?></label>
 			</div>
 			<div class="content__item-content">
-				<select class="js-languages content__item-content--select" name="languages" id="languages">
+				<select class="js-solo-languages content__item-content--select" name="languages" id="languages">
 					<option value="1" <?php selected('1', $this->languages, true); ?>>
 						<?php esc_html_e('Croatian', 'woo-solo-api'); ?>
 					</option>
@@ -180,7 +180,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 				<label for="show-taxes"><?php esc_html_e('Show taxes', 'woo-solo-api'); ?></label>
 			</div>
 			<div class="content__item-content">
-				<select class="js-show-taxes content__item-content--select" name="show-taxes" id="show-taxes">
+				<select class="js-solo-show-taxes content__item-content--select" name="show-taxes" id="show-taxes">
 					<option value="0" <?php selected('0', $this->showTaxes, true); ?>>
 						<?php esc_html_e('Don\'t show tax', 'woo-solo-api'); ?>
 					</option>
@@ -254,7 +254,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 				</p>
 			</div>
 			<div class="content__item-content">
-				<select class="js-invoice-type content__item-content--select" name="invoice-type" id="invoice-type">
+				<select class="js-solo-invoice-type content__item-content--select" name="invoice-type" id="invoice-type">
 					<option value="1" <?php selected('1', $this->invoiceType, true); ?>>
 						<?php esc_html_e('R', 'woo-solo-api'); ?>
 					</option>
@@ -285,7 +285,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 				</label>
 			</div>
 			<div class="content__item-content">
-				<select class="js-due-date content__item-content--select" name="due-date" id="due-date">
+				<select class="js-solo-due-date content__item-content--select" name="due-date" id="due-date">
 					<option value="1d" <?php selected('1d', $this->dueDate, true); ?>>
 						<?php esc_html_e('1 day', 'woo-solo-api'); ?>
 					</option>
@@ -343,13 +343,13 @@ namespace MadeByDenis\WooSoloApi\Views;
 					</div>
 					<div class="content__item-content">
 						<input
-							class="js-payment-gateway"
+							class="js-solo-payment-gateway"
 							type="hidden"
 							name="payment-gateway[]"
 							value="<?php echo esc_html($gatewayID); ?>"
 						/>
 						<select
-							class="js-bill-offer content__item-content--select"
+							class="js-solo-bill-offer content__item-content--select"
 							name="bill-offer-<?php echo esc_attr($gatewayID); ?>"
 							id="bill-offer-<?php echo esc_html($gatewayID); ?>"
 						>
@@ -370,7 +370,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 					</div>
 					<div class="content__item-content">
 						<select
-							class="js-payment-type content__item-content--select"
+							class="js-solo-payment-type content__item-content--select"
 							name="payment-type-<?php echo esc_attr($gatewayID); ?>"
 							id="payment-type-<?php echo esc_attr($gatewayID); ?>"
 						>
@@ -400,7 +400,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 					</div>
 					<div class="content__item-content">
 						<input
-							class="js-fiscalization"
+							class="js-solo-fiscalization"
 							type="checkbox"
 							id="fiscalization-<?php echo esc_html($gatewayID); ?>"
 							name="fiscalization-<?php echo esc_attr($gatewayID); ?>"

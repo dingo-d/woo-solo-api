@@ -13,7 +13,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 
 ?>
 <input class="options-wrapper__input" id="email" type="radio" name="tabs" />
-<label class="options-wrapper__label" for="email"><?php _e('Email settings', 'woo-solo-api'); ?></label>
+<label class="options-wrapper__label" tabindex="0" for="email"><?php _e('Email settings', 'woo-solo-api'); ?></label>
 <div class="options-wrapper__content">
 	<div class="content">
 		<div class="content__item">
@@ -24,7 +24,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			</div>
 			<div class="content__item-content">
 				<input
-					class="js-mail-title content__item-content--input-full"
+					class="js-solo-mail-title content__item-content--input-full"
 					type="text"
 					id="email-title"
 					name="email-title"
@@ -40,7 +40,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			</div>
 			<div class="content__item-content">
 				<textarea
-					class="js-email-message content__item-content--input-full"
+					class="js-solo-email-message content__item-content--input-full"
 					name="email-message"
 					id="email-message"
 					cols="30"
@@ -61,7 +61,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 			</div>
 			<div class="content__item-content">
 				<input
-					class="js-email-from content__item-content--input-full"
+					class="js-solo-email-from content__item-content--input-full"
 					type="text"
 					id="change-mail-from"
 					name="change-mail-from"

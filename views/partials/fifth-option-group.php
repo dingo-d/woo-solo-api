@@ -13,7 +13,7 @@ namespace MadeByDenis\WooSoloApi\Views;
 
 ?>
 <input class="options-wrapper__input" id="apiTest" type="radio" name="tabs" />
-<label class="options-wrapper__label" for="apiTest"><?php _e('Solo API test', 'woo-solo-api'); ?></label>
+<label class="options-wrapper__label" tabindex="0" for="apiTest"><?php _e('Solo API test', 'woo-solo-api'); ?></label>
 <div class="options-wrapper__content">
 	<div class="content">
 		<div class="content__item content__item--one-column">
@@ -26,12 +26,14 @@ namespace MadeByDenis\WooSoloApi\Views;
 				</p>
 			</div>
 		</div>
-		<div class="content__item">
+		<div class="content__item content__item--one-column">
+			<div class="content__item-content">
+				<pre class="content__item-content--pre js-solo-api-request" readonly></pre>
+			</div>
+		</div>
+		<div class="content__item content__item--one-column">
 			<div class="content__item-label">
 				<button class="button button-primary js-solo-api-send"><?php esc_html_e('Make a request', 'woo-solo-api'); ?></button>
-			</div>
-			<div class="content__item-content">
-				<pre class="js-solo-api-request" readonly></pre>
 			</div>
 		</div>
 	</div>
