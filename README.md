@@ -84,6 +84,12 @@ If you are adding any new functionality, be sure to write tests for it.
 
 Check the [Changelog.md](https://github.com/dingo-d/woo-solo-api/blob/master/CHANGELOG.md)
 
+## Acknowledgements 
+
+The webpack config is taken from (partially) [Eightshift frontend libs](https://github.com/infinum/eightshift-frontend-libs/)
+
+Settings page was created with the help of [tutorial](https://www.codeinwp.com/blog/plugin-options-page-gutenberg/) by Hardeep Asrani.
+
 ## License
 
 Copyright ©2020 Denis Žoljom.
