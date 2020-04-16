@@ -71,6 +71,13 @@ abstract class AdminMenu implements Registrable, Renderable
 		echo $this->render((array) $attr); // phpcs:ignore
 	}
 
+	/**
+	 * Render method to display the admin menu view
+	 *
+	 * @param array $context Passed attributes to the view.
+	 *
+	 * @return string Rendered view.
+	 */
 	public function render(array $context = []): string
 	{
 		try {

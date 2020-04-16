@@ -29,7 +29,7 @@ class EnqueueResources implements Assets
 	const CSS_URI    = 'application.css';
 
 	const VERSION   = false;
-	const IN_FOOTER = false;
+	const IN_FOOTER = true;
 
 	const MEDIA_ALL    = 'all';
 
@@ -54,7 +54,7 @@ class EnqueueResources implements Assets
 		wp_register_style(
 			self::CSS_HANDLE,
 			$this->get_manifest_assets_data( self::CSS_URI ),
-			[],
+			['wp-components'],
 			self::VERSION,
 			self::MEDIA_ALL
 		);
@@ -96,7 +96,10 @@ class EnqueueResources implements Assets
 	protected function get_js_dependencies(): array
 	{
 		return [
-			'jquery',
+			'wp-api',
+			'wp-i18n',
+			'wp-components',
+			'wp-element'
 		];
 	}
 

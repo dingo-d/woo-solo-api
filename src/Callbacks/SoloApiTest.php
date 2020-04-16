@@ -64,7 +64,6 @@ class SoloApiTest extends AjaxCallback
 			return wp_send_json_error($this->getErrorMessage('authorization'), 401);
 		}
 
-
 		$soloApiToken = get_option('solo_api_token');
 
 		$response = wp_remote_get('https://api.solo.com.hr/racun?token=' . $soloApiToken);
