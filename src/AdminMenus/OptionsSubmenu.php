@@ -36,11 +36,11 @@ final class OptionsSubmenu extends AdminSubmenu
 		parent::registerSubmenu($context);
 
 		// Add the WooCommerce navigation bar.
-		wc_admin_connect_page([
-			'id'        => self::MENU_SLUG,
-			'screen_id' => self::WOO_PAGE_ID,
-			'title'     => $this->getTitle(),
-		]);
+//		wc_admin_connect_page([
+//			'id'        => self::MENU_SLUG,
+//			'screen_id' => self::WOO_PAGE_ID,
+//			'title'     => $this->getTitle(),
+//		]);
 	}
 
 	/**
