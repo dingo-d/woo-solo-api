@@ -34,16 +34,16 @@ class App extends Component {
 			solo_api_languages: '',
 			solo_api_currency: '',
 			solo_api_service_type: '',
-			solo_api_show_taxes: '',
+			solo_api_show_taxes: false,
 			solo_api_invoice_type: '',
 			solo_api_mail_title: '',
 			solo_api_message: '',
 			solo_api_change_mail_from: '',
-			solo_api_enable_pin: '',
-			solo_api_enable_iban: '',
+			solo_api_enable_pin: false,
+			solo_api_enable_iban: false,
 			solo_api_due_date: '',
-			solo_api_mail_gateway: '',
-			solo_api_send_pdf: '',
+			solo_api_mail_gateway: [],
+			solo_api_send_pdf: false,
 			solo_api_send_control: '',
 			solo_api_available_gateways: '',
 		};
@@ -87,7 +87,7 @@ class App extends Component {
 		const options = Object.keys(this.state)
 			.filter(key => key !== 'isLoading' && key !== 'isSaving')
 			.reduce((obj, key) => {
-				if (typeof this.state[key] !== 'undefined') {
+				if (!this.objectHasEmptyProperties(this.state[key])) {
 					obj[key] = this.state[key];
 				}
 
@@ -102,6 +102,17 @@ class App extends Component {
 				});
 			});
 		});
+	}
+
+	objectHasEmptyProperties(object) {
+		for (const key in object) {
+			if (object.hasOwnProperty(key)) {
+				if (object[key] != null && object[key] !== "") {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	render() {
