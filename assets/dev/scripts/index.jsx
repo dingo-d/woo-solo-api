@@ -52,9 +52,8 @@ class App extends Component {
 	}
 
 	async componentDidMount() {
-		debugger;
 		wp.api.loadPromise.done(() => {
-			if (this.state.isLoading) {
+			if (!this.state.isLoading) {
 				this.settings.fetch().then(res => {
 					this.setState({
 						solo_api_token: res.solo_api_token,
@@ -83,20 +82,22 @@ class App extends Component {
 	}
 
 	updateOptions(event) {
-		event.preventDefault();
 		this.setState({isSaving: true});
 
 		const options = Object.keys(this.state)
 			.filter(key => key !== 'isLoading' && key !== 'isSaving')
 			.reduce((obj, key) => {
-				obj[key] = this.state[key];
+				if (typeof this.state[key] !== 'undefined') {
+					obj[key] = this.state[key];
+				}
+
 				return obj;
 			}, {});
 
 		this.settings.set(options).save().then(res => {
 			Object.keys(options).map((option) => {
 				this.setState({
-					[option]: res[option],
+					option: res[option],
 					isSaving: false,
 				});
 			});
