@@ -242,6 +242,15 @@ class PluginSettings implements Registrable
 
 		$availableGateways = $this->gateway->getAvailablePaymentGateways();
 
+		/**
+		 * Here, we would store an array with gateways as a value,
+		 * but since the values are dynamic (we don't know how many payment gateways we have),
+		 * to avoid the mess with having to specify the schema when making the type as array,
+		 * we just serialize the keys and store them as a string.
+		 * Which would happen anyhow if we didn't define show_in_rest parameter.
+		 *
+		 * Not great, not terrible.
+		 */
 		register_setting(
 			'solo-api-settings-group',
 			'solo_api_available_gateways',
@@ -250,7 +259,7 @@ class PluginSettings implements Registrable
 				esc_html__('Available payment gateways', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				''
+				serialize(array_keys($availableGateways))
 			)
 		);
 
