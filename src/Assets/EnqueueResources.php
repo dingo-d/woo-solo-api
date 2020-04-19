@@ -38,14 +38,15 @@ class EnqueueResources implements Assets
 	 */
 	public function register(): void
 	{
-		add_action('admin_enqueue_scripts', [$this, 'enqueue_styles']);
-    	add_action('admin_enqueue_scripts', [$this, 'enqueue_scripts']);
+		add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
+    	add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
+    	add_action( 'init', [$this, 'setScriptTranslations'] );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function enqueue_styles($hookSuffix)
+	public function enqueueStyles($hookSuffix)
 	{
 		if ($hookSuffix !== 'woocommerce_page_solo_api_options') {
 			return;
@@ -65,7 +66,7 @@ class EnqueueResources implements Assets
 	/**
 	 * @inheritDoc
 	 */
-	public function enqueue_scripts($hookSuffix)
+	public function enqueueScripts($hookSuffix)
 	{
 		if ($hookSuffix !== 'woocommerce_page_solo_api_options') {
 			return;
@@ -74,16 +75,24 @@ class EnqueueResources implements Assets
 		wp_register_script(
 			self::JS_HANDLE,
 			$this->get_manifest_assets_data( self::JS_URI ),
-			$this->get_js_dependencies(),
+			$this->getJsDependencies(),
 			self::VERSION,
 			self::IN_FOOTER
 		);
 
 		wp_enqueue_script( self::JS_HANDLE );
 
-		 foreach ( $this->get_localizations() as $object_name => $data_array ) {
+		 foreach ($this->getLocalizations() as $object_name => $data_array ) {
 		 	wp_localize_script( self::JS_HANDLE, $object_name, $data_array );
 		 }
+	}
+
+	/**
+	 * Set the translations inside the JS files
+	 */
+	public function setScriptTranslations()
+	{
+		wp_set_script_translations( self::JS_HANDLE, 'woo-solo-api' );
 	}
 
 	/**
@@ -93,7 +102,7 @@ class EnqueueResources implements Assets
 	 *
 	 * @return array List of all the script dependencies
 	 */
-	protected function get_js_dependencies(): array
+	protected function getJsDependencies(): array
 	{
 		return [
 			'wp-api',
@@ -108,7 +117,7 @@ class EnqueueResources implements Assets
 	 *
 	 * @return array Key value pair of different localizations
 	 */
-	protected function get_localizations(): array
+	protected function getLocalizations(): array
 	{
 		return [
 			'optionSaved' => esc_html__('Options saved.', 'woo-solo-api'),
@@ -122,7 +131,7 @@ class EnqueueResources implements Assets
 	 * @param string $key File name key you want to get from manifest.
 	 * @return string     Full path to asset.
 	 */
-	public function get_manifest_assets_data(string $key = null): string
+	private function get_manifest_assets_data(string $key = null): string
 	{
 		$data = ASSETS_MANIFEST;
 
