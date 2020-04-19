@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import PanelColumns from './panels/panelColumns';
+import Serialize from 'php-serialize';
 
 /**
  * WordPress dependencies
@@ -16,7 +16,7 @@ const {
 	Placeholder,
 	Spinner,
 	ToggleControl,
-	SelectControl
+	SelectControl,
 } = wp.components;
 
 const {
@@ -142,6 +142,8 @@ class App extends Component {
 			);
 		}
 
+		const paymentGateways = Serialize.unserialize(this.state.solo_api_available_gateways);
+
 		return (
 			<Fragment>
 				<PanelBody
@@ -172,7 +174,7 @@ class App extends Component {
 					title={__('Solo Api Settings', 'woo-solo-api')}
 					initialOpen={false}
 				>
-					<PanelColumns>
+					<div className='components-panel__columns'>
 						<PanelRow>
 							<SelectControl
 								label={__('Unit measure', 'woo-solo-api')}
@@ -293,7 +295,62 @@ class App extends Component {
 								]}
 							/>
 						</PanelRow>
-					</PanelColumns>
+						<PanelRow>
+							<SelectControl
+								label={__('Type of invoice', 'woo-solo-api')}
+								help={__('Only works with invoice, not with offer', 'woo-solo-api')}
+								disabled={this.state.isSaving}
+								value={this.state.solo_api_invoice_type || '1'}
+								onChange={solo_api_invoice_type => this.setState({solo_api_invoice_type})}
+								options={[
+									{value: '1', label: 'R'},
+									{value: '2', label: 'R1'},
+									{value: '3', label: 'R2'},
+									{value: '4', label: 'No label'},
+									{value: '5', label: 'In advance'},
+								]}
+							/>
+						</PanelRow>
+						<PanelRow className='components-panel__row--single'>
+							<h3 className='components-base-control__subtitle'>
+								{__('Choose the type of payment for each enabled payment gateway', 'woo-solo-api')}
+							</h3>
+							{paymentGateways.map((value) => {
+								const offer = `solo_api_bill_offer-${value}`;
+								const fiscal = `solo_api_fiscalization-${value}`;
+								const payment = `solo_api_payment_type-${value}`;
+
+								return <div className='components-panel__item' key={value}>
+									<ToggleControl
+										label={__('Type of payment document', 'woo-solo-api')}
+										help={this.state[offer] ? __('Offer', 'woo-solo-api') : __('Invoice', 'woo-solo-api')}
+										checked={this.state[offer]}
+										disabled={this.state.isSaving}
+										onChange={(solo_api_bill_offer) => this.setState({solo_api_bill_offer})}
+									/>
+								</div>
+							})}
+						</PanelRow>
+						<PanelRow>
+							<SelectControl
+								label={__('Invoice/Offer due date', 'woo-solo-api')}
+								disabled={this.state.isSaving}
+								value={this.state.solo_api_due_date || '1'}
+								onChange={solo_api_due_date => this.setState({solo_api_due_date})}
+								options={[
+									{value: '1d', label: __('1 day', 'woo-solo-api')},
+									{value: '2d', label: __('2 days', 'woo-solo-api')},
+									{value: '3d', label: __('3 days', 'woo-solo-api')},
+									{value: '4d', label: __('4 days', 'woo-solo-api')},
+									{value: '5d', label: __('5 days', 'woo-solo-api')},
+									{value: '6d', label: __('6 days', 'woo-solo-api')},
+									{value: '1', label: __('1 week', 'woo-solo-api')},
+									{value: '2', label: __('2 weeks', 'woo-solo-api')},
+									{value: '3', label: __('3 weeks', 'woo-solo-api')},
+								]}
+							/>
+						</PanelRow>
+					</div>
 				</PanelBody>
 				<PanelBody
 					title={__('Additional Settings', 'woo-solo-api')}
@@ -308,7 +365,7 @@ class App extends Component {
 					initialOpen={false}
 				>
 					<PanelRow>
-
+						{}
 					</PanelRow>
 				</PanelBody>
 				<PanelBody

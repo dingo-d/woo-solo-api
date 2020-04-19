@@ -17,6 +17,10 @@ $components: (
 	&__error {
 		color: map-get-strict($components, 'error-color');
 	}
+
+	&__subtitle {
+		font-size: 1.2em;
+	}
 }
 
 .components-form-token-field {
