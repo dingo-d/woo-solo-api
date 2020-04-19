@@ -48,8 +48,6 @@ class PluginSettings implements Registrable
 	 */
 	public function registerPluginSettings()
 	{
-		$args = ['show_in_rest' => true];
-
 		register_setting(
 			'solo-api-settings-group',
 			'solo_api_token',
@@ -70,7 +68,7 @@ class PluginSettings implements Registrable
 				esc_html__('Unit measure of the shop (e.g. piece, hour, m^3, etc.)', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				''
+				'1'
 			)
 		);
 
