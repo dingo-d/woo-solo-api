@@ -13,4 +13,25 @@ $panel: (
 			}
 		}
 	}
+
+	&__columns {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 20px;
+
+		#{$this}__row {
+			margin-top: 0;
+
+			&:first-of-type {
+				margin-top: -18px;
+			}
+		}
+	}
+
+	&__row {
+		select {
+			min-height: 42px;
+			padding: 0 24px 0 12px;
+		}
+	}
 }
