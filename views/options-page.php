@@ -13,5 +13,5 @@ namespace MadeByDenis\WooSoloApi\Views;
 
 ?>
 <div class="wrap">
-	<div id="solo-api-options-page" class="options-wrapper"></div>
+	<div id="solo-api-options-page"></div>
 </div>
