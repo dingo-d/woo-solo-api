@@ -13,7 +13,6 @@ namespace MadeByDenis\WooSoloApi\Settings;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
-use MadeByDenis\WooSoloApi\Utils\Sanitizers;
 
 /**
  * Plugin settings class
@@ -212,7 +211,7 @@ class PluginSettings implements Registrable
 				esc_html__('Array of gateways that the email with the invoice should be sent', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				''
+				'a:0:{}'
 			)
 		);
 
@@ -240,7 +239,9 @@ class PluginSettings implements Registrable
 			)
 		);
 
-		$availableGateways = $this->gateway->getAvailablePaymentGateways();
+		$availableGateways = array_map(function ($paymentGateway) {
+			return $paymentGateway->title;
+		}, $this->gateway->getAvailablePaymentGateways());
 
 		/**
 		 * Here, we would store an array with gateways as a value,
@@ -259,16 +260,14 @@ class PluginSettings implements Registrable
 				esc_html__('Available payment gateways', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				serialize(array_keys($availableGateways))
+				serialize($availableGateways)
 			)
 		);
 
-		foreach ($availableGateways as $availableGateway) {
-			$id = $availableGateway->id;
-
+		foreach ($availableGateways as $gatewayID => $gatewayName) {
 			register_setting(
 				'solo-api-settings-group',
-				'solo_api_bill_offer-' . esc_attr($id),
+				'solo_api_bill_offer-' . esc_attr($gatewayID),
 				$this->setSettingsArguments(
 					'string',
 					esc_html__('Type of payment document', 'woo-solo-api'),
@@ -280,7 +279,7 @@ class PluginSettings implements Registrable
 
 			register_setting(
 				'solo-api-settings-group',
-				'solo_api_fiscalization-' . esc_attr($id),
+				'solo_api_fiscalization-' . esc_attr($gatewayID),
 				$this->setSettingsArguments(
 					'boolean',
 					esc_html__('Should the invoice be fiscalized or not', 'woo-solo-api'),
@@ -292,13 +291,13 @@ class PluginSettings implements Registrable
 
 			register_setting(
 				'solo-api-settings-group',
-				'solo_api_payment_type-' . esc_attr($id),
+				'solo_api_payment_type-' . esc_attr($gatewayID),
 				$this->setSettingsArguments(
 					'string',
 					esc_html__('Type of payment on api gateway (transactional account, cash, cards, etc.)', 'woo-solo-api'),
 					'sanitize_text_field',
 					true,
-					''
+					'1'
 				)
 			);
 		}
