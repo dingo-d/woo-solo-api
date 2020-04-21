@@ -34,13 +34,17 @@ $panel: (
 			padding: 0 24px 0 12px;
 		}
 
+		#{$this}__item {
+			margin-top: 20px;
+		}
+
 		&--single {
 			flex-direction: column;
 			align-items: start;
 		}
 
-		#{$this}__item {
-			margin-top: 20px;
+		&--top {
+			justify-content: start;
 		}
 	}
 }

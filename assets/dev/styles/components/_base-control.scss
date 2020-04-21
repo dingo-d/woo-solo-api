@@ -11,15 +11,21 @@ $components: (
 		font-weight: 600 !important;
 	}
 
-	&__help {
-	}
-
 	&__error {
 		color: map-get-strict($components, 'error-color');
 	}
 
 	&__subtitle {
 		font-size: 1.2em;
+	}
+
+	&__notice {
+		word-break: break-word;
+		max-width: 50%;
+	}
+
+	&__checkboxes {
+		margin-bottom: 0 !important;
 	}
 }
 

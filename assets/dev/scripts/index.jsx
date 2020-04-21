@@ -11,6 +11,8 @@ const {
 	BaseControl,
 	Button,
 	ExternalLink,
+	Snackbar,
+	CheckboxControl,
 	PanelBody,
 	PanelRow,
 	Placeholder,
@@ -22,7 +24,8 @@ const {
 const {
 	render,
 	Component,
-	Fragment
+	Fragment,
+	__experimentalCreateInterpolateElement
 } = wp.element;
 
 class App extends Component {
@@ -32,6 +35,7 @@ class App extends Component {
 		this.state = {
 			isLoading: false,
 			isSaving: false,
+			isSaved: false,
 			errors: {},
 			solo_api_token: '',
 			solo_api_measure: '1',
@@ -47,7 +51,7 @@ class App extends Component {
 			solo_api_enable_pin: false,
 			solo_api_enable_iban: false,
 			solo_api_due_date: '',
-			solo_api_mail_gateway: [],
+			solo_api_mail_gateway: '',
 			solo_api_send_pdf: false,
 			solo_api_send_control: '',
 			solo_api_available_gateways: '',
@@ -60,6 +64,17 @@ class App extends Component {
 		wp.api.loadPromise.done(() => {
 			if (!this.state.isLoading) {
 				this.settings.fetch().then(res => {
+
+					const availableGateways = Serialize.unserialize(res.solo_api_available_gateways);
+
+					Object.keys(availableGateways).forEach(gatewayType => {
+						this.setState({
+							[`solo_api_bill_offer-${gatewayType}`]: res[`solo_api_bill_offer-${gatewayType}`],
+							[`solo_api_fiscalization-${gatewayType}`]: res[`solo_api_fiscalization-${gatewayType}`],
+							[`solo_api_payment_type-${gatewayType}`]: res[`solo_api_payment_type-${gatewayType}`],
+						});
+					});
+
 					this.setState({
 						solo_api_token: res.solo_api_token,
 						solo_api_measure: res.solo_api_measure,
@@ -75,10 +90,10 @@ class App extends Component {
 						solo_api_enable_pin: res.solo_api_enable_pin,
 						solo_api_enable_iban: res.solo_api_enable_iban,
 						solo_api_due_date: res.solo_api_due_date,
-						solo_api_mail_gateway: res.solo_api_mail_gateway,
+						solo_api_mail_gateway: Serialize.unserialize(res.solo_api_mail_gateway),
 						solo_api_send_pdf: res.solo_api_send_pdf,
 						solo_api_send_control: res.solo_api_send_control,
-						solo_api_available_gateways: res.solo_api_available_gateways,
+						solo_api_available_gateways: availableGateways,
 						isLoading: true,
 					});
 				});
@@ -95,8 +110,12 @@ class App extends Component {
 		const options = Object.keys(this.state)
 			.filter(key => key !== 'isLoading' && key !== 'isSaving' && key !== 'errors')
 			.reduce((obj, key) => {
-				if (!this.objectHasEmptyProperties(this.state[key])) {
-					obj[key] = this.state[key];
+				if (!this.objectHasEmptyProperties(this.state)) {
+					if (key === 'solo_api_available_gateways' || key === 'solo_api_mail_gateway') {
+						obj[key] = Serialize.serialize(this.state[key]);
+					} else {
+						obj[key] = this.state[key];
+					}
 				}
 
 				return obj;
@@ -108,6 +127,7 @@ class App extends Component {
 					this.setState({
 						option: res[option],
 						isSaving: false,
+						isSaved: true,
 					});
 				});
 			},
@@ -117,6 +137,7 @@ class App extends Component {
 				this.setState({
 					errors: errors,
 					isSaving: false,
+					isSaved: true,
 				});
 			}
 		});
@@ -133,6 +154,15 @@ class App extends Component {
 		return true;
 	}
 
+	updateCheckbox(check, type) {
+		this.setState((currentState) => {
+			return {
+				solo_api_mail_gateway: check ? [...currentState.solo_api_mail_gateway, type] :
+					currentState.solo_api_mail_gateway.filter(el => el !== type)
+			}
+		});
+	}
+
 	render() {
 		if (!this.state.isLoading) {
 			return (
@@ -142,7 +172,7 @@ class App extends Component {
 			);
 		}
 
-		const paymentGateways = Serialize.unserialize(this.state.solo_api_available_gateways);
+		const paymentGateways = this.state.solo_api_available_gateways;
 
 		return (
 			<Fragment>
@@ -267,7 +297,7 @@ class App extends Component {
 								help={this.state.solo_api_show_taxes ? __('Show tax', 'woo-solo-api') : __('Don\'t show tax', 'woo-solo-api')}
 								checked={this.state.solo_api_show_taxes}
 								disabled={this.state.isSaving}
-								onChange={(solo_api_show_taxes) => this.setState({solo_api_show_taxes})}
+								onChange={() => this.setState((state) => ({solo_api_show_taxes: !state.solo_api_show_taxes}))}
 							/>
 						</PanelRow>
 						<PanelRow>
@@ -315,23 +345,48 @@ class App extends Component {
 							<h3 className='components-base-control__subtitle'>
 								{__('Choose the type of payment for each enabled payment gateway', 'woo-solo-api')}
 							</h3>
-							{paymentGateways.map((value) => {
-								const offer = `solo_api_bill_offer-${value}`;
-								const fiscal = `solo_api_fiscalization-${value}`;
-								const payment = `solo_api_payment_type-${value}`;
+							{Object.keys(paymentGateways).map((type) => {
+								const offer = `solo_api_bill_offer-${type}`;
+								const fiscal = `solo_api_fiscalization-${type}`;
+								const payment = `solo_api_payment_type-${type}`;
 
-								return <div className='components-panel__item' key={value}>
-									<ToggleControl
+								return <div className='components-panel__item' key={type}>
+									<h4>{paymentGateways[type]}</h4>
+									<SelectControl
 										label={__('Type of payment document', 'woo-solo-api')}
-										help={this.state[offer] ? __('Offer', 'woo-solo-api') : __('Invoice', 'woo-solo-api')}
-										checked={this.state[offer]}
 										disabled={this.state.isSaving}
-										onChange={(solo_api_bill_offer) => this.setState({solo_api_bill_offer})}
+										value={this.state[offer] || 'ponuda'}
+										onChange={offerType => this.setState({[offer]: offerType})}
+										options={[
+											{value: 'ponuda', label: __('Offer', 'woo-solo-api')},
+											{value: 'racun', label: __('Invoice', 'woo-solo-api')},
+										]}
+									/>
+									<SelectControl
+										label={__('Payment option types', 'woo-solo-api')}
+										disabled={this.state.isSaving}
+										value={this.state[payment] || '1'}
+										onChange={offerType => this.setState({[payment]: offerType})}
+										options={[
+											{value: '1', label: __('Transactional account', 'woo-solo-api')},
+											{value: '2', label: __('Cash', 'woo-solo-api')},
+											{value: '3', label: __('Cards', 'woo-solo-api')},
+											{value: '4', label: __('Cheque', 'woo-solo-api')},
+											{value: '5', label: __('Other', 'woo-solo-api')},
+										]}
+									/>
+									<ToggleControl
+										label={__('Check if you want the invoice to be fiscalized *', 'woo-solo-api')}
+										help={this.state[fiscal] ? __('Fiscalize', 'woo-solo-api') : __('Don\'t fiscalize', 'woo-solo-api')}
+										checked={this.state[fiscal]}
+										disabled={this.state.isSaving}
+										onChange={fiscalize => this.setState({[fiscal]: fiscalize})}
 									/>
 								</div>
 							})}
+							<h4>{__('* Fiscalization certificate must be added in the SOLO options, and it only applies to invoices.', 'woo-solo-api')}</h4>
 						</PanelRow>
-						<PanelRow>
+						<PanelRow className='components-panel__row--top components-panel__row--single'>
 							<SelectControl
 								label={__('Invoice/Offer due date', 'woo-solo-api')}
 								disabled={this.state.isSaving}
@@ -349,6 +404,16 @@ class App extends Component {
 									{value: '3', label: __('3 weeks', 'woo-solo-api')},
 								]}
 							/>
+							<h4>{
+								__experimentalCreateInterpolateElement(
+									__('You can check the currency rate at <a>Croatian National Bank</a>.' +
+										'The currency will be automatically added if the selected currency is different from HRK.' +
+										'Also, a note about conversion rate will be added to the invoice/offer.', 'woo-solo-api'),
+									{
+										a: <a href='https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista' target='_blank' rel='noopener noreferrer' />
+									}
+								)
+							}</h4>
 						</PanelRow>
 					</div>
 				</PanelBody>
@@ -356,8 +421,63 @@ class App extends Component {
 					title={__('Additional Settings', 'woo-solo-api')}
 					initialOpen={false}
 				>
-					<PanelRow>
-
+					<PanelRow className='components-panel__row--single'>
+						<h4>{__('WooCommerce checkout settings', 'woo-solo-api')}</h4>
+						<ToggleControl
+							label={__('Enable the PIN field on the billing and shipping from in the checkout', 'woo-solo-api')}
+							help={this.state.solo_api_enable_pin ? __('Enable', 'woo-solo-api') : __('Disable', 'woo-solo-api')}
+							checked={this.state.solo_api_enable_pin}
+							disabled={this.state.isSaving}
+							onChange={() => this.setState((state) => ({solo_api_enable_pin: !state.solo_api_enable_pin}))}
+						/>
+						<ToggleControl
+							label={__('Enable the IBAN field on the billing and shipping from in the checkout', 'woo-solo-api')}
+							help={this.state.solo_api_enable_iban ? __('Enable', 'woo-solo-api') : __('Disable', 'woo-solo-api')}
+							checked={this.state.solo_api_enable_iban}
+							disabled={this.state.isSaving}
+							onChange={() => this.setState((state) => ({solo_api_enable_iban: !state.solo_api_enable_iban}))}
+						/>
+					</PanelRow>
+					<PanelRow className='components-panel__row--single'>
+						<h4>{__('PDF settings', 'woo-solo-api')}</h4>
+						<ToggleControl
+							label={__('Send the email to the client with the PDF of the order or the invoice', 'woo-solo-api')}
+							help={this.state.solo_api_send_pdf ? __('Send email', 'woo-solo-api') : __('Don\'t send email', 'woo-solo-api')}
+							checked={this.state.solo_api_send_pdf}
+							disabled={this.state.isSaving}
+							onChange={() => this.setState((state) => ({solo_api_send_pdf: !state.solo_api_send_pdf}))}
+						/>
+					</PanelRow>
+					<PanelRow className='components-panel__row--single'>
+						<h4>{__('Send mail to selected payment gateways', 'woo-solo-api')}</h4>
+						{
+							Object.keys(paymentGateways).map((type) => {
+								return <CheckboxControl
+									key={type}
+									className='components-base-control__checkboxes'
+									label={paymentGateways[type]}
+									value={type}
+									checked={this.state.solo_api_mail_gateway.includes(type)}
+									onChange={(check) => this.updateCheckbox(check, type)}
+								/>
+							}, this)
+						}
+					</PanelRow>
+					<PanelRow className='components-panel__row--single'>
+						<h4>{__('PDF send control', 'woo-solo-api')}</h4>
+						<p className='components-base-control__notice'>{__('Decide when to send the PDF of the order or invoice.' +
+							'On customer checkout, or when you approve the order in the WooCommerce admin.' +
+							'This will determine when the call to the SOLO API will be made.', 'woo-solo-api')}</p>
+						<SelectControl
+							label={__('Send on:', 'woo-solo-api')}
+							disabled={this.state.isSaving}
+							value={this.state.solo_api_send_control || 'checkout'}
+							onChange={offerType => this.setState({solo_api_send_control: offerType})}
+							options={[
+								{value: 'checkout', label: __('Checkout', 'woo-solo-api')},
+								{value: 'status_change', label: __('Status change to \'completed\'', 'woo-solo-api')},
+							]}
+						/>
 					</PanelRow>
 				</PanelBody>
 				<PanelBody
@@ -385,7 +505,9 @@ class App extends Component {
 					>
 						{__('Save settings', 'woo-solo-api')}
 					</Button>
+					{this.state.isSaving ? <Spinner/>: ''}
 				</div>
+				{this.state.isSaved ? <Snackbar>{__('Settings saved', 'woo-solo-api')}</Snackbar> : ''}
 			</Fragment>
 		);
 	}
