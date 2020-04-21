@@ -27,12 +27,33 @@ $components: (
 	&__checkboxes {
 		margin-bottom: 0 !important;
 	}
-}
 
-.components-form-token-field {
-	&__input-container {
-		&.has-error {
-			border-color: map-get-strict($components, 'error-color');
+	&__textarea {
+		width: 39em;
+
+		textarea {
+			max-width: 36em;
 		}
+	}
+
+	&__input {
+		input {
+			padding: 6px 8px;
+			max-width: 36em;
+		}
+	}
+
+	&__code {
+		margin-bottom: 20px;
+
+		code {
+			min-width: 50em;
+			display: block;
+			padding: 20px;
+		}
+	}
+
+	&.has-error {
+		border-color: map-get-strict($components, 'error-color');
 	}
 }
