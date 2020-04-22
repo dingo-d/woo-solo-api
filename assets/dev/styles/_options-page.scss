@@ -13,6 +13,20 @@ $options-page: (
 
 	&__item {
 		margin: 20px 20px 0;
+
+		.components-snackbar {
+			margin-top: 20px;
+
+			&.is-hidden {
+				opacity: 0;
+				transition: all 250ms linear;
+			}
+
+			&.is-visible {
+				opacity: 1;
+				transition: all 250ms linear;
+			}
+		}
 	}
 
 	&.is-loading {

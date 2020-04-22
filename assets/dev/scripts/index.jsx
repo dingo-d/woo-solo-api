@@ -6,19 +6,20 @@ import Serialize from 'php-serialize';
  * WordPress dependencies
  */
 const {__} = wp.i18n;
+const {apiFetch} = wp;
 
 const {
 	Button,
 	ExternalLink,
 	TextareaControl,
 	TextControl,
-	Snackbar,
 	CheckboxControl,
 	PanelBody,
 	PanelRow,
 	Spinner,
 	ToggleControl,
 	SelectControl,
+	Snackbar,
 } = wp.components;
 
 const {
@@ -33,26 +34,27 @@ class App extends Component {
 		super(...arguments);
 
 		this.state = {
-			isLoading: false,
+			isLoading: true,
+			isApiRequestOver: true,
 			isSaving: false,
 			isSaved: false,
+			hasErrors: false,
 			errors: {},
 			apiResponse: '',
 			solo_api_token: '',
 			solo_api_measure: '1',
-			solo_api_payment_type: '',
 			solo_api_languages: '1',
-			solo_api_currency: '',
-			solo_api_service_type: 0,
+			solo_api_currency: '1',
+			solo_api_service_type: '0',
 			solo_api_show_taxes: false,
-			solo_api_invoice_type: '',
+			solo_api_invoice_type: '1',
 			solo_api_mail_title: '',
 			solo_api_message: '',
 			solo_api_change_mail_from: '',
 			solo_api_enable_pin: false,
 			solo_api_enable_iban: false,
 			solo_api_due_date: '',
-			solo_api_mail_gateway: '',
+			solo_api_mail_gateway: 'a:0:{}',
 			solo_api_send_pdf: false,
 			solo_api_send_control: '',
 			solo_api_available_gateways: '',
@@ -61,9 +63,9 @@ class App extends Component {
 		this.settings = new wp.api.models.Settings();
 	}
 
-	async componentDidMount() {
+	componentDidMount() {
 		wp.api.loadPromise.done(() => {
-			if (!this.state.isLoading) {
+			if (this.state.isLoading) {
 				this.settings.fetch().then(res => {
 
 					const availableGateways = Serialize.unserialize(res.solo_api_available_gateways);
@@ -95,7 +97,7 @@ class App extends Component {
 						solo_api_send_pdf: res.solo_api_send_pdf,
 						solo_api_send_control: res.solo_api_send_control,
 						solo_api_available_gateways: availableGateways,
-						isLoading: true,
+						isLoading: false,
 					});
 				});
 			}
@@ -109,7 +111,12 @@ class App extends Component {
 		});
 
 		const options = Object.keys(this.state)
-			.filter(key => key !== 'isLoading' && key !== 'isSaving' && key !== 'errors' && key !== 'apiResponse' && key !== 'isSaved')
+			.filter(key => (key !== 'isLoading' &&
+				key !== 'isSaving' &&
+				key !== 'errors' &&
+				key !== 'apiResponse' &&
+				key !== 'isApiRequestOver' &&
+				key !== 'isSaved'))
 			.reduce((obj, key) => {
 				if (!this.objectHasEmptyProperties(this.state)) {
 					if (key === 'solo_api_available_gateways' || key === 'solo_api_mail_gateway') {
@@ -129,8 +136,15 @@ class App extends Component {
 						option: res[option],
 						isSaving: false,
 						isSaved: true,
+						hasErrors: false,
 					});
 				});
+
+				setTimeout(() => {
+					this.setState({
+						isSaved: false
+					});
+				}, 3000);
 			},
 			error: (model, res) => {
 				const errors = res.responseJSON.data.params;
@@ -139,9 +153,36 @@ class App extends Component {
 					errors: errors,
 					isSaving: false,
 					isSaved: true,
+					hasErrors: true,
 				});
+
+				const target = document.querySelector(`[name=${Object.keys(errors)[0]}]`);
+
+				window.scrollTo({
+					top: target.offsetTop - 30,
+					left: 0,
+					behavior: 'smooth',
+				});
+
+				setTimeout(() => {
+					this.setState({
+						isSaved: false
+					});
+				}, 3000);
 			}
 		});
+	}
+
+	renderSnackbar() {
+		return (
+			<Snackbar className={this.state.isSaved ? 'is-visible' : 'is-hidden'}>
+				{
+					this.state.hasErrors ?
+					__('Errors happened during saving', 'woo-solo-api') :
+					__('Settings saved', 'woo-solo-api')
+				}
+			</Snackbar>
+		)
 	}
 
 	objectHasEmptyProperties(object) {
@@ -155,7 +196,7 @@ class App extends Component {
 		return true;
 	}
 
-	updateCheckbox(check, type) {
+	updateMailGateways(check, type) {
 		this.setState((currentState) => {
 			return {
 				solo_api_mail_gateway: check ? [...currentState.solo_api_mail_gateway, type] :
@@ -165,33 +206,34 @@ class App extends Component {
 	}
 
 	renderError(type) {
-		return (
-			<p className='components-base-control__error'>
-				{
-					this.state.errors.hasOwnProperty(type) &&
-					this.state.errors[type]
-				}
-			</p>
-		)
+		if (this.state.errors.hasOwnProperty(type)) {
+			return (
+				<p className='components-base-control__error'>
+					{__('Validation error: ', 'woo-solo-api') + this.state.errors[type]}
+				</p>
+			)
+		}
 	}
 
 	hasErrorClass(type) {
-		return this.state.errors.hasOwnProperty(type) ? ' has-error' : '';
+		return this.state.errors.hasOwnProperty(type) ? 'has-error' : '';
 	}
 
 	callApi() {
+		this.setState({
+			isApiRequestOver: false,
+		});
+
 		if (this.state.solo_api_token === '') {
-			return this.setState({apiResponse : __('Empty API token', 'woo-solo-api')});
+			return this.setState({apiResponse: __('Empty API token', 'woo-solo-api')});
 		}
 
-		fetch(`https://api.solo.com.hr/racun?token=${this.state.solo_api_token}`, {
-			mode: 'no-cors'
-		})
-			.then(res => {
-				console.log(res)
-					// this.setState({apiResponse : res})
-				}
-			);
+		apiFetch({path: '/woo-solo-api/v1/solo-account-details'}).then(res => {
+			this.setState({
+				apiResponse: res,
+				isApiRequestOver: true
+			});
+		});
 	}
 
 	renderNotification() {
@@ -205,10 +247,14 @@ class App extends Component {
 		)
 	}
 
+	setComponentState(state, item, value) {
+		this.setState((state, props) => ({
+			item: value
+		}));
+	}
+
 	render() {
-
-
-		if (!this.state.isLoading) {
+		if (this.state.isLoading) {
 			return (
 				<Fragment>
 					{this.renderNotification()}
@@ -231,14 +277,16 @@ class App extends Component {
 					>
 						<PanelRow>
 							<TextControl
-								className='components-base-control__input'
+								className={`components-base-control__input ${this.hasErrorClass('solo_api_token')}`}
+								name='solo_api_token'
 								label={__('Solo API token', 'woo-solo-api')}
 								help={__('Enter your personal token that you obtained from your SOLO account', 'woo-solo-api')}
 								type='text'
 								disabled={this.state.isSaving}
 								value={this.state.solo_api_token || ''}
-								onChange={event => this.setState({solo_api_token: event.target.value})}
+								onChange={value => this.setState({solo_api_token: value})}
 							/>
+							{this.renderError('solo_api_token')}
 						</PanelRow>
 					</PanelBody>
 					<PanelBody
@@ -248,6 +296,8 @@ class App extends Component {
 						<div className='components-panel__columns'>
 							<PanelRow>
 								<SelectControl
+									className={this.hasErrorClass('solo_api_measure')}
+									name='solo_api_measure'
 									label={__('Unit measure', 'woo-solo-api')}
 									help={__('Select the default measure in your shop (e.g. piece, hour, m^3 etc.)', 'woo-solo-api')}
 									value={this.state.solo_api_measure || '1'}
@@ -289,10 +339,12 @@ class App extends Component {
 										{value: '33', label: __('min', 'woo-solo-api')},
 									]}
 								/>
+								{this.renderError('solo_api_measure')}
 							</PanelRow>
 							<PanelRow>
 								<TextControl
-									className={'components-base-control__input' + (this.hasErrorClass('solo_api_service_type'))}
+									className={`components-base-control__input ${this.hasErrorClass('solo_api_service_type')}`}
+									name='solo_api_service_type'
 									label={__('Enter the type of the service', 'woo-solo-api')}
 									help={
 										__experimentalCreateInterpolateElement(
@@ -305,12 +357,14 @@ class App extends Component {
 									type='text'
 									disabled={this.state.isSaving}
 									value={this.state.solo_api_service_type || ''}
-									onChange={event => this.setState({solo_api_service_type: event.target.value})}
+									onChange={value => this.setState({solo_api_service_type: value})}
 								/>
 								{this.renderError('solo_api_service_type')}
 							</PanelRow>
 							<PanelRow>
 								<SelectControl
+									className={this.hasErrorClass('solo_api_languages')}
+									name='solo_api_languages'
 									label={__('Invoice Language', 'woo-solo-api')}
 									help={__('Select the language the invoice should be in', 'woo-solo-api')}
 									value={this.state.solo_api_languages || '1'}
@@ -325,18 +379,24 @@ class App extends Component {
 										{value: '6', label: __('Spanish', 'woo-solo-api')},
 									]}
 								/>
+								{this.renderError('solo_api_languages')}
 							</PanelRow>
 							<PanelRow>
 								<ToggleControl
+									className={this.hasErrorClass('solo_api_show_taxes')}
+									name='solo_api_show_taxes'
 									label={__('Show taxes', 'woo-solo-api')}
 									help={this.state.solo_api_show_taxes ? __('Show tax', 'woo-solo-api') : __('Don\'t show tax', 'woo-solo-api')}
 									checked={this.state.solo_api_show_taxes}
 									disabled={this.state.isSaving}
 									onChange={() => this.setState((state) => ({solo_api_show_taxes: !state.solo_api_show_taxes}))}
 								/>
+								{this.renderError('solo_api_show_taxes')}
 							</PanelRow>
 							<PanelRow>
 								<SelectControl
+									className={this.hasErrorClass('solo_api_currency')}
+									name='solo_api_currency'
 									label={__('Currency', 'woo-solo-api')}
 									value={this.state.solo_api_currency || '1'}
 									disabled={this.state.isSaving}
@@ -359,9 +419,12 @@ class App extends Component {
 										{value: '15', label: 'PLN - zł'},
 									]}
 								/>
+								{this.renderError('solo_api_currency')}
 							</PanelRow>
 							<PanelRow>
 								<SelectControl
+									className={this.hasErrorClass('solo_api_invoice_type')}
+									name='solo_api_invoice_type'
 									label={__('Type of invoice', 'woo-solo-api')}
 									help={__('Only works with invoice, not with offer', 'woo-solo-api')}
 									value={this.state.solo_api_invoice_type || '1'}
@@ -375,6 +438,7 @@ class App extends Component {
 										{value: '5', label: 'In advance'},
 									]}
 								/>
+								{this.renderError('solo_api_invoice_type')}
 							</PanelRow>
 							<PanelRow className='components-panel__row--single'>
 								<h3 className='components-base-control__subtitle'>
@@ -388,6 +452,8 @@ class App extends Component {
 									return <div className='components-panel__item' key={type}>
 										<h4>{paymentGateways[type]}</h4>
 										<SelectControl
+											className={this.hasErrorClass(offer)}
+											name={offer}
 											label={__('Type of payment document', 'woo-solo-api')}
 											value={this.state[offer] || 'ponuda'}
 											disabled={this.state.isSaving}
@@ -397,11 +463,14 @@ class App extends Component {
 												{value: 'racun', label: __('Invoice', 'woo-solo-api')},
 											]}
 										/>
+										{this.renderError(offer)}
 										<SelectControl
+											className={this.hasErrorClass(payment)}
+											name={payment}
 											label={__('Payment option types', 'woo-solo-api')}
 											value={this.state[payment] || '1'}
 											disabled={this.state.isSaving}
-											onChange={offerType => this.setState({[payment]: offerType})}
+											onChange={paymentType => this.setState({[payment]: paymentType})}
 											options={[
 												{value: '1', label: __('Transactional account', 'woo-solo-api')},
 												{value: '2', label: __('Cash', 'woo-solo-api')},
@@ -410,19 +479,25 @@ class App extends Component {
 												{value: '5', label: __('Other', 'woo-solo-api')},
 											]}
 										/>
+										{this.renderError(payment)}
 										<ToggleControl
+											className={this.hasErrorClass(fiscal)}
+											name={fiscal}
 											label={__('Check if you want the invoice to be fiscalized *', 'woo-solo-api')}
 											help={this.state[fiscal] ? __('Fiscalize', 'woo-solo-api') : __('Don\'t fiscalize', 'woo-solo-api')}
 											checked={this.state[fiscal]}
 											disabled={this.state.isSaving}
 											onChange={fiscalize => this.setState({[fiscal]: fiscalize})}
 										/>
+										{this.renderError(fiscal)}
 									</div>
 								})}
 								<h4>{__('* Fiscalization certificate must be added in the SOLO options, and it only applies to invoices.', 'woo-solo-api')}</h4>
 							</PanelRow>
 							<PanelRow className='components-panel__row--top components-panel__row--single'>
 								<SelectControl
+									className={this.hasErrorClass('solo_api_due_date')}
+									name={'solo_api_due_date'}
 									label={__('Invoice/Offer due date', 'woo-solo-api')}
 									value={this.state.solo_api_due_date || '1'}
 									disabled={this.state.isSaving}
@@ -439,6 +514,7 @@ class App extends Component {
 										{value: '3', label: __('3 weeks', 'woo-solo-api')},
 									]}
 								/>
+								{this.renderError('solo_api_due_date')}
 								<h4>{
 									__experimentalCreateInterpolateElement(
 										__('You can check the currency rate at <a>Croatian National Bank</a>.' +
@@ -461,44 +537,55 @@ class App extends Component {
 						<PanelRow className='components-panel__row--single'>
 							<h4>{__('WooCommerce checkout settings', 'woo-solo-api')}</h4>
 							<ToggleControl
+								className={this.hasErrorClass('solo_api_enable_pin')}
+								name='solo_api_enable_pin'
 								label={__('Enable the PIN field on the billing and shipping from in the checkout', 'woo-solo-api')}
 								help={this.state.solo_api_enable_pin ? __('Enable', 'woo-solo-api') : __('Disable', 'woo-solo-api')}
 								checked={this.state.solo_api_enable_pin}
 								disabled={this.state.isSaving}
 								onChange={() => this.setState((state) => ({solo_api_enable_pin: !state.solo_api_enable_pin}))}
 							/>
+							{this.renderError('solo_api_enable_pin')}
 							<ToggleControl
+								className={this.hasErrorClass('solo_api_enable_iban')}
+								name='solo_api_enable_iban'
 								label={__('Enable the IBAN field on the billing and shipping from in the checkout', 'woo-solo-api')}
 								help={this.state.solo_api_enable_iban ? __('Enable', 'woo-solo-api') : __('Disable', 'woo-solo-api')}
 								checked={this.state.solo_api_enable_iban}
 								disabled={this.state.isSaving}
 								onChange={() => this.setState((state) => ({solo_api_enable_iban: !state.solo_api_enable_iban}))}
 							/>
+							{this.renderError('solo_api_enable_iban')}
 						</PanelRow>
 						<PanelRow className='components-panel__row--single'>
 							<h4>{__('PDF settings', 'woo-solo-api')}</h4>
 							<ToggleControl
+								className={this.hasErrorClass('solo_api_enable_iban')}
+								name='solo_api_enable_iban'
 								label={__('Send the email to the client with the PDF of the order or the invoice', 'woo-solo-api')}
 								help={this.state.solo_api_send_pdf ? __('Send email', 'woo-solo-api') : __('Don\'t send email', 'woo-solo-api')}
 								checked={this.state.solo_api_send_pdf}
 								disabled={this.state.isSaving}
 								onChange={() => this.setState((state) => ({solo_api_send_pdf: !state.solo_api_send_pdf}))}
 							/>
+							{this.renderError('solo_api_enable_iban')}
 						</PanelRow>
 						<PanelRow className='components-panel__row--single'>
 							<h4>{__('Send mail to selected payment gateways', 'woo-solo-api')}</h4>
 							{
 								Object.keys(paymentGateways).map((type) => {
 									return <CheckboxControl
-										className='components-base-control__checkboxes'
+										className={`components-base-control__checkboxes ${this.hasErrorClass('solo_api_mail_gateway')}`}
+										name={type}
 										label={paymentGateways[type]}
 										key={type}
 										value={type}
 										checked={this.state.solo_api_mail_gateway.includes(type)}
-										onChange={(check) => this.updateCheckbox(check, type)}
+										onChange={(check) => this.updateMailGateways(check, type)}
 									/>
 								}, this)
 							}
+							{this.renderError('solo_api_mail_gateway')}
 						</PanelRow>
 						<PanelRow className='components-panel__row--single'>
 							<h4>{__('PDF send control', 'woo-solo-api')}</h4>
@@ -506,6 +593,8 @@ class App extends Component {
 								'On customer checkout, or when you approve the order in the WooCommerce admin.' +
 								'This will determine when the call to the SOLO API will be made', 'woo-solo-api')}</p>
 							<SelectControl
+								className={this.hasErrorClass('solo_api_send_control')}
+								name='solo_api_send_control'
 								label={__('Send on:', 'woo-solo-api')}
 								disabled={this.state.isSaving}
 								value={this.state.solo_api_send_control || 'checkout'}
@@ -518,6 +607,7 @@ class App extends Component {
 									},
 								]}
 							/>
+							{this.renderError('solo_api_send_control')}
 						</PanelRow>
 					</PanelBody>
 					<PanelBody
@@ -526,27 +616,32 @@ class App extends Component {
 					>
 						<PanelRow>
 							<TextControl
-								className='components-base-control__input'
+								className={`components-base-control__input ${this.hasErrorClass('solo_api_mail_title')}`}
+								name='solo_api_mail_title'
 								label={__('Set the title of the mail that will be send with the PDF invoice', 'woo-solo-api')}
 								type='text'
 								disabled={this.state.isSaving}
 								value={this.state.solo_api_mail_title || ''}
-								onChange={event => this.setState({solo_api_mail_title: event.target.value})}
+								onChange={value => this.setState({solo_api_mail_title: value})}
 							/>
+							{this.renderError('solo_api_mail_title')}
 						</PanelRow>
 						<PanelRow>
 							<TextareaControl
-								className='components-base-control__textarea'
+								className={`components-base-control__textarea ${this.hasErrorClass('solo_api_message')}`}
+								name='solo_api_message'
 								label={__('Type the message that will appear on the mail with the invoice PDF attached', 'woo-solo-api')}
 								rows='10'
 								disabled={this.state.isSaving}
 								value={this.state.solo_api_message || ''}
 								onChange={value => this.setState({solo_api_message: value})}
 							/>
+							{this.renderError('solo_api_message')}
 						</PanelRow>
 						<PanelRow>
 							<TextControl
-								className='components-base-control__input'
+								className={`components-base-control__input ${this.hasErrorClass('solo_api_change_mail_from')}`}
+								name='solo_api_change_mail_from'
 								label={__('Change the \'from\' name that shows when WordPress sends the mail', 'woo-solo-api')}
 								help={
 									__experimentalCreateInterpolateElement(
@@ -559,8 +654,9 @@ class App extends Component {
 								type='text'
 								disabled={this.state.isSaving}
 								value={this.state.solo_api_change_mail_from || ''}
-								onChange={event => this.setState({solo_api_change_mail_from: event.target.value})}
+								onChange={value => this.setState({solo_api_change_mail_from: value})}
 							/>
+							{this.renderError('solo_api_change_mail_from')}
 						</PanelRow>
 					</PanelBody>
 					<PanelBody
@@ -574,13 +670,14 @@ class App extends Component {
 							</p>
 							<pre className='components-base-control__code'>
 								<code>
+									{!this.state.isApiRequestOver ? <Spinner/> : ''}
 									{this.state.apiResponse}
 								</code>
 							</pre>
 							<Button
 								isPrimary
 								isLarge
-								disabled={this.state.isSaving}
+								disabled={this.state.isLoading}
 								onClick={() => this.callApi()}
 							>
 								{__('Make a request', 'woo-solo-api')}
@@ -597,8 +694,8 @@ class App extends Component {
 							{__('Save settings', 'woo-solo-api')}
 						</Button>
 						{this.state.isSaving ? <Spinner/> : ''}
+						{this.renderSnackbar()}
 					</div>
-					{this.state.isSaved ? <Snackbar>{__('Settings saved', 'woo-solo-api')}</Snackbar> : ''}
 				</div>
 			</Fragment>
 		);

@@ -13,6 +13,7 @@ $components: (
 
 	&__error {
 		color: map-get-strict($components, 'error-color');
+		font-weight: 600;
 	}
 
 	&__subtitle {
@@ -47,13 +48,18 @@ $components: (
 		margin-bottom: 20px;
 
 		code {
-			min-width: 50em;
+			width: 50em;
+			max-height: 30em;
 			display: block;
 			padding: 20px;
+			overflow: scroll;
 		}
 	}
 
 	&.has-error {
-		border-color: map-get-strict($components, 'error-color');
+		input, textarea, select {
+			border-color: map-get-strict($components, 'error-color');
+			box-shadow: 0 0 0 1px map-get-strict($components, 'error-color');
+		}
 	}
 }

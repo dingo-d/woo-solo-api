@@ -21,14 +21,13 @@ $panel: (
 
 		#{$this}__row {
 			margin-top: 0;
-
-			&:first-of-type {
-				margin-top: -18px;
-			}
 		}
 	}
 
 	&__row {
+		flex-direction: column;
+		align-items: start;
+
 		select {
 			min-height: 42px;
 			padding: 0 24px 0 12px;
