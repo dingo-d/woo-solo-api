@@ -16,6 +16,7 @@ use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
 use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
 use MadeByDenis\WooSoloApi\Callbacks\SoloApiTest;
 use MadeByDenis\WooSoloApi\ECommerce\WooPaymentGateways;
+use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
 use MadeByDenis\WooSoloApi\Settings\PluginSettings;
 use MadeByDenis\WooSoloApi\Exception\{PluginActivationFailure, MissingManifest};
 
@@ -166,10 +167,10 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
     private function getServiceClasses(): array
     {
         $services = [
-        	SoloApiTest::class,
-        	EnqueueResources::class,
+			AccountDetails::class,
 			OptionsSubmenu::class,
 			PluginSettings::class => [WooPaymentGateways::class],
+        	EnqueueResources::class,
         ];
 
         // Test mocks.

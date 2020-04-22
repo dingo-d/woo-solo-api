@@ -109,7 +109,7 @@ class EnqueueResources implements Assets
 			'wp-i18n',
 			'wp-components',
 			'wp-element',
-			'wp-polyfill-fetch'
+			'wp-api-fetch',
 		];
 	}
 

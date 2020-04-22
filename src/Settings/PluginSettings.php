@@ -91,7 +91,7 @@ class PluginSettings implements Registrable
 				esc_html__('Currency of the bill or the invoice', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				''
+				'1'
 			)
 		);
 
@@ -127,7 +127,7 @@ class PluginSettings implements Registrable
 				esc_html__('The type of invoice (R, R1, R2, No label or In advance)', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				''
+				'1'
 			)
 		);
 
