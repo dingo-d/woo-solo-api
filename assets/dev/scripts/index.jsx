@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 
 import Serialize from 'php-serialize';
+import {bind} from 'decko';
 
 /**
  * WordPress dependencies
@@ -104,11 +105,12 @@ class App extends Component {
 		});
 	}
 
-	updateOptions(event) {
-		this.setState({
+	@bind
+	updateOptions() {
+		this.setState(state => ({
 			isSaving: true,
 			errors: {}
-		});
+		}));
 
 		const options = Object.keys(this.state)
 			.filter(key => (key !== 'isLoading' &&
@@ -193,6 +195,7 @@ class App extends Component {
 				}
 			}
 		}
+
 		return true;
 	}
 
@@ -219,6 +222,7 @@ class App extends Component {
 		return this.state.errors.hasOwnProperty(type) ? 'has-error' : '';
 	}
 
+	@bind
 	callApi() {
 		this.setState({
 			isApiRequestOver: false,
@@ -245,12 +249,6 @@ class App extends Component {
 				</p>
 			</div>
 		)
-	}
-
-	setComponentState(state, item, value) {
-		this.setState((state, props) => ({
-			item: value
-		}));
 	}
 
 	render() {
@@ -283,7 +281,7 @@ class App extends Component {
 								help={__('Enter your personal token that you obtained from your SOLO account', 'woo-solo-api')}
 								type='text'
 								disabled={this.state.isSaving}
-								value={this.state.solo_api_token || ''}
+								value={this.state.solo_api_token}
 								onChange={value => this.setState({solo_api_token: value})}
 							/>
 							{this.renderError('solo_api_token')}
@@ -300,7 +298,7 @@ class App extends Component {
 									name='solo_api_measure'
 									label={__('Unit measure', 'woo-solo-api')}
 									help={__('Select the default measure in your shop (e.g. piece, hour, m^3 etc.)', 'woo-solo-api')}
-									value={this.state.solo_api_measure || '1'}
+									value={this.state.solo_api_measure}
 									disabled={this.state.isSaving}
 									onChange={solo_api_measure => this.setState({solo_api_measure})}
 									options={[
@@ -346,17 +344,10 @@ class App extends Component {
 									className={`components-base-control__input ${this.hasErrorClass('solo_api_service_type')}`}
 									name='solo_api_service_type'
 									label={__('Enter the type of the service', 'woo-solo-api')}
-									help={
-										__experimentalCreateInterpolateElement(
-											__('You can find it in your account settings (Usluge -> Tipovi usluga)', 'woo-solo-api'),
-											{
-												line: <br/>
-											}
-										)
-									}
+									help={__('You can find it in your account settings (Usluge -> Tipovi usluga)', 'woo-solo-api')}
 									type='text'
 									disabled={this.state.isSaving}
-									value={this.state.solo_api_service_type || ''}
+									value={this.state.solo_api_service_type}
 									onChange={value => this.setState({solo_api_service_type: value})}
 								/>
 								{this.renderError('solo_api_service_type')}
@@ -367,7 +358,7 @@ class App extends Component {
 									name='solo_api_languages'
 									label={__('Invoice Language', 'woo-solo-api')}
 									help={__('Select the language the invoice should be in', 'woo-solo-api')}
-									value={this.state.solo_api_languages || '1'}
+									value={this.state.solo_api_languages}
 									disabled={this.state.isSaving}
 									onChange={solo_api_languages => this.setState({solo_api_languages})}
 									options={[
@@ -398,7 +389,7 @@ class App extends Component {
 									className={this.hasErrorClass('solo_api_currency')}
 									name='solo_api_currency'
 									label={__('Currency', 'woo-solo-api')}
-									value={this.state.solo_api_currency || '1'}
+									value={this.state.solo_api_currency}
 									disabled={this.state.isSaving}
 									onChange={solo_api_currency => this.setState({solo_api_currency})}
 									options={[
@@ -427,7 +418,7 @@ class App extends Component {
 									name='solo_api_invoice_type'
 									label={__('Type of invoice', 'woo-solo-api')}
 									help={__('Only works with invoice, not with offer', 'woo-solo-api')}
-									value={this.state.solo_api_invoice_type || '1'}
+									value={this.state.solo_api_invoice_type}
 									disabled={this.state.isSaving}
 									onChange={solo_api_invoice_type => this.setState({solo_api_invoice_type})}
 									options={[
@@ -455,7 +446,7 @@ class App extends Component {
 											className={this.hasErrorClass(offer)}
 											name={offer}
 											label={__('Type of payment document', 'woo-solo-api')}
-											value={this.state[offer] || 'ponuda'}
+											value={this.state[offer]}
 											disabled={this.state.isSaving}
 											onChange={offerType => this.setState({[offer]: offerType})}
 											options={[
@@ -468,7 +459,7 @@ class App extends Component {
 											className={this.hasErrorClass(payment)}
 											name={payment}
 											label={__('Payment option types', 'woo-solo-api')}
-											value={this.state[payment] || '1'}
+											value={this.state[payment]}
 											disabled={this.state.isSaving}
 											onChange={paymentType => this.setState({[payment]: paymentType})}
 											options={[
@@ -499,7 +490,7 @@ class App extends Component {
 									className={this.hasErrorClass('solo_api_due_date')}
 									name={'solo_api_due_date'}
 									label={__('Invoice/Offer due date', 'woo-solo-api')}
-									value={this.state.solo_api_due_date || '1'}
+									value={this.state.solo_api_due_date}
 									disabled={this.state.isSaving}
 									onChange={solo_api_due_date => this.setState({solo_api_due_date})}
 									options={[
@@ -597,7 +588,7 @@ class App extends Component {
 								name='solo_api_send_control'
 								label={__('Send on:', 'woo-solo-api')}
 								disabled={this.state.isSaving}
-								value={this.state.solo_api_send_control || 'checkout'}
+								value={this.state.solo_api_send_control}
 								onChange={offerType => this.setState({solo_api_send_control: offerType})}
 								options={[
 									{value: 'checkout', label: __('Checkout', 'woo-solo-api')},
@@ -621,7 +612,7 @@ class App extends Component {
 								label={__('Set the title of the mail that will be send with the PDF invoice', 'woo-solo-api')}
 								type='text'
 								disabled={this.state.isSaving}
-								value={this.state.solo_api_mail_title || ''}
+								value={this.state.solo_api_mail_title}
 								onChange={value => this.setState({solo_api_mail_title: value})}
 							/>
 							{this.renderError('solo_api_mail_title')}
@@ -633,7 +624,7 @@ class App extends Component {
 								label={__('Type the message that will appear on the mail with the invoice PDF attached', 'woo-solo-api')}
 								rows='10'
 								disabled={this.state.isSaving}
-								value={this.state.solo_api_message || ''}
+								value={this.state.solo_api_message}
 								onChange={value => this.setState({solo_api_message: value})}
 							/>
 							{this.renderError('solo_api_message')}
@@ -653,7 +644,7 @@ class App extends Component {
 								}
 								type='text'
 								disabled={this.state.isSaving}
-								value={this.state.solo_api_change_mail_from || ''}
+								value={this.state.solo_api_change_mail_from}
 								onChange={value => this.setState({solo_api_change_mail_from: value})}
 							/>
 							{this.renderError('solo_api_change_mail_from')}
@@ -666,7 +657,8 @@ class App extends Component {
 						<PanelRow className='components-panel__row--single'>
 							<h4>{__('This serves for testing purposes only', 'woo-solo-api')}</h4>
 							<p className='components-base-control__notice'>
-								{__('Pressing the button will make a request to your Solo API account, and will list all the invoices you have', 'woo-solo-api')}
+								{__('Pressing the button will make a request to your Solo API account,' +
+									'and will list all the invoices you have', 'woo-solo-api')}
 							</p>
 							<pre className='components-base-control__code'>
 								<code>
@@ -678,7 +670,7 @@ class App extends Component {
 								isPrimary
 								isLarge
 								disabled={this.state.isLoading}
-								onClick={() => this.callApi()}
+								onClick={this.callApi}
 							>
 								{__('Make a request', 'woo-solo-api')}
 							</Button>
@@ -689,7 +681,7 @@ class App extends Component {
 							isPrimary
 							isLarge
 							disabled={this.state.isSaving}
-							onClick={(event) => this.updateOptions(event)}
+							onClick={this.updateOptions}
 						>
 							{__('Save settings', 'woo-solo-api')}
 						</Button>
@@ -701,7 +693,6 @@ class App extends Component {
 		);
 	}
 }
-
 
 render(
 	<App/>,
