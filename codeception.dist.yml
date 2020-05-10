@@ -22,6 +22,8 @@ coverage:
     enabled: true
     include:
         - src/*
+    exclude:
+        - src/Core/CompiledContainer.php
     low_limit: 30
     high_limit: 75
 settings:
