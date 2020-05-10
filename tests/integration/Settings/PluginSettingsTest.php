@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Integration\Exception;
+namespace Tests\Integration\Settings;
 
 use Codeception\TestCase\WPTestCase;
 use IntegrationTester;

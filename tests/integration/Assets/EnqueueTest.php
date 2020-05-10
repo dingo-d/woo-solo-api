@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Integration\Enqueue;
+namespace Tests\Integration\Assets;
 
 use Codeception\TestCase\WPTestCase;
 use IntegrationTester;

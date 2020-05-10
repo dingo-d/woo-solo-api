@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Integration\Core;
+namespace Tests\Integration\ECommerce;
 
 use Codeception\TestCase\WPTestCase;
 use IntegrationTester;

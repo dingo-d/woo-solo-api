@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Integration\Activation;
+namespace Tests\Integration\DIContainer;
 
 use Codeception\TestCase\WPTestCase;
 use IntegrationTester;
