@@ -76,7 +76,7 @@ abstract class AdminMenu implements Registrable, Renderable
 	 *
 	 * @param array $context Passed attributes to the view.
 	 *
-	 * @return string Rendered view.
+	 * @return string Rendered view or error message if path is missing.
 	 */
 	public function render(array $context = []): string
 	{
@@ -87,7 +87,7 @@ abstract class AdminMenu implements Registrable, Renderable
 
 			return $view->render($context);
 		} catch (Exception $exception) {
-		// Don't let exceptions bubble up. Just render the exception message into the admin menu.
+			// Don't let exceptions bubble up. Just render the exception message into the admin menu.
 			return sprintf(
 				'<pre>%s</pre>',
 				$exception->getMessage()

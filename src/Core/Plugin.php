@@ -14,7 +14,6 @@ namespace MadeByDenis\WooSoloApi\Core;
 use Exception;
 use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
 use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
-use MadeByDenis\WooSoloApi\Callbacks\SoloApiTest;
 use MadeByDenis\WooSoloApi\ECommerce\WooPaymentGateways;
 use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
 use MadeByDenis\WooSoloApi\Settings\PluginSettings;
@@ -79,7 +78,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
     {
         $this->registerServices();
 
-      // Deactivate that which can be deactivated.
+      	// Deactivate that which can be deactivated.
         foreach ($this->services as $service) {
             if ($service instanceof HasDeactivation) {
                 $service->deactivate();
@@ -112,7 +111,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
     public function registerAssetsManifestData()
     {
 
-      	$response = file_get_contents(dirname(__DIR__, 2) . '/assets/public/manifest.json');
+		$response = file_get_contents(dirname(__DIR__, 2) . '/assets/public/manifest.json');
 
         if (! $response) {
             $error_message = esc_html__('manifest.json is missing. Bundle the plugin before using it.', 'woo-solo-api');
