@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Acceptance\Activation;
+namespace Tests\Acceptance\AdminMenus;
 
 use AcceptanceTester;
 

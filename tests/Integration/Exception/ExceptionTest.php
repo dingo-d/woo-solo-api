@@ -8,7 +8,7 @@ use Codeception\TestCase\WPTestCase;
 use IntegrationTester;
 use MadeByDenis\WooSoloApi\Exception\{
 	FailedToLoadView,
-	InvalidURI,
+	InvalidUri,
 	MissingManifest,
 	PluginActivationFailure,
 };
@@ -47,10 +47,10 @@ class ExceptionTest extends WPTestCase
 		$url = 'fake/uri.php';
 		$message = sprintf('The View URI "%s" is not accessible or readable.', $url);
 
-		$this->expectException(InvalidURI::class);
+		$this->expectException(InvalidUri::class);
 		$this->expectExceptionMessage($message);
 
-		throw InvalidURI::fromUri($url);
+		throw InvalidUri::fromUri($url);
 	}
 
 	public function testMissingManifestException()
