@@ -31,6 +31,8 @@ class CorePluginTest extends WPTestCase
 		$pluginInstance->register();
 		$pluginInstance->registerAssetsManifestData();
 		$pluginInstance->registerServices();
+		$pluginInstance->activate();
+		$pluginInstance->deactivate();
 
 		try {
 			$reflection = new \ReflectionClass($pluginInstance);
@@ -62,5 +64,4 @@ class CorePluginTest extends WPTestCase
 
 		$this->assertNotEmpty(ASSETS_MANIFEST);
 	}
-
 }

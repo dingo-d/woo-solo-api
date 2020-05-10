@@ -7,7 +7,6 @@ namespace Tests\Integration\Exception;
 use Codeception\TestCase\WPTestCase;
 use IntegrationTester;
 use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
-
 use MadeByDenis\WooSoloApi\Settings\PluginSettings;
 
 class PluginSettingsTest extends WPTestCase

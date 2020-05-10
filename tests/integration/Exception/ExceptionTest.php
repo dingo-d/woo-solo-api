@@ -70,5 +70,4 @@ class ExceptionTest extends WPTestCase
 
 		throw PluginActivationFailure::activationMessage($message);
 	}
-
 }

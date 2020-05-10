@@ -46,8 +46,5 @@ class PaymentGatewayTest extends WPTestCase
 		// In the test we don't have any available PG.
 
 		$this->assertEmpty($availablePaymentGateways);
-
-
 	}
-
 }

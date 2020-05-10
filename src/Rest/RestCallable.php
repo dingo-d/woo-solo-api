@@ -30,5 +30,4 @@ interface RestCallable
 	 *                                 returns a new WP_REST_Response instance.
 	 */
 	public function restCallback(WP_REST_Request $request);
-
 }
