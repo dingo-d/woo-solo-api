@@ -1,0 +1,78 @@
+name: Run code quality checks
+
+on:
+    pull_request:
+        branches: [master, develop]
+    push:
+        branches: [master]
+
+jobs:
+    phpcs_check:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php: ['7.2', '7.3', '7.4']
+
+        name: PHPCS ${{ matrix.php }} checks
+        steps:
+            # Checkout repository
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            # Setup PHP versions, run checks
+            - name: Setup PHP
+              uses: shivammathur/setup-php@2.1.4
+              with:
+                php-version: ${{ matrix.php }}
+                coverage: none
+
+            - run: composer install --no-progress
+            - run: composer standards:check -- --runtime-set testVersion ${{ matrix.php }}-
+
+    phpstan:
+        runs-on: ubuntu-latest
+        name: phpstan check
+        steps:
+            - uses: actions/checkout@v2
+            - uses: shivammathur/setup-php@2.1.4
+              with:
+                php-version: 7.2
+                coverage: none
+
+            - run: composer install --no-progress
+            - run: composer analyse
+
+    tests:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php: ['7.2', '7.3', '7.4']
+
+        name: Integration tests on version ${{ matrix.php }}
+        steps:
+            - uses: actions/checkout@v2
+            - uses: shivammathur/setup-php@2.1.4
+              with:
+                php-version: ${{ matrix.php }}
+                coverage: none
+
+            - run: composer install --no-progress
+            - run: composer test:integration
+
+    tests_coverage:
+        runs-on: ubuntu-latest
+
+        name: Code coverage generation
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup PHP, run code coverage
+              env:
+                CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+              uses: shivammathur/setup-php@2.1.4
+              with:
+                php-version: 7.2
+                coverage: pcov
+
+            - run: composer install --no-progress
+            - run: composer test:coverage
+            - run: bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
