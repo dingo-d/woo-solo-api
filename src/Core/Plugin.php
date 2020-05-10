@@ -160,7 +160,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
      *
      * A list of classes which contain hooks.
      *
-     * @return array<array> Array that contains FQCN as a key of the class to instantiate, and
+     * @return array<int|string, array<int, string>|string> Array that contains FQCN as a key of the class to instantiate, and
      *                      Array as a value of that key that denotes its dependencies.
      */
     private function getServiceClasses(): array

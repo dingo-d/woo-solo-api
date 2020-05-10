@@ -13,6 +13,7 @@ namespace MadeByDenis\WooSoloApi\View;
 
 use MadeByDenis\WooSoloApi\Core\Renderable;
 use MadeByDenis\WooSoloApi\Exception\FailedToLoadView;
+use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
  * Interface View

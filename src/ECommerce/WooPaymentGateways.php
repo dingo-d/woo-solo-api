@@ -24,6 +24,11 @@ use WC_Payment_Gateways;
  */
 class WooPaymentGateways implements PaymentGateways
 {
+	/**
+	 * WooCommerce payment gateways.
+	 *
+	 * @var WC_Payment_Gateways
+	 */
 	private $wcPaymentGateway;
 
 	public function __construct()

@@ -188,6 +188,6 @@ final class EscapedView implements View
 	 */
 	private function prepareAllowedTags($allowedTags): array
 	{
-		return array_replace_recursive($allowedTags, self::ALLOWED_TAGS);
+		return (array) array_replace_recursive($allowedTags, self::ALLOWED_TAGS);
 	}
 }

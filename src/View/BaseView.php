@@ -66,7 +66,7 @@ class BaseView implements View
      *
      * @param array $context Context in which to render.
      *
-     * @return string          Rendered HTML.
+     * @return string           Rendered HTML.
      * @throws FailedToLoadView If the View URI could not be loaded.
      */
 	public function render(array $context = []): string
@@ -100,7 +100,7 @@ class BaseView implements View
 			);
 		}
 
-		return ob_get_clean();
+		return (string) ob_get_clean();
 	}
 
     /**
