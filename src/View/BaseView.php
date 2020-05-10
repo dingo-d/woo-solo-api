@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\View;
 
 use MadeByDenis\WooSoloApi\Exception\FailedToLoadView;
-use MadeByDenis\WooSoloApi\Exception\InvalidURI;
+use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
  * Base view class
@@ -54,7 +54,7 @@ class BaseView implements View
      *
      * @param string $uri URI to the view file to render.
      *
-     * @throws InvalidURI If an invalid URI was passed into the View.
+     * @throws InvalidUri If an invalid URI was passed into the View.
      */
 	public function __construct($uri)
 	{
@@ -115,7 +115,7 @@ class BaseView implements View
      * @param array|null $context Context in which to render the partial.
      *
      * @return string           Rendered HTML.
-     * @throws InvalidURI       If the provided URI was not valid.
+     * @throws InvalidUri       If the provided URI was not valid.
      * @throws FailedToLoadView If the view could not be loaded.
      */
 	public function renderPartial($uri, array $context = null): string
@@ -131,7 +131,7 @@ class BaseView implements View
     * @param string $uri URI to validate.
     *
     * @return string      Validated URI.
-    * @throws InvalidURI If an invalid URI was passed into the View.
+    * @throws InvalidUri If an invalid URI was passed into the View.
     */
 	protected function validate($uri): string
 	{
@@ -139,7 +139,7 @@ class BaseView implements View
 		$uri = trailingslashit(dirname(__DIR__, 2)) . $uri;
 
 		if (! is_readable($uri)) {
-			throw InvalidURI::fromUri($uri);
+			throw InvalidUri::fromUri($uri);
 		}
 
 		return $uri;

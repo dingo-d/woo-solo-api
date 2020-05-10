@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\View;
 
 use MadeByDenis\WooSoloApi\Exception\FailedToLoadView;
-use MadeByDenis\WooSoloApi\Exception\InvalidURI;
+use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
  * Escaped view class
@@ -163,7 +163,7 @@ final class EscapedView implements View
 	 * @param array|null $context Context in which to render the partial.
 	 *
 	 * @return string Rendered HTML.
-	 * @throws InvalidURI If the provided URI was not valid.
+	 * @throws InvalidUri If the provided URI was not valid.
 	 * @throws FailedToLoadView If the view could not be loaded.
 	 */
 	public function renderPartial($uri, array $context = null): string

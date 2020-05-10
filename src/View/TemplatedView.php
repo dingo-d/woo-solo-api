@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\View;
 
-use MadeByDenis\WooSoloApi\Exception\InvalidURI;
+use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
  * Templated view class
@@ -28,7 +28,7 @@ final class TemplatedView extends BaseView
 	 * @param string $uri URI to validate.
 	 *
 	 * @return string Validated URI.
-	 * @throws InvalidURI If an invalid URI was passed into the View.
+	 * @throws InvalidUri If an invalid URI was passed into the View.
 	 */
 	protected function validate($uri): string
 	{
@@ -41,7 +41,7 @@ final class TemplatedView extends BaseView
 		}
 
 		if (!is_readable($uri)) {
-			throw InvalidURI::fromUri($uri);
+			throw InvalidUri::fromUri($uri);
 		}
 
 		return $uri;
