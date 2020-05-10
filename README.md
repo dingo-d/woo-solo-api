@@ -1,19 +1,15 @@
-[![GitHub tag](https://img.shields.io/github/tag/dingo-d/woo-solo-api.svg?style=for-the-badge)](https://github.com/dingo-d/woo-solo-api)
-[![Travis](https://img.shields.io/travis/dingo-d/woo-solo-api.svg?style=for-the-badge)](https://github.com/dingo-d/woo-solo-api)
-
-
 # Woo Solo Api
 
 **Contributors**: dingo_bastard  
 **Tags**: woocommerce, api, solo api, solo, api integration, shop, payment, woo  
-**Requires at least**: 4.4  
-**Requires PHP**: 5.6  
-**Tested up to**: 4.9.6  
-**Stable tag**: 1.9.1  
-**WC requires at least**: 3.0.0  
-**WC tested up to**: 3.4.3  
-**License**: GPLv2 or later  
-**License URI**: http://www.gnu.org/licenses/gpl-2.0.txt
+**Requires at least**: 5.1  
+**Requires PHP**: 7.2  
+**Tested up to**: 5.4  
+**Stable tag**: 2.0
+**WC requires at least**: 3.9.0  
+**WC tested up to**: 4.0.0  
+**License**: MIT  
+**License URI**: https://opensource.org/licenses/MIT  
 
 This plugin provides integration of the SOLO service with WooCommerce store.
 
@@ -28,126 +24,73 @@ mail to the client.
 There is an entire options page where you can specify the details of the order or the invoice such as unit measure, payment
 options, language of the invoice, currency and others.
 
-The plugin is translated to Croatian, since the SOLO service is primarily used by Croatian users. You can contribute and add additional languages.
+The plugin is translated to Croatian, since the SOLO service is primarily used by Croatian users.
 
 For more information about the SOLO API visit this link: https://solo.com.hr/api-dokumentacija
 
-## Installation
+### Requirements
 
-### Install & Activate
+* PHP 7.2 or greater
+* WordPress 5.1 or above
+* WooCommerce 3.9 or above
 
-Installing the plugin is easy. Just follow these steps:
-
-**Installing from WordPress repository:**
-
-Be sure you have WooCommerce plugin installed first, otherwise you'll get an error on the plugin activation.
-
-1. From the dashboard of your site, navigate to Plugins --> Add New.
-2. In the Search type Woo Solo Api
-3. Click Install Now
-4. When it's finished, activate the plugin via the prompt. A message will show confirming activation was successful.
-
-**Uploading the .zip file:**
-
-1. From the dashboard of your site, navigate to Plugins --> Add New.
-2. Select the Upload option and hit "Choose File."
-3. When the popup appears select the woo-solo-api.x.x.zip file from your desktop. (The 'x.x' will change depending on the current version number).
-4. Follow the on-screen instructions and wait as the upload completes.
-5. When it's finished, activate the plugin via the prompt. A message will show confirming activation was successful.
+## Development
 
 ### Requirements
 
-* PHP 5.6 or greater (recommended: PHP 7 or greater)
-* WordPress 4.4 or above (because of the built in REST interface)
-* jQuery 1.11.x
+* [Composer](https://getcomposer.org/)
+* [Node.js](https://nodejs.org/en/)
+
+The project is built following PSR-12 standards, and uses PSR-4 autoloading. To install the development dependencies you'll need to run
+
+```bash
+composer install
+```
+
+To bundle the scripts and styles you'll need to run
+
+```bash
+npm install
+npm run build
+```
+
+During the development you can use watch mode
+
+```bash
+npm run watch
+```
+
+There are a lot of composer scripts available for checking the code quality ([PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/), [PHPStan](https://github.com/phpstan/phpstan)), and the code is covered with tests which are ran on [wp-browser](https://github.com/lucatume/wp-browser/).
+
+### Running tests
+
+To run tests, you'll need to set up [testing environment](https://wpbrowser.wptestkit.dev/getting-started/setting-up-minimum-wordpress-installation), and modify your `.env.testing`.
+In order to run acceptance tests, you'll need to install selenium and chrome webdriver. You can read the official Codeception WebDriver [documentation](https://codeception.com/docs/modules/WebDriver#Selenium) on setting those up.
+
+Once everything is set up for you, you can run the tests using Composer scripts:
+
+```bash
+composer test:acceptance
+composer test:functional
+composer test:integration
+composer test:unit
+```
+
+for every test suite.
+
+If you are adding any new functionality, be sure to write tests for it. 
 
 ## Changelog
 
-### 1.9.1
+Check the [Changelog.md](https://github.com/dingo-d/woo-solo-api/blob/master/CHANGELOG.md)
 
-* Minor fix in the Admin class constructor (string typehinting is not available prior to PHP 7)
+## Acknowledgements 
 
-### 1.9.0
+The webpack config is taken from (partially) [Eightshift frontend libs](https://github.com/infinum/eightshift-frontend-libs/)
 
-* Moved the Solo API options under the WooCommerce menu
-* Added the ability to translate the invoice/offer based on the selected and available language
-* Extended the due date time to include 1-6 days in addition to 1-3 weeks
+Settings page was created with the help of [tutorial](https://www.codeinwp.com/blog/plugin-options-page-gutenberg/) by Hardeep Asrani.
 
-### 1.8.1
+## License
 
-* Add a check if no shipping is selected in the WooCommerce options
-* Minor code refactor (constants instead of properties in the main class)
-* Replaced built in autoloader for composers autoloader
-
-### 1.8.0
-
-* Add test method that returns all receipts from Solo API to check if the plugin is working properly.
-* Minor visual adjustements
-
-### 1.7.5
-
-* Add fallback method for fetching currency rates in case the allow_url_fopen is disabled.
-
-### 1.7
-
-* Added payment types for each payment gateway
-* Tax fixes - tax class wasn't working on changing the order to complete
-* Added travis integration (development)
-* Added code standards definition (development)
-
-### 1.6
-
-* Fixed language issue on the invoices (props to [ivoks](https://github.com/ivoks))
-* phpcs fixes
-
-### 1.5
-
-* Fixed the currency rate to pull it from the official hnb site
-* Set the transient validity to 6 hours so every 6 hours it will expire and be created again
-
-### 1.4
-
-* Added automatic conversion rate from Croatian National Bank (https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista)
-* Add a fix for duplicated orders - you can now choose if you want to make SOLO API call on the checkout or when changing order status manually
-* Fix for taxes rounding error on shipping
-
-### 1.3
-
-* Add additional debug methods
-* Code sniffer fixes
-* Add tax check - tax rate can be separate for shipping and for items, and are handled by WooCommerce
-
-### 1.2
-
-* Renamed classes - shorten name of the classes and changed file names
-* Fixed bug that prevented sending of the pdf bill if the type of the bill was offer (ponuda)
-
-### 1.1
-
-* Added multiple invoice type selection based on payment type with appropriate fiscalization check
-* Fiscalization will be disabled for offer by default, and enabled only on invoice type
-
-### 1.0.1
-
-* Typo fix
-
-### 1.0
-
-* Initial release
-
-## Additional notes
-
-The 1.5 update fixed the currency rate. I parsed the results from https://www.hnb.hr/tecajn/htecajn.htm and created my own currency rate array. I also tested it with included taxes and it seems to be working ok. If for any reason the taxes are not being calculated or pulled in the solo api, there must be some third party plugin that is messing stuff up. Be mindful of that.
-
-----
-
-The 1.4 update fixed a lot of issues with the taxes, and tax rates. Although this has been fixed, the taxes probably wont't be picked up by the SOLO API if you set the option in the WooCommerce to include taxes in the price of the product. This is why you should separate the two. Also when creating a shipping tax class, be sure to create it as aseparate class, and leave the standard tax class for the product. So for instance the product will have a standard tax of 5%, and the shipping can have a separate class with tax rate of 25% (be sure to tick the shipping checkbox in this class).
-The including prices will be fixed in the next update.
-
-----
-
-The 1.3 update removed the predefined tax rates from the plugin, and is instead using WooCommerce taxes.
-This means that you can have different tax for the item, and different for the shipping. Word of caution though, the Croatian law has predefined taxes of 0, 5, 13 or 25%. So in case you put the tax for the item and shipping anything other than that, the tax rate will be sent as 0 - so that your SOLO invoice or offer will pass, but with 0 tax rate.
-
-Also be sure to separate those two taxes. For instance you can set the item tax rate as a standard tax rate, and then the shipping tax can be set as a reduced tax rate, and then just set the Shipping tax class to reduced tax rate in the WooCommerce options. If you put everything as a standard one, the tax rates will get mixed and the end price won't be correct (not sure how else to handle this since WooCommerce has a weird tax system).
-
+Copyright ©2020 Denis Žoljom.
+This plugin is free software, and may be redistributed under the terms specified in the LICENSE file.

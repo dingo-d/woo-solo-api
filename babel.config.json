@@ -1,0 +1,61 @@
+{
+	"presets": [
+		[
+			"@babel/preset-env",
+			{
+				"modules": false,
+				"useBuiltIns": "entry",
+				"corejs": "2",
+				"targets": {
+					"browsers": [
+						"last 2 versions",
+						"not ie < 11"
+					]
+				}
+			}
+		]
+	],
+	"plugins": [
+		"@babel/plugin-syntax-dynamic-import",
+		"@babel/plugin-transform-async-to-generator",
+		[
+			"@babel/plugin-proposal-decorators",
+			{
+				"legacy": true
+			}
+		],
+		[
+			"@babel/plugin-proposal-class-properties",
+			{
+				"loose": true
+			}
+		],
+		[
+			"@babel/plugin-proposal-object-rest-spread",
+			{
+				"useBuiltIns": true
+			}
+		],
+		[
+			"@wordpress/babel-plugin-import-jsx-pragma",
+			{
+				"scopeVariable": "createElement",
+				"source": "@wordpress/element",
+				"isDefault": false
+			}
+		],
+		[
+			"@babel/plugin-transform-runtime",
+			{
+				"helpers": true,
+				"regenerator": false
+			}
+		],
+		[
+			"@babel/plugin-transform-react-jsx",
+			{
+				"pragma": "wp.element.createElement"
+			}
+		]
+	]
+}

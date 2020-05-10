@@ -1,44 +1,82 @@
 {
-  "name": "dingo-d/woo-solo-api",
-  "type": "wordpress-plugin",
-  "description": "Plugin that provides integration of the SOLO service with WooCommerce store.",
-  "keywords": [
-    "plugin",
-    "WordPress",
-    "WooCommerce",
-    "solo",
-    "API",
-    "store",
-    "ecommerce"
-  ],
-  "homepage": "https://github.com/dingo-d/woo-solo-api",
-  "license": "GPL-2.0",
-  "authors": [
-    {
-      "name": "Denis Žoljom",
-      "homepage": "https://madebydenis.com",
-      "email": "denis.zoljom@gmail.com"
-    },
-    {
-      "name": "Contributors",
-      "homepage": "https://github.com/dingo-d/woo-solo-api/graphs/contributors"
-    }
-  ],
-  "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "*",
-    "jakub-onderka/php-console-highlighter": "*",
-    "jakub-onderka/php-parallel-lint": "*",
-    "infinum/coding-standards-wp": "*"
-  },
-  "support": {
-    "issues": "https://github.com/dingo-d/woo-solo-api/issues",
-    "wiki": "https://github.com/dingo-d/woo-solo-api/wiki",
-    "source": "https://github.com/dingo-d/woo-solo-api"
-  },
-  "autoload": {
-    "classmap": [
-      "admin/",
-      "includes/"
-    ]
-  }
+	"name": "dingo-d/woo-solo-api",
+	"type": "wordpress-plugin",
+	"description": "Plugin that provides integration of the SOLO service with WooCommerce store.",
+	"keywords": ["plugin", "WordPress", "WooCommerce", "solo", "API", "store", "ecommerce"],
+	"homepage": "https://github.com/dingo-d/woo-solo-api",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Denis Žoljom",
+			"homepage": "https://madebydenis.com",
+			"email": "denis.zoljom@gmail.com"
+		},
+		{
+			"name": "Contributors",
+			"homepage": "https://github.com/dingo-d/woo-solo-api/graphs/contributors"
+		}
+	],
+	"require": {
+		"php": ">=7.2",
+		"php-di/php-di": "^6.0"
+	},
+	"require-dev": {
+		"brain/monkey": "^2.4",
+		"codeception/module-asserts": "^1.1",
+		"codeception/module-cli": "^1.0",
+		"codeception/module-db": "^1.0",
+		"codeception/module-filesystem": "^1.0",
+		"codeception/module-phpbrowser": "^1.0",
+		"codeception/module-webdriver": "^1.0",
+		"codeception/util-universalframework": "^1.0",
+		"codedungeon/phpunit-result-printer": "^0.20.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.6",
+		"lucatume/wp-browser": "^2.3",
+		"pcov/clobber": "^2.0",
+		"phpcompatibility/php-compatibility": "^9.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.0",
+		"phpunit/phpunit": "^7.0",
+		"roave/security-advisories": "dev-master",
+		"squizlabs/php_codesniffer": "^3.5.0",
+		"szepeviktor/phpstan-wordpress": "^0.2.0"
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests/"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"MadeByDenis\\WooSoloApi\\": "src/"
+		}
+	},
+	"minimum-stability": "stable",
+	"config": {
+		"sort-packages": true,
+		"optimize-autoloader": true,
+		"process-timeout": 2000
+	},
+	"scripts": {
+		"post-install-cmd": "PHPStan\\WordPress\\Composer\\FixWpStubs::php73Polyfill",
+		"post-update-cmd": "PHPStan\\WordPress\\Composer\\FixWpStubs::php73Polyfill",
+		"standards:check": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+		"standards:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
+		"analyse": "@php ./vendor/bin/phpstan analyze",
+		"selenium:start": "selenium-server -port 4444",
+    	"chrome:start" : "chromedriver --url-base=/wd/hub",
+		"test:prepare": "@php ./vendor/bin/pcov clobber",
+		"test:revert": "@php ./vendor/bin/pcov unclobber",
+		"test:build": "@php ./vendor/bin/codecept build",
+		"test:acceptance": "@php ./vendor/bin/codecept run acceptance",
+		"test:functional": "@php ./vendor/bin/codecept run functional",
+		"test:integration": "@php ./vendor/bin/codecept run integration",
+		"test:unit": "@php ./vendor/bin/codecept run unit",
+		"test:coverage": "@php ./vendor/bin/codecept run integration --coverage --coverage-xml --coverage-html",
+		"test:generate-scenarios": "@php vendor/bin/codecept generate:scenarios"
+	},
+	"support": {
+		"issues": "https://github.com/dingo-d/woo-solo-api/issues",
+		"wiki": "https://github.com/dingo-d/woo-solo-api/wiki",
+		"source": "https://github.com/dingo-d/woo-solo-api"
+	}
 }

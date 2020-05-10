@@ -4,15 +4,7 @@
 
 # Project build folder
 /build/
-
-# Vagrantfile
-Vagrantfile
-
-# Test install files
-/bin/
-
-# Build files
-/build/
+/assets/public/
 
 # Mac OS custom attribute store and thumbnails
 *.DS_Store
@@ -22,3 +14,5 @@ Vagrantfile
 Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
+
+src/Core/CompiledContainer.php

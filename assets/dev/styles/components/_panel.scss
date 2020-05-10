@@ -1,0 +1,49 @@
+$panel: (
+	body-title-background: $base-dove-color,
+);
+
+.components-panel {
+	$this: &;
+
+	&__body{
+		&.is-opened {
+			#{$this}__body-title {
+				background-color: map-get-strict($panel, 'body-title-background') !important;
+				margin-bottom: 20px !important;
+			}
+		}
+	}
+
+	&__columns {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 20px;
+
+		#{$this}__row {
+			margin-top: 0;
+		}
+	}
+
+	&__row {
+		flex-direction: column;
+		align-items: start;
+
+		select {
+			min-height: 42px;
+			padding: 0 24px 0 12px;
+		}
+
+		#{$this}__item {
+			margin-top: 20px;
+		}
+
+		&--single {
+			flex-direction: column;
+			align-items: start;
+		}
+
+		&--top {
+			justify-content: start;
+		}
+	}
+}
