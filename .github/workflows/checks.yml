@@ -56,7 +56,19 @@ jobs:
                 php-version: ${{ matrix.php }}
                 coverage: pcov
 
+            - uses: actions/setup-node@v1.4.2
+              with:
+                node-version: '14'
+
+            # Setup WordPress so that we can run tests
+            - run: |
+                curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+                chmod +x wp-cli.phar
+                sudo mv wp-cli.phar /usr/local/bin/wp
+                wp --info
+
             - run: composer install --no-progress
+            - run: npm install
             - run: composer test:integration
 
     tests_coverage:
@@ -73,6 +85,11 @@ jobs:
                 php-version: 7.2
                 coverage: pcov
 
+            - uses: actions/setup-node@v1.4.2
+              with:
+                node-version: '14'
+
             - run: composer install --no-progress
+            - run: npm install
             - run: composer test:coverage
             - run: bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
