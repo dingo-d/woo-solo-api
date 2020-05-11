@@ -50,7 +50,7 @@ jobs:
               run: composer install --no-progress
 
             - name: Analyse code using phpstan
-              run: composer analyse
+              run: composer analyze
 
     tests:
         runs-on: ubuntu-latest
