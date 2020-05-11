@@ -33,6 +33,7 @@
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.6",
 		"lucatume/wp-browser": "^2.3",
 		"pcov/clobber": "^2.0",
+		"php-stubs/woocommerce-stubs": "^4.1",
 		"phpcompatibility/php-compatibility": "^9.0",
 		"phpcompatibility/phpcompatibility-wp": "^2.0",
 		"phpunit/phpunit": "^7.0",
@@ -57,8 +58,6 @@
 		"process-timeout": 2000
 	},
 	"scripts": {
-		"post-install-cmd": "PHPStan\\WordPress\\Composer\\FixWpStubs::php73Polyfill",
-		"post-update-cmd": "PHPStan\\WordPress\\Composer\\FixWpStubs::php73Polyfill",
 		"standards:check": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
 		"standards:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
 		"analyse": "@php ./vendor/bin/phpstan analyze",

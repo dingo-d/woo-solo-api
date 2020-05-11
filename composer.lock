@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11c9614d8cb47274f304a155773b4986",
+    "content-hash": "5cc73c16c601f5f676b44fa7b599a78d",
     "packages": [
         {
             "name": "jeremeamia/superclosure",
@@ -2188,45 +2188,6 @@
             "time": "2019-11-13T10:30:21+00:00"
         },
         {
-            "name": "giacocorsiglia/wordpress-stubs",
-            "version": "v5.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GiacoCorsiglia/wordpress-stubs.git",
-                "reference": "1c6f011f5c241bab7293315d7fb7fca27fe79473"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GiacoCorsiglia/wordpress-stubs/zipball/1c6f011f5c241bab7293315d7fb7fca27fe79473",
-                "reference": "1c6f011f5c241bab7293315d7fb7fca27fe79473",
-                "shasum": ""
-            },
-            "require-dev": {
-                "ext-gettext": "*",
-                "giacocorsiglia/stubs-generator": "^0.5.0",
-                "johnpbloch/wordpress": "5.1.1",
-                "php": "^7.1"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Giaco Corsiglia",
-                    "email": "GiacoCorsiglia@gmail.com"
-                }
-            ],
-            "description": "WordPress function, class, and global variable declaration stubs for easier static analysis.",
-            "homepage": "https://github.com/GiacoCorsiglia/wordpress-stubs",
-            "keywords": [
-                "static analysis",
-                "wordpress"
-            ],
-            "time": "2019-03-13T21:16:05+00:00"
-        },
-        {
             "name": "gumlet/php-image-resize",
             "version": "1.9.2",
             "source": {
@@ -3974,6 +3935,86 @@
             ],
             "description": "Library for handling version information and constraints",
             "time": "2018-07-08T19:19:57+00:00"
+        },
+        {
+            "name": "php-stubs/woocommerce-stubs",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-stubs/woocommerce-stubs.git",
+                "reference": "9b18463b1d464c7a01bd372e68bf8c6e09e110a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-stubs/woocommerce-stubs/zipball/9b18463b1d464c7a01bd372e68bf8c6e09e110a8",
+                "reference": "9b18463b1d464c7a01bd372e68bf8c6e09e110a8",
+                "shasum": ""
+            },
+            "require": {
+                "php-stubs/wordpress-stubs": "^5.3.0"
+            },
+            "require-dev": {
+                "giacocorsiglia/stubs-generator": "^0.5.0",
+                "php": "~7.1"
+            },
+            "suggest": {
+                "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
+                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "WooCommerce function and class declaration stubs for static analysis.",
+            "homepage": "https://github.com/php-stubs/woocommerce-stubs",
+            "keywords": [
+                "PHPStan",
+                "static analysis",
+                "woocommerce",
+                "wordpress"
+            ],
+            "time": "2020-05-05T20:20:07+00:00"
+        },
+        {
+            "name": "php-stubs/wordpress-stubs",
+            "version": "v5.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-stubs/wordpress-stubs.git",
+                "reference": "baab62405f6a6ac9b25ed3fe6df371d090f9bc0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/baab62405f6a6ac9b25ed3fe6df371d090f9bc0c",
+                "reference": "baab62405f6a6ac9b25ed3fe6df371d090f9bc0c",
+                "shasum": ""
+            },
+            "replace": {
+                "giacocorsiglia/wordpress-stubs": "*"
+            },
+            "require-dev": {
+                "giacocorsiglia/stubs-generator": "^0.5.0",
+                "php": "~7.1"
+            },
+            "suggest": {
+                "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
+                "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
+                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "WordPress function and class declaration stubs for static analysis.",
+            "homepage": "https://github.com/php-stubs/wordpress-stubs",
+            "keywords": [
+                "PHPStan",
+                "static analysis",
+                "wordpress"
+            ],
+            "time": "2020-03-31T21:58:11+00:00"
         },
         {
             "name": "php-webdriver/webdriver",
