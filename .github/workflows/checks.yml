@@ -10,8 +10,9 @@ jobs:
     phpcs_check:
         runs-on: ubuntu-latest
         strategy:
+            fail-fast: false
             matrix:
-                php: ['7.2', '7.3', '7.4']
+                php: [7.2, 7.3, 7.4]
 
         name: PHPCS ${{ matrix.php }} checks
         steps:
@@ -20,63 +21,86 @@ jobs:
               uses: actions/checkout@v2
 
             # Setup PHP versions, run checks
-            - name: Setup PHP
+            - name: PHP Setup
               uses: shivammathur/setup-php@2.1.4
               with:
                 php-version: ${{ matrix.php }}
                 coverage: pcov
 
-            - run: composer install --no-progress
-            - run: composer standards:check -- --runtime-set testVersion ${{ matrix.php }}-
+            - name: Install composer packages
+              run: composer install --no-progress
+
+            - name: Check coding standards using phpcs
+              run: composer standards:check -- --runtime-set testVersion ${{ matrix.php }}-
 
     phpstan:
         runs-on: ubuntu-latest
         name: phpstan check
         steps:
-            - uses: actions/checkout@v2
-            - uses: shivammathur/setup-php@2.1.4
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: PHP Setup
+              uses: shivammathur/setup-php@2.1.4
               with:
                 php-version: 7.2
                 coverage: pcov
 
-            - run: composer install --no-progress
-            - run: composer analyse
+            - name: Install composer packages
+              run: composer install --no-progress
+
+            - name: Analyse code using phpstan
+              run: composer analyse
 
     tests:
         runs-on: ubuntu-latest
         strategy:
+            fail-fast: false
             matrix:
-                php: ['7.2', '7.3', '7.4']
+                node_version: [ 14 ]
+                php: [7.2, 7.3, 7.4]
 
         name: Integration tests on version ${{ matrix.php }}
         steps:
-            - uses: actions/checkout@v2
-            - uses: shivammathur/setup-php@2.1.4
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: PHP Setup
+              uses: shivammathur/setup-php@2.1.4
               with:
                 php-version: ${{ matrix.php }}
                 coverage: pcov
 
-            - uses: actions/setup-node@v1.4.2
+            - name: Set Node.js version ${{ matrix.node_version }}
+              uses: actions/setup-node@v1.4.2
               with:
-                node-version: '14'
+                node-version: ${{ matrix.node_version }}
 
             # Setup WordPress so that we can run tests
-            - run: |
+            - name: Set up WordPress instance so that we can run tests
+              run: |
                 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
                 chmod +x wp-cli.phar
                 sudo mv wp-cli.phar /usr/local/bin/wp
-                wp --info
+                wp core download
 
-            - run: composer install --no-progress
-            - run: npm install
-            - run: composer test:integration
+            - name: Install composer packages
+              run: composer install --no-progress
+
+            - name: Install node packages
+              run: npm install
+
+            - name: Run integration tests
+              run: composer test:integration
 
     tests_coverage:
         runs-on: ubuntu-latest
 
         name: Code coverage generation
         steps:
-            - uses: actions/checkout@v2
+            - name: Checkout
+              uses: actions/checkout@v2
+
             - name: Setup PHP, run code coverage
               env:
                 CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
@@ -85,11 +109,26 @@ jobs:
                 php-version: 7.2
                 coverage: pcov
 
-            - uses: actions/setup-node@v1.4.2
+            - name: Set Node.js version ${{ matrix.node_version }}
+              uses: actions/setup-node@v1.4.2
               with:
-                node-version: '14'
+                node-version: 14
 
-            - run: composer install --no-progress
-            - run: npm install
-            - run: composer test:coverage
-            - run: bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
+            - name: Set up WordPress instance so that we can run tests
+              run: |
+                curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+                chmod +x wp-cli.phar
+                sudo mv wp-cli.phar /usr/local/bin/wp
+                wp core download
+
+            - name: Install composer packages
+              run: composer install --no-progress
+
+            - name: Install node packages
+              run: npm install
+
+            - name: Run integration tests
+              run: composer test:integration
+
+            - name: Push coverage report to codecov
+              run: bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
