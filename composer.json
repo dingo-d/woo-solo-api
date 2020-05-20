@@ -66,11 +66,11 @@
 		"test:prepare": "@php ./vendor/bin/pcov clobber",
 		"test:revert": "@php ./vendor/bin/pcov unclobber",
 		"test:build": "@php ./vendor/bin/codecept build",
-		"test:acceptance": "@php ./vendor/bin/codecept run acceptance",
-		"test:functional": "@php ./vendor/bin/codecept run functional",
-		"test:integration": "@php ./vendor/bin/codecept run integration",
-		"test:unit": "@php ./vendor/bin/codecept run unit",
-		"test:coverage": "@php ./vendor/bin/codecept run integration --coverage --coverage-xml --coverage-html",
+		"test:acceptance": "@php ./vendor/bin/codecept run Acceptance",
+		"test:functional": "@php ./vendor/bin/codecept run Functional",
+		"test:integration": "@php ./vendor/bin/codecept run Integration",
+		"test:unit": "@php ./vendor/bin/codecept run Unit",
+		"test:coverage": "@php ./vendor/bin/codecept run Integration --coverage --coverage-xml --coverage-html",
 		"test:generate-scenarios": "@php vendor/bin/codecept generate:scenarios"
 	},
 	"support": {
