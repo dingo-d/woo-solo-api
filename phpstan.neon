@@ -13,6 +13,9 @@ parameters:
         - %rootDir%/../../../src/Core/CompiledContainer.php
     autoload_files:
         - %currentWorkingDirectory%/vendor/autoload.php
+        - %rootDir%/../../php-stubs/wordpress-stubs/wordpress-stubs.php
+        - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
+        - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
     ignoreErrors:
         # Uses func_get_args()
         - '#Function apply_filters invoked with [34567] parameters, 2 required\.#'
