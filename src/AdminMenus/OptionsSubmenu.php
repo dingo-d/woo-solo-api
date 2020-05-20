@@ -31,7 +31,7 @@ final class OptionsSubmenu extends AdminSubmenu
 
 	public const VIEW_URI = 'views/options-page';
 
-	public function registerSubmenu(string $context)
+	public function registerSubmenu(string $context): void
 	{
 		parent::registerSubmenu($context);
 

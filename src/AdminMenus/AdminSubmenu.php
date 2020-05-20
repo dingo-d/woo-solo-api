@@ -33,7 +33,7 @@ abstract class AdminSubmenu extends AdminMenu
 	 *
 	 * @param string $context Empty context
 	 */
-	public function registerSubmenu(string $context)
+	public function registerSubmenu(string $context): void
 	{
 		add_submenu_page(
 			$this->getParentMenu(),

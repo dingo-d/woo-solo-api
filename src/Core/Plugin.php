@@ -128,7 +128,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	 *
 	 * @throws Exception If a service is not valid.
 	 */
-    public function registerServices()
+    public function registerServices(): void
     {
         // Bail early so we don't instantiate services twice.
         if (! empty($this->services)) {

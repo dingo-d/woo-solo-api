@@ -90,7 +90,7 @@ class EnqueueResources implements Assets
 	/**
 	 * Set the translations inside the JS files
 	 */
-	public function setScriptTranslations()
+	public function setScriptTranslations(): void
 	{
 		wp_set_script_translations(self::JS_HANDLE, 'woo-solo-api');
 	}

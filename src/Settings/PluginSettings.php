@@ -45,7 +45,7 @@ class PluginSettings implements Registrable
 	/**
 	 * Callback to register plugin settings
 	 */
-	public function registerPluginSettings()
+	public function registerPluginSettings(): void
 	{
 		register_setting(
 			'solo-api-settings-group',

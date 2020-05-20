@@ -39,7 +39,7 @@ abstract class AdminMenu implements Registrable, Renderable
 	 *
 	 * @param string $context Empty context
 	 */
-	public function registerAdminMenu(string $context)
+	public function registerAdminMenu(string $context): void
 	{
 		add_menu_page(
 			$this->getTitle(),
@@ -68,7 +68,7 @@ abstract class AdminMenu implements Registrable, Renderable
 		$attr['adminMenuId'] = $this->getMenuSlug();
 		$attr['nonceField'] = $this->renderNonce();
 
-		echo $this->render((array) $attr); // phpcs:ignore
+		echo $this->render((array)$attr); // phpcs:ignore
 	}
 
 	/**
