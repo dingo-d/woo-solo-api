@@ -60,7 +60,7 @@
 	"scripts": {
 		"standards:check": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
 		"standards:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
-		"analyse": "@php ./vendor/bin/phpstan analyze",
+		"analyze": "@php ./vendor/bin/phpstan analyze",
 		"selenium:start": "selenium-server -port 4444",
     	"chrome:start" : "chromedriver --url-base=/wd/hub",
 		"test:prepare": "@php ./vendor/bin/pcov clobber",
