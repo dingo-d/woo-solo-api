@@ -79,14 +79,8 @@ jobs:
               run: composer analyze
 
     tests:
-        name: Integration tests on PHP ${{ matrix.php }}
+        name: Integration tests
         runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                php: [7.2]
-                node: [14]
-                wp: [5.1, 5.2, 5.3, 5.4]
 
         services:
             mysql:
@@ -104,8 +98,50 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Run tests WP${{ matrix.wp }} PHP${{ matrix.php }} Node${{ matrix.node }}
-              uses: dingo-d/woo-solo-api-test-action/WP${{ matrix.wp }}-PHP${{ matrix.php }}-Node-${{ matrix.node }}@v1.0.28
+            - name: Run tests - WP 5.1 PHP 7.2 Node 14
+              uses: dingo-d/woo-solo-api-test-action/WP5.1-PHP7.2-Node-14@v1.0.28
+              with:
+                wp-db-name: 'wordpresstest'
+                wp-db-user: 'admin'
+                wp-db-pass: 'password'
+                wp-db-host: 'mysql'
+                wp-user: 'admin'
+                wp-pass: 'password'
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Run tests - WP 5.2 PHP 7.2 Node 14
+              uses: dingo-d/woo-solo-api-test-action/WP5.2-PHP7.2-Node-14@v1.0.28
+              with:
+                wp-db-name: 'wordpresstest'
+                wp-db-user: 'admin'
+                wp-db-pass: 'password'
+                wp-db-host: 'mysql'
+                wp-user: 'admin'
+                wp-pass: 'password'
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Run tests - WP 5.3 PHP 7.2 Node 14
+              uses: dingo-d/woo-solo-api-test-action/WP5.3-PHP7.2-Node-14@v1.0.28
+              with:
+                wp-db-name: 'wordpresstest'
+                wp-db-user: 'admin'
+                wp-db-pass: 'password'
+                wp-db-host: 'mysql'
+                wp-user: 'admin'
+                wp-pass: 'password'
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Run tests - WP 5.4 PHP 7.2 Node 14
+              uses: dingo-d/woo-solo-api-test-action/WP5.4-PHP7.2-Node-14@v1.0.28
               with:
                 wp-db-name: 'wordpresstest'
                 wp-db-user: 'admin'
