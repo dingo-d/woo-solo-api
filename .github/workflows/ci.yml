@@ -104,7 +104,7 @@ jobs:
               uses: actions/checkout@v2
 
             - name: Run tests in the container
-              uses: dingo-d/plugin-test-action@v1.0.25
+              uses: dingo-d/plugin-test-action@v1.0.26gaa 
               with:
                 wp-db-name: 'wordpresstest'
                 wp-db-user: 'admin'
