@@ -6,17 +6,13 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
     paths:
-        - %currentWorkingDirectory%/src/
+        - src/
     excludes_analyse:
-        - %rootDir%/../../../vendor/
-        - %rootDir%/../../../node_modules/
-        - %rootDir%/../../../bin/
-        - %rootDir%/../../../src/Core/CompiledContainer.php
+        - src/Core/CompiledContainer.php
     autoload_files:
-        - %currentWorkingDirectory%/vendor/autoload.php
-        - %rootDir%/../../php-stubs/wordpress-stubs/wordpress-stubs.php
-        - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-stubs.php
-        - %rootDir%/../../php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
     ignoreErrors:
-        # Uses func_get_args()
+        # Custom constant
         - '#Constant ASSETS_MANIFEST not found\.#'
