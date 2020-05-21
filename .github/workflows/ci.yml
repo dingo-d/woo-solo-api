@@ -103,8 +103,20 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Run tests in the container
+            - name: Run tests PHP 7.2
               uses: dingo-d/plugin-test-action@v1.0.27
+              working-directory: WP5.4.1-PHP7.2-Node-14
+              with:
+                wp-db-name: 'wordpresstest'
+                wp-db-user: 'admin'
+                wp-db-pass: 'password'
+                wp-db-host: 'mysql'
+                wp-user: 'admin'
+                wp-pass: 'password'
+
+            - name: Run tests PHP 7.3
+              uses: dingo-d/plugin-test-action@v1.0.27
+              working-directory: WP5.4.1-PHP7.3-Node-14
               with:
                 wp-db-name: 'wordpresstest'
                 wp-db-user: 'admin'
