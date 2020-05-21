@@ -86,6 +86,8 @@ jobs:
             fail-fast: false
             matrix:
                 php: [7.2]
+                node: [14]
+                wp: [5.1, 5.2, 5.3, 5.4]
 
         services:
             mysql:
@@ -103,18 +105,8 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Run tests PHP 7.2
-              uses: dingo-d/plugin-test-action/WP5.4.1-PHP7.2-Node-14@v1.0.27
-              with:
-                wp-db-name: 'wordpresstest'
-                wp-db-user: 'admin'
-                wp-db-pass: 'password'
-                wp-db-host: 'mysql'
-                wp-user: 'admin'
-                wp-pass: 'password'
-
-            - name: Run tests PHP 7.3
-              uses: dingo-d/plugin-test-action/WP5.4.1-PHP7.3-Node-14@v1.0.27
+            - name: Run tests WP${{ matrix.wp }} PHP${{ matrix.php }} Node${{ matrix.node }}
+              uses: dingo-d/woo-solo-api-test-action/WP${{ matrix.wp }}-PHP${{ matrix.php }}-Node-${{ matrix.node }}@v1.0.28
               with:
                 wp-db-name: 'wordpresstest'
                 wp-db-user: 'admin'
