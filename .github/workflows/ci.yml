@@ -81,7 +81,6 @@ jobs:
     tests:
         name: Integration tests on PHP ${{ matrix.php }}
         runs-on: ubuntu-latest
-
         strategy:
             fail-fast: false
             matrix:
