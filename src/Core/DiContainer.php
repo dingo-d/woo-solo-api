@@ -124,11 +124,12 @@ final class DiContainer
         $prepared_services = [];
 
         foreach ($services as $class => $dependencies) {
-            if (! is_array($dependencies)) {
-                $prepared_services[ $dependencies ] = [];
-            } else {
+            if (is_array($dependencies)) {
                 $prepared_services[ $class ] = $dependencies;
+				continue;
             }
+
+            $prepared_services[ $dependencies ] = [];
         }
 
         return $prepared_services;
