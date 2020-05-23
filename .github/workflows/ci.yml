@@ -7,76 +7,76 @@ on:
         branches: [master]
 
 jobs:
-    phpcs_check:
-        name: PHPCS check on PHP ${{ matrix.php }}
-        runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                php: [7.2, 7.3, 7.4]
+        phpcs_check:
+            name: PHPCS check on PHP ${{ matrix.php }}
+            runs-on: ubuntu-latest
+            strategy:
+                fail-fast: false
+                matrix:
+                    php: [7.2, 7.3, 7.4]
 
-        steps:
-            # Checkout repository
-            - name: Checkout
-              uses: actions/checkout@v2
+            steps:
+                # Checkout repository
+                - name: Checkout
+                  uses: actions/checkout@v2
 
-            # Setup PHP versions, run checks
-            - name: PHP setup
-              uses: shivammathur/setup-php@v2
-              with:
-                php-version: ${{ matrix.php }}
-                coverage: pcov
+                # Setup PHP versions, run checks
+                - name: PHP setup
+                  uses: shivammathur/setup-php@v2
+                  with:
+                    php-version: ${{ matrix.php }}
+                    coverage: pcov
 
-            - name: Get composer cache directory
-              id: composer-cache
-              run: |
-                echo "::set-output name=dir::$(composer config cache-files-dir)"
+                - name: Get composer cache directory
+                  id: composer-cache
+                  run: |
+                    echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-            - name: Cache composer dependencies
-              uses: actions/cache@v1
-              with:
-                path: ${{ steps.composer-cache.outputs.dir }}
-                key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-                restore-keys: |
-                  ${{ runner.os }}-composer-
+                - name: Cache composer dependencies
+                  uses: actions/cache@v1
+                  with:
+                    path: ${{ steps.composer-cache.outputs.dir }}
+                    key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                      ${{ runner.os }}-composer-
 
-            - name: Install composer packages
-              run: composer install --no-progress
+                - name: Install composer packages
+                  run: composer install --no-progress
 
-            - name: Check coding standards using PHPCS
-              run: composer standards:check -- --runtime-set testVersion ${{ matrix.php }}-
+                - name: Check coding standards using PHPCS
+                  run: composer standards:check -- --runtime-set testVersion ${{ matrix.php }}-
 
-    phpstan:
-        name: PHPStan check
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
+        phpstan:
+            name: PHPStan check
+            runs-on: ubuntu-latest
+            steps:
+                - name: Checkout
+                  uses: actions/checkout@v2
 
-            - name: PHP setup
-              uses: shivammathur/setup-php@v2
-              with:
-                php-version: 7.2
-                coverage: pcov
+                - name: PHP setup
+                  uses: shivammathur/setup-php@v2
+                  with:
+                    php-version: 7.2
+                    coverage: pcov
 
-            - name: Get composer cache directory
-              id: composer-cache
-              run: |
-                echo "::set-output name=dir::$(composer config cache-files-dir)"
+                - name: Get composer cache directory
+                  id: composer-cache
+                  run: |
+                    echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-            - name: Cache composer dependencies
-              uses: actions/cache@v1
-              with:
-                path: ${{ steps.composer-cache.outputs.dir }}
-                key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-                restore-keys: |
-                  ${{ runner.os }}-composer-
+                - name: Cache composer dependencies
+                  uses: actions/cache@v1
+                  with:
+                    path: ${{ steps.composer-cache.outputs.dir }}
+                    key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                      ${{ runner.os }}-composer-
 
-            - name: Install composer packages
-              run: composer install --no-progress
+                - name: Install composer packages
+                  run: composer install --no-progress
 
-            - name: Analyse code using phpstan
-              run: composer analyze
+                - name: Analyse code using phpstan
+                  run: composer analyze
 
     tests:
         name: Integration tests
@@ -97,36 +97,6 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v2
-
-            - name: Run tests - WP 5.1 PHP 7.2 Node 14
-              uses: dingo-d/woo-solo-api-test-action/WP5.1-PHP7.2-Node-14@v1.0.29
-              with:
-                wp-db-name: 'wordpresstest'
-                wp-db-user: 'admin'
-                wp-db-pass: 'password'
-                wp-db-host: 'mysql'
-                wp-user: 'admin'
-                wp-pass: 'password'
-
-            - name: Run tests - WP 5.2 PHP 7.2 Node 14
-              uses: dingo-d/woo-solo-api-test-action/WP5.2-PHP7.2-Node-14@v1.0.29
-              with:
-                wp-db-name: 'wordpresstest'
-                wp-db-user: 'admin'
-                wp-db-pass: 'password'
-                wp-db-host: 'mysql'
-                wp-user: 'admin'
-                wp-pass: 'password'
-
-            - name: Run tests - WP 5.3 PHP 7.2 Node 14
-              uses: dingo-d/woo-solo-api-test-action/WP5.3-PHP7.2-Node-14@v1.0.29
-              with:
-                wp-db-name: 'wordpresstest'
-                wp-db-user: 'admin'
-                wp-db-pass: 'password'
-                wp-db-host: 'mysql'
-                wp-user: 'admin'
-                wp-pass: 'password'
 
             - name: Run tests - WP 5.4 PHP 7.2 Node 14
               uses: dingo-d/woo-solo-api-test-action/WP5.4-PHP7.2-Node-14@v1.0.29
