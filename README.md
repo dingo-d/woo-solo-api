@@ -90,6 +90,8 @@ The webpack config is taken from (partially) [Eightshift frontend libs](https://
 
 Settings page was created with the help of [tutorial](https://www.codeinwp.com/blog/plugin-options-page-gutenberg/) by Hardeep Asrani.
 
+Parts of the architecture were influenced by [Alain Schlessera's Workshops](https://github.com/schlessera/wcbtn-2018-api).
+
 ## License
 
 Copyright ©2020 Denis Žoljom.
