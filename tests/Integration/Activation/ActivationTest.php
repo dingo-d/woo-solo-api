@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 namespace Tests\Integration\Activation;
-
 use Codeception\TestCase\WPTestCase;
+
 use MadeByDenis\WooSoloApi\Core\{Plugin, PluginFactory};
 use IntegrationTester;
 

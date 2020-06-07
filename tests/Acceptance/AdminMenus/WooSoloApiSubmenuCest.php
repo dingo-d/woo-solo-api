@@ -1,25 +1,10 @@
 <?php
 
-declare(strict_types=1);
+$I->loginAsAdmin();
+$I->amOnPluginsPage();
+$I->activatePlugin('woocommerce');
+$I->activatePlugin('woo-solo-api');
 
-namespace Tests\Acceptance\AdminMenus;
-
-use AcceptanceTester;
-
-class WooSoloApiSubmenuCest
-{
-	public function _before(AcceptanceTester $I)
-	{
-		$I->loginAsAdmin();
-		$I->amOnPluginsPage();
-		$I->activatePlugin('woocommerce');
-		$I->activatePlugin('woo-solo-api');
-	}
-
-	public function seeWooSoloApiSubmenuPage(AcceptanceTester $I)
-	{
-		$I->amOnPage('wp-admin/admin.php?page=solo_api_options');
-		sleep(5);
-		$I->see('Solo API token');
-	}
-}
+$I->amOnPage('wp-admin/admin.php?page=solo_api_options');
+$I->wait(10);
+$I->see('Solo API token');
