@@ -14,6 +14,8 @@ namespace MadeByDenis\WooSoloApi\Core;
 use Exception;
 use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
 use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
+use MadeByDenis\WooSoloApi\ECommerce\AdminOrder;
+use MadeByDenis\WooSoloApi\ECommerce\CheckoutFields;
 use MadeByDenis\WooSoloApi\ECommerce\WooPaymentGateways;
 use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
 use MadeByDenis\WooSoloApi\Settings\PluginSettings;
@@ -167,6 +169,8 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
     {
         $services = [
 			AccountDetails::class,
+			AdminOrder::class,
+			CheckoutFields::class,
 			OptionsSubmenu::class,
 			PluginSettings::class => [WooPaymentGateways::class],
         	EnqueueResources::class,
