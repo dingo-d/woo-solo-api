@@ -1,4 +1,5 @@
 <?php
+$I = new AcceptanceTester($scenario);
 
 $I->loginAsAdmin();
 $I->amOnPage('wp-admin/admin.php?page=solo_api_options');
