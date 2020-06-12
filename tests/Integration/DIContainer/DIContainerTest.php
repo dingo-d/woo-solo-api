@@ -20,14 +20,14 @@ class DIContainerTest extends WPTestCase
 	 */
 	private $container;
 
-	public function setUp()
+	public function setUp(): void
     {
         parent::setUp();
 
         $this->container = new DiContainer();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
     }

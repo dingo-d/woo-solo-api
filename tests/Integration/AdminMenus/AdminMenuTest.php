@@ -21,7 +21,7 @@ class AdminMenuTest extends WPTestCase
 	 */
 	private $mockAdminMenu;
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 
@@ -64,7 +64,7 @@ class AdminMenuTest extends WPTestCase
 		};
 	}
 
-	public function tearDown()
+	public function tearDown(): void
 	{
 		parent::tearDown();
 	}

@@ -20,14 +20,14 @@ class OptionsSubmenuTest extends WPTestCase
 	 */
 	private $optionsSubmenu;
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 
 		$this->optionsSubmenu = new OptionsSubmenu();
 	}
 
-	public function tearDown()
+	public function tearDown(): void
 	{
 		parent::tearDown();
 	}

@@ -26,7 +26,7 @@ class EnqueueTest extends WPTestCase
 	 */
 	private $enqueueClass;
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 
@@ -41,7 +41,7 @@ class EnqueueTest extends WPTestCase
 		$this->enqueueClass = new EnqueueResources();
 	}
 
-	public function tearDown()
+	public function tearDown(): void
 	{
 		$GLOBALS['wp_scripts'] = $this->oldWpScripts;
 		add_action('wp_default_scripts', 'wp_default_scripts');

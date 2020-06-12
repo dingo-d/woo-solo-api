@@ -29,7 +29,7 @@ class RestEndpointTest extends WPTestCase
 	 */
 	private $route;
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 
@@ -40,7 +40,7 @@ class RestEndpointTest extends WPTestCase
 		$this->route = '/' . BaseRoute::NAMESPACE_NAME . BaseRoute::VERSION . AccountDetails::ROUTE_NAME;
 	}
 
-	public function tearDown()
+	public function tearDown(): void
 	{
 		global $wp_rest_server;
 		$wp_rest_server = null;
