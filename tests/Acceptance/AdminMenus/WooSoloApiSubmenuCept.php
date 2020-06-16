@@ -8,5 +8,5 @@ $I->activatePlugin('woocommerce');
 $I->activatePlugin('woo-solo-api');
 
 $I->amOnPage('wp-admin/admin.php?page=solo_api_options');
-$I->wait(10);
+$I->waitForElementVisible('.components-panel__body', 10);
 $I->see('Solo API token');

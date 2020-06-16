@@ -61,12 +61,14 @@ class App extends Component {
 			solo_api_available_gateways: '',
 		};
 
-		this.settings = new wp.api.models.Settings();
+		this.settings = {};
 	}
 
 	componentDidMount() {
 		wp.api.loadPromise.done(() => {
 			if (this.state.isLoading) {
+				this.settings = new wp.api.models.Settings();
+
 				this.settings.fetch().then(res => {
 
 					const availableGateways = Serialize.unserialize(res.solo_api_available_gateways);
@@ -180,8 +182,8 @@ class App extends Component {
 			<Snackbar className={this.state.isSaved ? 'is-visible' : 'is-hidden'}>
 				{
 					this.state.hasErrors ?
-					__('Errors happened during saving', 'woo-solo-api') :
-					__('Settings saved', 'woo-solo-api')
+						__('Errors happened during saving', 'woo-solo-api') :
+						__('Settings saved', 'woo-solo-api')
 				}
 			</Snackbar>
 		)

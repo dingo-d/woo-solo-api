@@ -1,6 +1,6 @@
 <?php
 
-//$I = new AcceptanceTester($scenario);
+$I = new AcceptanceTester($scenario);
 
 $I->loginAsAdmin();
 $I->amOnPluginsPage();
