@@ -65,7 +65,9 @@ final class DiContainer
     {
         $builder = new ContainerBuilder();
 
-        $builder->enableCompilation(__DIR__);
+        if (!defined('DEVELOPMENT') && !DEVELOPMENT) {
+            $builder->enableCompilation(__DIR__);
+        }
 
         $definitions = [];
 
