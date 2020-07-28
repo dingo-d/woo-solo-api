@@ -12,11 +12,13 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Core;
 
 use Exception;
+use MadeByDenis\WooSoloApi\Admin\PluginsPage;
 use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
 use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
 use MadeByDenis\WooSoloApi\ECommerce\AdminOrder;
 use MadeByDenis\WooSoloApi\ECommerce\CheckoutFields;
 use MadeByDenis\WooSoloApi\ECommerce\WooPaymentGateways;
+use MadeByDenis\WooSoloApi\Email\EmailFunctionality;
 use MadeByDenis\WooSoloApi\i18n\Internationalization;
 use MadeByDenis\WooSoloApi\Exception\{MissingManifest, PluginActivationFailure};
 use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
@@ -73,38 +75,6 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	}
 
 	/**
-	 * Register the individual services of this plugin.
-	 *
-	 * @throws Exception If a service is not valid.
-	 */
-	public function registerServices(): void
-	{
-		// Bail early so we don't instantiate services twice.
-		if (!empty($this->services)) {
-			return;
-		}
-
-		static $container = null;
-
-		if ($container === null) {
-			$container = new DiContainer();
-		}
-
-		$this->services = $container->getDiServices($this->getServiceClasses());
-
-		array_walk(
-			$this->services,
-			static function ($class) {
-				if (!$class instanceof Registrable) {
-					return;
-				}
-
-				$class->register();
-			}
-		);
-	}
-
-	/**
 	 * Deactivate the plugin.
 	 *
 	 * @throws Exception
@@ -135,6 +105,38 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 		add_action('plugins_loaded', [$this, 'registerServices']);
 
 		$this->registerAssetsManifestData();
+	}
+
+	/**
+	 * Register the individual services of this plugin.
+	 *
+	 * @throws Exception If a service is not valid.
+	 */
+	public function registerServices(): void
+	{
+		// Bail early so we don't instantiate services twice.
+		if (!empty($this->services)) {
+			return;
+		}
+
+		static $container = null;
+
+		if ($container === null) {
+			$container = new DiContainer();
+		}
+
+		$this->services = $container->getDiServices($this->getServiceClasses());
+
+		array_walk(
+			$this->services,
+			static function ($class) {
+				if (!$class instanceof Registrable) {
+					return;
+				}
+
+				$class->register();
+			}
+		);
 	}
 
 	/**
@@ -172,9 +174,11 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			AccountDetails::class,
 			AdminOrder::class,
 			CheckoutFields::class,
+			EmailFunctionality::class,
 			EnqueueResources::class,
 			Internationalization::class,
 			OptionsSubmenu::class,
+			PluginsPage::class,
 			PluginSettings::class => [WooPaymentGateways::class],
 		];
 
