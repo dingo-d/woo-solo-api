@@ -17,8 +17,8 @@
  * License URI:          https://opensource.org/licenses/MIT
  * Text Domain:          woo-solo-api
  * Domain Path:          /languages
- * WC requires at least: 3.9.0
- * WC tested up to:      4.0.1
+ * WC requires at least: 4.0.0
+ * WC tested up to:      4.2.1
  */
 
 namespace MadeByDenis\WooSoloApi;
