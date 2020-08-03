@@ -20,6 +20,7 @@ use MadeByDenis\WooSoloApi\ECommerce\CheckoutFields;
 use MadeByDenis\WooSoloApi\ECommerce\WooPaymentGateways;
 use MadeByDenis\WooSoloApi\Email\EmailFunctionality;
 use MadeByDenis\WooSoloApi\i18n\Internationalization;
+use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use MadeByDenis\WooSoloApi\Exception\{MissingManifest, PluginActivationFailure};
 use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
 use MadeByDenis\WooSoloApi\Settings\PluginSettings;
@@ -176,6 +177,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			CheckoutFields::class,
 			EmailFunctionality::class,
 			EnqueueResources::class,
+			FetchExchangeRate::class,
 			Internationalization::class,
 			OptionsSubmenu::class,
 			PluginsPage::class,
