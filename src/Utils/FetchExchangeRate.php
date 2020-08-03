@@ -44,12 +44,12 @@ class FetchExchangeRate implements Registrable
 	/**
 	 * Sets the Croatian exchange rates for foreign currencies
 	 *
-	 * @since 2.0.0 Change the way the data is fetched.
+	 * @return void.
 	 * @since 1.7.5 Add fallback method in case the allow_url_fopen is disabled.
 	 * @since 1.5.0 Change link for the currency fetch.
 	 * @since 1.3.0
 	 *
-	 * @return void.
+	 * @since 2.0.0 Change the way the data is fetched.
 	 */
 	public function setExchangeRates(): void
 	{
@@ -71,8 +71,6 @@ class FetchExchangeRate implements Registrable
 
 		$body = wp_remote_retrieve_body($response);
 
-		set_transient( self::TRANSIENT, $body, 6 * HOUR_IN_SECONDS );
+		set_transient(self::TRANSIENT, $body, 6 * HOUR_IN_SECONDS);
 	}
-
-
 }

@@ -19,7 +19,7 @@
  * Domain Path:          /languages
  * WC requires at least: 4.0.0
  * WC tested up to:      4.2.1
- * Requires PHP: 		 7.2
+ * Requires PHP:         7.2
  */
 
 namespace MadeByDenis\WooSoloApi;
