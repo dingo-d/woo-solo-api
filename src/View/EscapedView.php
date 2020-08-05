@@ -3,8 +3,8 @@
 /**
  * Escaped view class file
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -19,6 +19,9 @@ use MadeByDenis\WooSoloApi\Exception\InvalidUri;
  *
  * This is a Decorator that decorates a given View with escaping meant for
  * HTML output.
+ *
+ * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 final class EscapedView implements View
 {

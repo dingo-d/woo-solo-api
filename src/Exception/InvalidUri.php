@@ -3,13 +3,15 @@
 /**
  * File containing the invalid URI exception class
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\Exception
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Exception;
+
+use InvalidArgumentException;
 
 /**
  * Class InvalidUri.
@@ -17,8 +19,9 @@ namespace MadeByDenis\WooSoloApi\Exception;
  * Exception thrown when a URI is not valid in WordPress context.
  *
  * @package MadeByDenis\WooSoloApi\Exception
+ * @since 2.0.0
  */
-final class InvalidUri extends \InvalidArgumentException implements GeneralException
+final class InvalidUri extends InvalidArgumentException implements GeneralException
 {
 	/**
 	* Create a new instance of the exception for a file that is not accessible

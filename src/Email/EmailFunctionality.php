@@ -3,8 +3,8 @@
 /**
  * File holding EmailFunctionality class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Email
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -16,8 +16,8 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
 /**
  * EmailFunctionality class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Email
+ * @since 2.0.0
  */
 class EmailFunctionality implements Registrable
 {
@@ -33,9 +33,12 @@ class EmailFunctionality implements Registrable
 	/**
 	 * Change the email 'From' name that is send from WordPress
 	 *
+	 * @since 2.0.0 Added a filter that can be hooked into.
+	 * @since 1.0.0
+	 *
 	 * @param string $name Name that is shown.
 	 *
-	 * @return string      Changed name.
+	 * @return string Changed name.
 	 */
 	public function changeEmailFromName(string $name): string
 	{
@@ -45,6 +48,6 @@ class EmailFunctionality implements Registrable
 			$name = $newName;
 		}
 
-		return $name;
+		return apply_filters('woo_solo_api_change_email_from_name', $name);
 	}
 }

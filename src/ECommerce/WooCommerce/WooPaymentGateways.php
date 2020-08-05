@@ -3,14 +3,15 @@
 /**
  * WooCommerce Payment gateway implementation
  *
- * @since 2.0.0.
  * @package MadeByDenis\WooSoloApi\ECommerce
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
 
-namespace MadeByDenis\WooSoloApi\ECommerce;
+namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 
+use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
 use WC_Payment_Gateways;
 
 /**
@@ -21,6 +22,7 @@ use WC_Payment_Gateways;
  * avoiding direct instantiations.
  *
  * @package MadeByDenis\WooSoloApi\ECommerce
+ * @since 2.0.0
  */
 class WooPaymentGateways implements PaymentGateways
 {

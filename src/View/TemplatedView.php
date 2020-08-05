@@ -3,8 +3,8 @@
 /**
  * Templated view class file
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -18,6 +18,9 @@ use MadeByDenis\WooSoloApi\Exception\InvalidUri;
  *
  * Looks within the child theme and parent theme folders first for a view,
  * before defaulting to the plugin folder.
+ *
+ * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 final class TemplatedView extends BaseView
 {

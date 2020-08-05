@@ -3,25 +3,26 @@
 /**
  * File holding AdminOrder class
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\ECommerce
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
 
-namespace MadeByDenis\WooSoloApi\ECommerce;
+namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 
 use Automattic\WooCommerce\Admin\Overrides\Order;
+use MadeByDenis\WooSoloApi\Core\Registrable;
 
 /**
  * AdminOrder class
  *
  * Adds additional data to the admin order page
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\ECommerce
+ * @since 2.0.0
  */
-class AdminOrder implements \MadeByDenis\WooSoloApi\Core\Registrable
+class AdminOrder implements Registrable
 {
 
 	/**
@@ -38,6 +39,7 @@ class AdminOrder implements \MadeByDenis\WooSoloApi\Core\Registrable
 	 * This callback will show additional fields in the Edit order screen in the admin.
 	 *
 	 * @param Order $order WooCommerce order object.
+	 *
 	 * @return void
 	 */
 	public function checkoutFieldDisplayAdminOrderMeta(Order $order): void

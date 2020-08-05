@@ -3,8 +3,8 @@
 /**
  * Base view class file
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -20,6 +20,7 @@ use MadeByDenis\WooSoloApi\Exception\InvalidUri;
  * Basic View class to abstract away the PHP view rendering.
  *
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 class BaseView implements View
 {

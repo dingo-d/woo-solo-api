@@ -3,8 +3,8 @@
 /**
  * Interface that handles plugin views
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -19,6 +19,7 @@ use MadeByDenis\WooSoloApi\Exception\InvalidUri;
  * Interface View
  *
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 interface View extends Renderable
 {

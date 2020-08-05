@@ -3,8 +3,8 @@
 /**
  * File holding Plugin settings class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Settings
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -17,8 +17,8 @@ use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
 /**
  * Plugin settings class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Settings
+ * @since 2.0.0
  */
 class PluginSettings implements Registrable
 {
@@ -27,6 +27,7 @@ class PluginSettings implements Registrable
 
 	/**
 	 * PluginSettings constructor.
+	 * S
 	 * @param PaymentGateways $gateway
 	 */
 	public function __construct(PaymentGateways $gateway)
@@ -316,9 +317,10 @@ class PluginSettings implements Registrable
 	 *                         When registering complex settings, this argument may optionally be an array
 	 *                         with a 'schema' key.
 	 * @param mixed $default Default value when calling get_option().
+	 *
 	 * @return array
 	 */
-	private function setSettingsArguments(string $type, string $description, callable $sanitizeCallback, $showInRest, $default)
+	private function setSettingsArguments(string $type, string $description, callable $sanitizeCallback, $showInRest, $default): array
 	{
 		return [
 			'type' => $type,

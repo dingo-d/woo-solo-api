@@ -29,6 +29,7 @@ interface Assets extends Registrable
 	 * @since 2.0.0
 	 *
 	 * @param string $hookSuffix Page suffix.
+	 *
 	 * @return mixed
 	 */
 	public function enqueueStyles(string $hookSuffix);
@@ -39,6 +40,7 @@ interface Assets extends Registrable
 	 * @since 2.0.0
 	 *
 	 * @param string $hookSuffix Page suffix.
+	 *
 	 * @return mixed
 	 */
 	public function enqueueScripts(string $hookSuffix);

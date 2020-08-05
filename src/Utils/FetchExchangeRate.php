@@ -3,8 +3,8 @@
 /**
  * File holding FetchExchangeRate class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Utils
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -21,8 +21,8 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
  *
  * For the documentation @see https://api.hnb.hr/
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Utils
+ * @since 2.0.0
  */
 class FetchExchangeRate implements Registrable
 {
@@ -44,12 +44,12 @@ class FetchExchangeRate implements Registrable
 	/**
 	 * Sets the Croatian exchange rates for foreign currencies
 	 *
-	 * @return void.
+	 * @since 2.0.0 Change the way the data is fetched and stored.
 	 * @since 1.7.5 Add fallback method in case the allow_url_fopen is disabled.
 	 * @since 1.5.0 Change link for the currency fetch.
 	 * @since 1.3.0
 	 *
-	 * @since 2.0.0 Change the way the data is fetched.
+	 * @return void
 	 */
 	public function setExchangeRates(): void
 	{
@@ -62,6 +62,10 @@ class FetchExchangeRate implements Registrable
 	 * Fetch exchange rates from the CNB api and store it in a transient
 	 *
 	 * @link http://api.hnb.hr/tecajn/v2
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return void
 	 */
 	private function setExchangeRatesTransient(): void
 	{

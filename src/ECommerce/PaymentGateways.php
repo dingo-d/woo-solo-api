@@ -3,8 +3,8 @@
 /**
  * Payment gateway interface
  *
- * @since 2.0.0.
  * @package MadeByDenis\WooSoloApi\ECommerce;
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -17,6 +17,7 @@ namespace MadeByDenis\WooSoloApi\ECommerce;
  * Used for implementing various e-commerce payment gateways
  *
  * @package MadeByDenis\WooSoloApi\ECommerce
+ * @since 2.0.0
  */
 interface PaymentGateways
 {

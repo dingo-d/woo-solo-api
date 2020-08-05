@@ -3,13 +3,15 @@
 /**
  * File containing the plugin activation failure exception class
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\Exception
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Exception;
+
+use RuntimeException;
 
 /**
  * Class PluginActivationFailure
@@ -17,8 +19,9 @@ namespace MadeByDenis\WooSoloApi\Exception;
  * Exception when plugin activation error happens
  *
  * @package MadeByDenis\WooSoloApi\Exception
+ * @since 2.0.0
  */
-final class PluginActivationFailure extends \RuntimeException implements GeneralException
+final class PluginActivationFailure extends RuntimeException implements GeneralException
 {
 
 	/**

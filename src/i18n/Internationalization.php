@@ -3,7 +3,8 @@
 /**
  * File holding Internationalization class
  *
- * @since
+ * @package MadeByDenis\WooSoloApi\i18n
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -15,7 +16,8 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
 /**
  * Internationalization class
  *
- * @since
+ * @package MadeByDenis\WooSoloApi\i18n
+ * @since 2.0.0
  */
 class Internationalization implements Registrable
 {
@@ -25,10 +27,13 @@ class Internationalization implements Registrable
 	 */
 	public function register(): void
 	{
-		add_action('plugins_loaded', [$this, 'loadPluginTextdomain']);
+		add_action('plugins_loaded', [$this, 'loadPluginTextDomain']);
 	}
 
-	public function loadPluginTextdomain()
+	/**
+	 * Callback that will load plugin text domain
+	 */
+	public function loadPluginTextDomain()
 	{
 		load_plugin_textdomain(
 			'woo-solo-api',

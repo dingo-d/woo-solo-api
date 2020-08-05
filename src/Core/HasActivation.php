@@ -3,8 +3,8 @@
 /**
  * File that holds Has_Activation interface
  *
- * @since 2.0.0
  * @package Developer_Portal\Core
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -16,6 +16,7 @@ namespace MadeByDenis\WooSoloApi\Core;
  *
  * An object that can be activated.
  *
+ * @package Developer_Portal\Core
  * @since 2.0.0
  */
 interface HasActivation

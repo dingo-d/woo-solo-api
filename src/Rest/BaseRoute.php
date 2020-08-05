@@ -3,8 +3,8 @@
 /**
  * File holding BaseRoute class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Rest
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -16,8 +16,8 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
 /**
  * BaseRoute class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Rest
+ * @since 2.0.0
  */
 abstract class BaseRoute implements Route, Registrable
 {

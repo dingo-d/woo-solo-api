@@ -3,8 +3,8 @@
 /**
  * File holding ErrorCodes trait
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Utils
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -14,12 +14,21 @@ namespace MadeByDenis\WooSoloApi\Utils;
 /**
  * ErrorCodes trait
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Utils
+ * @since 2.0.0
  */
 trait ErrorCodes
 {
-	public function getErrorMessage(string $reason)
+	/**
+	 * Error message helper
+	 *
+	 * Returns the error message based on the type of error.
+	 *
+	 * @param string $reason Error message identifier.
+	 *
+	 * @return string Error message string.
+	 */
+	public function getErrorMessage(string $reason): string
 	{
 		switch ($reason) {
 			case 'nonce':

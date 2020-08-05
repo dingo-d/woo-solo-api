@@ -3,8 +3,8 @@
 /**
  * File containing the main plugin class
  *
- * @since 2.0.0
  * @package Developer_Portal\Core
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -15,9 +15,9 @@ use Exception;
 use MadeByDenis\WooSoloApi\Admin\PluginsPage;
 use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
 use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
-use MadeByDenis\WooSoloApi\ECommerce\AdminOrder;
-use MadeByDenis\WooSoloApi\ECommerce\CheckoutFields;
-use MadeByDenis\WooSoloApi\ECommerce\WooPaymentGateways;
+use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\AdminOrder;
+use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\CheckoutFields;
+use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\WooPaymentGateways;
 use MadeByDenis\WooSoloApi\Email\EmailFunctionality;
 use MadeByDenis\WooSoloApi\i18n\Internationalization;
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
@@ -31,6 +31,7 @@ use MadeByDenis\WooSoloApi\Settings\PluginSettings;
  * Main plugin controller class that hooks the plugin's functionality
  * into the WordPress request lifecycle.
  *
+ * @package Developer_Portal\Core
  * @since 2.0.0
  */
 final class Plugin implements Registrable, HasActivation, HasDeactivation
@@ -46,6 +47,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	/**
 	 * Activate the plugin
 	 *
+	 * @return void
 	 * @throws Exception If a condition for plugin activation isn't met.
 	 */
 	public function activate(): void
@@ -78,6 +80,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	/**
 	 * Deactivate the plugin.
 	 *
+	 * @return void
 	 * @throws Exception
 	 */
 	public function deactivate(): void
@@ -111,6 +114,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	/**
 	 * Register the individual services of this plugin.
 	 *
+	 * @return void
 	 * @throws Exception If a service is not valid.
 	 */
 	public function registerServices(): void
@@ -166,8 +170,8 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	 *
 	 * A list of classes which contain hooks.
 	 *
-	 * @return array<int|string, array<int, string>|string> Array that contains FQCN as a key of the class to instantiate, and
-	 *                      Array as a value of that key that denotes its dependencies.
+	 * @return array<int|string, array<int, string>|string> Array that contains FQCN as a key of the class to instantiate,
+	 * 						and array as a value of that key that denotes its dependencies.
 	 */
 	private function getServiceClasses(): array
 	{

@@ -3,8 +3,8 @@
 /**
  * File holding AccountDetails class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Rest\Endpoints
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -18,8 +18,10 @@ use WP_REST_Request;
 /**
  * AccountDetails class
  *
- * @since
+ * This class holds the callback function for the REST endpoint used to check the details from SOLO API.
+ *
  * @package MadeByDenis\WooSoloApi\Rest\Endpoints
+ * @since 2.0.0
  */
 class AccountDetails extends BaseRoute implements RestCallable
 {
@@ -31,8 +33,8 @@ class AccountDetails extends BaseRoute implements RestCallable
 	protected function getCallbackArguments(): array
 	{
 		return [
-			'methods'             => static::READABLE,
-			'callback'            => [$this, 'restCallback'],
+			'methods' => static::READABLE,
+			'callback' => [$this, 'restCallback'],
 			'permission_callback' => [$this, 'restPermissionCheck'],
 		];
 	}
@@ -52,20 +54,21 @@ class AccountDetails extends BaseRoute implements RestCallable
 
 			$data = $errorCode . ': ' . $errorMessage;
 		} else {
-			$data = json_decode($response['body'], true);
+			$data = wp_remote_retrieve_body($response);
 		}
 
-		return rest_ensure_response(wp_json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+		return rest_ensure_response($data);
 	}
 
 	/**
 	 * Check if the current user has necessary privileges to access the endpoint
 	 *
 	 * @param WP_REST_Request $request
+	 *
 	 * @return bool
 	 */
 	public function restPermissionCheck(WP_REST_Request $request)
 	{
-		return current_user_can('manage_options');
+		return is_user_logged_in() && current_user_can('manage_options');
 	}
 }

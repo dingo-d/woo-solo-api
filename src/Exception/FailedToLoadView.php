@@ -3,13 +3,16 @@
 /**
  * File containing the failed to load view exception class
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\Exception
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Exception;
+
+use Exception;
+use RuntimeException;
 
 /**
  * Class Failed_To_Load_View.
@@ -17,17 +20,17 @@ namespace MadeByDenis\WooSoloApi\Exception;
  * Exception thrown when a view file cannot be found.
  *
  * @package MadeByDenis\WooSoloApi\Exception
+ * @since 2.0.0
  */
-final class FailedToLoadView extends \RuntimeException implements GeneralException
+final class FailedToLoadView extends RuntimeException implements GeneralException
 {
 
 	/**
 	 * Create a new instance of the exception if the view file itself created
 	 * an exception.
 	 *
-	 * @param string     $uri       URI of the file that is not accessible or
-	 *                              not readable.
-	 * @param \Exception $exception Exception that was thrown by the view file.
+	 * @param string    $uri       URI of the file that is not accessible or not readable.
+	 * @param Exception $exception Exception that was thrown by the view file.
 	 *
 	 * @return static
 	 */
