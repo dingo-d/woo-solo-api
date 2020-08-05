@@ -3,8 +3,8 @@
 /**
  *  Base abstract class for admin submenus
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\AdminMenus
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -17,11 +17,12 @@ namespace MadeByDenis\WooSoloApi\AdminMenus;
  * This abstract class can be extended to add new admin submenus.
  *
  * @package MadeByDenis\WooSoloApi\AdminMenus
+ * @since 2.0.0
  */
 abstract class AdminSubmenu extends AdminMenu
 {
 	/**
-	 * Register the submenu.
+	 * @inheritDoc
 	 */
 	public function register(): void
 	{
@@ -31,7 +32,7 @@ abstract class AdminSubmenu extends AdminMenu
 	/**
 	 * Admin submenu registration callback
 	 *
-	 * @param string $context Empty context
+	 * @param string $context Empty context.
 	 */
 	public function registerSubmenu(string $context): void
 	{

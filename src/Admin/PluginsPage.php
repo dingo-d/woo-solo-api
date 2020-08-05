@@ -3,8 +3,8 @@
 /**
  * File holding PluginsPage class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Admin
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -16,8 +16,8 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
 /**
  * PluginsPage class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Admin
+ * @since 2.0.0
  */
 class PluginsPage implements Registrable
 {
@@ -34,6 +34,7 @@ class PluginsPage implements Registrable
 	 * Add plugin settings link on plugins page
 	 *
 	 * @param array $links Plugin action links.
+	 *
 	 * @return array Updated links that will be shown on the plugins install page.
 	 */
 	public function addActionLink(array $links): array

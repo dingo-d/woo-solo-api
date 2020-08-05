@@ -3,21 +3,19 @@
 /**
  * Render options submenu page
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\AdminMenus
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\AdminMenus;
 
-use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
-
 /**
  * Add an options submenu inside WooCommerce menu
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\AdminMenus
+ * @since 2.0.0
  */
 final class OptionsSubmenu extends AdminSubmenu
 {
@@ -31,6 +29,9 @@ final class OptionsSubmenu extends AdminSubmenu
 
 	public const VIEW_URI = 'views/options-page';
 
+	/**
+	 * @inheritDoc
+	 */
 	public function registerSubmenu(string $context): void
 	{
 		parent::registerSubmenu($context);
@@ -48,7 +49,7 @@ final class OptionsSubmenu extends AdminSubmenu
 	 */
 	protected function getTitle(): string
 	{
-		return __('Woo Solo Api Options', 'woo-solo-api');
+		return esc_html__('Woo Solo Api Options', 'woo-solo-api');
 	}
 
 	/**
@@ -56,7 +57,7 @@ final class OptionsSubmenu extends AdminSubmenu
 	 */
 	protected function getMenuTitle(): string
 	{
-		return __('Solo API Options', 'woo-solo-api');
+		return esc_html__('Solo API Options', 'woo-solo-api');
 	}
 
 	/**

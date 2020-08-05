@@ -3,8 +3,8 @@
 /**
  * Base abstract class for admin menu implementations
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\AdminMenus
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -21,13 +21,15 @@ use MadeByDenis\WooSoloApi\View\TemplatedView;
  * Class AdminMenu
  *
  * This abstract class can be extended to add new admin menus.
+ * This is the template method design pattern, used to avoid code duplication.
  *
  * @package MadeByDenis\WooSoloApi\AdminMenus
+ * @since 2.0.0
  */
 abstract class AdminMenu implements Registrable, Renderable
 {
 	/**
-	 * Register admin menu
+	 * @inheritDoc
 	 */
 	public function register(): void
 	{
@@ -191,7 +193,6 @@ abstract class AdminMenu implements Registrable, Renderable
 	/**
 	 * Get the position of the menu.
 	 *
-	 * @return int Number that indicates the position of the menu.
 	 * 5   - below Posts
 	 * 10  - below Media
 	 * 15  - below Links
@@ -203,6 +204,8 @@ abstract class AdminMenu implements Registrable, Renderable
 	 * 75  - below Tools
 	 * 80  - below Settings
 	 * 100 - below second separator
+	 *
+	 * @return int Number that indicates the position of the menu.
 	 */
 	protected function getPosition(): int
 	{
