@@ -29,9 +29,16 @@ class FetchExchangeRate implements Registrable
 	/**
 	 * Transient name
 	 *
-	 * @string
+	 * @var string
 	 */
 	public const TRANSIENT = 'exchange_rate_transient';
+
+	/**
+	 * HNB Exchange rate API route
+	 *
+	 * @var string
+	 */
+	public const API_URL = 'http://api.hnb.hr/tecajn/v2';
 
 	/**
 	 * @inheritDoc
@@ -69,9 +76,7 @@ class FetchExchangeRate implements Registrable
 	 */
 	private function setExchangeRatesTransient(): void
 	{
-		$apiURL = 'http://api.hnb.hr/tecajn/v2';
-
-		$response = wp_remote_get($apiURL);
+		$response = wp_remote_get(self::API_URL);
 
 		$body = wp_remote_retrieve_body($response);
 
