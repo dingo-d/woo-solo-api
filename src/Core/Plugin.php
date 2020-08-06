@@ -17,6 +17,7 @@ use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
 use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\AdminOrder;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\CheckoutFields;
+use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\SoloRequest;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\WooPaymentGateways;
 use MadeByDenis\WooSoloApi\Email\EmailFunctionality;
 use MadeByDenis\WooSoloApi\i18n\Internationalization;
@@ -186,6 +187,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			OptionsSubmenu::class,
 			PluginsPage::class,
 			PluginSettings::class => [WooPaymentGateways::class],
+			SoloRequest::class,
 		];
 
 		// Test mocks.
