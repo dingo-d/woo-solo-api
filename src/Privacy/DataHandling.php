@@ -29,6 +29,21 @@ class DataHandling implements Registrable
 
 	private const GROUP_ID = 'woo-solo-api-order-items';
 
+	/**
+	 * @var SoloOrdersTable
+	 */
+	private $ordersTable;
+
+	/**
+	 * DatabaseTableMissingNotice constructor
+	 *
+	 * @param SoloOrdersTable $ordersTable Dependency that manages database concern.
+	 */
+	public function __construct(SoloOrdersTable $ordersTable)
+	{
+		$this->ordersTable = $ordersTable;
+	}
+
 	public function register(): void
 	{
 		add_filter('wp_privacy_personal_data_exporters', [$this, 'dataExportHandler']);
@@ -74,53 +89,46 @@ class DataHandling implements Registrable
 	 */
 	public function soloOrderDataExporter(string $emailAddress, $page = 1)
 	{
-		global $wpdb;
-
-		$tableName = $wpdb->prefix . SoloOrdersTable::TABLE_NAME;
-
-		$results = $wpdb->get_results(
-			$wpdb->prepare(
-				"SELECT * FROM {$tableName} WHERE `customer_email` = %s",
-				$emailAddress
-			)
-		);
+		$results = $this->ordersTable->getOrderDetails($emailAddress);
 
 		$exportedItems = [];
 
-		foreach ($results as $item) {
-			$data = [
-				[
-					'name' => esc_html__('Order Item', 'woo-solo-api'),
-					'value' => $item->id
-				],
-				[
-					'name' => esc_html__('Order Item ID', 'woo-solo-api'),
-					'value' => $item->order_id
-				],
-				[
-					'name' => esc_html__('Is sent to API', 'woo-solo-api'),
-					'value' => $item->is_sent_to_api,
-				],
-				[
-					'name' => esc_html__('Is sent to user', 'woo-solo-api'),
-					'value' => $item->is_sent_to_user,
-				],
-				[
-					'name' => esc_html__('Created at', 'woo-solo-api'),
-					'value' => $item->created_at
-				],
-				[
-					'name' => esc_html__('Updated at', 'woo-solo-api'),
-					'value' => $item->updated_at
-				],
-			];
+		if (!empty($results)) {
+			foreach ($results as $item) {
+				$data = [
+					[
+						'name' => esc_html__('Order Item', 'woo-solo-api'),
+						'value' => $item->id
+					],
+					[
+						'name' => esc_html__('Order Item ID', 'woo-solo-api'),
+						'value' => $item->order_id
+					],
+					[
+						'name' => esc_html__('Is sent to API', 'woo-solo-api'),
+						'value' => $item->is_sent_to_api,
+					],
+					[
+						'name' => esc_html__('Is sent to user', 'woo-solo-api'),
+						'value' => $item->is_sent_to_user,
+					],
+					[
+						'name' => esc_html__('Created at', 'woo-solo-api'),
+						'value' => $item->created_at
+					],
+					[
+						'name' => esc_html__('Updated at', 'woo-solo-api'),
+						'value' => $item->updated_at
+					],
+				];
 
-			$exportedItems[] = [
-				'group_id' => self::GROUP_ID,
-				'group_label' => esc_html__('Woo Solo Api Order Items', 'woo-solo-api'),
-				'item_id' => $item->id,
-				'data' => $data
-			];
+				$exportedItems[] = [
+					'group_id' => self::GROUP_ID,
+					'group_label' => esc_html__('Woo Solo Api Order Items', 'woo-solo-api'),
+					'item_id' => $item->id,
+					'data' => $data
+				];
+			}
 		}
 
 		return [
@@ -168,16 +176,7 @@ class DataHandling implements Registrable
 	 */
 	public function soloOrderDataEraser(string $emailAddress, $page = 1)
 	{
-		global $wpdb;
-
-		$tableName = $wpdb->prefix . SoloOrdersTable::TABLE_NAME;
-
-		$results = $wpdb->query(
-			$wpdb->prepare(
-				"DELETE FROM {$tableName} WHERE `customer_email` = %s",
-				$emailAddress
-			)
-		);
+		$results = $this->ordersTable->deleteOrderDetails($emailAddress);
 
 		return [
 			'items_removed' => $results,

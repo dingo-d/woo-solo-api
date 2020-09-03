@@ -11,12 +11,14 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 
+use Automattic\WooCommerce\Admin\RemoteInboxNotifications\OrderCountRuleProcessor;
 use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
 use MadeByDenis\WooSoloApi\Core\Registrable;
-use MadeByDenis\WooSoloApi\Exception\{ApiRequestException, WpException};
+use MadeByDenis\WooSoloApi\Exception\{ApiRequestException, OrderValidationException, WpException};
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use WC_Order;
+use WC_Order_Refund;
 
 /**
  * SoloRequest class
@@ -35,6 +37,21 @@ class SoloRequest implements Registrable
 	 * @var string
 	 */
 	public const URL = 'https://api.solo.com.hr/';
+
+	/**
+	 * @var SoloOrdersTable
+	 */
+	private $ordersTable;
+
+	/**
+	 * DatabaseTableMissingNotice constructor
+	 *
+	 * @param SoloOrdersTable $ordersTable Dependency that manages database concern.
+	 */
+	public function __construct(SoloOrdersTable $ordersTable)
+	{
+		$this->ordersTable = $ordersTable;
+	}
 
 	/**
 	 * @inheritDoc
@@ -71,7 +88,7 @@ class SoloRequest implements Registrable
 	 * @since 1.4.0 Fix the send api method.
 	 * @since 1.3.0 Added tax checks and additional debug options.
 	 */
-	public function sendApiRequest($order, bool $sentToAdmin = false, bool $plainText, object $email): void // phpcs:ignore
+	public function sendApiRequest($order, bool $sentToAdmin, bool $plainText, object $email): void // phpcs:ignore
 	{
 		// This should run only on the front facing side.
 		if (is_admin()) {
@@ -93,7 +110,7 @@ class SoloRequest implements Registrable
 		 * This checks the option where sent orders are stored and if the order is stored,
 		 * don't send request to solo API.
 		 */
-		if ($this->wasOrderSent($orderId)) {
+		if ($this->ordersTable->wasOrderSent($orderId)) {
 			return;
 		}
 
@@ -106,11 +123,11 @@ class SoloRequest implements Registrable
 	/**
 	 * Send API call when order status changes
 	 *
+	 * @since 1.9.5
+	 *
 	 * @param int $orderId The ID of the order.
 	 *
 	 * @retrun void
-	 * @since 1.9.5
-	 *
 	 */
 	public function sendApiRequestOnOrderCompleted(int $orderId): void
 	{
@@ -125,7 +142,7 @@ class SoloRequest implements Registrable
 		 * This checks the option where sent orders are stored and if the order is stored,
 		 * don't send request to solo API.
 		 */
-		if ($this->wasOrderSent($orderId)) {
+		if ($this->ordersTable->wasOrderSent($orderId)) {
 			return;
 		}
 
@@ -134,11 +151,15 @@ class SoloRequest implements Registrable
 
 		$order = \wc_get_order($orderId);
 
+		if (!($order instanceof WC_Order)) {
+			throw OrderValidationException::invalidOrderType($order);
+		}
+
 		// Execute only if status is changed to completed!
 		$orderData = $order->get_data();
-		$order_status = $orderData['status'];
+		$orderStatus = $orderData['status'];
 
-		if ($order_status === 'completed') {
+		if ($orderStatus === 'completed') {
 			$this->executeSoloApiCall($order);
 		}
 	}
@@ -146,7 +167,6 @@ class SoloRequest implements Registrable
 	/**
 	 * Execute the call to the SOLO API
 	 *
-	 * @param WC_Order $order Order data.
 	 * @since  1.4.0 Separated the send method for more control. Add
 	 *               Check to send the mail in this method, so that the
 	 *               method that controls the send is not called at all.
@@ -156,9 +176,17 @@ class SoloRequest implements Registrable
 	 * @since  1.8.1 Added a check for no taxes on items.
 	 *
 	 * @since  1.7.0 Fixed tax rates and payment types per payment gateway.
+	 *
+	 * @param bool|WC_Order|WC_Order_Refund $order Order data.
+	 *
+	 * @retrun void
 	 */
-	private function executeSoloApiCall(WC_Order $order)
+	private function executeSoloApiCall($order): void
 	{
+		if (!($order instanceof WC_Order)) {
+			throw OrderValidationException::invalidOrderType($order);
+		}
+
 		// Options.
 		$token = get_option('solo_api_token');
 		$measure = get_option('solo_api_measure');
@@ -342,7 +370,7 @@ class SoloRequest implements Registrable
 		}
 
 		// Get the note from the customer.
-		$customerNote = $order->data['customer_note'] ?? '';
+		$customerNote = !empty($order->get_customer_note()) ? $order->get_customer_note() : '';
 
 		$invoiceDueDate = $this->getDueDate($dueDate);
 
@@ -369,7 +397,7 @@ class SoloRequest implements Registrable
 
 			if (!empty($currencyRate)) {
 				$num = (float)str_replace(',', '.', $currencyRate);
-				$requestBody['tecaj'] = str_replace('.', ',', round($num, 6));
+				$requestBody['tecaj'] = str_replace('.', ',', (string)round($num, 6));
 
 				$translatedCurrencyNote = $this->getCurrencyNote($languages);
 
@@ -385,7 +413,7 @@ class SoloRequest implements Registrable
 					esc_html($translatedCurrencyNote),
 					esc_html($currencyQuantity),
 					esc_html($currency),
-					esc_html(str_replace('.', ',', round($num, 6)))
+					esc_html($requestBody['tecaj'])
 				);
 			}
 		}
@@ -476,39 +504,6 @@ class SoloRequest implements Registrable
 				]
 			);
 		}
-	}
-
-	/**
-	 * Check if order was sent
-	 *
-	 * The unique order ID gets written in an options array as a string
-	 * and then checked against in order to prevent sending duplicate requests for the same order.
-	 *
-	 * @param int $id Order ID.
-	 *
-	 * @return bool
-	 * @since 2.0.0
-	 *
-	 */
-	private function wasOrderSent(int $id): bool
-	{
-		global $wpdb;
-
-		$tableName = $wpdb->prefix . SoloOrdersTable::TABLE_NAME;
-
-		$result = $wpdb->get_results(
-			$wpdb->prepare(
-				"SELECT is_sent_to_api FROM {$tableName} WHERE order_id = %d",
-				$id
-			),
-			ARRAY_A
-		);
-
-		if (empty($result)) {
-			return false;
-		}
-
-		return true;
 	}
 
 	/**
@@ -662,6 +657,6 @@ class SoloRequest implements Registrable
 	{
 		$query = http_build_query($requestBody);
 
-		return preg_replace('/usluga(\d+)/', 'usluga', $query);
+		return (string) preg_replace('/usluga(\d+)/', 'usluga', $query);
 	}
 }

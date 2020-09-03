@@ -12,11 +12,9 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Admin\AdminNotices;
 
 use Exception;
-use MadeByDenis\WooSoloApi\Core\Registrable;
-use MadeByDenis\WooSoloApi\Core\Renderable;
+use MadeByDenis\WooSoloApi\Core\{Registrable, Renderable};
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
-use MadeByDenis\WooSoloApi\View\EscapedView;
-use MadeByDenis\WooSoloApi\View\TemplatedView;
+use MadeByDenis\WooSoloApi\View\{EscapedView, TemplatedView};
 
 /**
  * DatabaseTableMissingNotice class
@@ -27,7 +25,25 @@ use MadeByDenis\WooSoloApi\View\TemplatedView;
 class DatabaseTableMissingNotice implements Registrable, Renderable
 {
 
+	/**
+	 * @var string View path
+	 */
 	private const NOTICE_URI = 'views/missing-db-table-notice';
+
+	/**
+	 * @var SoloOrdersTable
+	 */
+	private $ordersTable;
+
+	/**
+	 * DatabaseTableMissingNotice constructor
+	 *
+	 * @param SoloOrdersTable $ordersTable Dependency that manages database concern.
+	 */
+	public function __construct(SoloOrdersTable $ordersTable)
+	{
+		$this->ordersTable = $ordersTable;
+	}
 
 	/**
 	 * @inheritDoc
@@ -37,9 +53,16 @@ class DatabaseTableMissingNotice implements Registrable, Renderable
 		add_action('admin_notices', [$this, 'missingDatabaseTableNoticeCheck']);
 	}
 
-	public function missingDatabaseTableNoticeCheck()
+	/**
+	 * Admin notice callback
+	 *
+	 * Shows the admin notice if the database table is missing.
+	 *
+	 * @return void
+	 */
+	public function missingDatabaseTableNoticeCheck(): void
 	{
-		if (!$this->databaseTableIsMissing()) {
+		if (!$this->ordersTable->databaseTableIsMissing()) {
 			return;
 		}
 
@@ -76,30 +99,5 @@ class DatabaseTableMissingNotice implements Registrable, Renderable
 				$exception->getMessage()
 			);
 		}
-	}
-
-	private function databaseTableIsMissing()
-	{
-		global $wpdb;
-
-		$tableName = $wpdb->prefix . SoloOrdersTable::TABLE_NAME;
-
-		$check = $wpdb->query(
-			$wpdb->prepare(
-				"SELECT *
-				FROM information_schema.tables
-				WHERE table_schema = %s
-					AND table_name = %s
-				LIMIT 1;",
-				$wpdb->dbname,
-				$tableName
-			)
-		);
-
-		if ($check === 0) {
-			return true;
-		}
-
-		return false;
 	}
 }

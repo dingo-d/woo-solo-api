@@ -33,7 +33,7 @@ class Internationalization implements Registrable
 	/**
 	 * Callback that will load plugin text domain
 	 */
-	public function loadPluginTextDomain()
+	public function loadPluginTextDomain(): void
 	{
 		load_plugin_textdomain(
 			'woo-solo-api',

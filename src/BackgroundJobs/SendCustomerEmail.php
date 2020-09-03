@@ -14,6 +14,7 @@ namespace MadeByDenis\WooSoloApi\BackgroundJobs;
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use WP_Error;
 
 /**
  * SendCustomerEmail class
@@ -26,6 +27,9 @@ use RecursiveIteratorIterator;
 class SendCustomerEmail extends ScheduleEvent
 {
 
+	/**
+	 * @var string Name of the custom job.
+	 */
 	public const JOB_NAME = 'sendCustomerEmail';
 
 	/**
@@ -64,14 +68,6 @@ class SendCustomerEmail extends ScheduleEvent
 			require_once ABSPATH . '/wp-admin/includes/file.php';
 		}
 
-		$checkoutUrl = \wc_get_checkout_url();
-		$url = wp_nonce_url($checkoutUrl, '_wpnonce', '_wpnonce');
-		$credentials = \request_filesystem_credentials($url, '', false, false, null);
-
-		if ($credentials === false) {
-			return; // stop processing here.
-		}
-
 		$responseBody = (array)$body;
 
 		// Create pdf.
@@ -90,17 +86,18 @@ class SendCustomerEmail extends ScheduleEvent
 		$pdfGet = wp_remote_get($pdfLink);
 
 		if (is_wp_error($pdfGet)) {
-			$error_code = wp_remote_retrieve_response_code($pdfGet);
-			$error_message = wp_remote_retrieve_response_message($pdfGet);
-			return new \WP_Error($error_code, $error_message);
+			$errorCode = wp_remote_retrieve_response_code($pdfGet);
+			$errorMessage = wp_remote_retrieve_response_message($pdfGet);
+
+			return new WP_Error($errorCode, $errorMessage);
 		}
 
 		$pdfContents = $pdfGet['body'];
 
-		// Now we have some credentials, try to get the wp_filesystem running.
-		if (!WP_Filesystem($credentials)) {
+		// Try to get the wp_filesystem running.
+		if (!\WP_Filesystem()) {
 			// Our credentials were no good, ask the user for them again.
-			\request_filesystem_credentials($url, '', true, false, null);
+			\request_filesystem_credentials('', '', true, '', null, false);
 			return true;
 		}
 
@@ -117,8 +114,6 @@ class SendCustomerEmail extends ScheduleEvent
 		if (file_exists($attachment)) {
 			$attachment = $newDir . '/' . $pdfName . '-' . wp_rand() . '.pdf';
 		}
-
-		WP_Filesystem($credentials);
 
 		$wp_filesystem->put_contents(
 			$attachment,
@@ -139,11 +134,18 @@ class SendCustomerEmail extends ScheduleEvent
 
 		$urlParse = wp_parse_url($attachment);
 
-		$attachment_id = wp_insert_attachment(
+		$attachmentId = wp_insert_attachment(
 			$attachmentArray,
 			$urlParse['path'],
 			0
 		); // Create attachment in the Media screen.
+
+		if (is_wp_error($attachmentId)) {
+			$errorCode = wp_remote_retrieve_response_code($attachmentId);
+			$errorMessage = wp_remote_retrieve_response_message($attachmentId);
+
+			return new WP_Error($errorCode, $errorMessage);
+		}
 
 		// Wrapping in nl2br to see if HTML will parse correctly.
 		$emailMessage = nl2br(get_option('solo_api_message'));
@@ -180,15 +182,15 @@ class SendCustomerEmail extends ScheduleEvent
 			$headers
 		);
 
-		wp_mail($email, $emailTitle, $emailMessage, $headers, [$attachment]);
+		\wp_mail($email, $emailTitle, $emailMessage, $headers, [$attachment]);
 
 		// Now we delete the saved attachment because of GDPR :).
-		$deleted = wp_delete_attachment($attachment_id, true);
+		$deleted = \wp_delete_attachment($attachmentId, true);
 
 		// If for some reason WP won't delete it, try to force deletion.
 		if ($deleted === false || $deleted === null) {
 			if (!file_exists($attachment)) {
-				return;
+				return false;
 			}
 
 			unlink($attachment);
