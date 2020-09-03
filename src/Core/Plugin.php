@@ -12,15 +12,19 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Core;
 
 use Exception;
+use MadeByDenis\WooSoloApi\Admin\AdminNotices\DatabaseTableMissingNotice;
 use MadeByDenis\WooSoloApi\Admin\PluginsPage;
-use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
+use MadeByDenis\WooSoloApi\Admin\AdminMenus\OptionsSubmenu;
 use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
+use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
+use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\AdminOrder;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\CheckoutFields;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\SoloRequest;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\WooPaymentGateways;
 use MadeByDenis\WooSoloApi\Email\EmailFunctionality;
 use MadeByDenis\WooSoloApi\i18n\Internationalization;
+use MadeByDenis\WooSoloApi\Privacy\DataHandling;
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use MadeByDenis\WooSoloApi\Exception\{MissingManifest, PluginActivationFailure};
 use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
@@ -57,6 +61,14 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			include ABSPATH . '/wp-admin/includes/plugin.php';
 		}
 
+		if (version_compare((string)PHP_VERSION_ID, '70200', '<')) {
+			\deactivate_plugins(plugin_basename(__FILE__));
+
+			$error_message = esc_html__('This plugin requires PHP 7.2 or greater to function.', 'woo-solo-api');
+
+			throw PluginActivationFailure::activationMessage($error_message);
+		}
+
 		if (!class_exists('WooCommerce')) {
 			// Deactivate the plugin.
 			deactivate_plugins(plugin_basename(__FILE__));
@@ -65,6 +77,8 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 
 			throw PluginActivationFailure::activationMessage($errorMessage);
 		}
+
+		SoloOrdersTable::createTable();
 
 		$this->registerServices();
 
@@ -153,7 +167,6 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	 */
 	public function registerAssetsManifestData()
 	{
-
 		$response = file_get_contents(dirname(__DIR__, 2) . '/assets/public/manifest.json');
 
 		if (!$response) {
@@ -172,7 +185,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	 * A list of classes which contain hooks.
 	 *
 	 * @return array<int|string, array<int, string>|string> Array that contains FQCN as a key of the class to instantiate,
-	 * 						and array as a value of that key that denotes its dependencies.
+	 *                        and array as a value of that key that denotes its dependencies.
 	 */
 	private function getServiceClasses(): array
 	{
@@ -180,6 +193,8 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			AccountDetails::class,
 			AdminOrder::class,
 			CheckoutFields::class,
+			DataHandling::class,
+			DatabaseTableMissingNotice::class,
 			EmailFunctionality::class,
 			EnqueueResources::class,
 			FetchExchangeRate::class,
@@ -187,6 +202,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			OptionsSubmenu::class,
 			PluginsPage::class,
 			PluginSettings::class => [WooPaymentGateways::class],
+			SendCustomerEmail::class,
 			SoloRequest::class,
 		];
 
