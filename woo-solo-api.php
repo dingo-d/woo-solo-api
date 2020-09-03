@@ -33,7 +33,8 @@ use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
  * @since 2.0.0
  */
 if (! defined('ABSPATH')) {
-    $errorMessage = __('You cannot access this file outside WordPress.', 'woo-solo-api');
+    $errorMessage = esc_html__('You cannot access this file outside WordPress.', 'woo-solo-api');
+
     throw PluginActivationFailure::activationMessage($errorMessage);
 }
 
