@@ -85,7 +85,8 @@ class DatabaseTableMissingNotice implements Registrable, Renderable
 		$tableName = $wpdb->prefix . SoloOrdersTable::TABLE_NAME;
 
 		$check = $wpdb->query(
-			$wpdb->prepare("SELECT *
+			$wpdb->prepare(
+				"SELECT *
 				FROM information_schema.tables
 				WHERE table_schema = %s
 					AND table_name = %s
@@ -100,7 +101,5 @@ class DatabaseTableMissingNotice implements Registrable, Renderable
 		}
 
 		return false;
-
 	}
 }
-

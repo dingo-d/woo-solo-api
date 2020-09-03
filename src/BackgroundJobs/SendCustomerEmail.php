@@ -46,7 +46,7 @@ class SendCustomerEmail extends ScheduleEvent
 		 */
 		$checkedGateways = get_option('solo_api_mail_gateway');
 
-		if (!is_array($checkedGateways)){
+		if (!is_array($checkedGateways)) {
 			$checkedGateways = unserialize($checkedGateways);
 		}
 

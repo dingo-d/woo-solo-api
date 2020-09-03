@@ -31,19 +31,19 @@ class SoloOrdersTable
 	 */
 	public static function createTable()
 	{
-        global $wpdb;
+		global $wpdb;
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-        $tableName = $wpdb->prefix . self::TABLE_NAME;
+		$tableName = $wpdb->prefix . self::TABLE_NAME;
 
-        $collate = '';
+		$collate = '';
 
-		if ( $wpdb->has_cap( 'collation' ) ) {
+		if ($wpdb->has_cap('collation')) {
 			$collate = $wpdb->get_charset_collate();
 		}
 
-        $sql = "CREATE TABLE IF NOT EXISTS `{$tableName}` (
+		$sql = "CREATE TABLE IF NOT EXISTS `{$tableName}` (
 				`id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				`order_id` bigint(20) UNSIGNED NOT NULL,
 				`customer_email` varchar(255) NOT NULL,
@@ -54,7 +54,7 @@ class SoloOrdersTable
 				PRIMARY KEY (`id`)
 				) $collate;";
 
-        $wpdb->query($sql);
+		$wpdb->query($sql);
 	}
 
 	/**
@@ -70,7 +70,7 @@ class SoloOrdersTable
 
 		$tableName = $wpdb->prefix . self::TABLE_NAME;
 
-		$wpdb->query( "DROP TABLE IF EXISTS {$tableName}" );
+		$wpdb->query("DROP TABLE IF EXISTS {$tableName}");
 	}
 
 	/**

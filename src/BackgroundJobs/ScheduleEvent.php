@@ -40,7 +40,7 @@ abstract class ScheduleEvent implements BackgroundProcessManager
 	 * @param mixed ...$args Arguments to pass to the background job callback.
 	 * @return mixed
 	 */
-	abstract public function registerProcess( ...$args);
+	abstract public function registerProcess(...$args);
 
 	/**
 	 * Get name of the background job
@@ -56,7 +56,8 @@ abstract class ScheduleEvent implements BackgroundProcessManager
 	 *
 	 * @return int
 	 */
-	public function getPriority(): int {
+	public function getPriority(): int
+	{
 		return 10;
 	}
 
@@ -67,8 +68,8 @@ abstract class ScheduleEvent implements BackgroundProcessManager
 	 *
 	 * @return int Number of argument the callback will take.
 	 */
-	public function getArgumentsCount(): int {
+	public function getArgumentsCount(): int
+	{
 		return 1;
 	}
-
 }

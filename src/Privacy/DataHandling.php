@@ -186,5 +186,4 @@ class DataHandling implements Registrable
 			'done' => true,
 		];
 	}
-
 }

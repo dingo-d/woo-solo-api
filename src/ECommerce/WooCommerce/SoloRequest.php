@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 
-
 use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 use MadeByDenis\WooSoloApi\Exception\{ApiRequestException, WpException};
@@ -56,14 +55,6 @@ class SoloRequest implements Registrable
 	 * The main function of the plugin. It handles the request from
 	 * the order once the order is sent.
 	 *
-	 * @since 2.0.0 Refactored method -
-	 * 					Extracted logic to private methods
-	 * 					Added a database checks for consistency, preventing the duplicate calls
-	 * @since 1.9.5 Add check if the order was sent to avoid multiple API calls. Separate order completed call.
-	 * @since 1.4.0 Fix the send api method.
-	 * @since 1.3.0 Added tax checks and additional debug options.
-	 * @since 1.0.0
-	 *
 	 * @param WC_Order $order Order data.
 	 * @param bool $sentToAdmin Send to admin (default: false).
 	 * @param bool $plainText Plain text email (default: false).
@@ -71,8 +62,16 @@ class SoloRequest implements Registrable
 	 *
 	 * @retrun void
 	 *
+	 * @since 1.0.0
+	 *
+	 * @since 2.0.0 Refactored method -
+	 *                    Extracted logic to private methods
+	 *                    Added a database checks for consistency, preventing the duplicate calls
+	 * @since 1.9.5 Add check if the order was sent to avoid multiple API calls. Separate order completed call.
+	 * @since 1.4.0 Fix the send api method.
+	 * @since 1.3.0 Added tax checks and additional debug options.
 	 */
-	public function sendApiRequest($order, bool $sentToAdmin = false, bool $plainText, object $email): void
+	public function sendApiRequest($order, bool $sentToAdmin = false, bool $plainText, object $email): void // phpcs:ignore
 	{
 		// This should run only on the front facing side.
 		if (is_admin()) {
@@ -147,7 +146,7 @@ class SoloRequest implements Registrable
 	/**
 	 * Execute the call to the SOLO API
 	 *
-	 * @since  1.7.0 Fixed tax rates and payment types per payment gateway.
+	 * @param WC_Order $order Order data.
 	 * @since  1.4.0 Separated the send method for more control. Add
 	 *               Check to send the mail in this method, so that the
 	 *               method that controls the send is not called at all.
@@ -156,7 +155,7 @@ class SoloRequest implements Registrable
 	 * @since  1.9.3 Added translated notes for recalculating rates.
 	 * @since  1.8.1 Added a check for no taxes on items.
 	 *
-	 * @param WC_Order $order Order data.
+	 * @since  1.7.0 Fixed tax rates and payment types per payment gateway.
 	 */
 	private function executeSoloApiCall(WC_Order $order)
 	{
@@ -363,7 +362,6 @@ class SoloRequest implements Registrable
 		}
 
 		if ($currency !== '1') { // Only for foreign currency.
-
 			$apiRates = $this->getHnbRates();
 			$currency = $this->getCurrency($currency);
 
@@ -383,12 +381,12 @@ class SoloRequest implements Registrable
 				}
 
 				$customerNote .= "\n" . sprintf(
-						'%1$s (%2$s %3$s = %4$s HRK)',
-						esc_html($translatedCurrencyNote),
-						esc_html($currencyQuantity),
-						esc_html($currency),
-						esc_html(str_replace('.', ',', round($num, 6)))
-					);
+					'%1$s (%2$s %3$s = %4$s HRK)',
+					esc_html($translatedCurrencyNote),
+					esc_html($currencyQuantity),
+					esc_html($currency),
+					esc_html(str_replace('.', ',', round($num, 6)))
+				);
 			}
 		}
 
