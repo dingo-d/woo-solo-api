@@ -150,7 +150,7 @@ class PluginSettings implements Registrable
 			$this->setSettingsArguments(
 				'string',
 				esc_html__('The message of the invoice email', 'woo-solo-api'),
-				'sanitize_text_field',
+				'sanitize_textarea_field',
 				true,
 				''
 			)
