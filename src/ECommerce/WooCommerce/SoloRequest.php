@@ -12,11 +12,12 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 
 
+use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
 use MadeByDenis\WooSoloApi\Core\Registrable;
+use MadeByDenis\WooSoloApi\Exception\{ApiRequestException, WpException};
+use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
-use WC_Email_New_Order;
 use WC_Order;
-use WP_Error;
 
 /**
  * SoloRequest class
@@ -55,18 +56,23 @@ class SoloRequest implements Registrable
 	 * The main function of the plugin. It handles the request from
 	 * the order once the order is sent.
 	 *
-	 * @param WC_Order $order Order data.
-	 * @param bool $sentToAdmin Send to admin (default: false).
-	 * @param bool $plainText Plain text email (default: false).
-	 * @param WC_Email_New_Order $email Order email object.
-	 *
-	 * @retrun void
+	 * @since 2.0.0 Refactored method -
+	 * 					Extracted logic to private methods
+	 * 					Added a database checks for consistency, preventing the duplicate calls
 	 * @since 1.9.5 Add check if the order was sent to avoid multiple API calls. Separate order completed call.
 	 * @since 1.4.0 Fix the send api method.
 	 * @since 1.3.0 Added tax checks and additional debug options.
 	 * @since 1.0.0
+	 *
+	 * @param WC_Order $order Order data.
+	 * @param bool $sentToAdmin Send to admin (default: false).
+	 * @param bool $plainText Plain text email (default: false).
+	 * @param object $email Order email object.
+	 *
+	 * @retrun void
+	 *
 	 */
-	public function sendApiRequest($order, bool $sentToAdmin = false, bool $plainText, WC_Email_New_Order $email): void
+	public function sendApiRequest($order, bool $sentToAdmin = false, bool $plainText, object $email): void
 	{
 		// This should run only on the front facing side.
 		if (is_admin()) {
@@ -80,18 +86,20 @@ class SoloRequest implements Registrable
 			return;
 		}
 
-		$uniqueId = $order->get_id() . '-' . date('Ymd');
+		$orderId = $order->get_id();
 
-		// If the order was sent, don't send it again.
-		// This checks the option where sent orders are stored and if the order is stored,
-		// don't send request to solo API.
-		if ($this->wasOrderSent($uniqueId)) {
+		/**
+		 * If the order was sent, don't send it again.
+		 *
+		 * This checks the option where sent orders are stored and if the order is stored,
+		 * don't send request to solo API.
+		 */
+		if ($this->wasOrderSent($orderId)) {
 			return;
 		}
 
-		$ordersList[] = $uniqueId;
-
-		update_option('solo_sent_orders', wp_json_encode($ordersList));
+		// Create a database entry for consistency checks.
+		SoloOrdersTable::updateOrdersTable($orderId, false, false, false);
 
 		$this->executeSoloApiCall($order);
 	}
@@ -99,33 +107,33 @@ class SoloRequest implements Registrable
 	/**
 	 * Send API call when order status changes
 	 *
-	 * @param int $orderID The ID of the order.
+	 * @param int $orderId The ID of the order.
 	 *
 	 * @retrun void
 	 * @since 1.9.5
 	 *
 	 */
-	public function sendApiRequestOnOrderCompleted(int $orderID): void
+	public function sendApiRequestOnOrderCompleted(int $orderId): void
 	{
 		// If the option is selected to send pdf on admin we should only run it on admin.
 		if (!is_admin()) {
 			return;
 		}
 
-		$uniqueId = $orderID . '-' . date('Ymd');
-
-		// If the order was sent, don't send it again.
-		// This checks the option where sent orders are stored and if the order is stored,
-		// don't send request to solo API.
-		if ($this->wasOrderSent($uniqueId)) {
+		/**
+		 * If the order was sent, don't send it again.
+		 *
+		 * This checks the option where sent orders are stored and if the order is stored,
+		 * don't send request to solo API.
+		 */
+		if ($this->wasOrderSent($orderId)) {
 			return;
 		}
 
-		$ordersList[] = $uniqueId;
+		// Create a database entry for consistency checks.
+		SoloOrdersTable::updateOrdersTable($orderId, false, false, false);
 
-		update_option('solo_sent_orders', wp_json_encode($ordersList));
-
-		$order = \wc_get_order($orderID);
+		$order = \wc_get_order($orderId);
 
 		// Execute only if status is changed to completed!
 		$orderData = $order->get_data();
@@ -139,19 +147,16 @@ class SoloRequest implements Registrable
 	/**
 	 * Execute the call to the SOLO API
 	 *
-	 * @param WC_Order $order Order data.
-	 *
-	 * @return WP_Error
 	 * @since  1.7.0 Fixed tax rates and payment types per payment gateway.
 	 * @since  1.4.0 Separated the send method for more control. Add
 	 *               Check to send the mail in this method, so that the
 	 *               method that controls the send is not called at all.
-	 *
 	 * @since  2.0.0 Refactored the method
 	 * @since  1.9.5 Added check for empty taxes, fixed sending requests two times.
-	 *
 	 * @since  1.9.3 Added translated notes for recalculating rates.
 	 * @since  1.8.1 Added a check for no taxes on items.
+	 *
+	 * @param WC_Order $order Order data.
 	 */
 	private function executeSoloApiCall(WC_Order $order)
 	{
@@ -164,7 +169,6 @@ class SoloRequest implements Registrable
 		$showTaxes = get_option('solo_api_show_taxes');
 		$invoiceType = get_option('solo_api_invoice_type');
 		$dueDate = get_option('solo_api_due_date');
-
 		$orderData = $order->get_data(); // The Order data.
 
 		// Check if billing or shipping.
@@ -396,24 +400,22 @@ class SoloRequest implements Registrable
 			}
 		}
 
-		$customerNote = apply_filters('woo-solo-api-customer-note', $customerNote);
+		$customerNote = \apply_filters('woo-solo-api-customer-note', $customerNote);
 
-		$requestBody['napomene'] = wp_kses_post($customerNote);
+		$requestBody['napomene'] = \wp_kses_post($customerNote);
 
-		$postUrl = $this->prepareRequestData($requestBody);
-
-		$regularUrl = str_replace(' ', '%20', $postUrl);
+		$postData = $this->prepareRequestData($requestBody);
 
 		if (defined('WP_DEBUG') && WP_DEBUG === true) {
 			// phpcs:disable WordPress.PHP.DevelopmentFunctions
-			error_log(print_r($regularUrl, true));
+			error_log(print_r($requestBody, true));
 			// phpcs:enable
 		}
 
 		/**
 		 * For more info go to: https://solo.com.hr/api-dokumentacija/izrada-racuna
 		 */
-		$response = wp_remote_post($regularUrl);
+		$response = \wp_remote_post($url, ['body' => $postData]);
 
 		if (defined('WP_DEBUG') && WP_DEBUG === true) {
 			// phpcs:disable WordPress.PHP.DevelopmentFunctions
@@ -421,27 +423,59 @@ class SoloRequest implements Registrable
 			// phpcs:enable
 		}
 
-		if (is_wp_error($response)) {
-			$error_code = wp_remote_retrieve_response_code($response);
-			$error_message = wp_remote_retrieve_response_message($response);
-			return new WP_Error($error_code, $error_message);
+		if (\is_wp_error($response)) {
+			/**
+			 * If the above condition is true, the $response is an instance of \WP_Error class.
+			 * This means that something internally is wrong with WordPress.
+			 * We can extract the code and error message using get_error_code and get_error_message methods.
+			 */
+			$errorCode = $response->get_error_code();
+			$errorMessage = $response->get_error_message();
+
+			throw WpException::internalError($errorCode, $errorMessage);
 		}
 
-		$body = json_decode($response['body']);
+		// Try to see if the call is a successful or not.
+		$responseBody = \wp_remote_retrieve_body($response);
+		$responseCode = \wp_remote_retrieve_response_code($response);
+		$responseMessage = \wp_remote_retrieve_response_message($response);
 
-		if ($body->status !== 0) {
-			return new WP_Error($body->status, $body->message);
+		if ($responseCode < 200 || $responseCode >= 300) {
+			throw ApiRequestException::apiResponse($responseCode, $responseMessage);
 		}
+
+		$responseDetails = json_decode($responseBody, true);
+
+		if ($responseDetails['status'] !== 0) {
+			throw ApiRequestException::apiResponse($responseDetails['status'], $responseDetails['message']);
+		}
+
+		$orderId = $order->get_id();
+
+		/**
+		 * Update the database status:
+		 *
+		 * Order sent to API - YES;
+		 * Email sent to user - NO;
+		 * Update - YES;
+		 */
+		SoloOrdersTable::updateOrdersTable($orderId, true, false, true);
 
 		// Send mail to the customer with the PDF of the invoice.
-		$solo_api_send_pdf = get_option('solo_api_send_pdf');
+		$sendPdf = get_option('solo_api_send_pdf');
 
-		if ($solo_api_send_pdf === '1') {
-			$this->solo_api_send_mail(
-				$body,
-				sanitize_email($email),
-				$billType,
-				$paymentMethod
+		if ($sendPdf === '1') {
+			// Register a background job - in 15 sec ping the API to get the PDF.
+			wp_schedule_single_event(
+				time() + 15,
+				SendCustomerEmail::JOB_NAME,
+				[
+					'orderId' => $orderId,
+					'responseDetails' => $responseDetails,
+					'email' => $email,
+					'billType' => $billType,
+					'paymentMethod' => $paymentMethod,
+				]
 			);
 		}
 	}
@@ -452,27 +486,31 @@ class SoloRequest implements Registrable
 	 * The unique order ID gets written in an options array as a string
 	 * and then checked against in order to prevent sending duplicate requests for the same order.
 	 *
-	 * @param string $id Order ID.
+	 * @param int $id Order ID.
 	 *
 	 * @return bool
 	 * @since 2.0.0
 	 *
 	 */
-	private function wasOrderSent(string $id): bool
+	private function wasOrderSent(int $id): bool
 	{
-		$sentOrders = get_option('solo_sent_orders');
+		global $wpdb;
 
-		if (empty($sentOrders)) {
+		$tableName = $wpdb->prefix . SoloOrdersTable::TABLE_NAME;
+
+		$result = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT is_sent_to_api FROM {$tableName} WHERE order_id = %d",
+				$id
+			),
+			ARRAY_A
+		);
+
+		if (empty($result)) {
 			return false;
 		}
 
-		$ordersList = json_decode($sentOrders, true);
-
-		if (!empty($ordersList) && in_array($id, $ordersList)) {
-			return true;
-		}
-
-		return false;
+		return true;
 	}
 
 	/**
@@ -611,6 +649,14 @@ class SoloRequest implements Registrable
 	}
 
 	/**
+	 * Helper to prepare HTTP query
+	 *
+	 * The SOLO API requires the specific format of the POST body, specifically
+	 * they require each service to be numbered - usluga => 1, usluga => 2, etc.
+	 * Because of that, we cannot just set this as an array key (because they need to be unique),
+	 * so we number them, and once we turn the array to HTTP query string, we can use regex to replace numbers
+	 * in the query string and use that as a body.
+	 *
 	 * @param array $requestBody
 	 * @return string Prepared body
 	 */
@@ -620,6 +666,4 @@ class SoloRequest implements Registrable
 
 		return preg_replace('/usluga(\d+)/', 'usluga', $query);
 	}
-
-
 }
