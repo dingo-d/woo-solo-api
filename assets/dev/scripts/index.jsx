@@ -27,7 +27,7 @@ const {
 	render,
 	Fragment,
 	Component,
-	__experimentalCreateInterpolateElement
+	createInterpolateElement
 } = wp.element;
 
 class App extends Component {
@@ -509,7 +509,7 @@ class App extends Component {
 								/>
 								{this.renderError('solo_api_due_date')}
 								<h4>{
-									__experimentalCreateInterpolateElement(
+									createInterpolateElement(
 										__('You can check the currency rate at <a>Croatian National Bank</a>.' +
 											'The currency will be automatically added if the selected currency is different from HRK.' +
 											'Also, a note about conversion rate will be added to the invoice/offer.', 'woo-solo-api'),
@@ -637,7 +637,7 @@ class App extends Component {
 								name='solo_api_change_mail_from'
 								label={__('Change the \'from\' name that shows when WordPress sends the mail', 'woo-solo-api')}
 								help={
-									__experimentalCreateInterpolateElement(
+									createInterpolateElement(
 										__('<str>CAUTION</str>: This change is global, every mail send from your WordPress will have this \'from\' name', 'woo-solo-api'),
 										{
 											str: <strong/>
