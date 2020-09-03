@@ -9,10 +9,11 @@ parameters:
         - src/
     excludes_analyse:
         - src/Core/CompiledContainer.php
-    autoload_files:
+    bootstrapFiles:
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
         - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
         - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
+        - vendor/php-stubs/wordpress-globals/wordpress-globals.php
     ignoreErrors:
         # Custom constant
         - '#Constant ASSETS_MANIFEST not found\.#'
