@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-namespace MadeByDenis\WooSoloApi\AdminMenus;
+namespace MadeByDenis\WooSoloApi\Admin\AdminMenus;
 
 use Exception;
 use MadeByDenis\WooSoloApi\Core\Registrable;
