@@ -25,6 +25,8 @@
  * @package    Woo_Solo_Api
  */
 
+use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
+
 if (! current_user_can('activate_plugins')) {
     return;
 }
@@ -62,6 +64,8 @@ foreach ($available_woo_gateways as $gateway_woo_sett => $gateway_woo_val) {
     delete_option('solo_api_bill_offer-' . esc_attr($gateway_woo_val->id));
     delete_option('solo_api_fiscalization-' . esc_attr($gateway_woo_val->id));
 }
+
+SoloOrdersTable::deleteTable();
 
 add_action('wp_mail_from_name', 'solo_api_revert_mail_from_name');
 
