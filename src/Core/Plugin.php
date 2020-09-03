@@ -61,10 +61,10 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			include ABSPATH . '/wp-admin/includes/plugin.php';
 		}
 
-		if (version_compare((string)PHP_VERSION_ID, '70200', '<')) {
+		if (version_compare((string)PHP_VERSION_ID, '70300', '<')) {
 			\deactivate_plugins(plugin_basename(__FILE__));
 
-			$error_message = esc_html__('This plugin requires PHP 7.2 or greater to function.', 'woo-solo-api');
+			$error_message = esc_html__('This plugin requires PHP 7.3 or greater to function.', 'woo-solo-api');
 
 			throw PluginActivationFailure::activationMessage($error_message);
 		}
