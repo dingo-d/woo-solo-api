@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Tests\Integration\Assets;
 
 use Codeception\TestCase\WPTestCase;
 use IntegrationTester;
-use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
+use MadeByDenis\WooSoloApi\Admin\AdminMenus\OptionsSubmenu;
 use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
 
 class EnqueueTest extends WPTestCase

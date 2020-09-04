@@ -1,13 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Tests\Integration\AdminMenus;
+namespace Tests\Integration\Admin\AdminMenus;
 
 use IntegrationTester;
-use Exception;
 use Codeception\TestCase\WPTestCase;
-use MadeByDenis\WooSoloApi\AdminMenus\AdminMenu;
+use MadeByDenis\WooSoloApi\Admin\AdminMenus\AdminMenu;
 
 class AdminMenuTest extends WPTestCase
 {

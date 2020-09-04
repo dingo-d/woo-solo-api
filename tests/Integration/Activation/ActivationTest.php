@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Tests\Integration\Activation;
 
 use Codeception\TestCase\WPTestCase;

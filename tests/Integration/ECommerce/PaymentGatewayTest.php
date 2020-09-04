@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Tests\Integration\ECommerce;
 
 use Codeception\TestCase\WPTestCase;
 use IntegrationTester;
-use MadeByDenis\WooSoloApi\ECommerce\WooPaymentGateways;
+use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\WooPaymentGateways;
 
 class PaymentGatewayTest extends WPTestCase
 {

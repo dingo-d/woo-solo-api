@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Tests\Integration\AdminMenus;
+namespace Tests\Integration\Admin\AdminMenus;
 
 use Codeception\TestCase\WPTestCase;
 use IntegrationTester;
-use MadeByDenis\WooSoloApi\AdminMenus\OptionsSubmenu;
+use MadeByDenis\WooSoloApi\Admin\AdminMenus\OptionsSubmenu;
 
 class OptionsSubmenuTest extends WPTestCase
 {
@@ -45,10 +43,10 @@ class OptionsSubmenuTest extends WPTestCase
 		$this->assertEquals('<div class="wrap">
 	<div id="solo-api-options-page"></div>
 </div>
-', $view);
+', $view, 'Failed asserting that view returns correct HTML');
 
 		$hookname = get_plugin_page_hookname(OptionsSubmenu::MENU_SLUG, OptionsSubmenu::PARENT_MENU);
 
-		$this->assertEquals('admin_page_solo_api_options', $hookname);
+		$this->assertEquals('admin_page_solo_api_options', $hookname, 'Failed asserting that hookname is correct-');
 	}
 }
