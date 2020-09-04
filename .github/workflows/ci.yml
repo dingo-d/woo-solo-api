@@ -87,9 +87,9 @@ jobs:
                 image: mysql:5.7
                 env:
                     MYSQL_ALLOW_EMPTY_PASSWORD: yes
-                    MYSQL_DATABASE: wordpresstest
-                    MYSQL_USER: admin
-                    MYSQL_PASSWORD: password
+                    MYSQL_DATABASE: 'wordpresstest'
+                    MYSQL_USER: 'woo-solo-api'
+                    MYSQL_PASSWORD: 'dingos_secret'
                 ports:
                     - 3306
                 options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -102,8 +102,8 @@ jobs:
               uses: dingo-d/woo-solo-api-test-action/WP5.4-PHP7.3-Node-14@v1.0.29
               with:
                 wp-db-name: 'wordpresstest'
-                wp-db-user: 'admin'
-                wp-db-pass: 'password'
+                wp-db-user: 'woo-solo-api'
+                wp-db-pass: 'dingos_secret'
                 wp-db-host: 'mysql'
-                wp-user: 'admin'
-                wp-pass: 'password'
+                wp-user: 'woo-solo-api'
+                wp-pass: 'dingos_secret'
