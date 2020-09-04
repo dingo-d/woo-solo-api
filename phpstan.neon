@@ -12,7 +12,7 @@ parameters:
     bootstrapFiles:
         - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
         - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
-        - vendor/php-stubs/wordpress-globals/wordpress-globals.php
+        - vendor/php-stubs/wordpress-globals/source/wp-admin/includes/file.php
     ignoreErrors:
         # Custom constant
         - '#Constant ASSETS_MANIFEST not found\.#'
