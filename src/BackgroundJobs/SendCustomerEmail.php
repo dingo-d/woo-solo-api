@@ -229,7 +229,10 @@ class SendCustomerEmail extends ScheduleEvent
 		return self::JOB_NAME;
 	}
 
-	public function getArgumentsCount(): int
+	/**
+	 * @inheritDoc
+	 */
+	protected function getArgumentsCount(): int
 	{
 		return 5;
 	}

@@ -56,7 +56,7 @@ abstract class ScheduleEvent implements BackgroundProcessManager
 	 *
 	 * @return int
 	 */
-	public function getPriority(): int
+	protected function getPriority(): int
 	{
 		return 10;
 	}
@@ -68,7 +68,7 @@ abstract class ScheduleEvent implements BackgroundProcessManager
 	 *
 	 * @return int Number of argument the callback will take.
 	 */
-	public function getArgumentsCount(): int
+	protected function getArgumentsCount(): int
 	{
 		return 1;
 	}
