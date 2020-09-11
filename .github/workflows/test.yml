@@ -45,5 +45,5 @@ jobs:
               uses: php-actions/composer@v1
 
             - name: Run integration tests
-              run: composer test:integration
+              run: ls -all && pwd && composer test:integration
 
