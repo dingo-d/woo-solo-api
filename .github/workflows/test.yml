@@ -24,10 +24,10 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Read .env.actions.testing
+            - name: Read .env.testing
               uses: c-py/action-dotenv-to-setenv@v1
               with:
-                  env-file: .env.actions.testing
+                  env-file: .env.testing
 
             - name: Configure MySQL
               run: |
@@ -37,9 +37,9 @@ jobs:
 
             - name: Update configs for GA
               run: |
-                find . -depth \( -name '.env.actions.testing' \) -exec sed -i "s/=\"127.0.0.1\"/=\"127.0.0.1:${{ job.services.mysql.ports['3306'] }}\"/g" {} +
+                find . -depth \( -name '.env.testing' \) -exec sed -i "s/=\"127.0.0.1\"/=\"127.0.0.1:${{ job.services.mysql.ports['3306'] }}\"/g" {} +
                 find . -depth \( -name 'composer.json' \) -exec sed -i "s/127.0.0.1/127.0.0.1:${{ job.services.mysql.ports['3306'] }}/g" {} +
-                find . -depth \( -name '.env.actions.testing' -o -name '*.cest' \) -exec sed -i "s/localhost:8080\/$PLUGIN_SLUG/localhost:8080/g" {} +
+                find . -depth \( -name '.env.testing' -o -name '*.cest' \) -exec sed -i "s/localhost:8080\/$PLUGIN_SLUG/localhost:8080/g" {} +
 
             - name: Run composer install
               uses: php-actions/composer@v1
