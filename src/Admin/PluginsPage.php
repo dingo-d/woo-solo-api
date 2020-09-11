@@ -22,12 +22,14 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
 class PluginsPage implements Registrable
 {
 
+	public const PLUGIN_LINK_HOOK = 'plugin_action_links_woo-solo-api/woo-solo-api.php';
+
 	/**
 	 * @inheritDoc
 	 */
 	public function register(): void
 	{
-		add_action('plugin_action_links_woo-solo-api/woo-solo-api.php', [$this, 'addActionLink']);
+		add_action(self::PLUGIN_LINK_HOOK, [$this, 'addActionLink']);
 	}
 
 	/**
