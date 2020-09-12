@@ -54,7 +54,7 @@ class EnqueueResources implements Assets
 
 		wp_register_style(
 			self::CSS_HANDLE,
-			$this->get_manifest_assets_data(self::CSS_URI),
+			$this->getManifestAssetsData(self::CSS_URI),
 			['wp-components'],
 			self::VERSION,
 			self::MEDIA_ALL
@@ -74,7 +74,7 @@ class EnqueueResources implements Assets
 
 		wp_register_script(
 			self::JS_HANDLE,
-			$this->get_manifest_assets_data(self::JS_URI),
+			$this->getManifestAssetsData(self::JS_URI),
 			$this->getJsDependencies(),
 			self::VERSION,
 			self::IN_FOOTER
@@ -138,7 +138,7 @@ class EnqueueResources implements Assets
 	 *
 	 * @return string Full path to asset.
 	 */
-	private function get_manifest_assets_data(string $key = ''): string
+	private function getManifestAssetsData(string $key = ''): string
 	{
 		$data = ASSETS_MANIFEST;
 
