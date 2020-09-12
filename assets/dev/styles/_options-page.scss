@@ -11,6 +11,11 @@ $options-page: (
 	border-right: 1px solid map-get-strict($options-page, 'border-color');
 	padding-bottom: 20px;
 
+	&--separated {
+		margin-top: 20px;
+		padding-bottom: 0;
+	}
+
 	&__item {
 		margin: 20px 20px 0;
 

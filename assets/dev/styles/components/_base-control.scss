@@ -9,6 +9,7 @@ $components: (
 
 	&__label {
 		font-weight: 600 !important;
+		display: block !important;
 	}
 
 	&__error {
@@ -25,6 +26,10 @@ $components: (
 		max-width: 50%;
 	}
 
+	&__information {
+		margin: 0 0 0.5em 0;
+	}
+
 	&__checkboxes {
 		margin-bottom: 0 !important;
 	}
@@ -32,7 +37,7 @@ $components: (
 	&__textarea {
 		width: 39em;
 
-		textarea {
+		textarea {
 			max-width: 36em;
 		}
 	}

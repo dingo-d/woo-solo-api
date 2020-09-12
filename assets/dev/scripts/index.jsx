@@ -359,7 +359,7 @@ class App extends Component {
 									className={this.hasErrorClass('solo_api_languages')}
 									name='solo_api_languages'
 									label={__('Invoice Language', 'woo-solo-api')}
-									help={__('Select the language the invoice should be in', 'woo-solo-api')}
+									help={__('Select the language the invoice should be fallback to in case there is no multilanguage plugin', 'woo-solo-api')}
 									value={this.state.solo_api_languages}
 									disabled={this.state.isSaving}
 									onChange={solo_api_languages => this.setState({solo_api_languages})}
@@ -508,11 +508,9 @@ class App extends Component {
 									]}
 								/>
 								{this.renderError('solo_api_due_date')}
-								<h4>{
+								<h4 className="components-base-control__information">{
 									createInterpolateElement(
-										__('You can check the currency rate at <a>Croatian National Bank</a>.' +
-											'The currency will be automatically added if the selected currency is different from HRK.' +
-											'Also, a note about conversion rate will be added to the invoice/offer.', 'woo-solo-api'),
+										__('You can check the currency rate at <a>Croatian National Bank</a>.', 'woo-solo-api'),
 										{
 											a: <a
 												href='https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista'
@@ -520,6 +518,9 @@ class App extends Component {
 										}
 									)
 								}</h4>
+								<h4 className="components-base-control__information">
+									{__('The currency will be automatically added if the selected currency is different from HRK. Also, a note about conversion rate will be added to the invoice/offer.', 'woo-solo-api')}
+								</h4>
 							</PanelRow>
 						</div>
 					</PanelBody>
@@ -690,6 +691,26 @@ class App extends Component {
 						{this.state.isSaving ? <Spinner/> : ''}
 						{this.renderSnackbar()}
 					</div>
+				</div>
+				<div className="options-wrapper options-wrapper--separated">
+					<PanelBody
+						title={__('Solo API order details', 'woo-solo-api')}
+						initialOpen={false}
+					>
+						<PanelRow>
+							<TextControl
+								className={`components-base-control__input ${this.hasErrorClass('solo_api_token')}`}
+								name='solo_api_token'
+								label={__('Solo API token', 'woo-solo-api')}
+								help={__('Enter your personal token that you obtained from your SOLO account', 'woo-solo-api')}
+								type='text'
+								disabled={this.state.isSaving}
+								value={this.state.solo_api_token}
+								onChange={value => this.setState({solo_api_token: value})}
+							/>
+							{this.renderError('solo_api_token')}
+						</PanelRow>
+					</PanelBody>
 				</div>
 			</Fragment>
 		);
