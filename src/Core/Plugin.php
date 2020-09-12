@@ -25,6 +25,7 @@ use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\WooPaymentGateways;
 use MadeByDenis\WooSoloApi\Email\EmailFunctionality;
 use MadeByDenis\WooSoloApi\i18n\Internationalization;
 use MadeByDenis\WooSoloApi\Privacy\DataHandling;
+use MadeByDenis\WooSoloApi\Rest\Endpoints\{OrderDetails, OrderDetailsCollection};
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use MadeByDenis\WooSoloApi\Exception\{MissingManifest, PluginActivationFailure};
 use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
@@ -200,6 +201,8 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			FetchExchangeRate::class,
 			Internationalization::class,
 			OptionsSubmenu::class,
+			OrderDetails::class,
+			OrderDetailsCollection::class,
 			PluginsPage::class,
 			PluginSettings::class => [WooPaymentGateways::class],
 			SendCustomerEmail::class,
