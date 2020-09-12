@@ -235,4 +235,36 @@ class SoloOrdersTable
 			$wpdb->insert($tableName, $insertData);
 		}
 	}
+
+
+	/**
+	 * Get the collection of orders
+	 *
+	 * To do: Implement pagination so that only 20 records are fetched on every call.
+	 *
+	 * @param int|null $id ID of the order.
+	 *
+	 * @return array|null Collection of orders from the DB or one order from the DB.
+	 */
+	public function getOrders(int $id = null)
+	{
+		global $wpdb;
+
+		$tableName = $wpdb->prefix . self::TABLE_NAME;
+
+		if (!empty($id)) {
+			return $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT * FROM {$tableName} WHERE id = %d",
+					$id
+				),
+				ARRAY_A
+			);
+		}
+
+		return $wpdb->get_results(
+			"SELECT * FROM {$tableName}",
+			ARRAY_A
+		);
+	}
 }
