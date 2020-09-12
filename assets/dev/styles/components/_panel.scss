@@ -5,7 +5,8 @@ $panel: (
 .components-panel {
 	$this: &;
 
-	&__body{
+	&__body {
+
 		&.is-opened {
 			#{$this}__body-title {
 				background-color: map-get-strict($panel, 'body-title-background') !important;

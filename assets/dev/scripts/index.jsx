@@ -42,6 +42,7 @@ class App extends Component {
 			hasErrors: false,
 			errors: {},
 			apiResponse: '',
+			dbOrders: '',
 			solo_api_token: '',
 			solo_api_measure: '1',
 			solo_api_languages: '1',
@@ -103,6 +104,12 @@ class App extends Component {
 						isLoading: false,
 					});
 				});
+
+				apiFetch({path: '/woo-solo-api/v1/solo-order-details'}).then(res => {
+					this.setState({
+						dbOrders: res,
+					});
+				});
 			}
 		});
 	}
@@ -119,6 +126,7 @@ class App extends Component {
 				key !== 'isSaving' &&
 				key !== 'errors' &&
 				key !== 'apiResponse' &&
+				key !== 'dbOrders' &&
 				key !== 'isApiRequestOver' &&
 				key !== 'isSaved'))
 			.reduce((obj, key) => {
@@ -698,17 +706,26 @@ class App extends Component {
 						initialOpen={false}
 					>
 						<PanelRow>
-							<TextControl
-								className={`components-base-control__input ${this.hasErrorClass('solo_api_token')}`}
-								name='solo_api_token'
-								label={__('Solo API token', 'woo-solo-api')}
-								help={__('Enter your personal token that you obtained from your SOLO account', 'woo-solo-api')}
-								type='text'
-								disabled={this.state.isSaving}
-								value={this.state.solo_api_token}
-								onChange={value => this.setState({solo_api_token: value})}
-							/>
-							{this.renderError('solo_api_token')}
+							<div className="details-table">
+								<div className="details-table__element details-table__element--heading">{__('ID', 'woo-solo-api')}</div>
+								<div className="details-table__element details-table__element--heading">{__('Order ID', 'woo-solo-api')}</div>
+								<div className="details-table__element details-table__element--heading">{__('Customer Email', 'woo-solo-api')}</div>
+								<div className="details-table__element details-table__element--heading">{__('Is sent to Solo API', 'woo-solo-api')}</div>
+								<div className="details-table__element details-table__element--heading">{__('Is pdf sent to customer', 'woo-solo-api')}</div>
+								<div className="details-table__element details-table__element--heading">{__('Created at', 'woo-solo-api')}</div>
+								<div className="details-table__element details-table__element--heading">{__('Updated at', 'woo-solo-api')}</div>
+								{this.state.dbOrders.map((el) => {
+									return <Fragment>
+										<div className="details-table__element">{el.id}</div>
+										<div className="details-table__element">{el.order_id}</div>
+										<div className="details-table__element">{el.customer_email}</div>
+										<div className="details-table__element">{el.is_sent_to_api === '1' ? '✅' : '❌'}</div>
+										<div className="details-table__element">{el.is_sent_to_user === '1' ? '✅' : '❌'}</div>
+										<div className="details-table__element">{el.created_at}</div>
+										<div className="details-table__element">{el.updated_at}</div>
+									</Fragment>
+								})};
+							</div>
 						</PanelRow>
 					</PanelBody>
 				</div>
