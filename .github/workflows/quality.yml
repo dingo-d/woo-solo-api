@@ -76,4 +76,4 @@ jobs:
               run: composer install --no-progress
 
             - name: Analyse code using phpstan
-              run: composer analyze
+              uses: dingo-d/phpstan-wp-action@v1
