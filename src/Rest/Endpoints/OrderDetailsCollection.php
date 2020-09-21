@@ -91,7 +91,12 @@ class OrderDetailsCollection extends BaseRoute implements RestCallable
 		return is_user_logged_in() && current_user_can('manage_options');
 	}
 
-	public function getRouteSchema()
+	/**
+	 * Get the route's scheme
+	 *
+	 * @return array Scheme details.
+	 */
+	public function getRouteSchema(): array
 	{
 		return [
 			// This tells the spec of JSON Schema we are using which is draft 4.
