@@ -28,7 +28,7 @@
 		"__stylelint": "stylelint assets/dev/**/*.scss",
 		"lintStyle": "npm run __stylelint",
 		"lintJs": "npm run __eslint",
-		"lint": "npm run lintJs && npm run lintStyle",
+		"lint": "npm run lintJs && npm run lintStyle && composer standard:check && composer analyze",
 		"start": "webpack --progress --watch --display-error-details --display-reasons --mode development",
 		"build": "webpack --progress --mode production"
 	},
