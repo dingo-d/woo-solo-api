@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 
 use Automattic\WooCommerce\Admin\RemoteInboxNotifications\OrderCountRuleProcessor;
+use MadeByDenis\WooSoloApi\BackgroundJobs\MakeSoloApiCall;
 use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 use MadeByDenis\WooSoloApi\Exception\{ApiRequestException, OrderValidationException, WpException};
@@ -21,10 +22,12 @@ use WC_Order;
 use WC_Order_Refund;
 
 /**
- * SoloRequest class
+ * API request
  *
  * Class that makes api request towards SOLO service
- * and handles sending emails to clients from the SOLO service
+ * and handles sending emails to clients from the SOLO service.
+ * In the case of order being completed, a background job will be scheduled
+ * that will send the orders towards the SOLO API.
  *
  * @package MadeByDenis\WooSoloApi\ECommerce
  * @since 2.0.0
@@ -58,12 +61,8 @@ class SoloRequest implements Registrable
 	 */
 	public function register(): void
 	{
-		add_action('woocommerce_email_order_details', [$this, 'sendApiRequest'], 15, 4);
+		add_action('woocommerce_email_order_details', [$this, 'sendApiRequestOnCheckout'], 15, 4);
 		add_action('woocommerce_order_status_completed', [$this, 'sendApiRequestOnOrderCompleted'], 10, 1);
-
-		// Explore the following hooks to see if we can cover both cases at once.
-		// woocommerce_payment_complete_order_status
-		// woocommerce_payment_complete
 	}
 
 	/**
@@ -88,7 +87,7 @@ class SoloRequest implements Registrable
 	 * @since 1.4.0 Fix the send api method.
 	 * @since 1.3.0 Added tax checks and additional debug options.
 	 */
-	public function sendApiRequest($order, bool $sentToAdmin, bool $plainText, object $email): void // phpcs:ignore
+	public function sendApiRequestOnCheckout($order, bool $sentToAdmin, bool $plainText, object $email): void // phpcs:ignore
 	{
 		// This should run only on the front facing side.
 		if (is_admin()) {
@@ -123,6 +122,9 @@ class SoloRequest implements Registrable
 	/**
 	 * Send API call when order status changes
 	 *
+	 * We'll schedule call or multiple calls, in case there are multiple orders checked in the
+	 * admin area, so that we don't overburden the API.
+	 *
 	 * @since 1.9.5
 	 *
 	 * @param int $orderId The ID of the order.
@@ -146,10 +148,10 @@ class SoloRequest implements Registrable
 			return;
 		}
 
-		// Create a database entry for consistency checks.
-		SoloOrdersTable::updateOrdersTable($orderId, false, false, false);
-
 		$order = \wc_get_order($orderId);
+
+		// Track the number of call numbers in case of multiple calls.
+		static $callNumber = 1;
 
 		if (!($order instanceof WC_Order)) {
 			throw OrderValidationException::invalidOrderType($order);
@@ -160,7 +162,17 @@ class SoloRequest implements Registrable
 		$orderStatus = $orderData['status'];
 
 		if ($orderStatus === 'completed') {
-			$this->executeSoloApiCall($order);
+			// Create a database entry for consistency checks.
+			SoloOrdersTable::updateOrdersTable($orderId, false, false, false);
+
+			// Schedule a calls towards the API.
+			wp_schedule_single_event(
+				time() + (5 * $callNumber),
+				MakeSoloApiCall::JOB_NAME,
+				['order' => $order]
+			);
+
+			$callNumber++;
 		}
 	}
 
@@ -181,7 +193,7 @@ class SoloRequest implements Registrable
 	 *
 	 * @retrun void
 	 */
-	private function executeSoloApiCall($order): void
+	public function executeSoloApiCall($order): void
 	{
 		if (!($order instanceof WC_Order)) {
 			throw OrderValidationException::invalidOrderType($order);
