@@ -14,7 +14,9 @@ namespace MadeByDenis\WooSoloApi\Exception;
 use InvalidArgumentException;
 
 /**
- * OrderValidationException class
+ * Order validation exception
+ *
+ * Exception that will be thrown in case there is an error with the order.
  *
  * @package MadeByDenis\WooSoloApi\Exception
  * @since

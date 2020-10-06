@@ -12,9 +12,9 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Core;
 
 /**
- * Class Plugin_Factory
+ * Plugin factory
  *
- * Creates a plugin instance
+ * Creates a shared plugin instance.
  *
  * @package Made_By_Denis\Woo_Solo_Api\Core
  * @since 2.0.0

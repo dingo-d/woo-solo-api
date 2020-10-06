@@ -17,7 +17,10 @@ use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\View\{EscapedView, TemplatedView};
 
 /**
- * DatabaseTableMissingNotice class
+ * Admin notice when database table is missing
+ *
+ * This class handles the admin_notices logic that will be shown if user
+ * just updates the plugin without deactivating it.
  *
  * @package MadeByDenis\WooSoloApi\Admin\AdminNotices
  * @since 2.0.0

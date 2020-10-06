@@ -18,7 +18,7 @@ use MadeByDenis\WooSoloApi\View\EscapedView;
 use MadeByDenis\WooSoloApi\View\TemplatedView;
 
 /**
- * Class AdminMenu
+ * Admin menu builder template class
  *
  * This abstract class can be extended to add new admin menus.
  * This is the template method design pattern, used to avoid code duplication.

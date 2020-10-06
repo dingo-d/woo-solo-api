@@ -14,7 +14,7 @@ namespace MadeByDenis\WooSoloApi\Exception;
 use RuntimeException;
 
 /**
- * Class WpException
+ * Wp exception
  *
  * Exception when a WordPress error happens.
  * This will be thrown inside \is_wp_error() conditions.

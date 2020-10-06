@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Core;
 
 /**
- * Interface Has_Activation.
+ * Interface HasActivation
  *
  * An object that can be activated.
  *

@@ -15,7 +15,7 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 
 /**
- * DataHandling class
+ * Data handling
  *
  * This class will hold the hooks that will be run when a user makes a request for either
  * data export or data deletion using the native WordPress privacy functionality.

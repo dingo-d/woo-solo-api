@@ -15,7 +15,11 @@ use MadeByDenis\WooSoloApi\Exception\OrderValidationException;
 use WC_Order;
 
 /**
- * SoloOrdersTable class
+ * Manages all the database interactions in the plugin
+ *
+ * We don't want to pollute the codebase with global $wpdb calls.
+ * Instead we have a dedicated class that will handle this. Since WordPress doesn't
+ * have an ORM, this will have to do.
  *
  * @package MadeByDenis\WooSoloApi\DB
  * @since 2.0.0
@@ -85,6 +89,10 @@ class SoloOrdersTable
 		);
 
 		if (empty($result)) {
+			return false;
+		}
+
+		if ($result[0]['is_sent_to_api'] === '0') {
 			return false;
 		}
 

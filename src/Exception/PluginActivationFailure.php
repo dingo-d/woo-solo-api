@@ -14,9 +14,9 @@ namespace MadeByDenis\WooSoloApi\Exception;
 use RuntimeException;
 
 /**
- * Class PluginActivationFailure
+ * Plugin activation failure exception
  *
- * Exception when plugin activation error happens
+ * Exception when plugin activation error happens.
  *
  * @package MadeByDenis\WooSoloApi\Exception
  * @since 2.0.0

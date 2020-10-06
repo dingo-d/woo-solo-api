@@ -14,7 +14,7 @@ namespace MadeByDenis\WooSoloApi\View;
 use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
- * Templated view class
+ * Templated view
  *
  * Looks within the child theme and parent theme folders first for a view,
  * before defaulting to the plugin folder.

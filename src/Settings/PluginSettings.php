@@ -15,7 +15,7 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
 use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
 
 /**
- * Plugin settings class
+ * Plugin settings
  *
  * @package MadeByDenis\WooSoloApi\Settings
  * @since 2.0.0

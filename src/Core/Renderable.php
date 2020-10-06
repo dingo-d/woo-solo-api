@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Core;
 
 /**
- * Renderable interface.
+ * Renderable interface
  *
  * An object that can be rendered.
  *

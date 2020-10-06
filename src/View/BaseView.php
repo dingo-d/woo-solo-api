@@ -15,7 +15,7 @@ use MadeByDenis\WooSoloApi\Exception\FailedToLoadView;
 use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
- * Base view class
+ * Base view template
  *
  * Basic View class to abstract away the PHP view rendering.
  *

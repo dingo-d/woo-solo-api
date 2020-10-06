@@ -32,7 +32,7 @@ use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
 use MadeByDenis\WooSoloApi\Settings\PluginSettings;
 
 /**
- * Class Plugin.
+ * Plugin entrypoint
  *
  * Main plugin controller class that hooks the plugin's functionality
  * into the WordPress request lifecycle.

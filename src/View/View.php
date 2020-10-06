@@ -16,7 +16,7 @@ use MadeByDenis\WooSoloApi\Exception\FailedToLoadView;
 use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
- * Interface View
+ * Interface view
  *
  * @package MadeByDenis\WooSoloApi\View
  * @since 2.0.0

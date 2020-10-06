@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Core;
 
 /**
- * Interface Has_Deactivation.
+ * Interface HasDeactivation
  *
  * An object that can be deactivated.
  *

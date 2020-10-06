@@ -15,7 +15,7 @@ use WP_REST_Request;
 use WP_REST_Response;
 
 /**
- * RestCallable interface
+ * Rest callable interface
  *
  * @package MadeByDenis\WooSoloApi\Rest
  * @since 2.0.0

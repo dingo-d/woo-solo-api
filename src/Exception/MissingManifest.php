@@ -14,7 +14,7 @@ namespace MadeByDenis\WooSoloApi\Exception;
 use InvalidArgumentException;
 
 /**
- * Class MissingManifest
+ * Missing manifest exception
  *
  * Exception when manifest.json is missing. Usually means that assets are not bundled correctly.
  *

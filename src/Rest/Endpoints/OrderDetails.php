@@ -17,7 +17,7 @@ use MadeByDenis\WooSoloApi\Rest\RestCallable;
 use WP_REST_Request;
 
 /**
- * OrderDetails class
+ * Order details endpoint
  *
  * This class holds the callback function for the REST endpoint used to get order details by ID.
  * These details should be only visible to admin logged in users as they are shown only in the admin
@@ -122,7 +122,6 @@ class OrderDetails extends BaseRoute implements RestCallable
 	 */
 	public function restPermissionCheck(WP_REST_Request $request)
 	{
-//		error_log(print_r($request['context'], true));
 		return is_user_logged_in() && current_user_can('manage_options');
 	}
 

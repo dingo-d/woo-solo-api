@@ -14,7 +14,7 @@ namespace MadeByDenis\WooSoloApi\Exception;
 use InvalidArgumentException;
 
 /**
- * Class InvalidUri.
+ * Invalid uri exception
  *
  * Exception thrown when a URI is not valid in WordPress context.
  *

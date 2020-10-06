@@ -15,7 +15,7 @@ use MadeByDenis\WooSoloApi\Exception\FailedToLoadView;
 use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
- * Escaped view class
+ * Escaped view
  *
  * This is a Decorator that decorates a given View with escaping meant for
  * HTML output.

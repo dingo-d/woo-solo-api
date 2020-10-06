@@ -15,7 +15,7 @@ use Exception;
 use RuntimeException;
 
 /**
- * Class Failed_To_Load_View.
+ * Failed to load view
  *
  * Exception thrown when a view file cannot be found.
  *

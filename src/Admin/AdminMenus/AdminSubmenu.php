@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Admin\AdminMenus;
 
 /**
- * Admin submenu abstract class
+ * Admin submenu builder template class
  *
  * This abstract class can be extended to add new admin submenus.
  *

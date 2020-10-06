@@ -16,7 +16,7 @@ use MadeByDenis\WooSoloApi\Rest\RestCallable;
 use WP_REST_Request;
 
 /**
- * AccountDetails class
+ * Account details endpoint
  *
  * This class holds the callback function for the REST endpoint used to check the details from SOLO API.
  *

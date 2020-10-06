@@ -14,7 +14,7 @@ namespace MadeByDenis\WooSoloApi\Rest;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
 /**
- * BaseRoute class
+ * Base route template
  *
  * @package MadeByDenis\WooSoloApi\Rest
  * @since 2.0.0

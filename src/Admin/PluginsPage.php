@@ -14,7 +14,7 @@ namespace MadeByDenis\WooSoloApi\Admin;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
 /**
- * PluginsPage class
+ * Adds action link to the plugin in the plugin screen
  *
  * @package MadeByDenis\WooSoloApi\Admin
  * @since 2.0.0

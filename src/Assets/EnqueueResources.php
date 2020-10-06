@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Assets;
 
 /**
- * Class EnqueueResources
+ * Enqueues all the scripts and styles in the plugin
  *
  * This class holds the logic for enqueueing the scripts and styles of the plugin.
  *

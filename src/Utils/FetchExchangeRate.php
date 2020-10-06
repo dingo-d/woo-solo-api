@@ -14,7 +14,7 @@ namespace MadeByDenis\WooSoloApi\Utils;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
 /**
- * FetchExchangeRate class
+ * Fetch exchange rate utility
  *
  * This class is responsible for fetching an exchange rate
  * every 12 hours from the official Croatian National Bank API.

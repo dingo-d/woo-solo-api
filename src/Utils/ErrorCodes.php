@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Utils;
 
 /**
- * ErrorCodes trait
+ * Error codes helper
  *
  * @package MadeByDenis\WooSoloApi\Utils
  * @since 2.0.0

@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Core;
 
 /**
- * Registrable interface.
+ * Registrable interface
  *
  * An object that can be registered.
  *

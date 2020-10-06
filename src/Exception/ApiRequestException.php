@@ -14,7 +14,7 @@ namespace MadeByDenis\WooSoloApi\Exception;
 use RuntimeException;
 
 /**
- * Class ApiRequestException
+ * Api request exception
  *
  * Exception when an error happens in the request towards the SOLO API
  *

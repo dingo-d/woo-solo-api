@@ -14,7 +14,9 @@ namespace MadeByDenis\WooSoloApi\Email;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
 /**
- * EmailFunctionality class
+ * Email functionality
+ *
+ * Adds modifications (global!) to the email headers.
  *
  * @package MadeByDenis\WooSoloApi\Email
  * @since 2.0.0

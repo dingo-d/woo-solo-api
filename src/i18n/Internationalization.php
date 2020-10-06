@@ -14,7 +14,7 @@ namespace MadeByDenis\WooSoloApi\i18n;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
 /**
- * Internationalization class
+ * Internationalization
  *
  * @package MadeByDenis\WooSoloApi\i18n
  * @since 2.0.0
