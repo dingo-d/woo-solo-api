@@ -15,9 +15,9 @@ use Automattic\WooCommerce\Admin\Overrides\Order;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
 /**
- * AdminOrder class
+ * Modification to the WooCommerce admin order page
  *
- * Adds additional data to the admin order page
+ * Adds additional data to the admin order page, if enabled in the plugin settings.
  *
  * @package MadeByDenis\WooSoloApi\ECommerce
  * @since 2.0.0

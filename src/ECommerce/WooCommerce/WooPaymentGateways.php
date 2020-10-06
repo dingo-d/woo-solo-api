@@ -15,7 +15,7 @@ use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
 use WC_Payment_Gateways;
 
 /**
- * Woo payment gateways class
+ * Woo payment gateways
  *
  * This is the implementation of WC_Payment_Gateways class from WooCommerce.
  * We are abstracting the implementation, in order to have a more testable code -

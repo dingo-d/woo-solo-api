@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\BackgroundJobs;
 
 /**
- * Class ScheduleEvent
+ * Schedule event template class
  *
  * Abstract class used for creating any background job.
  *

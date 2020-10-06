@@ -14,7 +14,7 @@ namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
 /**
- * CheckoutFields class
+ * Additional fields on the checkout screen
  *
  * Adds custom WooCommerce checkout fields based on the settings.
  *

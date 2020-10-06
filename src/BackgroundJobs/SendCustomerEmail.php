@@ -17,9 +17,10 @@ use RecursiveIteratorIterator;
 use WP_Error;
 
 /**
- * SendCustomerEmail class
+ * Holds logic for sending customer email with SOLO API order/invoice PDF
  *
- * This class will hold the background logic that will be executed
+ * This class holds logic for executing background job that sends customer email,
+ * received from SOLO service.
  *
  * @package MadeByDenis\WooSoloApi\BackgroundJobs
  * @since 2.0.0
