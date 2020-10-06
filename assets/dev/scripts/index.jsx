@@ -724,7 +724,7 @@ class App extends Component {
 										<div className="details-table__element">{el.created_at}</div>
 										<div className="details-table__element">{el.updated_at}</div>
 									</Fragment>
-								})};
+								})}
 							</div>
 						</PanelRow>
 					</PanelBody>
