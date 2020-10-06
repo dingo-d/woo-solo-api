@@ -122,7 +122,7 @@ final class EscapedView implements View
 	 *
 	 * @var array
 	 */
-	private $allowed_tags = [];
+	private $allowed_tags;
 
 	/**
 	 * Instantiate a Escaped_View object.
