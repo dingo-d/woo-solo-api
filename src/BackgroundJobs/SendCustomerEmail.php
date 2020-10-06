@@ -220,6 +220,8 @@ class SendCustomerEmail extends ScheduleEvent
 		 * Update - YES;
 		 */
 		SoloOrdersTable::updateOrdersTable($orderId, true, true, true);
+
+		return true;
 	}
 
 	/**
