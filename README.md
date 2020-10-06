@@ -21,7 +21,7 @@ the order details to the SOLO service which will in turn create a PDF of the inv
 Additionally, the invoice or order will be stored on your site, and you'll have the option of sending this PDF as a separate
 mail to the client.
 
-There is an entire options page where you can specify the details of the order or the invoice such as unit measure, payment
+There is an entire options page where you can specify the details of the order, or the invoice such as unit measure, payment
 options, language of the invoice, currency and others.
 
 The plugin is translated to Croatian, since the SOLO service is primarily used by Croatian users.
@@ -41,33 +41,33 @@ For more information about the SOLO API visit this link: https://solo.com.hr/api
 * [Composer](https://getcomposer.org/)
 * [Node.js](https://nodejs.org/en/)
 
-The project is built following PSR-12 standards, and uses PSR-4 autoloading. To install the development dependencies you'll need to run
+The project follows PSR-12 standards, and uses PSR-4 autoloading. To install the development dependencies you'll need to run:
 
 ```bash
 composer install
 ```
 
-To bundle the scripts and styles you'll need to run
+To bundle the scripts and styles you'll need to run:
 
 ```bash
 npm install
 npm run build
 ```
 
-During the development you can use watch mode
+During the development you can use watch mode:
 
 ```bash
 npm run watch
 ```
 
-There are a lot of composer scripts available for checking the code quality ([PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/), [PHPStan](https://github.com/phpstan/phpstan)), and the code is covered with tests which are ran on [wp-browser](https://github.com/lucatume/wp-browser/).
+There are a lot of composer scripts available for checking the code quality ([PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/), [PHPStan](https://github.com/phpstan/phpstan)), and the code has tests which are built using [wp-browser](https://github.com/lucatume/wp-browser/).
 
 ### Running tests
 
 To run tests, you'll need to set up [testing environment](https://wpbrowser.wptestkit.dev/getting-started/setting-up-minimum-wordpress-installation), and modify your `.env.testing`.
 In order to run acceptance tests, you'll need to install selenium and chrome webdriver. You can read the official Codeception WebDriver [documentation](https://codeception.com/docs/modules/WebDriver#Selenium) on setting those up.
 
-Once everything is set up for you, you can run the tests using Composer scripts:
+Once you set up everything, you can run the tests using Composer scripts:
 
 ```bash
 composer test:acceptance
@@ -86,7 +86,7 @@ Check the [Changelog.md](https://github.com/dingo-d/woo-solo-api/blob/master/CHA
 
 ## Acknowledgements 
 
-The webpack config is taken from (partially) [Eightshift frontend libs](https://github.com/infinum/eightshift-frontend-libs/)
+The webpack config is partially taken from [Eightshift frontend libs](https://github.com/infinum/eightshift-frontend-libs/)
 
 Settings page was created with the help of [tutorial](https://www.codeinwp.com/blog/plugin-options-page-gutenberg/) by Hardeep Asrani.
 
