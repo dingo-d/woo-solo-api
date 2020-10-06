@@ -16,11 +16,12 @@ use MadeByDenis\WooSoloApi\Admin\AdminNotices\DatabaseTableMissingNotice;
 use MadeByDenis\WooSoloApi\Admin\PluginsPage;
 use MadeByDenis\WooSoloApi\Admin\AdminMenus\OptionsSubmenu;
 use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
+use MadeByDenis\WooSoloApi\BackgroundJobs\MakeSoloApiCall;
 use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\AdminOrder;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\CheckoutFields;
-use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\SoloRequest;
+use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\ApiRequest;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\WooPaymentGateways;
 use MadeByDenis\WooSoloApi\Email\EmailFunctionality;
 use MadeByDenis\WooSoloApi\i18n\Internationalization;
@@ -206,7 +207,8 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			PluginsPage::class,
 			PluginSettings::class => [WooPaymentGateways::class],
 			SendCustomerEmail::class,
-			SoloRequest::class,
+			MakeSoloApiCall::class,
+			ApiRequest::class,
 		];
 
 		// Test mocks.
