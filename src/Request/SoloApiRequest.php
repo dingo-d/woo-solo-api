@@ -29,6 +29,24 @@ use WC_Order_Refund;
 class SoloApiRequest
 {
 	/**
+	 * Name of the invoice type
+	 *
+	 * Set by the API.
+	 *
+	 * @var string
+	 */
+	public const INVOICE = 'racun';
+
+	/**
+	 * Name of the offer type
+	 *
+	 * Set by the API.
+	 *
+	 * @var string
+	 */
+	public const OFFER = 'ponuda';
+
+	/**
 	 * Solo API URL
 	 *
 	 * @var string
@@ -75,15 +93,17 @@ class SoloApiRequest
 			$field = 'billing';
 		}
 
-		$firstName = $orderData[$field]['first_name'] ?? '';
-		$lastName = $orderData[$field]['last_name'] ?? '';
-		$address1 = $orderData[$field]['address_1'] ?? '';
-		$address2 = $orderData[$field]['address_2'] ?? '';
-		$city = $orderData[$field]['city'] ?? '';
-		$state = $orderData[$field]['state'] ?? '';
-		$country = $orderData[$field]['country'] ?? '';
-		$postcode = $orderData[$field]['postcode'] ?? '';
-		$email = $orderData[$field]['email'] ?? '';
+		// The bill data (invoice or offer) must be from billing fields!
+		$firstName = $orderData['billing']['first_name'] ?? '';
+		$lastName = $orderData['billing']['last_name'] ?? '';
+		$companyName = $orderData['billing']['billing_company'] ?? ''; // Used for R1.
+		$address1 = $orderData['billing']['address_1'] ?? '';
+		$address2 = $orderData['billing']['address_2'] ?? '';
+		$city = $orderData['billing']['city'] ?? '';
+		$state = $orderData['billing']['state'] ?? '';
+		$country = $orderData['billing']['country'] ?? '';
+		$postcode = $orderData['billing']['postcode'] ?? '';
+		$email = $orderData['billing']['email'] ?? '';
 
 		$metaData = $orderData['meta_data'];
 
@@ -110,6 +130,11 @@ class SoloApiRequest
 		}
 
 		$orderBuyer = "$firstName $lastName";
+
+		// If the invoice is R1 the company name is required and used instead of first name and last name.
+		if (get_option('solo_api_invoice_type') !== '2') {
+			$orderBuyer = $companyName;
+		}
 
 		if ($address2 !== '') {
 			if ($state !== '') {
@@ -144,7 +169,7 @@ class SoloApiRequest
 
 		$requestBody['tip_racuna'] = 4; // Default is no label.
 
-		if ($billType === 'racun') {
+		if ($billType === self::INVOICE) {
 			$requestBody['tip_racuna'] = $invoiceType;
 		}
 
@@ -251,7 +276,7 @@ class SoloApiRequest
 			$requestBody['iban'] = esc_attr($ibanNumber);
 		}
 
-		if ($billType === 'ponuda') {
+		if ($billType === self::OFFER) {
 			$requestBody['jezik_ponude'] = $languages;
 			$requestBody['valuta_ponude'] = $currency;
 		} else {
@@ -288,7 +313,7 @@ class SoloApiRequest
 			}
 		}
 
-		if ($billType === 'racun') {
+		if ($billType === self::INVOICE) {
 			$requestBody['fiskalizacija'] = '0';
 
 			if (!empty($soloApiFiscalization)) {
@@ -342,11 +367,19 @@ class SoloApiRequest
 
 		$responseDetails = json_decode($responseBody, true);
 
+		// Usually an error if API throttling happened.
 		if ($responseDetails['status'] !== 0) {
 			throw ApiRequestException::apiResponse($responseDetails['status'], $responseDetails['message']);
 		}
 
 		$orderId = $order->get_id();
+
+		// Get the Solo ID of the order.
+		if ($billType === self::INVOICE) {
+			$soloOrderId = $responseDetails[$billType]['broj_racuna'];
+		} else {
+			$soloOrderId = $responseDetails[$billType]['broj_ponude'];
+		}
 
 		/**
 		 * Update the database status:
@@ -355,7 +388,7 @@ class SoloApiRequest
 		 * Email sent to user - NO;
 		 * Update - YES;
 		 */
-		SoloOrdersTable::updateOrdersTable($orderId, true, false, true);
+		SoloOrdersTable::updateOrdersTable($orderId, $soloOrderId, true, false, true);
 
 		// Send mail to the customer with the PDF of the invoice.
 		$sendPdf = get_option('solo_api_send_pdf');
