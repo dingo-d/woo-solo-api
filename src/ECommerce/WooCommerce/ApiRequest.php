@@ -111,8 +111,21 @@ class ApiRequest implements Registrable
 			return;
 		}
 
-		// Create a database entry for consistency checks.
-		SoloOrdersTable::updateOrdersTable($orderId, false, false, false);
+		/**
+		 * Check if the order entry exists in the DB.
+		 * This can happen if the API call failed. If it does, we won't create a new entry
+		 * in the woo orders table, we'll just update it.
+		 */
+		$orderEntryExists = $this->ordersTable->orderExists($orderId);
+
+		/**
+		 * Create a database entry for consistency checks
+		 *
+		 * Order sent to API - NO;
+		 * Email sent to user - NO;
+		 * Update - Should be no, but if previous call failed for the same order, just update it;
+		 */
+		SoloOrdersTable::updateOrdersTable($orderId, '', false, false, $orderEntryExists);
 
 		$this->soloRequest->executeSoloApiCall($order);
 	}
@@ -160,8 +173,21 @@ class ApiRequest implements Registrable
 		$orderStatus = $orderData['status'];
 
 		if ($orderStatus === 'completed') {
-			// Create a database entry for consistency checks.
-			SoloOrdersTable::updateOrdersTable($orderId, false, false, false);
+			/**
+			 * Check if the order entry exists in the DB.
+			 * This can happen if the API call failed. If it does, we won't create a new entry
+			 * in the woo orders table, we'll just update it.
+			 */
+			$orderEntryExists = $this->ordersTable->orderExists($orderId);
+
+			/**
+			 * Create a database entry for consistency checks
+			 *
+			 * Order sent to API - NO;
+			 * Email sent to user - NO;
+			 * Update - Should be no, but if previous call failed for the same order, just update it;
+			 */
+			SoloOrdersTable::updateOrdersTable($orderId, '', false, false, $orderEntryExists);
 
 			// Schedule a calls towards the API.
 			wp_schedule_single_event(
