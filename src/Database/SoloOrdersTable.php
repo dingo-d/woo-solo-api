@@ -168,6 +168,7 @@ class SoloOrdersTable
 		$sql = "CREATE TABLE IF NOT EXISTS `{$tableName}` (
 				`id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				`order_id` bigint(20) UNSIGNED NOT NULL,
+				`solo_id` varchar(255),
 				`customer_email` varchar(255) NOT NULL,
 				`is_sent_to_api` boolean NOT NULL,
 				`is_sent_to_user` boolean NOT NULL,
@@ -202,14 +203,15 @@ class SoloOrdersTable
 	 *
 	 * Once the order passes, we need to mark this in the DB in our custom table.
 	 *
-	 * @param int $orderId Order ID.
-	 * @param bool $sentToApi Is the order sent to SOLO API.
-	 * @param bool $sentToUser Is the order PDF sent to user.
-	 * @param bool $update Is current call update to the table or creation?.
+	 * @param int    $orderId WooCommerce order ID.
+	 * @param string $soloOrderId Solo order ID. If invoice will be something like 0-0-1, if offer will be 0001-2020.
+	 * @param bool   $sentToApi Is the order sent to SOLO API.
+	 * @param bool   $sentToUser Is the order PDF sent to user.
+	 * @param bool   $update Is current call update to the table or creation?.
 	 *
 	 * @return void
 	 */
-	public static function updateOrdersTable(int $orderId, bool $sentToApi, bool $sentToUser, bool $update): void
+	public static function updateOrdersTable(int $orderId, string $soloOrderId, bool $sentToApi, bool $sentToUser, bool $update): void
 	{
 		global $wpdb;
 
@@ -229,6 +231,10 @@ class SoloOrdersTable
 			'is_sent_to_api' => $sentToApi,
 			'is_sent_to_user' => $sentToUser,
 		];
+
+		if (!empty($soloOrderId)) {
+			$insertData['solo_id'] = $soloOrderId;
+		}
 
 		$time = current_time('mysql');
 
@@ -274,5 +280,34 @@ class SoloOrdersTable
 			"SELECT * FROM {$tableName}",
 			ARRAY_A
 		);
+	}
+
+	/**
+	 * Check if order already exists in the database
+	 *
+	 * This is used so that we don't create multiple entries in case API response failed when
+	 * sending multiple API calls (it can throw a throttling error).
+	 *
+	 * @param int $id WooCommerce order ID
+	 *
+	 * @return bool
+	 */
+	public function orderExists(int $id): bool
+	{
+		global $wpdb;
+
+		$tableName = $wpdb->prefix . self::TABLE_NAME;
+
+		$result = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT *
+				FROM {$tableName}
+				WHERE order_id = %d;",
+				$id
+			),
+			ARRAY_A
+		);
+
+		return !empty($result);
 	}
 }
