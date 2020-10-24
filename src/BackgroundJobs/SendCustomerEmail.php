@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\BackgroundJobs;
 
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
+use MadeByDenis\WooSoloApi\Request\SoloApiRequest;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use WP_Error;
@@ -74,12 +75,14 @@ class SendCustomerEmail extends ScheduleEvent
 		// Create pdf.
 		$pdfLink = esc_url($responseBody[$billType]['pdf']);
 
-		if ($billType === 'racun') {
-			$pdfName = esc_html($responseBody[$billType]['broj_racuna']);
+		if ($billType === SoloApiRequest::INVOICE) {
+			$soloOrderId = $responseBody[$billType]['broj_racuna'];
+			$pdfName = esc_html($soloOrderId);
 			/* translators: name of the invoice file, don't use diacritics! */
 			$pdfName = esc_html__('invoice-', 'woo-solo-api') . $pdfName;
 		} else {
-			$pdfName = esc_html($responseBody[$billType]['broj_ponude']);
+			$soloOrderId = $responseBody[$billType]['broj_ponude'];
+			$pdfName = esc_html($soloOrderId);
 			/* translators: name of the offer file, don't use diacritics! */
 			$pdfName = esc_html__('offer-', 'woo-solo-api') . $pdfName;
 		}
@@ -152,10 +155,9 @@ class SendCustomerEmail extends ScheduleEvent
 		$emailMessage = nl2br(get_option('solo_api_message'));
 		$emailTitle = get_option('solo_api_mail_title');
 
-		$billType = ($billType === 'racun') ? esc_html__('invoice', 'woo-solo-api') : esc_html__(
-			'offer',
-			'woo-solo-api'
-		);
+		$billType = ($billType === SoloApiRequest::INVOICE) ?
+			esc_html__('invoice', 'woo-solo-api') :
+			esc_html__('offer', 'woo-solo-api');
 
 		/* translators: 1:Bill type */
 		$defaultMessage = sprintf(esc_html__('Your %s is in the attachment.', 'woo-solo-api'), $billType);
@@ -219,7 +221,7 @@ class SendCustomerEmail extends ScheduleEvent
 		 * Email sent to user - YES;
 		 * Update - YES;
 		 */
-		SoloOrdersTable::updateOrdersTable($orderId, true, true, true);
+		SoloOrdersTable::updateOrdersTable($orderId, $soloOrderId, true, true, true);
 
 		return true;
 	}
