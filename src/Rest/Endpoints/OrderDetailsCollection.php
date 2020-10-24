@@ -114,6 +114,10 @@ class OrderDetailsCollection extends BaseRoute implements RestCallable
 					'description' => esc_html__('The id of the WooCommerce order object.', 'woo-solo-api'),
 					'type' => 'integer',
 				],
+				'solo_id' => [
+					'description' => esc_html__('The id of the Solo order object.', 'woo-solo-api'),
+					'type' => 'string',
+				],
 				'customer_email' => [
 					'description' => esc_html__('The email of the customer who made the order.', 'woo-solo-api'),
 					'type' => 'string',

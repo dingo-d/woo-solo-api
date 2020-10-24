@@ -151,6 +151,11 @@ class OrderDetails extends BaseRoute implements RestCallable
 					'type' => 'integer',
 					'context' => ['view'],
 				],
+				'solo_id' => [
+					'description' => esc_html__('The id of the Solo order object.', 'woo-solo-api'),
+					'type' => 'string',
+					'context' => ['view'],
+				],
 				'customer_email' => [
 					'description' => esc_html__('The email of the customer who made the order.', 'woo-solo-api'),
 					'type' => 'string',
