@@ -709,7 +709,8 @@ class App extends Component {
 						<PanelRow>
 							<div className="details-table">
 								<div className="details-table__element details-table__element--heading">{__('ID', 'woo-solo-api')}</div>
-								<div className="details-table__element details-table__element--heading">{__('Order ID', 'woo-solo-api')}</div>
+								<div className="details-table__element details-table__element--heading">{__('WooCommerce Order ID', 'woo-solo-api')}</div>
+								<div className="details-table__element details-table__element--heading">{__('Solo ID', 'woo-solo-api')}</div>
 								<div className="details-table__element details-table__element--heading">{__('Customer Email', 'woo-solo-api')}</div>
 								<div className="details-table__element details-table__element--heading">{__('Is sent to Solo API', 'woo-solo-api')}</div>
 								<div className="details-table__element details-table__element--heading">{__('Is pdf sent to customer', 'woo-solo-api')}</div>
@@ -718,7 +719,10 @@ class App extends Component {
 								{this.state.dbOrders.map((el) => {
 									return <Fragment>
 										<div className="details-table__element">{el.id}</div>
-										<div className="details-table__element">{el.order_id}</div>
+										<div className="details-table__element">
+											<ExternalLink href={`/wp-admin/post.php?post=${el.order_id}&action=edit`}>{el.order_id}</ExternalLink>
+										</div>
+										<div className="details-table__element">{el.solo_id || ''}</div>
 										<div className="details-table__element">{el.customer_email}</div>
 										<div className="details-table__element">{el.is_sent_to_api === '1' ? '✅' : '❌'}</div>
 										<div className="details-table__element">{el.is_sent_to_user === '1' ? '✅' : '❌'}</div>
