@@ -70,7 +70,7 @@ class DatabaseTableMissingNotice implements Registrable, Renderable
 		}
 
 		$attributes['message'] = esc_html__(
-			'Orders table seems to be missing. Please reactivate the plugin (deactivate and activate) to create it.',
+			'Woo Orders table seems to be missing. Please reactivate the plugin (deactivate and activate) to create it.',
 			'woo-solo-api'
 		);
 
