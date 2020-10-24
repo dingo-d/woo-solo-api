@@ -13,6 +13,7 @@ namespace MadeByDenis\WooSoloApi\Settings;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
+use MadeByDenis\WooSoloApi\Request\SoloApiRequest;
 
 /**
  * Plugin settings
@@ -274,7 +275,7 @@ class PluginSettings implements Registrable
 					esc_html__('Type of payment document', 'woo-solo-api'),
 					'sanitize_text_field',
 					true,
-					'ponuda'
+					SoloApiRequest::OFFER
 				)
 			);
 
