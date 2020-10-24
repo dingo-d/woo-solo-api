@@ -42,7 +42,7 @@ class App extends Component {
 			hasErrors: false,
 			errors: {},
 			apiResponse: '',
-			dbOrders: '',
+			dbOrders: [],
 			solo_api_token: '',
 			solo_api_measure: '1',
 			solo_api_languages: '1',
@@ -103,13 +103,14 @@ class App extends Component {
 						solo_api_available_gateways: availableGateways,
 						isLoading: false,
 					});
-				});
+				}).then(
+					apiFetch({path: '/woo-solo-api/v1/solo-order-details'}).then(res => {
+						this.setState({
+							dbOrders: res,
+						});
+					})
+				);
 
-				apiFetch({path: '/woo-solo-api/v1/solo-order-details'}).then(res => {
-					this.setState({
-						dbOrders: res,
-					});
-				});
 			}
 		});
 	}
