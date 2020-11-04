@@ -14,6 +14,8 @@ namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
 use WC_Payment_Gateways;
 
+use function WC;
+
 /**
  * Woo payment gateways
  *
@@ -27,23 +29,11 @@ use WC_Payment_Gateways;
 class WooPaymentGateways implements PaymentGateways
 {
 	/**
-	 * WooCommerce payment gateways.
-	 *
-	 * @var WC_Payment_Gateways
-	 */
-	private $wcPaymentGateway;
-
-	public function __construct()
-	{
-		$this->wcPaymentGateway = new WC_Payment_Gateways();
-	}
-
-	/**
 	 * @inheritDoc
 	 */
-	public function getPaymentGateways(): array
+	public function getPaymentGateways(): WC_Payment_Gateways
 	{
-		return $this->wcPaymentGateway->payment_gateways();
+		return WC()->payment_gateways();
 	}
 
 	/**
@@ -51,7 +41,7 @@ class WooPaymentGateways implements PaymentGateways
 	 */
 	public function getPaymentGatewayIds(): array
 	{
-		return $this->wcPaymentGateway->get_payment_gateway_ids();
+		return $this->getPaymentGateways()->get_payment_gateway_ids();
 	}
 
 	/**
@@ -59,6 +49,6 @@ class WooPaymentGateways implements PaymentGateways
 	 */
 	public function getAvailablePaymentGateways(): array
 	{
-		return $this->wcPaymentGateway->get_available_payment_gateways();
+		return $this->getPaymentGateways()->get_available_payment_gateways();
 	}
 }

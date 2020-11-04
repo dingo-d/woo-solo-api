@@ -24,9 +24,9 @@ interface PaymentGateways
 	/**
 	 * Get all payment gateways
 	 *
-	 * @return array
+	 * @return object|array
 	 */
-	public function getPaymentGateways(): array;
+	public function getPaymentGateways();
 
 	/**
 	 * Get array of registered gateway ids
