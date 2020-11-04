@@ -78,12 +78,13 @@ class SoloApiRequest
 		// Options.
 		$token = get_option('solo_api_token');
 		$measure = get_option('solo_api_measure');
-		$languages = get_option('solo_api_languages');
 		$currency = get_option('solo_api_currency');
 		$serviceType = get_option('solo_api_service_type');
 		$showTaxes = get_option('solo_api_show_taxes');
 		$invoiceType = get_option('solo_api_invoice_type');
 		$dueDate = get_option('solo_api_due_date');
+		$languages = $this->detectLanguage();
+
 		$orderData = $order->get_data(); // The Order data.
 
 		// Check if billing or shipping.
@@ -561,5 +562,29 @@ class SoloApiRequest
 		$query = http_build_query($requestBody);
 
 		return (string) preg_replace('/usluga(\d+)/', 'usluga', $query);
+	}
+
+	/**
+	 * Detect current language
+	 *
+	 * This is a placeholder for logic used to detect languages if translation plugins
+	 * are installed.
+	 *
+	 * The Solo service only permits 6 languages:
+	 *
+	 * Croatian (1)
+	 * English (2)
+	 * German (3)
+	 * French (4)
+	 * Italian (5)
+	 * Spanish (6)
+	 *
+	 * If these are not found or detected, the language will fall back to settings one.
+	 *
+	 * @return string Identifier of the language.
+	 */
+	private function detectLanguage(): string
+	{
+		return get_option('solo_api_languages');
 	}
 }
