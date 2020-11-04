@@ -54,7 +54,7 @@ class AdminDbNoticeTest extends WPTestCase
 
 		$this->assertEquals('
 <div class="notice notice-custom notice-warning is-dismissible">
-	<p>Orders table seems to be missing. Please reactivate the plugin (deactivate and activate) to create it.</p>
+	<p>Woo Orders table seems to be missing. Please reactivate the plugin (deactivate and activate) to create it.</p>
 </div>
 ', $notice);
 	}

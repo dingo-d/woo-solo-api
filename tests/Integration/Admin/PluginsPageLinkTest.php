@@ -33,7 +33,7 @@ class PluginsPageLinkTest extends WPTestCase
 		$this->assertIsArray($links, 'Returned value is not array');
 
 		foreach ($links as $link) {
-			$this->assertEquals('<a href="http://dev.wordpress.test/wp-admin/admin.php?page=solo_api_options">SOLO API Settings</a>', $link, 'Settings link is not the same');
+			$this->assertStringContainsString('/wp-admin/admin.php?page=solo_api_options">SOLO API Settings</a>', $link, 'Settings link is not the same');
 		}
 	}
 }
