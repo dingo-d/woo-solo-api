@@ -368,7 +368,7 @@ class App extends Component {
 									className={this.hasErrorClass('solo_api_languages')}
 									name='solo_api_languages'
 									label={__('Invoice Language', 'woo-solo-api')}
-									help={__('Select the language the invoice should be fallback to in case there is no multilanguage plugin', 'woo-solo-api')}
+									help={__('Select the language of the invoice/offer', 'woo-solo-api')}
 									value={this.state.solo_api_languages}
 									disabled={this.state.isSaving}
 									onChange={solo_api_languages => this.setState({solo_api_languages})}
