@@ -563,15 +563,15 @@ class App extends Component {
 						<PanelRow className='components-panel__row--single'>
 							<h4>{__('PDF settings', 'woo-solo-api')}</h4>
 							<ToggleControl
-								className={this.hasErrorClass('solo_api_enable_iban')}
-								name='solo_api_enable_iban'
+								className={this.hasErrorClass('solo_api_send_pdf')}
+								name='solo_api_send_pdf'
 								label={__('Send the email to the client with the PDF of the order or the invoice', 'woo-solo-api')}
 								help={this.state.solo_api_send_pdf ? __('Send email', 'woo-solo-api') : __('Don\'t send email', 'woo-solo-api')}
 								checked={this.state.solo_api_send_pdf}
 								disabled={this.state.isSaving}
 								onChange={() => this.setState((state) => ({solo_api_send_pdf: !state.solo_api_send_pdf}))}
 							/>
-							{this.renderError('solo_api_enable_iban')}
+							{this.renderError('solo_api_send_pdf')}
 						</PanelRow>
 						<PanelRow className='components-panel__row--single'>
 							<h4>{__('Send mail to selected payment gateways', 'woo-solo-api')}</h4>
