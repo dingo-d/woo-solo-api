@@ -242,7 +242,7 @@ class PluginSettings implements Registrable
 		);
 
 		$availableGateways = array_map(function ($paymentGateway) {
-			return $paymentGateway->title;
+			return $paymentGateway->method_title;
 		}, $this->gateway->getAvailablePaymentGateways());
 
 		/**
