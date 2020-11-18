@@ -101,8 +101,16 @@ class DataHandling implements Registrable
 						'value' => $item->id
 					],
 					[
-						'name' => esc_html__('Order Item ID', 'woo-solo-api'),
+						'name' => esc_html__('WooCommerce order item ID', 'woo-solo-api'),
 						'value' => $item->order_id
+					],
+					[
+						'name' => esc_html__('Solo ID', 'woo-solo-api'),
+						'value' => $item->solo_id,
+					],
+					[
+						'name' => esc_html__('Customer email', 'woo-solo-api'),
+						'value' => $item->customer_email,
 					],
 					[
 						'name' => esc_html__('Is sent to API', 'woo-solo-api'),
@@ -111,6 +119,10 @@ class DataHandling implements Registrable
 					[
 						'name' => esc_html__('Is sent to user', 'woo-solo-api'),
 						'value' => $item->is_sent_to_user,
+					],
+					[
+						'name' => esc_html__('API request error messages', 'woo-solo-api'),
+						'value' => $item->error_message,
 					],
 					[
 						'name' => esc_html__('Created at', 'woo-solo-api'),
