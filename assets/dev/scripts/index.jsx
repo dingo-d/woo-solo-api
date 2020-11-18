@@ -714,6 +714,7 @@ class App extends Component {
 								<div className="details-table__element details-table__element--heading">{__('Customer Email', 'woo-solo-api')}</div>
 								<div className="details-table__element details-table__element--heading">{__('Is sent to Solo API', 'woo-solo-api')}</div>
 								<div className="details-table__element details-table__element--heading">{__('Is pdf sent to customer', 'woo-solo-api')}</div>
+								<div className="details-table__element details-table__element--heading">{__('API response errors', 'woo-solo-api')}</div>
 								<div className="details-table__element details-table__element--heading">{__('Created at', 'woo-solo-api')}</div>
 								<div className="details-table__element details-table__element--heading">{__('Updated at', 'woo-solo-api')}</div>
 								{this.state.dbOrders.map((el) => {
@@ -726,6 +727,7 @@ class App extends Component {
 										<div className="details-table__element">{el.customer_email}</div>
 										<div className="details-table__element">{el.is_sent_to_api === '1' ? '✅' : '❌'}</div>
 										<div className="details-table__element">{el.is_sent_to_user === '1' ? '✅' : '❌'}</div>
+										<div className="details-table__element">{el.error_message}</div>
 										<div className="details-table__element">{el.created_at}</div>
 										<div className="details-table__element">{el.updated_at}</div>
 									</Fragment>
