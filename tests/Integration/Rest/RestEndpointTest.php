@@ -7,6 +7,7 @@ use IntegrationTester;
 use MadeByDenis\WooSoloApi\Rest\BaseRoute;
 use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
 use MadeByDenis\WooSoloApi\Rest\Route;
+use WP_REST_Request;
 use WP_REST_Server;
 use WP_UnitTest_Factory;
 
@@ -56,7 +57,7 @@ class RestEndpointTest extends WPTestCase
 
 	public function testCallbackPermissionWorks()
 	{
-		$request = new \WP_REST_Request(Route::READABLE, $this->route);
+		$request = new WP_REST_Request(Route::READABLE, $this->route);
 
 		$response = $this->server->dispatch($request);
 
@@ -73,7 +74,7 @@ class RestEndpointTest extends WPTestCase
 
 		set_current_user($admin);
 
-		$request = new \WP_REST_Request(Route::READABLE, $this->route);
+		$request = new WP_REST_Request(Route::READABLE, $this->route);
 
 		$response = $this->server->dispatch($request);
 		$data = $response->get_data();
