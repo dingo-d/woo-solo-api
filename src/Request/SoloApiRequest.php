@@ -330,6 +330,7 @@ class SoloApiRequest
 
 		if (defined('WP_DEBUG') && WP_DEBUG === true) {
 			// phpcs:disable WordPress.PHP.DevelopmentFunctions
+			error_log(print_r('Request body:', true));
 			error_log(print_r($requestBody, true));
 			// phpcs:enable
 		}
@@ -341,9 +342,12 @@ class SoloApiRequest
 
 		if (defined('WP_DEBUG') && WP_DEBUG === true) {
 			// phpcs:disable WordPress.PHP.DevelopmentFunctions
+			error_log(print_r('Request response:', true));
 			error_log(print_r($response, true));
 			// phpcs:enable
 		}
+
+		$orderId = $order->get_id();
 
 		if (\is_wp_error($response)) {
 			/**
@@ -354,6 +358,8 @@ class SoloApiRequest
 			$errorCode = $response->get_error_code();
 			$errorMessage = $response->get_error_message();
 
+			SoloOrdersTable::addApiResponseError($orderId, "{{$errorCode}, {$errorMessage}}");
+
 			throw WpException::internalError($errorCode, $errorMessage);
 		}
 
@@ -363,6 +369,9 @@ class SoloApiRequest
 		$responseMessage = \wp_remote_retrieve_response_message($response);
 
 		if ($responseCode < 200 || $responseCode >= 300) {
+			// Write error to the database for better logging.
+			SoloOrdersTable::addApiResponseError($orderId, $responseBody);
+
 			throw ApiRequestException::apiResponse($responseCode, $responseMessage);
 		}
 
@@ -370,10 +379,11 @@ class SoloApiRequest
 
 		// Usually an error if API throttling happened.
 		if ($responseDetails['status'] !== 0) {
+			// Write error to the database for better logging.
+			SoloOrdersTable::addApiResponseError($orderId, $responseBody);
+
 			throw ApiRequestException::apiResponse($responseDetails['status'], $responseDetails['message']);
 		}
-
-		$orderId = $order->get_id();
 
 		// Get the Solo ID of the order.
 		if ($billType === self::INVOICE) {
