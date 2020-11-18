@@ -13,6 +13,10 @@ namespace MadeByDenis\WooSoloApi\Email;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
+use function add_action;
+use function esc_attr;
+use function get_option;
+
 /**
  * Email functionality
  *
@@ -44,12 +48,12 @@ class EmailFunctionality implements Registrable
 	 */
 	public function changeEmailFromName(string $name): string
 	{
-		$newName = esc_attr(get_option('solo_api_change_mail_from'));
+		$newName = get_option('solo_api_change_mail_from');
 
-		if (!empty($newName) && $newName !== '') {
+		if (!empty($newName)) {
 			$name = $newName;
 		}
 
-		return apply_filters('woo_solo_api_change_email_from_name', $name);
+		return esc_attr(apply_filters('woo_solo_api_change_email_from_name', $name));
 	}
 }

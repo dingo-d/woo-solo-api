@@ -33,7 +33,7 @@ final class TemplatedView extends BaseView
 	 * @return string Validated URI.
 	 * @throws InvalidUri If an invalid URI was passed into the View.
 	 */
-	protected function validate($uri): string
+	protected function validate(string $uri): string
 	{
 		$uri = $this->checkExtension($uri, static::VIEW_EXTENSION);
 
@@ -57,7 +57,7 @@ final class TemplatedView extends BaseView
 	 *
 	 * @return array Array of possible locations.
 	 */
-	protected function getLocations($uri): array
+	protected function getLocations(string $uri): array
 	{
 		return [
 			trailingslashit(\get_stylesheet_directory()) . $uri,

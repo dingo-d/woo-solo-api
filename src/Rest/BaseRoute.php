@@ -13,6 +13,8 @@ namespace MadeByDenis\WooSoloApi\Rest;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
+use function add_action;
+
 /**
  * Base route template
  *

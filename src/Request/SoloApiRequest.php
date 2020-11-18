@@ -18,6 +18,11 @@ use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use WC_Order;
 use WC_Order_Refund;
 
+use function esc_attr;
+use function esc_html;
+use function esc_html__;
+use function get_option;
+
 /**
  * Remote API call
  *
@@ -26,7 +31,7 @@ use WC_Order_Refund;
  * @package MadeByDenis\WooSoloApi\Request
  * @since 2.0.0
  */
-class SoloApiRequest
+class SoloApiRequest implements ApiRequest
 {
 	/**
 	 * Name of the invoice type
@@ -69,7 +74,7 @@ class SoloApiRequest
 	 *
 	 * @retrun void
 	 */
-	public function executeSoloApiCall($order): void
+	public function executeApiCall($order): void
 	{
 		if (!($order instanceof WC_Order)) {
 			throw OrderValidationException::invalidOrderType($order);

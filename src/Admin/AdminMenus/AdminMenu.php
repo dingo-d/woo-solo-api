@@ -17,6 +17,8 @@ use MadeByDenis\WooSoloApi\Core\Renderable;
 use MadeByDenis\WooSoloApi\View\EscapedView;
 use MadeByDenis\WooSoloApi\View\TemplatedView;
 
+use function add_action;
+
 /**
  * Admin menu builder template class
  *

@@ -13,6 +13,9 @@ namespace MadeByDenis\WooSoloApi\Admin;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
+use function add_action;
+use function esc_html__;
+
 /**
  * Adds action link to the plugin in the plugin screen
  *

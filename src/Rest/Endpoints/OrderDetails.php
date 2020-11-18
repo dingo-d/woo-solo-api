@@ -16,6 +16,8 @@ use MadeByDenis\WooSoloApi\Rest\BaseRoute;
 use MadeByDenis\WooSoloApi\Rest\RestCallable;
 use WP_REST_Request;
 
+use function esc_html__;
+
 /**
  * Order details endpoint
  *

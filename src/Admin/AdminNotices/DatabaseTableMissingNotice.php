@@ -16,6 +16,9 @@ use MadeByDenis\WooSoloApi\Core\{Registrable, Renderable};
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\View\{EscapedView, TemplatedView};
 
+use function add_action;
+use function esc_html__;
+
 /**
  * Admin notice when database table is missing
  *

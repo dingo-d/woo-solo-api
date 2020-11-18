@@ -14,6 +14,9 @@ namespace MadeByDenis\WooSoloApi\Privacy;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 
+use function add_filter;
+use function esc_html__;
+
 /**
  * Data handling
  *

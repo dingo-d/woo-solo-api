@@ -13,6 +13,8 @@ namespace MadeByDenis\WooSoloApi\i18n;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
+use function add_action;
+
 /**
  * Internationalization
  *

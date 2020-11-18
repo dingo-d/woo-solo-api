@@ -13,6 +13,10 @@ namespace MadeByDenis\WooSoloApi\Utils;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
+use function add_action;
+use function get_transient;
+use function set_transient;
+
 /**
  * Fetch exchange rate utility
  *
@@ -60,7 +64,7 @@ class FetchExchangeRate implements Registrable
 	 */
 	public function setExchangeRates(): void
 	{
-		if (\get_transient(self::TRANSIENT) === false) {
+		if (get_transient(self::TRANSIENT) === false) {
 			$this->setExchangeRatesTransient();
 		}
 	}

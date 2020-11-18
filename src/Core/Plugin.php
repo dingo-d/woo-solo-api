@@ -21,16 +21,22 @@ use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\AdminOrder;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\CheckoutFields;
-use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\ApiRequest;
+use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\MakeApiRequest;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\WooPaymentGateways;
 use MadeByDenis\WooSoloApi\Email\EmailFunctionality;
 use MadeByDenis\WooSoloApi\i18n\Internationalization;
 use MadeByDenis\WooSoloApi\Privacy\DataHandling;
+use MadeByDenis\WooSoloApi\Request\SoloApiRequest;
 use MadeByDenis\WooSoloApi\Rest\Endpoints\{OrderDetails, OrderDetailsCollection};
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use MadeByDenis\WooSoloApi\Exception\{MissingManifest, PluginActivationFailure};
 use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
 use MadeByDenis\WooSoloApi\Settings\PluginSettings;
+use Tests\Fixtures\MockApiRequest;
+
+use function deactivate_plugins;
+use function esc_html__;
+use function flush_rewrite_rules;
 
 /**
  * Plugin entrypoint
@@ -64,7 +70,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 		}
 
 		if (version_compare((string)PHP_VERSION_ID, '70300', '<')) {
-			\deactivate_plugins(plugin_basename(__FILE__));
+			deactivate_plugins(plugin_basename(__FILE__));
 
 			$error_message = esc_html__('This plugin requires PHP 7.3 or greater to function.', 'woo-solo-api');
 
@@ -91,7 +97,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			}
 		}
 
-		\flush_rewrite_rules();
+		flush_rewrite_rules();
 	}
 
 	/**
@@ -111,7 +117,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			}
 		}
 
-		\flush_rewrite_rules();
+		flush_rewrite_rules();
 	}
 
 	/**
@@ -123,7 +129,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	 */
 	public function register(): void
 	{
-		add_action('plugins_loaded', [$this, 'registerServices']);
+		\add_action('plugins_loaded', [$this, 'registerServices']);
 
 		$this->registerAssetsManifestData();
 	}
@@ -187,7 +193,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	 * A list of classes which contain hooks.
 	 *
 	 * @return array<int|string, array<int, string>|string> Array that contains FQCN as a key of the class to instantiate,
-	 *                        and array as a value of that key that denotes its dependencies.
+	 *                                                      and array as a value of that key that denotes its dependencies.
 	 */
 	private function getServiceClasses(): array
 	{
@@ -207,13 +213,14 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			PluginsPage::class,
 			PluginSettings::class => [WooPaymentGateways::class],
 			SendCustomerEmail::class,
-			MakeSoloApiCall::class,
-			ApiRequest::class,
+			MakeSoloApiCall::class => [SoloApiRequest::class],
+			MakeApiRequest::class => [SoloOrdersTable::class, SoloApiRequest::class],
 		];
 
 		// Test mocks.
 		if (getenv('TEST') === 'true') {
-			// Overwrite real classes.
+			$services[MakeSoloApiCall::class] = [MockApiRequest::class];
+			$services[MakeApiRequest::class] = [SoloOrdersTable::class, MockApiRequest::class];
 		}
 
 		return $services;

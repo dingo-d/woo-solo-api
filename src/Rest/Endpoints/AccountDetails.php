@@ -15,6 +15,8 @@ use MadeByDenis\WooSoloApi\Rest\BaseRoute;
 use MadeByDenis\WooSoloApi\Rest\RestCallable;
 use WP_REST_Request;
 
+use function get_option;
+
 /**
  * Account details endpoint
  *

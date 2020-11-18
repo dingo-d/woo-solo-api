@@ -45,7 +45,7 @@ interface Route
 	 *
 	 * @var string
 	 */
-	public const UPDATEABLE = 'PUT';
+	public const UPDATABLE = 'PUT';
 
 	/**
 	 * Alias for DELETE transport method.

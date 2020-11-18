@@ -17,6 +17,14 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use WP_Error;
 
+use function esc_html;
+use function esc_html__;
+use function get_option;
+use function request_filesystem_credentials;
+use function wp_delete_attachment;
+use function WP_Filesystem;
+use function wp_mail;
+
 /**
  * Holds logic for sending customer email with SOLO API order/invoice PDF
  *
@@ -99,9 +107,9 @@ class SendCustomerEmail extends ScheduleEvent
 		$pdfContents = $pdfGet['body'];
 
 		// Try to get the wp_filesystem running.
-		if (!\WP_Filesystem()) {
+		if (!WP_Filesystem()) {
 			// Our credentials were no good, ask the user for them again.
-			\request_filesystem_credentials('', '', true, '', null, false);
+			request_filesystem_credentials('', '', true, '', null, false);
 			return true;
 		}
 
@@ -185,10 +193,10 @@ class SendCustomerEmail extends ScheduleEvent
 			$headers
 		);
 
-		\wp_mail($email, $emailTitle, $emailMessage, $headers, [$attachment]);
+		wp_mail($email, $emailTitle, $emailMessage, $headers, [$attachment]);
 
 		// Now we delete the saved attachment because of GDPR :).
-		$deleted = \wp_delete_attachment($attachmentId, true);
+		$deleted = wp_delete_attachment($attachmentId, true);
 
 		// If for some reason WP won't delete it, try to force deletion.
 		if ($deleted === false || $deleted === null) {

@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\BackgroundJobs;
 
+use function add_action;
+
 /**
  * Schedule event template class
  *

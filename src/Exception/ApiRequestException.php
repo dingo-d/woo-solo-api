@@ -13,6 +13,9 @@ namespace MadeByDenis\WooSoloApi\Exception;
 
 use RuntimeException;
 
+use function esc_html;
+use function esc_html__;
+
 /**
  * Api request exception
  *

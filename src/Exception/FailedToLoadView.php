@@ -34,7 +34,7 @@ final class FailedToLoadView extends RuntimeException implements GeneralExceptio
 	 *
 	 * @return static
 	 */
-	public static function viewException($uri, $exception)
+	public static function viewException(string $uri, Exception $exception)
 	{
 		$message = sprintf(
 			'Could not load the View URI "%1$s". Reason: "%2$s".',

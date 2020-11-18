@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Admin\AdminMenus;
 
+use function add_action;
+
 /**
  * Admin submenu builder template class
  *

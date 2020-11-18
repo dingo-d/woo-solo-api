@@ -15,8 +15,10 @@ use MadeByDenis\WooSoloApi\BackgroundJobs\MakeSoloApiCall;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 use MadeByDenis\WooSoloApi\Exception\OrderValidationException;
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
-use MadeByDenis\WooSoloApi\Request\SoloApiRequest;
+use MadeByDenis\WooSoloApi\Request\ApiRequest;
 use WC_Order;
+
+use function add_action;
 
 /**
  * API request
@@ -29,7 +31,7 @@ use WC_Order;
  * @package MadeByDenis\WooSoloApi\ECommerce
  * @since 2.0.0
  */
-class ApiRequest implements Registrable
+class MakeApiRequest implements Registrable
 {
 
 	/**
@@ -38,7 +40,7 @@ class ApiRequest implements Registrable
 	private $ordersTable;
 
 	/**
-	 * @var SoloApiRequest
+	 * @var ApiRequest
 	 */
 	private $soloRequest;
 
@@ -46,9 +48,9 @@ class ApiRequest implements Registrable
 	 * ApiRequest constructor
 	 *
 	 * @param SoloOrdersTable $ordersTable Dependency that manages database concern.
-	 * @param SoloApiRequest $soloRequest Api request dependency.
+	 * @param ApiRequest $soloRequest Api request dependency.
 	 */
-	public function __construct(SoloOrdersTable $ordersTable, SoloApiRequest $soloRequest)
+	public function __construct(SoloOrdersTable $ordersTable, ApiRequest $soloRequest)
 	{
 		$this->ordersTable = $ordersTable;
 		$this->soloRequest = $soloRequest;
@@ -93,7 +95,7 @@ class ApiRequest implements Registrable
 		}
 
 		// Double check just to be sure.
-		$sendControl = get_option('solo_api_send_control');
+		$sendControl = \get_option('solo_api_send_control');
 
 		if ($sendControl === 'status_change') {
 			return;

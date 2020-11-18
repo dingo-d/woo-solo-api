@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Utils;
 
+use function esc_html__;
+
 /**
  * Error codes helper
  *

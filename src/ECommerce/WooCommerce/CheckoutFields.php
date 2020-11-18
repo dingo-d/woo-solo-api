@@ -13,6 +13,10 @@ namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
+use function add_action;
+use function esc_html__;
+use function get_option;
+
 /**
  * Additional fields on the checkout screen
  *

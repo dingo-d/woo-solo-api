@@ -49,5 +49,5 @@ interface View extends Renderable
 	 * @throws InvalidURI       If the provided URI was not valid.
 	 * @throws FailedToLoadView If the view could not be loaded.
 	 */
-	public function renderPartial($uri, array $context = null): string;
+	public function renderPartial(string $uri, array $context = null): string;
 }

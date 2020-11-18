@@ -57,7 +57,7 @@ class BaseView implements View
      *
      * @throws InvalidUri If an invalid URI was passed into the View.
      */
-	public final function __construct($uri)
+	public final function __construct(string $uri)
 	{
 		$this->uri = $this->validate($uri);
 	}
@@ -119,7 +119,7 @@ class BaseView implements View
      * @throws InvalidUri       If the provided URI was not valid.
      * @throws FailedToLoadView If the view could not be loaded.
      */
-	public function renderPartial($uri, array $context = null): string
+	public function renderPartial(string $uri, array $context = null): string
 	{
 		$view = new static($uri);
 
@@ -134,7 +134,7 @@ class BaseView implements View
     * @return string      Validated URI.
     * @throws InvalidUri If an invalid URI was passed into the View.
     */
-	protected function validate($uri): string
+	protected function validate(string $uri): string
 	{
 		$uri = $this->checkExtension($uri, static::VIEW_EXTENSION);
 		$uri = trailingslashit(dirname(__DIR__, 2)) . $uri;
@@ -156,7 +156,7 @@ class BaseView implements View
    *
    * @return string URI with correct extension.
    */
-	protected function checkExtension($uri, $extension): string
+	protected function checkExtension(string $uri, string $extension): string
 	{
 		$detected_extension = pathinfo($uri, PATHINFO_EXTENSION);
 

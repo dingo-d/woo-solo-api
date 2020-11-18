@@ -11,6 +11,9 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Assets;
 
+use function add_action;
+use function esc_html__;
+
 /**
  * Enqueues all the scripts and styles in the plugin
  *

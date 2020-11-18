@@ -31,7 +31,7 @@ final class PluginActivationFailure extends RuntimeException implements GeneralE
 	*
 	* @return static
 	*/
-	public static function activationMessage($message)
+	public static function activationMessage(string $message)
 	{
 		return new static($message);
 	}

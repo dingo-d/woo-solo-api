@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Admin\AdminMenus;
 
+use function esc_html__;
+
 /**
  * Add an options submenu inside WooCommerce menu
  *

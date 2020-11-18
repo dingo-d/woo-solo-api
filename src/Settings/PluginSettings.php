@@ -15,6 +15,10 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
 use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
 use MadeByDenis\WooSoloApi\Request\SoloApiRequest;
 
+use function add_action;
+use function esc_attr;
+use function esc_html__;
+
 /**
  * Plugin settings
  *
@@ -317,7 +321,7 @@ class PluginSettings implements Registrable
 	 * @param bool|array $showInRest Whether data associated with this setting should be included in the REST API.
 	 *                         When registering complex settings, this argument may optionally be an array
 	 *                         with a 'schema' key.
-	 * @param mixed $default Default value when calling get_option().
+	 * @param mixed $default Default value when calling \get_option().
 	 *
 	 * @return array
 	 */

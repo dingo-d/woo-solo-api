@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\BackgroundJobs;
 
-use MadeByDenis\WooSoloApi\Request\SoloApiRequest;
+use MadeByDenis\WooSoloApi\Request\ApiRequest;
 
 /**
  * Call towards SOLO API
@@ -36,15 +36,16 @@ class MakeSoloApiCall extends ScheduleEvent
 	public const JOB_NAME = 'makeApiCall';
 
 	/**
-	 * @var SoloApiRequest
+	 * @var ApiRequest
 	 */
 	private $soloRequest;
 
 	/**
 	 * MakeSoloApiCall constructor.
-	 * @param SoloApiRequest $soloRequest
+	 *
+	 * @param ApiRequest $soloRequest Request dependency.
 	 */
-	public function __construct(SoloApiRequest $soloRequest)
+	public function __construct(ApiRequest $soloRequest)
 	{
 		$this->soloRequest = $soloRequest;
 	}
@@ -56,7 +57,7 @@ class MakeSoloApiCall extends ScheduleEvent
 	{
 		$order = $args[0];
 
-		$this->soloRequest->executeSoloApiCall($order);
+		$this->soloRequest->executeApiCall($order);
 	}
 
 	/**

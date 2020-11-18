@@ -169,7 +169,7 @@ final class EscapedView implements View
 	 * @throws InvalidUri If the provided URI was not valid.
 	 * @throws FailedToLoadView If the view could not be loaded.
 	 */
-	public function renderPartial($uri, array $context = null): string
+	public function renderPartial(string $uri, array $context = null): string
 	{
 		return wp_kses(
 			$this->view->renderPartial($uri, $context),
@@ -189,7 +189,7 @@ final class EscapedView implements View
 	 *
 	 * @return array Modified tags array.
 	 */
-	private function prepareAllowedTags($allowedTags): array
+	private function prepareAllowedTags(array $allowedTags): array
 	{
 		return (array) array_replace_recursive($allowedTags, self::ALLOWED_TAGS);
 	}
