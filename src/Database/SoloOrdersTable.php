@@ -172,6 +172,7 @@ class SoloOrdersTable
 				`customer_email` varchar(255) NOT NULL,
 				`is_sent_to_api` boolean NOT NULL,
 				`is_sent_to_user` boolean NOT NULL,
+				`error_message` longtext,
 				`created_at` datetime NOT NULL,
 				`updated_at` datetime NOT NULL,
 				PRIMARY KEY (`id`)
@@ -250,6 +251,38 @@ class SoloOrdersTable
 		}
 	}
 
+	/**
+	 * Write an error in the database in the case there is an error with the response
+	 *
+	 * Solo API doesn't handle failures in a great way. For instance your API call will go through
+	 * and return a 200 response, but in the body you'll see things like:
+	 *
+	 * {"status": 102, "message": "Dosegnut mjesečni limit licence."}
+	 *
+	 * Which is not a successful API call.
+	 *
+	 * When this happens, we'll fail the email sending (check SoloApiRequest on line 371 and 381),
+	 * but we want to notify the user that something was wrong on API end, not with our plugin.
+	 *
+	 * This method will update the created order with the error message when this happens, and the user
+	 * will be able to see it in the admin panel in the settings page.
+	 *
+	 * @param int $orderId Order ID in the database table.
+	 * @param string $errorString JSON response from the API.
+	 */
+	public static function addApiResponseError(int $orderId, string $errorString): void
+	{
+		global $wpdb;
+
+		$tableName = $wpdb->prefix . self::TABLE_NAME;
+
+		$insertData = [
+			'error_message' => $errorString,
+			'updated_at' => current_time('mysql'),
+		];
+
+		$wpdb->update($tableName, $insertData, ['order_id' => $orderId]);
+	}
 
 	/**
 	 * Get the collection of orders
