@@ -43,7 +43,8 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Tests\\": "tests/"
+			"Tests\\": "tests/",
+			"MadeByDenis\\Commands\\": "bin/Commands"
 		}
 	},
 	"autoload": {
@@ -71,7 +72,10 @@
 		"test:functional": "@php ./vendor/bin/codecept run Functional --ansi",
 		"test:integration": "@php ./vendor/bin/codecept run Integration --ansi",
 		"test:unit": "@php ./vendor/bin/codecept run Unit --ansi",
-		"test:coverage": "@php ./vendor/bin/codecept run Integration --coverage --coverage-xml --coverage-html --ansi",
+		"test:coverage": [
+			"@php ./vendor/bin/codecept run Integration --coverage --coverage-xml --coverage-html --ansi",
+			"@php bin/console clean-coverage /Users/denis.zoljom/Sites/personal/plugins-testing/ --ansi"
+		],
 		"test:generate-scenarios": "@php vendor/bin/codecept generate:scenarios --ansi"
 	},
 	"support": {
