@@ -174,6 +174,11 @@ class OrderDetails extends BaseRoute implements RestCallable
 					'type' => 'boolean',
 					'context' => ['view'],
 				],
+				'error_message' => [
+					'description' => esc_html__('Error message send by the Solo API.', 'woo-solo-api'),
+					'type' => 'string',
+					'context' => ['view'],
+				],
 				'created_at' => [
 					'description' => esc_html__('The date and time of the solo order creation.', 'woo-solo-api'),
 					'type' => 'date-time',
