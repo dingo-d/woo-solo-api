@@ -27,32 +27,8 @@ class PluginSettingsTest extends WPTestCase
 	public function testSettingsAreRegistered()
 	{
 		global $wp_registered_settings;
-		$gateway = new class implements PaymentGateways {
 
-			public function getPaymentGateways(): array
-			{
-				return ['paypal', 'bacs', 'cod', 'cheque'];
-			}
-
-			public function getPaymentGatewayIds(): array
-			{
-				return [
-					'1'  => 'paypal',
-					'2'  => 'bacs',
-					'22' => 'cod',
-					'34' => 'cheque'
-				];
-			}
-
-			public function getAvailablePaymentGateways(): array
-			{
-				return [
-					'paypal' => (object) ['title' => 'paypal'],
-					'bacs' => (object) ['title' => 'bacs'],
-				];
-			}
-		};
-
+		$gateway = $this->getMockPaymentGateway();
 		$settings = new PluginSettings($gateway);
 
 		$settings->register();
@@ -97,5 +73,48 @@ class PluginSettingsTest extends WPTestCase
 		foreach ($settingList as $setting) {
 			$this->assertArrayHasKey($setting, $wp_registered_settings);
 		}
+	}
+
+	private function getMockPaymentGateway()
+	{
+		return new class implements PaymentGateways {
+
+			public function getPaymentGateways()
+			{
+				return ['paypal', 'bacs', 'cod', 'cheque'];
+			}
+
+			public function getPaymentGatewayIds(): array
+			{
+				return [
+					'1'  => 'paypal',
+					'2'  => 'bacs',
+					'22' => 'cod',
+					'34' => 'cheque'
+				];
+			}
+
+			public function getAvailablePaymentGateways(): array
+			{
+				return [
+					'paypal' => (object)[
+						'title' => 'paypal',
+						'method_title' => 'PayPal',
+					],
+					'bacs' => (object)[
+						'title' => 'bacs',
+						'method_title' => 'Direct bank transfer',
+					],
+					'cod' => (object)[
+						'title' => 'cod',
+						'method_title' => ' Cash on delivery',
+					],
+					'cheque' => (object)[
+						'title' => 'cheque',
+						'method_title' => ' Check payments',
+					],
+				];
+			}
+		};
 	}
 }

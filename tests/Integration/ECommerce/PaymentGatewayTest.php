@@ -23,7 +23,7 @@ class PaymentGatewayTest extends WPTestCase
 		parent::tearDown();
 	}
 
-	public function testWooPaymentGateways()
+	public function testDefaultWooPaymentGateways()
 	{
 		$wooPaymentGateways = new WooPaymentGateways();
 
@@ -31,10 +31,7 @@ class PaymentGatewayTest extends WPTestCase
 		$paymentGatewayIds = $wooPaymentGateways->getPaymentGatewayIds();
 		$availablePaymentGateways = $wooPaymentGateways->getAvailablePaymentGateways();
 
-		$this->assertTrue(isset($paymentGatewayList['bacs']));
-		$this->assertTrue(isset($paymentGatewayList['cheque']));
-		$this->assertTrue(isset($paymentGatewayList['cod']));
-		$this->assertTrue(isset($paymentGatewayList['paypal']));
+		$this->assertInstanceOf('WC_Payment_Gateways', $paymentGatewayList);
 
 		$this->assertTrue(isset(array_flip($paymentGatewayIds)['bacs']));
 		$this->assertTrue(isset(array_flip($paymentGatewayIds)['cheque']));
@@ -42,7 +39,6 @@ class PaymentGatewayTest extends WPTestCase
 		$this->assertTrue(isset(array_flip($paymentGatewayIds)['paypal']));
 
 		// In the test we don't have any available PG.
-
 		$this->assertEmpty($availablePaymentGateways);
 	}
 }
