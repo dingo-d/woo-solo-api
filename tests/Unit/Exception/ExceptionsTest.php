@@ -1,9 +1,10 @@
 <?php
 
-namespace Tests\Integration\Exception;
+namespace Tests\Unit\Exception;
 
-use Codeception\TestCase\WPTestCase;
-use IntegrationTester;
+use Codeception\Test\Unit;
+use Brain\Monkey;
+use Brain\Monkey\Functions;
 use MadeByDenis\WooSoloApi\Exception\{
 	ApiRequestException,
 	FailedToLoadView,
@@ -14,21 +15,19 @@ use MadeByDenis\WooSoloApi\Exception\{
 	WpException
 };
 
-class ExceptionTest extends WPTestCase
+class ExceptionsTest extends Unit
 {
-	/**
-	 * @var IntegrationTester
-	 */
-	protected $tester;
 
-	public function setUp(): void
+	protected function _before() // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	{
-		parent::setUp();
+		Monkey\setUp();
+		Functions\stubEscapeFunctions();
+		Functions\stubTranslationFunctions();
 	}
 
-	public function tearDown(): void
+	protected function _after() // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	{
-		parent::tearDown();
+		Monkey\tearDown();
 	}
 
 	public function testFailedToLoadException()

@@ -127,7 +127,7 @@ class ApiRequest implements Registrable
 		 */
 		SoloOrdersTable::updateOrdersTable($orderId, '', false, false, $orderEntryExists);
 
-		$this->soloRequest->executeSoloApiCall($order);
+		$this->soloRequest->executeApiCall($order);
 	}
 
 	/**
