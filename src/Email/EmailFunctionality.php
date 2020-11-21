@@ -54,6 +54,15 @@ class EmailFunctionality implements Registrable
 			$name = $newName;
 		}
 
-		return esc_attr(apply_filters('woo_solo_api_change_email_from_name', $name));
+		return esc_attr(
+			/**
+			 * Filter the from name set from the options
+			 *
+			 * @since 2.0.0
+			 *
+			 * @param string $name Name to change in the "From" field.
+			 */
+			apply_filters('woo_solo_api_change_email_from_name', $name)
+		);
 	}
 }

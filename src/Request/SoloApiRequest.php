@@ -17,11 +17,18 @@ use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use WC_Order;
 use WC_Order_Refund;
+use WC_Tax;
 
+use function apply_filters;
 use function esc_attr;
 use function esc_html;
 use function esc_html__;
 use function get_option;
+use function wp_kses_post;
+use function wp_remote_post;
+use function wp_remote_retrieve_body;
+use function wp_remote_retrieve_response_code;
+use function wp_remote_retrieve_response_message;
 
 /**
  * Remote API call
@@ -192,7 +199,7 @@ class SoloApiRequest implements ApiRequest
 		foreach (array_unique($order->get_items()) as $itemDetail) {
 			$itemData = $itemDetail->get_data(); // Product data.
 
-			$taxRates = array_values(\WC_Tax::get_base_tax_rates($itemDetail->get_tax_class()));
+			$taxRates = array_values(WC_Tax::get_base_tax_rates($itemDetail->get_tax_class()));
 
 			$taxRate = !empty($taxRates) ? (float)$taxRates[0]['rate'] : 0;
 			$productName = $itemData['name'];
@@ -224,12 +231,18 @@ class SoloApiRequest implements ApiRequest
 			$requestBody["kolicina_{$itemNo}"] = $quantity;
 
 			/**
+			 * Adds a global discount
+			 *
 			 * WooCommerce will handle counting the discounts for us.
 			 * This is why this is set to 0.
 			 * We can hook into this if we want to change it.
-			 * But this hook will affect every item.
+			 * But this hook will affect every item. So use it with care.
+			 *
+			 * @since 2.0.0
+			 *
+			 * @param int $globalDiscount The value of the global discount to apply to every item.
 			 */
-			$requestBody["popust_{$itemNo}"] = apply_filters('woo-solo-api-global-discount', 0);
+			$requestBody["popust_{$itemNo}"] = apply_filters('woo_solo_api_add_global_discount', $globalDiscount = 0);
 			$requestBody["porez_stopa_{$itemNo}"] = $taxRate;
 
 			$itemNo++;
@@ -250,7 +263,7 @@ class SoloApiRequest implements ApiRequest
 			$shippingItems = $order->get_items('shipping');
 
 			foreach ($shippingItems as $shippingObject) {
-				$shippingTaxRates = array_values(\WC_Tax::get_base_tax_rates($shippingObject->get_tax_class()));
+				$shippingTaxRates = array_values(WC_Tax::get_base_tax_rates($shippingObject->get_tax_class()));
 			}
 
 			$shippingTaxRate = !empty($shippingTaxRates) ? (float)$shippingTaxRates[0]['rate'] : 0;
@@ -327,9 +340,19 @@ class SoloApiRequest implements ApiRequest
 			}
 		}
 
-		$customerNote = \apply_filters('woo-solo-api-customer-note', $customerNote);
+		/**
+		 * Filters the custom message for customer note
+		 *
+		 * If you need to extend the customer note, you can just hook to this filter
+		 * and modify the existing content
+		 *
+		 * @since 2.0.2
+		 *
+		 * @param string $customerNote Existing customer note.
+		 */
+		$customerNote = apply_filters('woo_solo_api_modify_customer_note', $customerNote);
 
-		$requestBody['napomene'] = \wp_kses_post($customerNote);
+		$requestBody['napomene'] = wp_kses_post($customerNote);
 
 		$postData = $this->prepareRequestData($requestBody);
 
@@ -343,7 +366,7 @@ class SoloApiRequest implements ApiRequest
 		/**
 		 * For more info go to: https://solo.com.hr/api-dokumentacija/izrada-racuna
 		 */
-		$response = \wp_remote_post($url, ['body' => $postData]);
+		$response = wp_remote_post($url, ['body' => $postData]);
 
 		if (defined('WP_DEBUG') && WP_DEBUG === true) {
 			// phpcs:disable WordPress.PHP.DevelopmentFunctions
@@ -369,9 +392,9 @@ class SoloApiRequest implements ApiRequest
 		}
 
 		// Try to see if the call is a successful or not.
-		$responseBody = \wp_remote_retrieve_body($response);
-		$responseCode = \wp_remote_retrieve_response_code($response);
-		$responseMessage = \wp_remote_retrieve_response_message($response);
+		$responseBody = wp_remote_retrieve_body($response);
+		$responseCode = wp_remote_retrieve_response_code($response);
+		$responseMessage = wp_remote_retrieve_response_message($response);
 
 		if ($responseCode < 200 || $responseCode >= 300) {
 			// Write error to the database for better logging.

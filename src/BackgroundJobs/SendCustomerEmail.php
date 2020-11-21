@@ -172,15 +172,54 @@ class SendCustomerEmail extends ScheduleEvent
 		/* translators: 1:Bill type 2:Your site name */
 		$defaultTitle = sprintf(esc_html__('Your %1$s from %2$s', 'woo-solo-api'), $billType, get_bloginfo('name'));
 
-		$emailMessage = !empty($emailMessage) ? $emailMessage : apply_filters(
-			'woo-solo-api-default-email-message',
-			$defaultMessage
-		);
+		$emailMessage = !empty($emailMessage) ?
+			/**
+			 * Modify the email message from the options
+			 *
+			 * Email message can be set in the options and will be outputted here.
+			 * If, for whatever reason we want to modify it some more, we can do that here.
+			 *
+			 * @since 2.0.0
+			 *
+			 * @param string $emailMessage Email message from options to filter.
+			 */
+			apply_filters('woo_solo_api_modify_options_email_message', $emailMessage) :
 
-		$emailTitle = !empty($emailTitle) ? $emailTitle : apply_filters(
-			'woo-solo-api-default-email-title',
-			$defaultTitle
-		);
+			/**
+			 * Modify the default email message
+			 *
+			 * If you don't set the message in the options, you can still filter the default one.
+			 *
+			 * @since 2.0.0
+			 *
+			 * @param string $defaultMessage Email message to filter.
+			 */
+			apply_filters('woo_solo_api_modify_default_email_message', $defaultMessage);
+
+		$emailTitle = !empty($emailTitle) ?
+			/**
+			 * Modify the email title from the options
+			 *
+			 * Email title for the customer can be set in the options,
+			 * but you can modify it further with this filter.
+			 *
+			 * @since 2.0.0
+			 *
+			 * @param string $emailTitle Email title.
+			 */
+			apply_filters('woo_solo_api_modify_options_email_title', $emailTitle) :
+
+			/**
+			 * Modify the default email title from the options
+			 *
+			 * If you don't use the title from the options, you can use default one.
+			 * And modify it.
+			 *
+			 * @since 2.0.0
+			 *
+			 * @param string $emailTitle Email title.
+			 */
+			apply_filters('woo_solo_api_modify_default_email_title', $defaultTitle);
 
 		// Send mail with the attachment.
 		$headers = [
@@ -188,10 +227,25 @@ class SendCustomerEmail extends ScheduleEvent
 			'Content-Type: text/html',
 		];
 
-		$headers = apply_filters(
-			'woo-solo-api-email-headers',
-			$headers
-		);
+		/**
+		 * Filter email headers
+		 *
+		 * When email to customer is sent, maybe you want to add something more. In that
+		 * case you'll probably need to modify the headers sent with the email.
+		 * Default ones are
+		 *
+		 * [
+				'MIME-Version: 1.0',
+				'Content-Type: text/html',
+			];
+		 *
+		 * You can add to that list.
+		 *
+		 * @since 2.0.0
+		 *
+		 * @param array $headers Email headers to pass to wp_mail.
+		 */
+		$headers = apply_filters('woo_solo_api_email_headers', $headers);
 
 		wp_mail($email, $emailTitle, $emailMessage, $headers, [$attachment]);
 
