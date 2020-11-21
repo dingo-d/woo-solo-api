@@ -1,13 +1,24 @@
+<p align="center">
+  <img alt="Woo Solo Api" src="https://repository-images.githubusercontent.com/110279928/a5ffbd00-29cc-11eb-92ac-f1f6524a5c69"/>
+</p>
+
+[![codecov](https://img.shields.io/codecov/c/github/dingo-d/woo-solo-api?style=for-the-badge&token=ijU4RyOGxL)](https://codecov.io/gh/dingo-d/woo-solo-api)
+[![GitHub tag](https://img.shields.io/github/tag/dingo-d/woo-solo-api.svg?style=for-the-badge)](https://github.com/dingo-d/woo-solo-api)
+[![GitHub stars](https://img.shields.io/github/stars/dingo-d/woo-solo-api.svg?style=for-the-badge&label=Stars)](https://github.com/dingo-d/woo-solo-api)
+![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/woo-solo-api?style=for-the-badge)
+![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/woo-solo-api?style=for-the-badge)
+[![license](https://img.shields.io/github/license/dingo-d/woo-solo-api.svg?style=for-the-badge)](https://github.com/dingo-d/woo-solo-api)
+
 # Woo Solo Api
 
 **Contributors**: dingo_bastard  
 **Tags**: woocommerce, api, solo api, solo, api integration, shop, payment, woo  
 **Requires at least**: 5.1  
-**Requires PHP**: 7.2  
-**Tested up to**: 5.4  
+**Requires PHP**: 7.3  
+**Tested up to**: 5.5  
 **Stable tag**: 2.0
-**WC requires at least**: 3.9.0  
-**WC tested up to**: 4.0.0  
+**WC requires at least**: 4.0.0  
+**WC tested up to**: 4.7.0  
 **License**: MIT  
 **License URI**: https://opensource.org/licenses/MIT  
 
