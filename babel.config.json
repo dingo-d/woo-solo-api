@@ -56,6 +56,12 @@
 			{
 				"pragma": "wp.element.createElement"
 			}
+		],
+		[
+			"@wordpress/babel-plugin-makepot",
+			{
+				"output": "languages/woo-solo-api-js.pot"
+			}
 		]
 	]
 }
