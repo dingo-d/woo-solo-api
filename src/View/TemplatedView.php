@@ -13,6 +13,9 @@ namespace MadeByDenis\WooSoloApi\View;
 
 use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
+use function get_stylesheet_directory;
+use function get_template_directory;
+
 /**
  * Templated view
  *
@@ -60,8 +63,8 @@ final class TemplatedView extends BaseView
 	protected function getLocations(string $uri): array
 	{
 		return [
-			trailingslashit(\get_stylesheet_directory()) . $uri,
-			trailingslashit(\get_template_directory()) . $uri,
+			trailingslashit(get_stylesheet_directory()) . $uri,
+			trailingslashit(get_template_directory()) . $uri,
 			trailingslashit(dirname(__DIR__, 2)) . $uri,
 		];
 	}

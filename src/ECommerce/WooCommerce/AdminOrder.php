@@ -14,6 +14,10 @@ namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 use Automattic\WooCommerce\Admin\Overrides\Order;
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
+use function add_action;
+use function esc_html;
+use function esc_html__;
+
 /**
  * Modification to the WooCommerce admin order page
  *
@@ -30,7 +34,7 @@ class AdminOrder implements Registrable
 	 */
 	public function register(): void
 	{
-		\add_action('woocommerce_admin_order_data_after_shipping_address', [$this, 'checkoutFieldDisplayAdminOrderMeta']);
+		add_action('woocommerce_admin_order_data_after_shipping_address', [$this, 'checkoutFieldDisplayAdminOrderMeta']);
 	}
 
 	/**
@@ -50,19 +54,19 @@ class AdminOrder implements Registrable
 		$billingIban = get_post_meta($order->get_id(), '_billing_iban_number', true);
 
 		if (!empty($shippingPin)) {
-			echo '<p><strong> ' . \esc_html__('Customer shipping PIN number', 'woo-solo-api') . ' :</strong> ' . \esc_html($shippingPin) . '</p>';
+			echo '<p><strong> ' . esc_html__('Customer shipping PIN number', 'woo-solo-api') . ' :</strong> ' . esc_html($shippingPin) . '</p>';
 		}
 
 		if (!empty($billingPin)) {
-			echo '<p><strong> ' . \esc_html__('Customer billing PIN number', 'woo-solo-api') . ' :</strong> ' . \esc_html($billingPin) . '</p>';
+			echo '<p><strong> ' . esc_html__('Customer billing PIN number', 'woo-solo-api') . ' :</strong> ' . esc_html($billingPin) . '</p>';
 		}
 
 		if (!empty($shippingIban)) {
-			echo '<p><strong> ' . \esc_html__('Customer shipping IBAN number', 'woo-solo-api') . ' :</strong> ' . \esc_html($shippingIban) . '</p>';
+			echo '<p><strong> ' . esc_html__('Customer shipping IBAN number', 'woo-solo-api') . ' :</strong> ' . esc_html($shippingIban) . '</p>';
 		}
 
 		if (!empty($billingIban)) {
-			echo '<p><strong> ' . \esc_html__('Customer billing IBAN number', 'woo-solo-api') . ' :</strong> ' . \esc_html($billingIban) . '</p>';
+			echo '<p><strong> ' . esc_html__('Customer billing IBAN number', 'woo-solo-api') . ' :</strong> ' . esc_html($billingIban) . '</p>';
 		}
 	}
 }

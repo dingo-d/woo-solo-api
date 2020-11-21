@@ -53,6 +53,11 @@ abstract class BaseRoute implements Route, Registrable
 		add_action('rest_api_init', [$this, 'registerRestRoute']);
 	}
 
+	/**
+	 * Rest route registration callback
+	 *
+	 * @return void
+	 */
 	public function registerRestRoute(): void
 	{
 		register_rest_route(

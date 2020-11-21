@@ -34,6 +34,7 @@ use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
 use MadeByDenis\WooSoloApi\Settings\PluginSettings;
 use Tests\Fixtures\MockApiRequest;
 
+use function add_action;
 use function deactivate_plugins;
 use function esc_html__;
 use function flush_rewrite_rules;
@@ -129,7 +130,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	 */
 	public function register(): void
 	{
-		\add_action('plugins_loaded', [$this, 'registerServices']);
+		add_action('plugins_loaded', [$this, 'registerServices']);
 
 		$this->registerAssetsManifestData();
 	}

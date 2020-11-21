@@ -16,6 +16,7 @@ use DI\ContainerBuilder;
 use Exception;
 
 use function DI\autowire;
+use function DI\get;
 
 /**
  * A dependency injection container implementation
@@ -101,7 +102,7 @@ final class DiContainer
 		return array_map(
 			function ($dependency) {
 				if (class_exists($dependency)) {
-					return \DI\get($dependency);
+					return get($dependency);
 				}
 
 				return $dependency;

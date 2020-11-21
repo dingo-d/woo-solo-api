@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\View;
 
+use Exception;
 use MadeByDenis\WooSoloApi\Exception\FailedToLoadView;
 use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
@@ -89,7 +90,7 @@ class BaseView implements View
 
 		try {
 			include $this->uri;
-		} catch (\Exception $exception) {
+		} catch (Exception $exception) {
 		  	// Remove whatever levels were added up until now.
 			while (ob_get_level() > $buffer_level) {
 				ob_end_clean();

@@ -14,6 +14,8 @@ namespace MadeByDenis\WooSoloApi\Database;
 use MadeByDenis\WooSoloApi\Exception\OrderValidationException;
 use WC_Order;
 
+use function wc_get_order;
+
 /**
  * Manages all the database interactions in the plugin
  *
@@ -218,7 +220,7 @@ class SoloOrdersTable
 
 		$tableName = $wpdb->prefix . self::TABLE_NAME;
 
-		$order = \wc_get_order($orderId);
+		$order = wc_get_order($orderId);
 
 		if (!($order instanceof WC_Order)) {
 			throw OrderValidationException::invalidOrderType($order);

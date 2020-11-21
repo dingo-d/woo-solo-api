@@ -19,6 +19,8 @@ use MadeByDenis\WooSoloApi\Request\ApiRequest;
 use WC_Order;
 
 use function add_action;
+use function get_option;
+use function wc_get_order;
 
 /**
  * API request
@@ -95,7 +97,7 @@ class MakeApiRequest implements Registrable
 		}
 
 		// Double check just to be sure.
-		$sendControl = \get_option('solo_api_send_control');
+		$sendControl = get_option('solo_api_send_control');
 
 		if ($sendControl === 'status_change') {
 			return;
@@ -161,7 +163,7 @@ class MakeApiRequest implements Registrable
 			return;
 		}
 
-		$order = \wc_get_order($orderId);
+		$order = wc_get_order($orderId);
 
 		// Track the number of call numbers in case of multiple calls.
 		static $callNumber = 1;
