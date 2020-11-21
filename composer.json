@@ -22,7 +22,7 @@
 		"ext-json": "*"
 	},
 	"require-dev": {
-		"brain/monkey": "^2.4",
+		"brain/monkey": "^2.5",
 		"codeception/module-asserts": "^1.1",
 		"codeception/module-cli": "^1.0",
 		"codeception/module-db": "^1.0",
@@ -32,8 +32,8 @@
 		"codeception/util-universalframework": "^1.0",
 		"codedungeon/phpunit-result-printer": "^0.29.3",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"lucatume/wp-browser": "^2.5",
-		"php-stubs/woocommerce-stubs": "^4.1",
+		"lucatume/wp-browser": "^2.6",
+		"php-stubs/woocommerce-stubs": "^4.6",
 		"php-stubs/wordpress-globals": "^0.2.0",
 		"phpcompatibility/php-compatibility": "^9.3",
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
