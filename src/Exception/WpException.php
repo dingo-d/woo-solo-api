@@ -39,6 +39,7 @@ final class WpException extends RuntimeException implements GeneralException
 	public static function internalError($code, string $message)
 	{
 		$exceptionMessage = sprintf(
+			/* translators: %1$s: error message, %2$s: error code. */
 			esc_html__('WordPress internal error happened. %1$s. (Error code %2$s).', 'woo-solo-api'),
 			esc_html($message),
 			esc_html((string)$code)

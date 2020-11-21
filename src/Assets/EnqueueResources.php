@@ -99,7 +99,11 @@ class EnqueueResources implements Assets
 	 */
 	public function setScriptTranslations(): void
 	{
-		wp_set_script_translations(self::JS_HANDLE, 'woo-solo-api');
+		wp_set_script_translations(
+			self::JS_HANDLE,
+			'woo-solo-api',
+			dirname(__FILE__, 3) . '/languages/'
+		);
 	}
 
 	/**
@@ -109,7 +113,7 @@ class EnqueueResources implements Assets
 	 *
 	 * @return array List of all the script dependencies
 	 */
-	protected function getJsDependencies(): array
+	private function getJsDependencies(): array
 	{
 		return [
 			'wp-api',
@@ -125,7 +129,7 @@ class EnqueueResources implements Assets
 	 *
 	 * @return array Key value pair of different localizations
 	 */
-	protected function getLocalizations(): array
+	private function getLocalizations(): array
 	{
 		return [
 			'optionSaved' => esc_html__('Options saved.', 'woo-solo-api'),

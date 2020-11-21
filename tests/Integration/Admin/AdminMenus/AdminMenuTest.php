@@ -29,12 +29,12 @@ class AdminMenuTest extends WPTestCase
 
 			protected function getTitle(): string
 			{
-				return __('Mock Menu', 'woo-solo-api');
+				return 'Mock Menu';
 			}
 
 			protected function getMenuTitle(): string
 			{
-				return __('Mock Menu', 'woo-solo-api');
+				return 'Mock Menu';
 			}
 
 			protected function getCapability(): string

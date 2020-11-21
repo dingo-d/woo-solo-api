@@ -29,7 +29,7 @@ class Internationalization implements Registrable
 	 */
 	public function register(): void
 	{
-		add_action('plugins_loaded', [$this, 'loadPluginTextDomain']);
+		add_action('plugins_loaded', [$this, 'loadPluginTextDomain'], 20);
 	}
 
 	/**

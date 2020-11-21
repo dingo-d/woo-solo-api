@@ -523,37 +523,22 @@ class SoloApiRequest implements ApiRequest
 	{
 		switch ($languages) {
 			case '2':
-				$note = esc_html__(
-					'Recalculated at the middle exchange rate of the CNB',
-					'woo-solo-api'
-				);
+				$note = 'Recalculated at the middle exchange rate of the CNB';
 				break;
 			case '3':
-				$note = esc_html__(
-					'Zum mittleren Wechselkurs der KNB neu berechnet',
-					'woo-solo-api'
-				);
+				$note = 'Zum mittleren Wechselkurs der KNB neu berechnet';
 				break;
 			case '4':
-				$note = esc_html__(
-					'Recalculé au taux de change moyen de la BNC',
-					'woo-solo-api'
-				);
+				$note = 'Recalculé au taux de change moyen de la BNC';
 				break;
 			case '5':
-				$note = esc_html__(
-					'Ricalcolato al tasso di cambio medio del BNC',
-					'woo-solo-api'
-				);
+				$note = 'Ricalcolato al tasso di cambio medio del BNC';
 				break;
 			case '6':
-				$note = esc_html__(
-					'Recalculado al tipo de cambio medio del BNC',
-					'woo-solo-api'
-				);
+				$note = 'Recalculado al tipo de cambio medio del BNC';
 				break;
 			default:
-				$note = esc_html__('Preračunato po srednjem tečaju HNB-a', 'woo-solo-api');
+				$note = 'Preračunato po srednjem tečaju HNB-a';
 				break;
 		}
 

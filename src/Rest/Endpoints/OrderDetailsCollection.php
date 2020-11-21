@@ -106,43 +106,40 @@ class OrderDetailsCollection extends BaseRoute implements RestCallable
 			// In JSON Schema you can specify object properties in the properties attribute.
 			'properties' => [
 				'id' => [
-					'description' => \esc_html__('Unique identifier for the solo order object.', 'woo-solo-api'),
+					'description' => 'Unique identifier for the solo order object.',
 					'type' => 'integer',
 					'readonly' => true,
 				],
 				'order_id' => [
-					'description' => \esc_html__('The id of the WooCommerce order object.', 'woo-solo-api'),
+					'description' => 'The id of the WooCommerce order object.',
 					'type' => 'integer',
 				],
 				'solo_id' => [
-					'description' => \esc_html__('The id of the Solo order object.', 'woo-solo-api'),
+					'description' => 'The id of the Solo order object.',
 					'type' => 'string',
 				],
 				'customer_email' => [
-					'description' => \esc_html__('The email of the customer who made the order.', 'woo-solo-api'),
+					'description' => 'The email of the customer who made the order.',
 					'type' => 'string',
 				],
 				'is_sent_to_api' => [
-					'description' => \esc_html__('Flag that notifies if the order was sent to API.', 'woo-solo-api'),
+					'description' => 'Flag that notifies if the order was sent to API.',
 					'type' => 'boolean',
 				],
 				'is_sent_to_user' => [
-					'description' => \esc_html__(
-						'Flag that notifies if the PDF bill was sent to customer.',
-						'woo-solo-api'
-					),
+					'description' => 'Flag that notifies if the PDF bill was sent to customer.',
 					'type' => 'boolean',
 				],
 				'error_message' => [
-					'description' => \esc_html__('Error message send by the Solo API.', 'woo-solo-api'),
+					'description' => 'Error message send by the Solo API.',
 					'type' => 'string',
 				],
 				'created_at' => [
-					'description' => \esc_html__('The date and time of the solo order creation.', 'woo-solo-api'),
+					'description' => 'The date and time of the solo order creation.',
 					'type' => 'date-time',
 				],
 				'updated_at' => [
-					'description' => \esc_html__('The date and time when the order was last updated.', 'woo-solo-api'),
+					'description' => 'The date and time when the order was last updated.',
 					'type' => 'date-time',
 				],
 			],

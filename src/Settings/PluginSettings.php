@@ -70,7 +70,7 @@ class PluginSettings implements Registrable
 			'solo_api_measure',
 			$this->setSettingsArguments(
 				'string',
-				esc_html__('Unit measure of the shop (e.g. piece, hour, m^3, etc.)', 'woo-solo-api'),
+				esc_html__('Unit measure of the shop (e.g. piece, hour, m³, etc.)', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
 				'1'
