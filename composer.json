@@ -1,47 +1,86 @@
 {
-  "name": "dingo-d/woo-solo-api",
-  "type": "wordpress-plugin",
-  "description": "Plugin that provides integration of the SOLO service with WooCommerce store.",
-  "keywords": [
-    "plugin",
-    "WordPress",
-    "WooCommerce",
-    "solo",
-    "API",
-    "store",
-    "ecommerce"
-  ],
-  "homepage": "https://github.com/dingo-d/woo-solo-api",
-  "license": "GPL-2.0",
-  "authors": [
-    {
-      "name": "Denis Žoljom",
-      "homepage": "https://madebydenis.com",
-      "email": "denis.zoljom@gmail.com"
-    },
-    {
-      "name": "Contributors",
-      "homepage": "https://github.com/dingo-d/woo-solo-api/graphs/contributors"
-    }
-  ],
-  "require-dev": {
-    "infinum/coding-standards-wp": "*",
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.5"
-  },
-  "scripts": {
-    "phpcs-i": "@php ./vendor/bin/phpcs -i",
-    "check-cs": "@php ./vendor/bin/phpcs",
-    "fix-cs": "@php ./vendor/bin/phpcbf"
-  },
-  "support": {
-    "issues": "https://github.com/dingo-d/woo-solo-api/issues",
-    "wiki": "https://github.com/dingo-d/woo-solo-api/wiki",
-    "source": "https://github.com/dingo-d/woo-solo-api"
-  },
-  "autoload": {
-    "classmap": [
-      "admin/",
-      "includes/"
-    ]
-  }
+	"name": "dingo-d/woo-solo-api",
+	"type": "wordpress-plugin",
+	"description": "Plugin that provides integration of the SOLO service with WooCommerce store.",
+	"keywords": ["plugin", "WordPress", "WooCommerce", "solo", "API", "store", "ecommerce"],
+	"homepage": "https://github.com/dingo-d/woo-solo-api",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Denis Žoljom",
+			"homepage": "https://madebydenis.com",
+			"email": "denis.zoljom@gmail.com"
+		},
+		{
+			"name": "Contributors",
+			"homepage": "https://github.com/dingo-d/woo-solo-api/graphs/contributors"
+		}
+	],
+	"require": {
+		"php": ">=7.3",
+		"php-di/php-di": "^6.0",
+		"ext-json": "*"
+	},
+	"require-dev": {
+		"brain/monkey": "^2.5",
+		"codeception/module-asserts": "^1.1",
+		"codeception/module-cli": "^1.0",
+		"codeception/module-db": "^1.0",
+		"codeception/module-filesystem": "^1.0",
+		"codeception/module-phpbrowser": "^1.0",
+		"codeception/module-webdriver": "^1.0",
+		"codeception/util-universalframework": "^1.0",
+		"codedungeon/phpunit-result-printer": "^0.29.3",
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+		"lucatume/wp-browser": "^2.6",
+		"php-stubs/woocommerce-stubs": "^4.6",
+		"php-stubs/wordpress-globals": "^0.2.0",
+		"phpcompatibility/php-compatibility": "^9.3",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"roave/security-advisories": "dev-master",
+		"squizlabs/php_codesniffer": "^3.5.0",
+		"szepeviktor/phpstan-wordpress": "^0.7"
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests/",
+			"MadeByDenis\\Commands\\": "bin/Commands"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"MadeByDenis\\WooSoloApi\\": "src/"
+		}
+	},
+	"minimum-stability": "stable",
+	"config": {
+		"sort-packages": true,
+		"optimize-autoloader": true,
+		"process-timeout": 2000
+	},
+	"scripts": {
+		"standards:check": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+		"standards:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
+		"analyze": "@php ./vendor/bin/phpstan analyze",
+		"selenium:start": "selenium-server -port 4444",
+    	"chrome:start" : "chromedriver --url-base=/wd/hub",
+		"test:prepare": "@php ./vendor/bin/pcov clobber",
+		"test:revert": "@php ./vendor/bin/pcov unclobber",
+		"test:build": "@php ./vendor/bin/codecept build",
+		"test:clean": "@php ./vendor/bin/codecept clean",
+		"test:acceptance": "@php ./vendor/bin/codecept run Acceptance --ansi",
+		"test:functional": "@php ./vendor/bin/codecept run Functional --ansi",
+		"test:integration": "@php ./vendor/bin/codecept run Integration --ansi",
+		"test:unit": "@php ./vendor/bin/codecept run Unit --ansi",
+		"test:coverage": [
+			"@php ./vendor/bin/codecept run Integration --coverage --coverage-xml --coverage-html --ansi",
+			"@php bin/console clean-coverage /Users/denis.zoljom/Sites/personal/plugins-testing/ --ansi"
+		],
+		"test:generate-scenarios": "@php vendor/bin/codecept generate:scenarios --ansi"
+	},
+	"support": {
+		"issues": "https://github.com/dingo-d/woo-solo-api/issues",
+		"wiki": "https://github.com/dingo-d/woo-solo-api/wiki",
+		"source": "https://github.com/dingo-d/woo-solo-api"
+	}
 }

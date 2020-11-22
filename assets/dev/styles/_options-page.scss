@@ -1,0 +1,43 @@
+/* stylelint-disable declaration-colon-newline-after */
+$options-page: (
+	background-color: $base-white-color,
+	border-color: $base-silver-color,
+);
+
+.options-wrapper {
+	background: map-get-strict($options-page, 'background-color');
+	border-bottom: 1px solid map-get-strict($options-page, 'border-color');
+	border-left: 1px solid map-get-strict($options-page, 'border-color');
+	border-right: 1px solid map-get-strict($options-page, 'border-color');
+	padding-bottom: 20px;
+
+	&--separated {
+		margin-top: 20px;
+		padding-bottom: 0;
+	}
+
+	&__item {
+		margin: 20px 20px 0;
+
+		.components-snackbar {
+			margin-top: 20px;
+
+			&.is-hidden {
+				opacity: 0;
+				transition: all 250ms linear;
+			}
+
+			&.is-visible {
+				opacity: 1;
+				transition: all 250ms linear;
+			}
+		}
+	}
+
+	&.is-loading {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 20px;
+	}
+}

@@ -1,65 +1,77 @@
 <?php
+
 /**
+ * Plugin main file starting point
  *
- * Plugin main file
- *
- * @link                 https://madebydenis.com
- * @since                1.0.0
- * @package              Woo_Solo_Api
+ * @package MadeByDenis\WooSoloApi
+ * @link    https://madebydenis.com
+ * @since   1.0.0
  *
  * Plugin Name:          Woo Solo Api
- * Plugin URI:           https://wordpress.org/plugins/woo-solo-api/
+ * Plugin URI:           https://madebydenis.com/woo-solo-api
  * Description:          This plugin provides integration of the SOLO API service with WooCommerce.
- * Version:              1.9.5
+ * Version:              2.0
  * Author:               Denis Žoljom
  * Author URI:           https://madebydenis.com
- * License:              GPL-2.0+
- * License URI:          http://www.gnu.org/licenses/gpl-2.0.txt
+ * License:              MIT
+ * License URI:          https://opensource.org/licenses/MIT
  * Text Domain:          woo-solo-api
  * Domain Path:          /languages
- * WC requires at least: 3.0.0
- * WC tested up to:      3.5.2
+ * WC requires at least: 4.0.0
+ * WC tested up to:      4.7.0
+ * Requires PHP:         7.3
  */
 
-namespace Woo_Solo_Api;
+namespace MadeByDenis\WooSoloApi;
 
-use Woo_Solo_Api\Includes;
+use MadeByDenis\WooSoloApi\Core\PluginFactory;
+use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-  die;
+/**
+ * Make sure this file is only run from within WordPress.
+ *
+ * @since 2.0.0
+ */
+if (! defined('ABSPATH')) {
+    $errorMessage = esc_html__('You cannot access this file outside WordPress.', 'woo-solo-api');
+
+    throw PluginActivationFailure::activationMessage($errorMessage);
 }
 
 /**
- * Include the autoloader so we can dynamically include the rest of the classes.
- *
- * @since 1.8.1
- * @package Woo_Solo_Api
- */
-require __DIR__ . '/vendor/autoload.php';
+* Include the autoloader so we can dynamically include the rest of the classes.
+*
+* @since 2.0.0
+*/
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-activator.php
- */
-function activate_woo_solo_api() {
-  Includes\Activator::activate();
-}
-
-register_activation_hook( __FILE__, __NAMESPACE__ . '\\activate_woo_solo_api' );
+* The code that runs during plugin activation.
+*
+* @since 2.0.0
+*/
+register_activation_hook(
+    __FILE__,
+    function () {
+        PluginFactory::create()->activate();
+    }
+);
 
 /**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
- */
-function run_woo_solo_api() {
-  $plugin = new Includes\Woo_Solo_Api();
-  $plugin->run();
-}
+* The code that runs during plugin deactivation.
+*
+* @since 2.0.0
+*/
+register_deactivation_hook(
+    __FILE__,
+    function () {
+        PluginFactory::create()->deactivate();
+    }
+);
 
-run_woo_solo_api();
+/**
+* Begin plugin execution.
+*
+* @since 2.0.0
+*/
+PluginFactory::create()->register();

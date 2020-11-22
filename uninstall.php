@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fired when the plugin is uninstalled.
  *
@@ -19,51 +20,54 @@
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
  * @link       https://madebydenis.com
- *
- * @since 1.9.2 Made WC() global method.
- * @since 1.0.0
+ * @since      1.0.0
  *
  * @package    Woo_Solo_Api
  */
 
-if ( ! current_user_can( 'activate_plugins' ) ) {
-  return;
+use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
+
+if (! current_user_can('activate_plugins')) {
+    return;
 }
 
 // If uninstall not called from WordPress, then exit.
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-  exit;
+if (! defined('WP_UNINSTALL_PLUGIN')) {
+    exit;
 }
 
 /**
  * Delete saved options in the database
  */
-delete_option( 'solo_api_token' );
-delete_option( 'solo_api_measure' );
-delete_option( 'solo_api_languages' );
-delete_option( 'solo_api_currency' );
-delete_option( 'solo_api_service_type' );
-delete_option( 'solo_api_show_taxes' );
-delete_option( 'solo_api_invoice_type' );
-delete_option( 'solo_api_mail_title' );
-delete_option( 'solo_api_message' );
-delete_option( 'solo_api_change_mail_from' );
-delete_option( 'solo_api_enable_pin' );
-delete_option( 'solo_api_enable_iban' );
-delete_option( 'solo_api_due_date' );
-delete_option( 'solo_api_mail_gateway' );
-delete_option( 'solo_api_send_pdf' );
-delete_option( 'solo_api_send_control' );
-delete_option( 'solo_sent_orders' );
+delete_option('solo_api_token');
+delete_option('solo_api_measure');
+delete_option('solo_api_payment_type');
+delete_option('solo_api_languages');
+delete_option('solo_api_currency');
+delete_option('solo_api_service_type');
+delete_option('solo_api_show_taxes');
+delete_option('solo_api_tax_rate');
+delete_option('solo_api_invoice_type');
+delete_option('solo_api_mail_title');
+delete_option('solo_api_message');
+delete_option('solo_api_change_mail_from');
+delete_option('solo_api_enable_pin');
+delete_option('solo_api_enable_iban');
+delete_option('solo_api_currency_rate');
+delete_option('solo_api_due_date');
+delete_option('solo_api_mail_gateway');
+delete_option('solo_api_send_pdf');
 
-$available_woo_gateways = \WC()->payment_gateways->get_available_payment_gateways();
-foreach ( $available_woo_gateways as $gateway_woo_sett => $gateway_woo_val ) {
-  delete_option( 'solo_api_bill_offer-' . esc_attr( $gateway_woo_val->id ) );
-  delete_option( 'solo_api_fiscalization-' . esc_attr( $gateway_woo_val->id ) );
-  delete_option( 'solo_api_payment_type-' . esc_attr( $gateway_woo_val->id ) );
+$available_woo_gateways = WC()->payment_gateways->get_available_payment_gateways();
+
+foreach ($available_woo_gateways as $gateway_woo_sett => $gateway_woo_val) {
+    delete_option('solo_api_bill_offer-' . esc_attr($gateway_woo_val->id));
+    delete_option('solo_api_fiscalization-' . esc_attr($gateway_woo_val->id));
 }
 
-add_action( 'wp_mail_from_name', 'solo_api_revert_mail_from_name' );
+SoloOrdersTable::deleteTable();
+
+add_action('wp_mail_from_name', 'solo_api_revert_mail_from_name');
 
 /**
  * Revert mail from name that is send from WordPress to default
@@ -71,7 +75,7 @@ add_action( 'wp_mail_from_name', 'solo_api_revert_mail_from_name' );
  * @param  string $name Name that is shown.
  * @return string       Changed name.
  */
-function solo_api_revert_mail_from_name( $name ) {
-  $name = 'WordPress';
-  return $name;
+function solo_api_revert_mail_from_name($name)
+{
+	return 'WordPress';
 }

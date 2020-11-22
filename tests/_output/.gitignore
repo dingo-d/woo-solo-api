@@ -1,0 +1,5 @@
+*
+!.gitignore
+coverage
+!coverage.serialized
+!coverage.xml

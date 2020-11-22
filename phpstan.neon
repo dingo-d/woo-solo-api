@@ -1,0 +1,18 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+parameters:
+    level: max
+    inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
+    paths:
+        - src/
+    excludes_analyse:
+        - src/Core/CompiledContainer.php
+    bootstrapFiles:
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
+        - vendor/php-stubs/wordpress-globals/source/wp-admin/includes/file.php
+    ignoreErrors:
+        # Custom constant
+        - '#Constant ASSETS_MANIFEST not found\.#'

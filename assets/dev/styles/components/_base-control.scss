@@ -1,0 +1,75 @@
+$components: (
+	'error-color': $base-rouge-color,
+);
+
+.components-base-control {
+
+	&__field {
+		margin-bottom: 20px !important;
+	}
+
+	&__label {
+		font-weight: 600 !important;
+		display: block !important;
+	}
+
+	&__error {
+		color: map-get-strict($components, 'error-color');
+		font-weight: 600;
+	}
+
+	&__subtitle {
+		font-size: 1.2em;
+	}
+
+	&__notice {
+		word-break: break-word;
+		max-width: 50%;
+	}
+
+	&__information {
+		margin: 0 0 0.5em 0;
+	}
+
+	&__checkboxes {
+		margin-bottom: 0 !important;
+	}
+
+	&__textarea {
+		width: 39em;
+
+		textarea {
+			max-width: 36em;
+		}
+	}
+
+	&__input {
+
+		input {
+			padding: 6px 8px;
+			max-width: 36em;
+		}
+	}
+
+	&__code {
+		margin-bottom: 20px;
+
+		code {
+			width: 50em;
+			max-height: 30em;
+			display: block;
+			padding: 20px;
+			overflow: scroll;
+		}
+	}
+
+	&.has-error {
+
+		input,
+		textarea,
+		select {
+			border-color: map-get-strict($components, 'error-color');
+			box-shadow: 0 0 0 1px map-get-strict($components, 'error-color');
+		}
+	}
+}
