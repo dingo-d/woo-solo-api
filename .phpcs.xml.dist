@@ -36,11 +36,11 @@
 	<!-- Tabs should represent 4 spaces. -->
 	<rule ref="Generic.WhiteSpace.ScopeIndent">
 		<exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/>
-        <properties>
-            <property name="indent" value="4"/>
-            <property name="tabIndent" value="true"/>
-        </properties>
-    </rule>
+		<properties>
+			<property name="indent" value="4"/>
+			<property name="tabIndent" value="true"/>
+		</properties>
+	</rule>
 
 	<!-- Line length config. -->
 	<rule ref="Generic.Files.LineLength">

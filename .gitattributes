@@ -5,16 +5,21 @@
 #
 /.editorconfig export-ignore
 /.env.testing export-ignore
+/.env.actions.testing export-ignore
 /.eslintignore export-ignore
 /.eslintrc export-ignore
 /.github export-ignore
+/.gitignore export-ignore
 /.phpcs.xml.dist export-ignore
 /.stylelintrc export-ignore
-/.travis.yml export-ignore
 /babel.config.js export-ignore
 /codeception.dist-yml export-ignore
+/.composer.json export-ignore
+/.composer.lock export-ignore
 /.husky.config.js export-ignore
 /phpstan.neon export-ignore
+/package.json export-ignore
+/package-lock.json export-ignore
 /postcss.config.js export-ignore
 /webpack.config.js export-ignore
 /assets/dev export-ignore

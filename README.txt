@@ -506,7 +506,3 @@ Filter the from name set from the options
 <code>
 apply_filters('woo_solo_api_change_email_from_name', $name);
 </code>
-
-
-
-
