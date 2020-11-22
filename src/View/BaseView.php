@@ -3,23 +3,25 @@
 /**
  * Base view class file
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\View;
 
+use Exception;
 use MadeByDenis\WooSoloApi\Exception\FailedToLoadView;
-use MadeByDenis\WooSoloApi\Exception\InvalidURI;
+use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
- * Base view class
+ * Base view template
  *
  * Basic View class to abstract away the PHP view rendering.
  *
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 class BaseView implements View
 {
@@ -54,9 +56,9 @@ class BaseView implements View
      *
      * @param string $uri URI to the view file to render.
      *
-     * @throws InvalidURI If an invalid URI was passed into the View.
+     * @throws InvalidUri If an invalid URI was passed into the View.
      */
-	public function __construct($uri)
+	public final function __construct(string $uri)
 	{
 		$this->uri = $this->validate($uri);
 	}
@@ -66,7 +68,7 @@ class BaseView implements View
      *
      * @param array $context Context in which to render.
      *
-     * @return string          Rendered HTML.
+     * @return string           Rendered HTML.
      * @throws FailedToLoadView If the View URI could not be loaded.
      */
 	public function render(array $context = []): string
@@ -88,7 +90,7 @@ class BaseView implements View
 
 		try {
 			include $this->uri;
-		} catch (\Exception $exception) {
+		} catch (Exception $exception) {
 		  	// Remove whatever levels were added up until now.
 			while (ob_get_level() > $buffer_level) {
 				ob_end_clean();
@@ -100,7 +102,7 @@ class BaseView implements View
 			);
 		}
 
-		return ob_get_clean();
+		return (string) ob_get_clean();
 	}
 
     /**
@@ -115,10 +117,10 @@ class BaseView implements View
      * @param array|null $context Context in which to render the partial.
      *
      * @return string           Rendered HTML.
-     * @throws InvalidURI       If the provided URI was not valid.
+     * @throws InvalidUri       If the provided URI was not valid.
      * @throws FailedToLoadView If the view could not be loaded.
      */
-	public function renderPartial($uri, array $context = null): string
+	public function renderPartial(string $uri, array $context = null): string
 	{
 		$view = new static($uri);
 
@@ -131,15 +133,15 @@ class BaseView implements View
     * @param string $uri URI to validate.
     *
     * @return string      Validated URI.
-    * @throws InvalidURI If an invalid URI was passed into the View.
+    * @throws InvalidUri If an invalid URI was passed into the View.
     */
-	protected function validate($uri): string
+	protected function validate(string $uri): string
 	{
 		$uri = $this->checkExtension($uri, static::VIEW_EXTENSION);
 		$uri = trailingslashit(dirname(__DIR__, 2)) . $uri;
 
 		if (! is_readable($uri)) {
-			throw InvalidURI::fromUri($uri);
+			throw InvalidUri::fromUri($uri);
 		}
 
 		return $uri;
@@ -155,7 +157,7 @@ class BaseView implements View
    *
    * @return string URI with correct extension.
    */
-	protected function checkExtension($uri, $extension): string
+	protected function checkExtension(string $uri, string $extension): string
 	{
 		$detected_extension = pathinfo($uri, PATHINFO_EXTENSION);
 

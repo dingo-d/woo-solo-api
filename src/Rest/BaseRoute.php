@@ -3,8 +3,8 @@
 /**
  * File holding BaseRoute class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Rest
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -13,11 +13,13 @@ namespace MadeByDenis\WooSoloApi\Rest;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
+use function add_action;
+
 /**
- * BaseRoute class
+ * Base route template
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Rest
+ * @since 2.0.0
  */
 abstract class BaseRoute implements Route, Registrable
 {
@@ -51,7 +53,12 @@ abstract class BaseRoute implements Route, Registrable
 		add_action('rest_api_init', [$this, 'registerRestRoute']);
 	}
 
-	public function registerRestRoute()
+	/**
+	 * Rest route registration callback
+	 *
+	 * @return void
+	 */
+	public function registerRestRoute(): void
 	{
 		register_rest_route(
 			self::NAMESPACE_NAME . self::VERSION,

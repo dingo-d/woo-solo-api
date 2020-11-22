@@ -3,21 +3,27 @@
 /**
  * Templated view class file
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\View;
 
-use MadeByDenis\WooSoloApi\Exception\InvalidURI;
+use MadeByDenis\WooSoloApi\Exception\InvalidUri;
+
+use function get_stylesheet_directory;
+use function get_template_directory;
 
 /**
- * Templated view class
+ * Templated view
  *
  * Looks within the child theme and parent theme folders first for a view,
  * before defaulting to the plugin folder.
+ *
+ * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 final class TemplatedView extends BaseView
 {
@@ -28,9 +34,9 @@ final class TemplatedView extends BaseView
 	 * @param string $uri URI to validate.
 	 *
 	 * @return string Validated URI.
-	 * @throws InvalidURI If an invalid URI was passed into the View.
+	 * @throws InvalidUri If an invalid URI was passed into the View.
 	 */
-	protected function validate($uri): string
+	protected function validate(string $uri): string
 	{
 		$uri = $this->checkExtension($uri, static::VIEW_EXTENSION);
 
@@ -41,7 +47,7 @@ final class TemplatedView extends BaseView
 		}
 
 		if (!is_readable($uri)) {
-			throw InvalidURI::fromUri($uri);
+			throw InvalidUri::fromUri($uri);
 		}
 
 		return $uri;
@@ -54,11 +60,11 @@ final class TemplatedView extends BaseView
 	 *
 	 * @return array Array of possible locations.
 	 */
-	protected function getLocations($uri): array
+	protected function getLocations(string $uri): array
 	{
 		return [
-			trailingslashit(\get_stylesheet_directory()) . $uri,
-			trailingslashit(\get_template_directory()) . $uri,
+			trailingslashit(get_stylesheet_directory()) . $uri,
+			trailingslashit(get_template_directory()) . $uri,
 			trailingslashit(dirname(__DIR__, 2)) . $uri,
 		];
 	}

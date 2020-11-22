@@ -3,8 +3,8 @@
 /**
  * File holding Assets interface
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\Assets
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -16,8 +16,10 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
 /**
  * Assets interface
  *
- * @since 2.0.0
+ * This interface is responsible for style and scripts enqueueing.
+ *
  * @package MadeByDenis\WooSoloApi\Assets
+ * @since 2.0.0
  */
 interface Assets extends Registrable
 {
@@ -27,6 +29,7 @@ interface Assets extends Registrable
 	 * @since 2.0.0
 	 *
 	 * @param string $hookSuffix Page suffix.
+	 *
 	 * @return mixed
 	 */
 	public function enqueueStyles(string $hookSuffix);
@@ -37,6 +40,7 @@ interface Assets extends Registrable
 	 * @since 2.0.0
 	 *
 	 * @param string $hookSuffix Page suffix.
+	 *
 	 * @return mixed
 	 */
 	public function enqueueScripts(string $hookSuffix);

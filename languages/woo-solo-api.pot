@@ -1,0 +1,804 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Woo Solo Api\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-solo-api\n"
+"Last-Translator: \n"
+"Language-Team: Denis Žoljom\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-11-21T12:10:49+00:00\n"
+"PO-Revision-Date: 2020-11-21 13:23+0100\n"
+"Language: hr\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: e__;esc_html__;esc_html_e;esc_attr__;esc_attr_e;esc_html_x;__;_n_noop\n"
+"X-Poedit-SearchPath-0: assets\n"
+"X-Poedit-SearchPath-1: src\n"
+"X-Poedit-SearchPathExcluded-0: bin\n"
+"X-Poedit-SearchPathExcluded-1: languages\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+"X-Poedit-SearchPathExcluded-3: tests\n"
+"X-Poedit-SearchPathExcluded-4: vendor\n"
+"X-Poedit-SearchPathExcluded-5: views\n"
+"X-Poedit-SearchPathExcluded-6: webpack\n"
+
+#: assets/dev/scripts/index.jsx:111
+msgid "Transactional account"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:112
+msgid "Cash"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:113
+msgid "Cards"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:114
+msgid "Cheque"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:115
+msgid "Other"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:119
+msgid "1 day"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:120
+msgid "2 days"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:121
+msgid "3 days"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:122
+msgid "4 days"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:123
+msgid "5 days"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:124
+msgid "6 days"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:125
+msgid "1 week"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:126
+msgid "2 weeks"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:127
+msgid "3 weeks"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:291
+msgid "Errors happened during saving"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:292
+msgid "Settings saved"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:323
+msgid "Validation error: "
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:34
+msgid "-"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:340
+msgid "Empty API token"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:35
+msgid "piece"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:354
+msgid "For more details on the options you can read the official SOLO API documentation here: "
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:36
+msgid "hour"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:37
+msgid "year"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:38
+msgid "km"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:388
+#: src/Settings/PluginSettings.php:61
+msgid "Solo API token"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:389
+msgid "Enter your personal token that you obtained from your SOLO account"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:39
+msgid "litre"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:399
+msgid "Solo Api Settings"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:40
+msgid "kg"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:407
+msgid "Unit measure"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:408
+msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:41
+msgid "kWh"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:42
+msgid "m³"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:420
+msgid "Enter the type of the service"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:421
+msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:43
+msgid "tonne"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:433
+msgid "Invoice Language"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:434
+msgid "Select the language of the invoice/offer"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:44
+msgid "m²"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:446
+msgid "Show taxes"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:447
+msgid "Show tax"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:447
+msgid "Don't show tax"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:45
+msgid "m"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:458
+msgid "Currency"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:46
+msgid "day"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:47
+msgid "month"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:470
+msgid "Type of invoice"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:471
+msgid "Only works with invoice, not with offer"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:48
+msgid "night"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:481
+msgid "Choose the type of payment for each enabled payment gateway"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:49
+msgid "cart"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:493
+#: src/Settings/PluginSettings.php:279
+msgid "Type of payment document"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:498
+msgid "Offer"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:499
+msgid "Invoice"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:50
+msgid "account"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:506
+msgid "Payment option types"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:51
+msgid "pair"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:516
+msgid "Check if you want the invoice to be fiscalized *"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:517
+msgid "Fiscalize"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:517
+msgid "Don't fiscalize"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:52
+msgid "ml"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:525
+msgid "* Fiscalization certificate must be added in the SOLO options, and it only applies to invoices."
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:53
+msgid "pax"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:531
+msgid "Invoice/Offer due date"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:54
+msgid "room"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:540
+msgid "You can check the currency rate at <a>Croatian National Bank</a>."
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:549
+msgid "The currency will be automatically added if the selected currency is different from HRK. Also, a note about conversion rate will be added to the invoice/offer."
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:55
+msgid "apartment"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:555
+msgid "Additional Settings"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:559
+msgid "WooCommerce checkout settings"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:56
+msgid "term"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:563
+msgid "Enable the PIN field on the billing and shipping from in the checkout"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:57
+msgid "set"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:573
+msgid "Enable the IBAN field on the billing and shipping from in the checkout"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:574
+msgid "Enable"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:574
+msgid "Disable"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:58
+msgid "package"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:582
+msgid "PDF settings"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:586
+msgid "Send the email to the client with the PDF of the order or the invoice"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:587
+msgid "Send email"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:587
+msgid "Don't send email"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:59
+msgid "point"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:595
+msgid "Send mail to selected payment gateways"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:60
+msgid "service"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:61
+msgid "pal"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:612
+msgid "PDF send control"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:613
+msgid "Decide when to send the PDF of the order or invoice.On customer checkout, or when you approve the order in the WooCommerce admin.This will determine when the call to the SOLO API will be made"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:619
+msgid "Send on:"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:62
+msgid "kont"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:624
+msgid "Checkout"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:627
+msgid "Status change to 'completed'"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:63
+msgid "čl"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:635
+msgid "Email Settings"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:64
+msgid "tis"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:642
+msgid "Set the title of the mail that will be send with the PDF invoice"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:65
+msgid "sec"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:654
+msgid "Type the message that will appear on the mail with the invoice PDF attached"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:66
+msgid "min"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:666
+#: src/Settings/PluginSettings.php:169
+msgid "Change the 'from' name that shows when WordPress sends the mail"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:669
+msgid "<str>CAUTION</str>: This change is global, every mail send from your WordPress will have this 'from' name"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:67
+msgid "str"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:68
+msgid "kpl"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:684
+msgid "Solo Api Test"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:688
+msgid "This serves for testing purposes only"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:69
+msgid "pšl"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:690
+msgid "Pressing the button will make a request to your Solo API account,and will list all the invoices you have"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:70
+msgid "ha"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:705
+msgid "Make a request"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:71
+msgid "g"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:716
+msgid "Save settings"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:72
+msgid "x"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:724
+msgid "Solo API order details"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:729
+msgid "ID"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:730
+msgid "WooCommerce Order ID"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:731
+#: src/Privacy/DataHandling.php:111
+msgid "Solo ID"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:732
+msgid "Customer Email"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:733
+msgid "Is sent to Solo API"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:734
+msgid "Is pdf sent to customer"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:735
+msgid "API response errors"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:736
+#: src/Privacy/DataHandling.php:131
+msgid "Created at"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:737
+#: src/Privacy/DataHandling.php:135
+msgid "Updated at"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:76
+msgid "Croatian"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:77
+msgid "English"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:78
+msgid "German"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:79
+msgid "French"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:80
+msgid "Italian"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:81
+msgid "Spanish"
+msgstr ""
+
+#. Plugin Name of the plugin
+msgid "Woo Solo Api"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://madebydenis.com/woo-solo-api"
+msgstr ""
+
+#. Description of the plugin
+msgid "This plugin provides integration of the SOLO API service with WooCommerce."
+msgstr ""
+
+#. Author of the plugin
+msgid "Denis Žoljom"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://madebydenis.com"
+msgstr ""
+
+#: src/Admin/AdminMenus/OptionsSubmenu.php:54
+msgid "Woo Solo Api Options"
+msgstr ""
+
+#: src/Admin/AdminMenus/OptionsSubmenu.php:62
+msgid "Solo API Options"
+msgstr ""
+
+#: src/Admin/AdminNotices/DatabaseTableMissingNotice.php:75
+msgid "Woo Orders table seems to be missing. Please reactivate the plugin (deactivate and activate) to create it."
+msgstr ""
+
+#: src/Admin/PluginsPage.php:47
+msgid "SOLO API Settings"
+msgstr ""
+
+#: src/Assets/EnqueueResources.php:135
+msgid "Options saved."
+msgstr ""
+
+#. translators: name of the invoice file, don't use diacritics!
+#: src/BackgroundJobs/SendCustomerEmail.php:90
+msgid "invoice-"
+msgstr ""
+
+#. translators: name of the offer file, don't use diacritics!
+#: src/BackgroundJobs/SendCustomerEmail.php:95
+msgid "offer-"
+msgstr ""
+
+#: src/BackgroundJobs/SendCustomerEmail.php:167
+msgid "invoice"
+msgstr ""
+
+#: src/BackgroundJobs/SendCustomerEmail.php:168
+msgid "offer"
+msgstr ""
+
+#. translators: 1:Bill type
+#: src/BackgroundJobs/SendCustomerEmail.php:171
+msgid "Your %s is in the attachment."
+msgstr ""
+
+#. translators: 1:Bill type 2:Your site name
+#: src/BackgroundJobs/SendCustomerEmail.php:173
+msgid "Your %1$s from %2$s"
+msgstr ""
+
+#: src/Core/Plugin.php:75
+msgid "This plugin requires PHP 7.3 or greater to function."
+msgstr ""
+
+#: src/Core/Plugin.php:84
+msgid "This plugin requires WooCommerce plugin to be active."
+msgstr ""
+
+#: src/Core/Plugin.php:181
+msgid "manifest.json is missing. Bundle the plugin before using it."
+msgstr ""
+
+#: src/ECommerce/WooCommerce/AdminOrder.php:53
+msgid "Customer shipping PIN number"
+msgstr ""
+
+#: src/ECommerce/WooCommerce/AdminOrder.php:57
+msgid "Customer billing PIN number"
+msgstr ""
+
+#: src/ECommerce/WooCommerce/AdminOrder.php:61
+msgid "Customer shipping IBAN number"
+msgstr ""
+
+#: src/ECommerce/WooCommerce/AdminOrder.php:65
+msgid "Customer billing IBAN number"
+msgstr ""
+
+#: src/ECommerce/WooCommerce/CheckoutFields.php:59
+#: src/ECommerce/WooCommerce/CheckoutFields.php:67
+msgid "PIN number"
+msgstr ""
+
+#: src/ECommerce/WooCommerce/CheckoutFields.php:60
+#: src/ECommerce/WooCommerce/CheckoutFields.php:68
+msgctxt "placeholder"
+msgid "01234567891"
+msgstr ""
+
+#: src/ECommerce/WooCommerce/CheckoutFields.php:95
+#: src/ECommerce/WooCommerce/CheckoutFields.php:103
+msgid "IBAN number"
+msgstr ""
+
+#: src/ECommerce/WooCommerce/CheckoutFields.php:96
+#: src/ECommerce/WooCommerce/CheckoutFields.php:104
+msgctxt "placeholder"
+msgid "HR12345678901234567890"
+msgstr ""
+
+#: src/ECommerce/WooCommerce/CheckoutFields.php:131
+#: src/ECommerce/WooCommerce/CheckoutFields.php:139
+msgid "Company name"
+msgstr ""
+
+#: src/ECommerce/WooCommerce/CheckoutFields.php:132
+#: src/ECommerce/WooCommerce/CheckoutFields.php:140
+msgctxt "placeholder"
+msgid "Cool company inc."
+msgstr ""
+
+#. translators: %1$s: error message, %2$s: error code.
+#: src/Exception/ApiRequestException.php:42
+msgid "API request error happened. %1$s. (Error code %2$s)."
+msgstr ""
+
+#. translators: %1$s: error message, %2$s: error code.
+#: src/Exception/WpException.php:43
+msgid "WordPress internal error happened. %1$s. (Error code %2$s)."
+msgstr ""
+
+#: src/Privacy/DataHandling.php:78
+#: src/Privacy/DataHandling.php:177
+msgid "Woo Solo Api Order Data"
+msgstr ""
+
+#: src/Privacy/DataHandling.php:103
+msgid "Order Item"
+msgstr ""
+
+#: src/Privacy/DataHandling.php:107
+msgid "WooCommerce order item ID"
+msgstr ""
+
+#: src/Privacy/DataHandling.php:115
+msgid "Customer email"
+msgstr ""
+
+#: src/Privacy/DataHandling.php:119
+msgid "Is sent to API"
+msgstr ""
+
+#: src/Privacy/DataHandling.php:123
+msgid "Is sent to user"
+msgstr ""
+
+#: src/Privacy/DataHandling.php:127
+msgid "API request error messages"
+msgstr ""
+
+#: src/Privacy/DataHandling.php:142
+msgid "Woo Solo Api Order Items"
+msgstr ""
+
+#: src/Request/SoloApiRequest.php:265
+msgid "Shipping fee"
+msgstr ""
+
+#: src/Rest/Endpoints/OrderDetails.php:172
+msgid "Flag that notifies if the PDF bill was sent to customer."
+msgstr ""
+
+#: src/Settings/PluginSettings.php:73
+msgid "Unit measure of the shop (e.g. piece, hour, m³, etc.)"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:85
+msgid "Language of the bill or the invoice"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:97
+msgid "Currency of the bill or the invoice"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:109
+msgid "Service type. A unique ID of the service (must be a number)"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:121
+msgid "Show taxes option"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:133
+msgid "The type of invoice (R, R1, R2, No label or In advance)"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:145
+msgid "The title of the invoice email"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:157
+msgid "The message of the invoice email"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:181
+msgid "Enable PIN field in the WooCommerce checkout"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:193
+msgid "Enable IBAN field in the WooCommerce checkout"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:205
+msgid "Specify the due date on the bill or the invoice"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:217
+msgid "Array of gateways that the email with the invoice should be sent"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:229
+msgid "Send the email to the client with the PDF of the bill or the invoice"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:241
+msgid "When to send the PDF - on checkout or order confirmation"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:266
+msgid "Available payment gateways"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:291
+msgid "Should the invoice be fiscalized or not"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:303
+msgid "Type of payment on api gateway (transactional account, cash, cards, etc.)"
+msgstr ""
+
+#: src/Utils/ErrorCodes.php:37
+msgid "Number not only once is invalid."
+msgstr ""
+
+#: src/Utils/ErrorCodes.php:40
+msgid "User is not authorized to do this action."
+msgstr ""
+
+#: src/Utils/ErrorCodes.php:43
+msgid "Error occurred"
+msgstr ""
+
+#: woo-solo-api.php:36
+msgid "You cannot access this file outside WordPress."
+msgstr ""

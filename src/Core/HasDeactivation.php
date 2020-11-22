@@ -3,8 +3,8 @@
 /**
  * * File that holds Has_Deactivation interface
  *
- * @since 2.0.0
  * @package Developer_Portal\Core
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -12,10 +12,11 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Core;
 
 /**
- * Interface Has_Deactivation.
+ * Interface HasDeactivation
  *
  * An object that can be deactivated.
  *
+ * @package Developer_Portal\Core
  * @since 2.0.0
  */
 interface HasDeactivation

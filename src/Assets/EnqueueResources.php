@@ -3,35 +3,38 @@
 /**
  * File holding class EnqueueResources
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\Assets
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
 
-
 namespace MadeByDenis\WooSoloApi\Assets;
 
+use function add_action;
+use function esc_html__;
 
 /**
- * Class EnqueueResources
+ * Enqueues all the scripts and styles in the plugin
  *
- * @since 2.0.0
+ * This class holds the logic for enqueueing the scripts and styles of the plugin.
+ *
  * @package MadeByDenis\WooSoloApi\Assets
+ * @since 2.0.0
  */
 class EnqueueResources implements Assets
 {
 
-	const JS_HANDLE = 'woo-solo-api-js';
-	const JS_URI = 'application.js';
+	public const JS_HANDLE = 'woo-solo-api-js';
+	public const JS_URI = 'application.js';
 
-	const CSS_HANDLE = 'woo-solo-api-css';
-	const CSS_URI = 'application.css';
+	public const CSS_HANDLE = 'woo-solo-api-css';
+	public const CSS_URI = 'application.css';
 
-	const VERSION = false;
-	const IN_FOOTER = true;
+	public const VERSION = false;
+	public const IN_FOOTER = true;
 
-	const MEDIA_ALL = 'all';
+	public const MEDIA_ALL = 'all';
 
 	/**
 	 * @inheritDoc
@@ -54,7 +57,7 @@ class EnqueueResources implements Assets
 
 		wp_register_style(
 			self::CSS_HANDLE,
-			$this->get_manifest_assets_data(self::CSS_URI),
+			$this->getManifestAssetsData(self::CSS_URI),
 			['wp-components'],
 			self::VERSION,
 			self::MEDIA_ALL
@@ -74,7 +77,7 @@ class EnqueueResources implements Assets
 
 		wp_register_script(
 			self::JS_HANDLE,
-			$this->get_manifest_assets_data(self::JS_URI),
+			$this->getManifestAssetsData(self::JS_URI),
 			$this->getJsDependencies(),
 			self::VERSION,
 			self::IN_FOOTER
@@ -89,10 +92,18 @@ class EnqueueResources implements Assets
 
 	/**
 	 * Set the translations inside the JS files
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/wp_set_script_translations/
+	 *
+	 * @return void
 	 */
-	public function setScriptTranslations()
+	public function setScriptTranslations(): void
 	{
-		wp_set_script_translations(self::JS_HANDLE, 'woo-solo-api');
+		wp_set_script_translations(
+			self::JS_HANDLE,
+			'woo-solo-api',
+			dirname(__FILE__, 3) . '/languages/'
+		);
 	}
 
 	/**
@@ -102,7 +113,7 @@ class EnqueueResources implements Assets
 	 *
 	 * @return array List of all the script dependencies
 	 */
-	protected function getJsDependencies(): array
+	private function getJsDependencies(): array
 	{
 		return [
 			'wp-api',
@@ -118,7 +129,7 @@ class EnqueueResources implements Assets
 	 *
 	 * @return array Key value pair of different localizations
 	 */
-	protected function getLocalizations(): array
+	private function getLocalizations(): array
 	{
 		return [
 			'optionSaved' => esc_html__('Options saved.', 'woo-solo-api'),
@@ -127,12 +138,14 @@ class EnqueueResources implements Assets
 
 	/**
 	 * Return full path for specific asset from manifest.json
+	 *
 	 * This is used for cache busting assets.
 	 *
 	 * @param string $key File name key you want to get from manifest.
-	 * @return string     Full path to asset.
+	 *
+	 * @return string Full path to asset.
 	 */
-	private function get_manifest_assets_data(string $key = null): string
+	private function getManifestAssetsData(string $key = ''): string
 	{
 		$data = ASSETS_MANIFEST;
 

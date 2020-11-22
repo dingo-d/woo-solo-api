@@ -17,8 +17,9 @@
  * License URI:          https://opensource.org/licenses/MIT
  * Text Domain:          woo-solo-api
  * Domain Path:          /languages
- * WC requires at least: 3.9.0
- * WC tested up to:      4.0.1
+ * WC requires at least: 4.0.0
+ * WC tested up to:      4.7.0
+ * Requires PHP:         7.3
  */
 
 namespace MadeByDenis\WooSoloApi;
@@ -32,7 +33,8 @@ use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
  * @since 2.0.0
  */
 if (! defined('ABSPATH')) {
-    $errorMessage = __('You cannot access this file outside WordPress.', 'woo-solo-api');
+    $errorMessage = esc_html__('You cannot access this file outside WordPress.', 'woo-solo-api');
+
     throw PluginActivationFailure::activationMessage($errorMessage);
 }
 

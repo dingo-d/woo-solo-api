@@ -3,8 +3,8 @@
 /**
  * File holding Route interface
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Rest
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -14,15 +14,14 @@ namespace MadeByDenis\WooSoloApi\Rest;
 /**
  * Route interface
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Rest
+ * @since 2.0.0
  */
 interface Route
 {
 	/**
 	 * Alias for GET transport method.
 	 *
-	 * @since 2.0.0
 	 * @var string
 	 */
 	public const READABLE = 'GET';
@@ -30,7 +29,6 @@ interface Route
 	/**
 	 * Alias for POST transport method.
 	 *
-	 * @since 2.0.0
 	 * @var string
 	 */
 	public const CREATABLE = 'POST';
@@ -38,7 +36,6 @@ interface Route
 	/**
 	 * Alias for PATCH transport method.
 	 *
-	 * @since 2.0.0
 	 * @var string
 	 */
 	public const EDITABLE = 'PATCH';
@@ -46,15 +43,13 @@ interface Route
 	/**
 	 * Alias for PUT transport method.
 	 *
-	 * @since 2.0.0
 	 * @var string
 	 */
-	public const UPDATEABLE = 'PUT';
+	public const UPDATABLE = 'PUT';
 
 	/**
 	 * Alias for DELETE transport method.
 	 *
-	 * @since 2.0.0
 	 * @var string
 	 */
 	public const DELETABLE = 'DELETE';

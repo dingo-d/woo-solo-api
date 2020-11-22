@@ -3,12 +3,14 @@ $components: (
 );
 
 .components-base-control {
+
 	&__field {
 		margin-bottom: 20px !important;
 	}
 
 	&__label {
 		font-weight: 600 !important;
+		display: block !important;
 	}
 
 	&__error {
@@ -25,6 +27,10 @@ $components: (
 		max-width: 50%;
 	}
 
+	&__information {
+		margin: 0 0 0.5em 0;
+	}
+
 	&__checkboxes {
 		margin-bottom: 0 !important;
 	}
@@ -32,12 +38,13 @@ $components: (
 	&__textarea {
 		width: 39em;
 
-		textarea {
+		textarea {
 			max-width: 36em;
 		}
 	}
 
 	&__input {
+
 		input {
 			padding: 6px 8px;
 			max-width: 36em;
@@ -57,7 +64,10 @@ $components: (
 	}
 
 	&.has-error {
-		input, textarea, select {
+
+		input,
+		textarea,
+		select {
 			border-color: map-get-strict($components, 'error-color');
 			box-shadow: 0 0 0 1px map-get-strict($components, 'error-color');
 		}

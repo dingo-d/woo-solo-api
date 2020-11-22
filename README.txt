@@ -1,12 +1,12 @@
 === Woo Solo Api ===
 Contributors: dingo_bastard
 Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
-Requires at least: 5.1
-Requires PHP: 7.2
-Tested up to: 5.4
+Requires at least: 5.2
+Requires PHP: 7.3
+Tested up to: 5.5
 Stable tag: 2.0
-WC requires at least: 3.9.0
-WC tested up to: 4.0.0
+WC requires at least: 4.0.0
+WC tested up to: 4.7.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -29,9 +29,12 @@ For more information about the SOLO API visit this link: https://solo.com.hr/api
 
 = Requirements =
 
-* PHP 7.2 or greater
-* WordPress 5.1 or above
-* Non IE browser -
+* PHP 7.3 or greater
+* WordPress 5.2 or above
+* WooCommerce 4.0.0 or above
+* Non IE browser
+
+== Upgrade Notice ==
 
 == Screenshots ==
 
@@ -55,4 +58,5 @@ For more information about the SOLO API visit this link: https://solo.com.hr/api
 = 1.2 =
 * Renamed classes - shorten name of the classes and changed file names
 * Fixed bug that prevented sending of the pdf bill if the type of the bill was offer (ponuda)
+
 

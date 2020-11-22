@@ -3,8 +3,8 @@
 /**
  * Interface that handles plugin views
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -13,11 +13,13 @@ namespace MadeByDenis\WooSoloApi\View;
 
 use MadeByDenis\WooSoloApi\Core\Renderable;
 use MadeByDenis\WooSoloApi\Exception\FailedToLoadView;
+use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
- * Interface View
+ * Interface view
  *
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 interface View extends Renderable
 {
@@ -47,5 +49,5 @@ interface View extends Renderable
 	 * @throws InvalidURI       If the provided URI was not valid.
 	 * @throws FailedToLoadView If the view could not be loaded.
 	 */
-	public function renderPartial($uri, array $context = null): string;
+	public function renderPartial(string $uri, array $context = null): string;
 }

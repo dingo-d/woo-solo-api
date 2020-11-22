@@ -1,10 +1,10 @@
 <?php
 
 /**
- * File that holds the registerable interface.
+ * File that holds the registrable interface.
  *
- * @since 2.0.0
  * @package Developer_Portal\Core
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -12,10 +12,11 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Core;
 
 /**
- * Registrable interface.
+ * Registrable interface
  *
  * An object that can be registered.
  *
+ * @package Developer_Portal\Core
  * @since 2.0.0
  */
 interface Registrable

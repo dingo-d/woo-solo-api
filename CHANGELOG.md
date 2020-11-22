@@ -16,8 +16,15 @@ _No documentation available about unreleased changes as of yet._
 ## [2.0.0] - TBA
 
 ### Added
+
 ### Changed
+
+* Replaced old admin page with new, core editor powered settings page
+
 ### Removed
+
+* Removed filter for PDF file types as those are no longer saved in the media uploads folder
+
 ### Fixed
 
 

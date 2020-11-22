@@ -3,8 +3,8 @@
 /**
  * Escaped view class file
  *
- * @since 2.0.0
  * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -12,13 +12,16 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\View;
 
 use MadeByDenis\WooSoloApi\Exception\FailedToLoadView;
-use MadeByDenis\WooSoloApi\Exception\InvalidURI;
+use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 
 /**
- * Escaped view class
+ * Escaped view
  *
  * This is a Decorator that decorates a given View with escaping meant for
  * HTML output.
+ *
+ * @package MadeByDenis\WooSoloApi\View
+ * @since 2.0.0
  */
 final class EscapedView implements View
 {
@@ -119,7 +122,7 @@ final class EscapedView implements View
 	 *
 	 * @var array
 	 */
-	private $allowed_tags = [];
+	private $allowed_tags;
 
 	/**
 	 * Instantiate a Escaped_View object.
@@ -163,10 +166,10 @@ final class EscapedView implements View
 	 * @param array|null $context Context in which to render the partial.
 	 *
 	 * @return string Rendered HTML.
-	 * @throws InvalidURI If the provided URI was not valid.
+	 * @throws InvalidUri If the provided URI was not valid.
 	 * @throws FailedToLoadView If the view could not be loaded.
 	 */
-	public function renderPartial($uri, array $context = null): string
+	public function renderPartial(string $uri, array $context = null): string
 	{
 		return wp_kses(
 			$this->view->renderPartial($uri, $context),
@@ -186,8 +189,8 @@ final class EscapedView implements View
 	 *
 	 * @return array Modified tags array.
 	 */
-	private function prepareAllowedTags($allowedTags): array
+	private function prepareAllowedTags(array $allowedTags): array
 	{
-		return array_replace_recursive($allowedTags, self::ALLOWED_TAGS);
+		return (array) array_replace_recursive($allowedTags, self::ALLOWED_TAGS);
 	}
 }

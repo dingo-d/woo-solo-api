@@ -3,8 +3,8 @@
 /**
  * File holding Plugin settings class
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Settings
+ * @since 2.0.0
  */
 
 declare(strict_types=1);
@@ -13,12 +13,17 @@ namespace MadeByDenis\WooSoloApi\Settings;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 use MadeByDenis\WooSoloApi\ECommerce\PaymentGateways;
+use MadeByDenis\WooSoloApi\Request\SoloApiRequest;
+
+use function add_action;
+use function esc_attr;
+use function esc_html__;
 
 /**
- * Plugin settings class
+ * Plugin settings
  *
- * @since
  * @package MadeByDenis\WooSoloApi\Settings
+ * @since 2.0.0
  */
 class PluginSettings implements Registrable
 {
@@ -27,6 +32,7 @@ class PluginSettings implements Registrable
 
 	/**
 	 * PluginSettings constructor.
+	 * S
 	 * @param PaymentGateways $gateway
 	 */
 	public function __construct(PaymentGateways $gateway)
@@ -45,7 +51,7 @@ class PluginSettings implements Registrable
 	/**
 	 * Callback to register plugin settings
 	 */
-	public function registerPluginSettings()
+	public function registerPluginSettings(): void
 	{
 		register_setting(
 			'solo-api-settings-group',
@@ -64,7 +70,7 @@ class PluginSettings implements Registrable
 			'solo_api_measure',
 			$this->setSettingsArguments(
 				'string',
-				esc_html__('Unit measure of the shop (e.g. piece, hour, m^3, etc.)', 'woo-solo-api'),
+				esc_html__('Unit measure of the shop (e.g. piece, hour, m³, etc.)', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
 				'1'
@@ -149,7 +155,7 @@ class PluginSettings implements Registrable
 			$this->setSettingsArguments(
 				'string',
 				esc_html__('The message of the invoice email', 'woo-solo-api'),
-				'sanitize_text_field',
+				'sanitize_textarea_field',
 				true,
 				''
 			)
@@ -240,7 +246,7 @@ class PluginSettings implements Registrable
 		);
 
 		$availableGateways = array_map(function ($paymentGateway) {
-			return $paymentGateway->title;
+			return $paymentGateway->method_title;
 		}, $this->gateway->getAvailablePaymentGateways());
 
 		/**
@@ -273,7 +279,7 @@ class PluginSettings implements Registrable
 					esc_html__('Type of payment document', 'woo-solo-api'),
 					'sanitize_text_field',
 					true,
-					'ponuda'
+					SoloApiRequest::OFFER
 				)
 			);
 
@@ -315,10 +321,11 @@ class PluginSettings implements Registrable
 	 * @param bool|array $showInRest Whether data associated with this setting should be included in the REST API.
 	 *                         When registering complex settings, this argument may optionally be an array
 	 *                         with a 'schema' key.
-	 * @param mixed $default Default value when calling get_option().
+	 * @param mixed $default Default value when calling \get_option().
+	 *
 	 * @return array
 	 */
-	private function setSettingsArguments(string $type, string $description, callable $sanitizeCallback, $showInRest, $default)
+	private function setSettingsArguments(string $type, string $description, callable $sanitizeCallback, $showInRest, $default): array
 	{
 		return [
 			'type' => $type,
