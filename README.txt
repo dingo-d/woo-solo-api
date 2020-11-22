@@ -408,3 +408,105 @@ If that fails, turn on the debug mode (https://wordpress.org/support/article/deb
 
 Could be. I didn't test it out with every plugin in the wild. That takes time. And money. And so far, nobody paid me to work on this plugin. In the near future I might be able to do some paid work, but that will depend on many different things.
 Please don't try to guilt trip me to work on your site specific issues. I will try to help to the best of my abilities. But the plugin is free, and I am not doing paid support, so don't expect me to work miracles. Also, don't expect me to drop everything just to work on your issue. If I don't answer in a day or two, be patient. I have a private life as well (shocker, I know) :D
+
+= Can I modify how the email looks, or customer notice? =
+
+Sure you can, besides actually adding things in the settings of the plugin you can modify certain things using these hooks:
+
+Filters the custom message for customer note
+
+If you need to extend the customer note, you can just hook to this filter
+and modify the existing content
+
+@param string $customerNote Existing customer note.
+
+<code>
+apply_filters('woo_solo_api_modify_customer_note', $customerNote);
+</code>
+
+Adds a global discount
+
+WooCommerce will handle counting the discounts for us.
+This is why this is set to 0.
+We can hook into this if we want to change it.
+But this hook will affect every item. So use it with care.
+
+@param int $globalDiscount The value of the global discount to apply to every item.
+
+<code>
+apply_filters('woo_solo_api_add_global_discount', $globalDiscount = 0);
+</code>
+
+Filters the email message from the options
+
+Email message can be set in the options and will be outputted here.
+If, for whatever reason we want to modify it some more, we can do that here.
+
+@param string $emailMessage Email message from options to filter.
+
+<code>
+apply_filters('woo_solo_api_modify_options_email_message', $emailMessage);
+</code>
+
+Filters the default email message
+
+If you don't set the message in the options, you can still filter the default one.
+
+@param string $defaultMessage Email message to filter.
+
+<code>
+apply_filters('woo_solo_api_modify_default_email_message', $defaultMessage);
+</code>
+
+Modify the email title from the options
+
+Email title for the customer can be set in the options,
+but you can modify it further with this filter.
+
+@param string $emailTitle Email title.
+
+<code>
+apply_filters('woo_solo_api_modify_options_email_title', $emailTitle);
+</code>
+
+Modify the default email title from the options
+
+If you don't use the title from the options, you can use default one.
+And modify it.
+
+@param string $emailTitle Email title.
+
+<code>
+apply_filters('woo_solo_api_modify_default_email_title', $defaultTitle);
+</code>
+
+Filter email headers
+
+When email to customer is sent, maybe you want to add something more. In that
+case you'll probably need to modify the headers sent with the email.
+Default ones are
+
+[
+	'MIME-Version: 1.0',
+	'Content-Type: text/html',
+];
+
+You can add to that list.
+
+@param array $headers Email headers to pass to wp_mail.
+
+<code>
+apply_filters('woo_solo_api_email_headers', $headers);
+</code>
+
+Filter the from name set from the options
+
+@param string $name Name to change in the "From" field.
+
+<code>
+apply_filters('woo_solo_api_change_email_from_name', $name);
+</code>
+
+
+
+
