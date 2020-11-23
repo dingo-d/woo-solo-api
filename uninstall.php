@@ -37,6 +37,13 @@ if (! defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 /**
+* Include the autoloader so we can dynamically include the rest of the classes.
+*
+* @since 2.0.0
+*/
+require_once __DIR__ . '/vendor/autoload.php';
+
+/**
  * Delete saved options in the database
  */
 delete_option('solo_api_token');
@@ -65,8 +72,6 @@ foreach ($available_woo_gateways as $gateway_woo_sett => $gateway_woo_val) {
     delete_option('solo_api_fiscalization-' . esc_attr($gateway_woo_val->id));
 }
 
-SoloOrdersTable::deleteTable();
-
 add_action('wp_mail_from_name', 'solo_api_revert_mail_from_name');
 
 /**
@@ -79,3 +84,5 @@ function solo_api_revert_mail_from_name($name)
 {
 	return 'WordPress';
 }
+
+SoloOrdersTable::deleteTable();
