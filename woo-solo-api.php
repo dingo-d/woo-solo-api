@@ -28,6 +28,13 @@ use MadeByDenis\WooSoloApi\Core\PluginFactory;
 use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
 
 /**
+* Include the autoloader so we can dynamically include the rest of the classes.
+*
+* @since 2.0.0
+*/
+require_once __DIR__ . '/vendor/autoload.php';
+
+/**
  * Make sure this file is only run from within WordPress.
  *
  * @since 2.0.0
@@ -37,13 +44,6 @@ if (! defined('ABSPATH')) {
 
     throw PluginActivationFailure::activationMessage($errorMessage);
 }
-
-/**
-* Include the autoloader so we can dynamically include the rest of the classes.
-*
-* @since 2.0.0
-*/
-require_once __DIR__ . '/vendor/autoload.php';
 
 /**
 * The code that runs during plugin activation.
