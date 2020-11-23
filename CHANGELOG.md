@@ -13,6 +13,14 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.0.1] - 2020-11-23
+
+### Fixed
+
+* Autoload order in main plugin file, so that the first error can be thrown correctly, if it happens
+* Fix the uninstall error because of a missing autoloader file
+* Add fallbacks in case there is no gateway set, so that the JS doesn't fail when deserializing arrays
+
 ## [2.0.0] - 2020-11-22
 
 This is a very big update. I called this the refactor, because the basic functionality of the plugin remained the

@@ -156,7 +156,7 @@ class App extends Component {
 			solo_api_mail_gateway: 'a:0:{}',
 			solo_api_send_pdf: false,
 			solo_api_send_control: '',
-			solo_api_available_gateways: '',
+			solo_api_available_gateways: 'a:0:{}',
 		};
 
 		this.settings = {};
@@ -169,7 +169,9 @@ class App extends Component {
 
 				this.settings.fetch().then(res => {
 
-					const availableGateways = Serialize.unserialize(res.solo_api_available_gateways);
+					const availableGateways = res.solo_api_available_gateways.length ?
+						Serialize.unserialize(res.solo_api_available_gateways) :
+						[];
 
 					Object.keys(availableGateways).forEach(gatewayType => {
 						this.setState({
@@ -194,7 +196,7 @@ class App extends Component {
 						solo_api_enable_pin: res.solo_api_enable_pin,
 						solo_api_enable_iban: res.solo_api_enable_iban,
 						solo_api_due_date: res.solo_api_due_date,
-						solo_api_mail_gateway: Serialize.unserialize(res.solo_api_mail_gateway),
+						solo_api_mail_gateway: res.solo_api_mail_gateway.length ? Serialize.unserialize(res.solo_api_mail_gateway) : [],
 						solo_api_send_pdf: res.solo_api_send_pdf,
 						solo_api_send_control: res.solo_api_send_control,
 						solo_api_available_gateways: availableGateways,

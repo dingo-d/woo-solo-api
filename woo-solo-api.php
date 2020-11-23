@@ -10,7 +10,7 @@
  * Plugin Name:          Woo Solo Api
  * Plugin URI:           https://madebydenis.com/woo-solo-api
  * Description:          This plugin provides integration of the SOLO API service with WooCommerce.
- * Version:              2.0
+ * Version:              2.0.1
  * Author:               Denis Žoljom
  * Author URI:           https://madebydenis.com
  * License:              MIT
@@ -28,6 +28,13 @@ use MadeByDenis\WooSoloApi\Core\PluginFactory;
 use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
 
 /**
+* Include the autoloader so we can dynamically include the rest of the classes.
+*
+* @since 2.0.0
+*/
+require_once __DIR__ . '/vendor/autoload.php';
+
+/**
  * Make sure this file is only run from within WordPress.
  *
  * @since 2.0.0
@@ -37,13 +44,6 @@ if (! defined('ABSPATH')) {
 
     throw PluginActivationFailure::activationMessage($errorMessage);
 }
-
-/**
-* Include the autoloader so we can dynamically include the rest of the classes.
-*
-* @since 2.0.0
-*/
-require_once __DIR__ . '/vendor/autoload.php';
 
 /**
 * The code that runs during plugin activation.

@@ -23,6 +23,8 @@ use function esc_html__;
  * Plugin settings
  *
  * @package MadeByDenis\WooSoloApi\Settings
+ *
+ * @since 2.0.1 Add fallback for options serialization.
  * @since 2.0.0
  */
 class PluginSettings implements Registrable
@@ -266,7 +268,7 @@ class PluginSettings implements Registrable
 				esc_html__('Available payment gateways', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				serialize($availableGateways)
+				!empty($availableGateways) ? serialize($availableGateways) : 'a:0:{}'
 			)
 		);
 
