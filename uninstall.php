@@ -20,6 +20,9 @@
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
  * @link       https://madebydenis.com
+ *
+ * @since      2.0.1 Added autoloader so that everything works
+ * @since      2.0.0 Added removal of database
  * @since      1.0.0
  *
  * @package    Woo_Solo_Api
@@ -39,7 +42,7 @@ if (! defined('WP_UNINSTALL_PLUGIN')) {
 /**
 * Include the autoloader so we can dynamically include the rest of the classes.
 *
-* @since 2.0.0
+* @since 2.0.1
 */
 require_once __DIR__ . '/vendor/autoload.php';
 

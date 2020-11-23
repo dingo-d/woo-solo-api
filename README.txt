@@ -4,7 +4,7 @@ Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 5.2
 Requires PHP: 7.3
 Tested up to: 5.5
-Stable tag: 2.0
+Stable tag: 2.0.1
 WC requires at least: 4.0.0
 WC tested up to: 4.7.0
 License: MIT
@@ -27,9 +27,7 @@ The plugin is translated to Croatian, since the SOLO service is primarily used b
 
 For more information about the SOLO API visit this link: https://solo.com.hr/api-dokumentacija
 
-= Installation ==
-
-= Install & Activate =
+== Installation ==
 
 Installing the plugin is easy. Just follow these steps:
 
@@ -68,6 +66,15 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 == Changelog ==
 
+= 2.0.1 =
+Release Date: November 23rd, 2020
+
+Fixed:
+
+* Autoload order in main plugin file, so that the first error can be thrown correctly, if it happens
+* Fix the uninstall error because of a missing autoloader file
+* Add fallbacks in case there is no gateway set, so that the JS doesn't fail when deserializing arrays
+
 = 2.0.0 =
 Release Date: November 22nd, 2020
 
@@ -90,7 +97,7 @@ Api calls towards Solo service are now run as a background process. So don't be 
 
 A lot of issues were fixed. The plugin should be more stable and work better now.
 
-==== Added ====
+Added:
 
 * Tests - several acceptance tests and integration tests using wp-browser
 * Added several rest routes for internal use
@@ -104,7 +111,7 @@ A lot of issues were fixed. The plugin should be more stable and work better now
 * Added filters for modifying certain data in the plugin
 * Link the invoice from the Solo service with the WooCommerce invoice
 
-==== Changed ====
+Changed:
 
 * Refactored the entire plugin structure to use dependency injection, autowiring, PSR-4 autoloading and PSR-12 coding
  standards
@@ -116,11 +123,11 @@ A lot of issues were fixed. The plugin should be more stable and work better now
   the Solo Api. Oftentimes there would be no orders created in the Solo service, and the user would be none the wiser
    what happened. By queueing we avoid this throttling. Also, we have a better way of logging errors from the API.
 
-==== Removed ====
+Removed:
 
 * Removed the filter for PDF file types as those are no longer saved in the media uploads folder
 
-==== Fixed ====
+Fixed:
 
 * If 2 transactions are marked as complete, only one will send the call to solo API for completion
   * Fixed by adding a db with checks from the database
@@ -134,7 +141,7 @@ A lot of issues were fixed. The plugin should be more stable and work better now
 = 1.9.6 =
 Release Date: May 18th, 2019
 
-==== Changed ====
+Changed:
 
 * Tested with WordPress 5.2
 * Tested with WooCommerce 3.6.3
@@ -142,17 +149,17 @@ Release Date: May 18th, 2019
 = 1.9.5 =
 Release Date: December 9th, 2018
 
-==== Added ====
+Added:
 
 * Added escaping to activation messages
 
-==== Changed ====
+Changed:
 
 * Updated `composer.json` (development only)
 * Updated `phpcs.xml.dist` (development only)
 * Tested with WordPress 5.0
 
-==== Fixed ====
+Fixed:
 
 * Fixed issue with multiple requests being made towards the SOLO service
 * Fixed the issue with no emails being send on order status change
@@ -163,15 +170,15 @@ Release Date: December 9th, 2018
 = 1.9.4 =
 Release Date: December 3rd, 2018
 
-==== Added ====
+Added:
 
 * Added removal of all offers
 
-==== Changed ====
+Changed:
 
 * Changed the name of the offers and invoices
 
-==== Fixed ====
+Fixed:
 
 * Fixed important GDPR issue – no longer saving offers and invoices because they contain sensitive information, and
  google will crawl your site and make them public
@@ -180,36 +187,36 @@ Release Date: December 3rd, 2018
 = 1.9.3 =
 Release Date: August 26th, 2018
 
-==== Added ====
+Added:
 
 * Manually add translations for the recalculated note, since locale manipulation was causing site language change
 
-==== Fixed ====
+Fixed:
 
 * Fix the status check for the currency list
 
 = 1.9.2 =
 Release Date: July 11th, 2018
 
-==== Fixed ====
+Fixed:
 
 * Minor fix – put WC() in the global scope
 
 = 1.9.1 =
 Release Date: June 30th, 2018
 
-==== Fixed ====
+Fixed:
 
 * Minor fix in the Admin class constructor (string typehinting is not available prior to PHP 7)
 
 = 1.9.0 =
 Release Date: June 6th, 2018
 
-==== Added ====
+Added:
 
 * Added the ability to translate the invoice/offer based on the selected and available language
 
-==== Changed ====
+Changed:
 
 * Moved the Solo API options under the WooCommerce menu
 * Extended the due date time to include 1-6 days in addition to 1-3 weeks
@@ -217,11 +224,11 @@ Release Date: June 6th, 2018
 = 1.8.1 =
 Release Date: June 6th, 2018
 
-==== Added ====
+Added:
 
 * Add a check if no shipping is selected in the WooCommerce options
 
-==== Changed ====
+Changed:
 
 * Minor code refactor (constants instead of properties in the main class)
 * Replaced built in autoloader for composers autoloader
@@ -229,29 +236,29 @@ Release Date: June 6th, 2018
 = 1.8.0 =
 Release Date: May 7th, 2018
 
-==== Added ====
+Added:
 
 * Add test method that returns all receipts from Solo API to check if the plugin is working properly.
 
-==== Changed ====
+Changed:
 
 * Minor visual adjustments
 
 = 1.7.5 =
 Release Date: April 29th, 2018
 
-==== Added ====
+Added:
 
 * Add fallback method for fetching currency rates in case the `allow_url_fopen is disabled.
 
 = 1.7 =
 Release Date: March 24th, 2018
 
-==== Added ====
+Added:
 
 * Added payment types for each payment gateway
 
-==== Fixed ====
+Fixed:
 
 * Tax fixes – tax class wasn't working on changing the order to status 'complete'
 * Added travis integration (development)
@@ -260,7 +267,7 @@ Release Date: March 24th, 2018
 = 1.6 =
 Release Date: March 3rd, 2018
 
-==== Fixed ====
+Fixed:
 
 * Fixed language issue on the invoices (props to ivoks)
 * PHPCS fixes
@@ -268,65 +275,65 @@ Release Date: March 3rd, 2018
 = 1.5 =
 Release Date: March 1st, 2018
 
-==== Changed ====
+Changed:
 
 * Set the transient validity to 6 hours so every 6 hours it will expire and be created again
 
-==== Fixed ====
+Fixed:
 
 * Fixed the currency rate to pull it from the official hnb site
 
 = 1.4 =
 Release Date: February 25th, 2018
 
-==== Added ====
+Added:
 
 * Added automatic conversion rate from Croatian National Bank (https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista)
 * Add a fix for duplicated orders – you can now choose if you want to make SOLO API call on the checkout or when
  changing order status manually
 
-==== Fixed ====
+Fixed:
 
 * Fix for taxes rounding error on shipping
 
 = 1.3 =
 Release Date: February 25th, 2018
 
-==== Added ====
+Added:
 
 * Add additional debug methods
 * Add tax check – tax rate can be separate for shipping and for items, and are handled by WooCommerce
 
-==== Fixed ====
+Fixed:
 
 * Code sniffer fixes
 
 = 1.2 =
 Release Date: December 10th, 2017
 
-==== Changed ====
+Changed:
 
 * Renamed classes – shorten the name of the classes and changed file names
 
-==== Fixed ====
+Fixed:
 
 * Fixed a bug that prevented sending of the pdf bill if the type of the bill was offer (ponuda)
 
 = 1.1 =
 Release Date: November 23rd, 2017
 
-==== Added ====
+Added:
 
 * Added multiple invoice type selection based on payment type with appropriate fiscalization check
 
-==== Changed ====
+Changed:
 
 * Fiscalization will be disabled for offer by default, and enabled only on invoice type
 
 = 1.0.1 =
 Release Date: November 22nd, 2017
 
-==== Fixed ====
+Fixed:
 
 * Typo fix
 
