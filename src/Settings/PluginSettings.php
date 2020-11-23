@@ -266,7 +266,7 @@ class PluginSettings implements Registrable
 				esc_html__('Available payment gateways', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				serialize($availableGateways)
+				!empty($availableGateways) ? serialize($availableGateways) : 'a:0:{}'
 			)
 		);
 
