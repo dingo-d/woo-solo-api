@@ -13,6 +13,12 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.0.2] - 2020-11-24
+
+### Fixed
+
+* Add a check if the options to be serialized exist at all before attempting to deserialize them
+
 ## [2.0.1] - 2020-11-23
 
 ### Fixed
