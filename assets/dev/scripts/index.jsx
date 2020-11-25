@@ -127,37 +127,40 @@ const dueDate = [
 	{value: '3', label: __('3 weeks', 'woo-solo-api')},
 ];
 
+const defaultState = {
+	isLoading: true,
+	isApiRequestOver: true,
+	isSaving: false,
+	isSaved: false,
+	hasErrors: false,
+	errors: {},
+	apiResponse: '',
+	dbOrders: [],
+	solo_api_payment_type: '',
+	solo_api_token: '',
+	solo_api_measure: '1',
+	solo_api_languages: '1',
+	solo_api_currency: '1',
+	solo_api_service_type: '0',
+	solo_api_show_taxes: false,
+	solo_api_invoice_type: '1',
+	solo_api_mail_title: '',
+	solo_api_message: '',
+	solo_api_change_mail_from: '',
+	solo_api_enable_pin: false,
+	solo_api_enable_iban: false,
+	solo_api_due_date: '',
+	solo_api_mail_gateway: 'a:0:{}',
+	solo_api_send_pdf: false,
+	solo_api_send_control: '',
+	solo_api_available_gateways: 'a:0:{}',
+};
+
 class App extends Component {
 	constructor() {
 		super(...arguments);
 
-		this.state = {
-			isLoading: true,
-			isApiRequestOver: true,
-			isSaving: false,
-			isSaved: false,
-			hasErrors: false,
-			errors: {},
-			apiResponse: '',
-			dbOrders: [],
-			solo_api_token: '',
-			solo_api_measure: '1',
-			solo_api_languages: '1',
-			solo_api_currency: '1',
-			solo_api_service_type: '0',
-			solo_api_show_taxes: false,
-			solo_api_invoice_type: '1',
-			solo_api_mail_title: '',
-			solo_api_message: '',
-			solo_api_change_mail_from: '',
-			solo_api_enable_pin: false,
-			solo_api_enable_iban: false,
-			solo_api_due_date: '',
-			solo_api_mail_gateway: 'a:0:{}',
-			solo_api_send_pdf: false,
-			solo_api_send_control: '',
-			solo_api_available_gateways: 'a:0:{}',
-		};
+		this.state = defaultState;
 
 		this.settings = {};
 	}
@@ -197,10 +200,14 @@ class App extends Component {
 							[];
 					}
 
+					const solo_api_payment_type = typeof res.solo_api_payment_type !== 'undefined' ?
+						res.solo_api_payment_type :
+						'';
+
 					this.setState({
 						solo_api_token: res.solo_api_token,
 						solo_api_measure: res.solo_api_measure,
-						solo_api_payment_type: res.solo_api_payment_type,
+						solo_api_payment_type: solo_api_payment_type,
 						solo_api_languages: res.solo_api_languages,
 						solo_api_currency: res.solo_api_currency,
 						solo_api_service_type: res.solo_api_service_type,
@@ -231,15 +238,23 @@ class App extends Component {
 	}
 
 	@bind
-	updateOptions() {
-		this.setState(state => ({
-			isSaving: true,
-			errors: {}
-		}));
+	setStateSynchronous(stateUpdate) {
+		return new Promise(resolve => {
+			this.setState(stateUpdate, () => resolve());
+		})
+	}
 
+	@bind
+	async updateOptions() {
+		await this.setStateSynchronous(
+			state => ({isSaving: true, errors: {}})
+		);
+
+		// Create options object.
 		const options = Object.keys(this.state)
 			.filter(key => (key !== 'isLoading' &&
 				key !== 'isSaving' &&
+				key !== 'hasErrors' &&
 				key !== 'errors' &&
 				key !== 'apiResponse' &&
 				key !== 'dbOrders' &&
@@ -249,6 +264,8 @@ class App extends Component {
 				if (!this.objectHasEmptyProperties(this.state)) {
 					if (key === 'solo_api_available_gateways' || key === 'solo_api_mail_gateway') {
 						obj[key] = Serialize.serialize(this.state[key]);
+					} else if (this.state[key] === null || typeof this.state[key] == 'undefined') {
+						obj[key] = defaultState[key];
 					} else {
 						obj[key] = this.state[key];
 					}
@@ -316,7 +333,7 @@ class App extends Component {
 	objectHasEmptyProperties(object) {
 		for (const key in object) {
 			if (object.hasOwnProperty(key)) {
-				if (object[key] != null && object[key] !== '') {
+				if (object[key] != null && object[key] !== '' && typeof(object[key]) !== 'undefined') {
 					return false;
 				}
 			}
