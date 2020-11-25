@@ -13,6 +13,12 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.0.3] - 2020-11-25
+
+### Fixed
+
+* * Add a default fallback on save in case a settings is undefined or null in settings
+
 ## [2.0.2] - 2020-11-24
 
 ### Fixed

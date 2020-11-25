@@ -4,7 +4,7 @@ Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 5.2
 Requires PHP: 7.3
 Tested up to: 5.5
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 WC requires at least: 4.0.0
 WC tested up to: 4.7.0
 License: MIT
@@ -65,6 +65,13 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 6. You can check the sent orders, whether the order was sent to API, and if the customer got the PDF or not (or if error happened on the API)
 
 == Changelog ==
+
+= 2.0.3 =
+Release Date: November 25th, 2020
+
+Fixed:
+
+* Add a default fallback on save in case a settings is undefined or null in settings
 
 = 2.0.2 =
 Release Date: November 24th, 2020
