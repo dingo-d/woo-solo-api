@@ -99,17 +99,10 @@ class SoloApiRequest implements ApiRequest
 
 		$orderData = $order->get_data(); // The Order data.
 
-		// Check if billing or shipping.
-		$field = 'shipping';
-
-		if (!empty($orderData['billing']['first_name'])) {
-			$field = 'billing';
-		}
-
 		// The bill data (invoice or offer) must be from billing fields!
 		$firstName = $orderData['billing']['first_name'] ?? '';
 		$lastName = $orderData['billing']['last_name'] ?? '';
-		$companyName = $orderData['billing']['billing_company'] ?? ''; // Used for R1.
+		$companyName = $orderData['billing']['company'] ?? ''; // Used for R1.
 		$address1 = $orderData['billing']['address_1'] ?? '';
 		$address2 = $orderData['billing']['address_2'] ?? '';
 		$city = $orderData['billing']['city'] ?? '';
@@ -123,29 +116,19 @@ class SoloApiRequest implements ApiRequest
 		foreach ($metaData as $data => $metaValue) {
 			$data = $metaValue->get_data();
 
-			if ($data['key'] === '_shipping_pin_number') {
+			if ($data['key'] === '_billing_pin_number') {
 				$pinNumber = $data['value'] ?? '';
 			}
 
-			if ($data['key'] === '_shipping_iban_number') {
+			if ($data['key'] === '_billing_iban_number') {
 				$ibanNumber = $data['value'] ?? '';
-			}
-
-			if ($field === 'billing') {
-				if ($data['key'] === '_billing_pin_number') {
-					$pinNumber = $data['value'] ?? '';
-				}
-
-				if ($data['key'] === '_billing_iban_number') {
-					$ibanNumber = $data['value'] ?? '';
-				}
 			}
 		}
 
 		$orderBuyer = "$firstName $lastName";
 
 		// If the invoice is R1 the company name is required and used instead of first name and last name.
-		if (get_option('solo_api_invoice_type') !== '2') {
+		if (get_option('solo_api_invoice_type') === '2') {
 			$orderBuyer = $companyName;
 		}
 
@@ -263,9 +246,10 @@ class SoloApiRequest implements ApiRequest
 			$shippingItems = $order->get_items('shipping');
 
 			foreach ($shippingItems as $shippingObject) {
-				$shippingTaxRates = array_values(WC_Tax::get_base_tax_rates($shippingObject->get_tax_class()));
+				$shippingTaxRates = array_values(WC_Tax::get_base_tax_rates());
 			}
 
+			// We're fetching the first value always.
 			$shippingTaxRate = !empty($shippingTaxRates) ? (float)$shippingTaxRates[0]['rate'] : 0;
 
 			$shippingPrice = number_format($totalShipping, 2, ',', '.');
@@ -428,6 +412,14 @@ class SoloApiRequest implements ApiRequest
 		 * Update - YES;
 		 */
 		SoloOrdersTable::updateOrdersTable($orderId, $soloOrderId, true, false, true);
+
+		/**
+		 * Clear the previous errors
+		 *
+		 * If curl error happened, for whatever reason, and you try to resend the order manually
+		 * the error should be removed if the API call was successful.
+		 */
+		SoloOrdersTable::addApiResponseError($orderId, '');
 
 		// Send mail to the customer with the PDF of the invoice.
 		$sendPdf = get_option('solo_api_send_pdf');

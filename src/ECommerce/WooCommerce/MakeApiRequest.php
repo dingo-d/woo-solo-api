@@ -64,7 +64,7 @@ class MakeApiRequest implements Registrable
 	public function register(): void
 	{
 		add_action('woocommerce_email_order_details', [$this, 'sendApiRequestOnCheckout'], 15, 4);
-		add_action('woocommerce_order_status_completed', [$this, 'sendApiRequestOnOrderCompleted'], 10, 1);
+		add_action('woocommerce_order_status_completed', [$this, 'sendApiRequestOnOrderCompleted'], 30, 1);
 	}
 
 	/**
