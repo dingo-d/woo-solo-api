@@ -19,11 +19,11 @@
 .gitignore export-ignore
 .phpcs.xml.dist export-ignore
 .stylelintrc export-ignore
-babel.config.js export-ignore
-codeception.dist-yml export-ignore
-.composer.json export-ignore
-.composer.lock export-ignore
-.husky.config.js export-ignore
+babel.config.json export-ignore
+codeception.dist.yml export-ignore
+composer.json export-ignore
+composer.lock export-ignore
+husky.config.js export-ignore
 phpstan.neon export-ignore
 package.json export-ignore
 package-lock.json export-ignore
