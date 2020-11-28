@@ -13,11 +13,28 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.0.4] - 2020-11-28
+
+### Added
+
+* Clear error log message if order is manually triggered and succeeds.
+
+### Changed
+
+* Priority changed on the on completed WooCommerce hook.
+
+### Fixed
+
+* Remove shipping from all the variables, fix shipping tax calculation
+  *The shipping does not concern us really, so no need to pull any fields from there.
+  * Shipping was a bit changed, so it didn't pick anything up and reported 0 tax on taxable shipping.
+* Fix the defaults in the settings (languages, checkout settings) in PHP.
+
 ## [2.0.3] - 2020-11-25
 
 ### Fixed
 
-* * Add a default fallback on save in case a settings is undefined or null in settings
+* Add a default fallback on save in case a settings is undefined or null in settings
 
 ## [2.0.2] - 2020-11-24
 
