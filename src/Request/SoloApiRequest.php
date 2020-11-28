@@ -412,6 +412,14 @@ class SoloApiRequest implements ApiRequest
 		 * Update - YES;
 		 */
 		SoloOrdersTable::updateOrdersTable($orderId, $soloOrderId, true, false, true);
+		
+		/**
+		 * Clear the previous errors
+		 *
+		 * If curl error happened, for whatever reason, and you try to resend the order manually
+		 * the error should be removed if the API call was successful.
+		 */
+		SoloOrdersTable::addApiResponseError($orderId, '');
 
 		// Send mail to the customer with the PDF of the invoice.
 		$sendPdf = get_option('solo_api_send_pdf');
