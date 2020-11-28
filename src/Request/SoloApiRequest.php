@@ -592,7 +592,6 @@ class SoloApiRequest implements ApiRequest
 	 */
 	private function detectLanguage(): string
 	{
-		error_log(print_r(get_option('solo_api_languages'), true));
 		return get_option('solo_api_languages');
 	}
 }
