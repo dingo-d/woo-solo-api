@@ -25,6 +25,7 @@ jobs:
                 run: |
                     npm install
                     npm run build
+                    composer self-update --1
                     composer update
                     composer install --no-dev
 
