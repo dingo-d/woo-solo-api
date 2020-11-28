@@ -412,7 +412,7 @@ class SoloApiRequest implements ApiRequest
 		 * Update - YES;
 		 */
 		SoloOrdersTable::updateOrdersTable($orderId, $soloOrderId, true, false, true);
-		
+
 		/**
 		 * Clear the previous errors
 		 *
