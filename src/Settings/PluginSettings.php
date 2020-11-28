@@ -87,7 +87,7 @@ class PluginSettings implements Registrable
 				esc_html__('Language of the bill or the invoice', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				''
+				'1'
 			)
 		);
 
@@ -207,7 +207,7 @@ class PluginSettings implements Registrable
 				esc_html__('Specify the due date on the bill or the invoice', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				''
+				'1'
 			)
 		);
 
@@ -243,7 +243,7 @@ class PluginSettings implements Registrable
 				esc_html__('When to send the PDF - on checkout or order confirmation', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
-				''
+				'checkout'
 			)
 		);
 
