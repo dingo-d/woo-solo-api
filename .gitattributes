@@ -3,29 +3,36 @@
 # This will also make them unavailable when using Composer with `--prefer-dist`.
 # https://blog.madewithlove.be/post/gitattributes/
 #
-/.editorconfig export-ignore
-/.env.testing export-ignore
-/.env.actions.testing export-ignore
-/.eslintignore export-ignore
-/.eslintrc export-ignore
+/.git
 /.github export-ignore
-/.gitignore export-ignore
-/.phpcs.xml.dist export-ignore
-/.stylelintrc export-ignore
-/babel.config.js export-ignore
-/codeception.dist-yml export-ignore
-/.composer.json export-ignore
-/.composer.lock export-ignore
-/.husky.config.js export-ignore
-/phpstan.neon export-ignore
-/package.json export-ignore
-/package-lock.json export-ignore
-/postcss.config.js export-ignore
-/webpack.config.js export-ignore
-/assets/dev export-ignore
 /bin export-ignore
 /tests export-ignore
 /webpack export-ignore
+/node_modules export-ignore
+/assets/dev export-ignore
+
+.editorconfig export-ignore
+.env.testing export-ignore
+.env.actions.testing export-ignore
+.eslintignore export-ignore
+.eslintrc export-ignore
+.gitignore export-ignore
+.phpcs.xml.dist export-ignore
+.stylelintrc export-ignore
+babel.config.js export-ignore
+codeception.dist-yml export-ignore
+.composer.json export-ignore
+.composer.lock export-ignore
+.husky.config.js export-ignore
+phpstan.neon export-ignore
+package.json export-ignore
+package-lock.json export-ignore
+postcss.config.js export-ignore
+webpack.config.js export-ignore
+
+composer.lock -diff
+yarn.lock -diff
+package.lock -diff
 
 #
 # Auto detect text files and perform LF normalization
