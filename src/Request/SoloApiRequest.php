@@ -127,8 +127,7 @@ class SoloApiRequest implements ApiRequest
 
 		$orderBuyer = "$firstName $lastName";
 
-		// If the invoice is R1 the company name is required and used instead of first name and last name.
-		if (get_option('solo_api_invoice_type') === '2') {
+		if (!empty($companyName)) {
 			$orderBuyer = $companyName;
 		}
 
@@ -158,7 +157,7 @@ class SoloApiRequest implements ApiRequest
 		$requestBody = [
 			'token' => $token,
 			'tip_usluge' => $serviceType,
-			'prikazi_porez' => $showTaxes,
+			'prikazi_porez' => $showTaxes ? 1 : 0,
 			'kupac_naziv' => esc_attr($orderBuyer),
 			'kupac_adresa' => esc_attr($orderAddress),
 		];

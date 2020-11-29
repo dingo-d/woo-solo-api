@@ -13,6 +13,12 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.0.5] - 2020-11-29
+
+### Fixed
+
+* Fix the company name showing on the order and sending taxes option towards API.
+
 ## [2.0.4] - 2020-11-28
 
 ### Added
