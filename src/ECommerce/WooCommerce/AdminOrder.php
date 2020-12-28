@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 
-use Automattic\WooCommerce\Admin\Overrides\Order;
 use MadeByDenis\WooSoloApi\Core\Registrable;
+use WC_Order;
 
 use function add_action;
 use function esc_html;
@@ -42,11 +42,11 @@ class AdminOrder implements Registrable
 	 *
 	 * This callback will show additional fields in the Edit order screen in the admin.
 	 *
-	 * @param Order $order WooCommerce order object.
+	 * @param WC_Order $order WooCommerce order object.
 	 *
 	 * @return void
 	 */
-	public function checkoutFieldDisplayAdminOrderMeta(Order $order): void
+	public function checkoutFieldDisplayAdminOrderMeta(WC_Order $order): void
 	{
 		$shippingPin = get_post_meta($order->get_id(), '_shipping_pin_number', true);
 		$billingPin = get_post_meta($order->get_id(), '_billing_pin_number', true);

@@ -3,10 +3,10 @@ Contributors: dingo_bastard
 Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 5.2
 Requires PHP: 7.3
-Tested up to: 5.5
-Stable tag: 2.0.5
+Tested up to: 5.6
+Stable tag: 2.0.7
 WC requires at least: 4.0.0
-WC tested up to: 4.7.0
+WC tested up to: 4.8.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -65,6 +65,20 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 6. You can check the sent orders, whether the order was sent to API, and if the customer got the PDF or not (or if error happened on the API)
 
 == Changelog ==
+
+= 2.0.7 =
+Release Date: December 28th, 2020
+
+Fixed:
+
+* Changed the typehint of the admin order fields hook.
+
+= 2.0.6 =
+Release Date: November 30th, 2020
+
+Fixed:
+
+* Add assets to the plugin. The GH Action tag is not working as intended so this is a manual fix.
 
 = 2.0.5 =
 Release Date: November 29th, 2020

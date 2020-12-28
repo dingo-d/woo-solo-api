@@ -13,6 +13,19 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+
+## [2.0.7] - 2020-12-28
+
+### Fixed
+
+* Changed the typehint of the admin order fields hook.
+
+## [2.0.6] - 2020-11-30
+
+### Fixed
+
+* Add assets to the plugin. The GH Action tag is not working as intended so this is a manual fix.
+
 ## [2.0.5] - 2020-11-29
 
 ### Fixed
