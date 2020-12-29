@@ -14,6 +14,16 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 _No documentation available about unreleased changes as of yet._
 
 
+## [2.0.8] - 2020-12-29
+
+### Changed
+
+* Updated JS packages and webpack bundling process (updated to webpack 5)
+
+### Fixed
+
+* Update bundle of the assets and the PHP packages (possible cause to some issues in version 2.0.7?)
+
 ## [2.0.7] - 2020-12-28
 
 ### Fixed
