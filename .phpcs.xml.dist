@@ -11,6 +11,7 @@
 	<arg name="basepath" value="./"/>
 
 	<!-- Exclude Composer vendor directory. -->
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/webpack/*</exclude-pattern>
 	<exclude-pattern>*/assets/*</exclude-pattern>

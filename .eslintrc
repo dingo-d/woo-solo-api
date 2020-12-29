@@ -1,3 +1,20 @@
 {
-    "extends": [ "plugin:@wordpress/eslint-plugin/esnext" ]
+	"env": {
+		"node": true
+	},
+	"extends": [
+		"plugin:@wordpress/eslint-plugin/esnext"
+	],
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"rules": {
+		"template-curly-spacing": 0,
+		"space-in-parens": 0,
+		"computed-property-spacing": 0
+	}
 }
