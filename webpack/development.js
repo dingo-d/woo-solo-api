@@ -1,20 +1,25 @@
-/* eslint-disable import/no-extraneous-dependencies*/
-
 /**
  * Project Development config used only in development build.
  *
  * @since 2.0.0
  */
 
+const webpack = require('webpack');
+
 // Define developmentConfig setup.
-module.exports = (options) => {
+module.exports = () => {
+	// All Plugins used in development build.
+	const plugins = [
+		new webpack.ProvidePlugin({
+			process: 'process/browser',
+		}),
+		new webpack.ProvidePlugin({
+			Buffer: [ 'buffer', 'Buffer' ],
+		}),
+	];
 
-  // All Plugins used in development build.
-  const plugins = [];
-
-  return {
-    plugins,
-
-    devtool: false,
-  };
+	return {
+		plugins,
+		devtool: false,
+	};
 };

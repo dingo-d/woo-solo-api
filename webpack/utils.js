@@ -1,6 +1,3 @@
-/* eslint-disable valid-typeof */
-const packageJson = require('./../package.json');
-
 /**
  * File holding webpack utility helpers
  *
@@ -20,7 +17,6 @@ const path = require('path');
  * @since 2.0.0
  */
 function getConfig(projectDir, projectPathConfig, assetsPathConfig = 'assets/dev', outputPathConfig = 'assets/public') {
-
 	if (typeof projectDir === 'undefined') {
 		throw 'projectDir parameter is empty, please provide it. This key represents the current project directory absolute path. For example: __dirname'; 	// eslint-disable-line no-throw-literal
 	}
