@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import Serialize from 'php-serialize';
+import {serialize, unserialize} from 'php-serialize';
 import {bind} from 'decko';
 
 /**
@@ -178,7 +178,7 @@ class App extends Component {
 						availableGateways = [];
 					} else {
 						availableGateways = res.solo_api_available_gateways.length ?
-							Serialize.unserialize(res.solo_api_available_gateways) :
+							unserialize(res.solo_api_available_gateways) :
 							[];
 					}
 
@@ -196,7 +196,7 @@ class App extends Component {
 						mailGateways = [];
 					} else {
 						mailGateways = res.solo_api_mail_gateway.length ?
-							Serialize.unserialize(res.solo_api_mail_gateway) :
+							unserialize(res.solo_api_mail_gateway) :
 							[];
 					}
 
@@ -263,7 +263,7 @@ class App extends Component {
 			.reduce((obj, key) => {
 				if (!this.objectHasEmptyProperties(this.state)) {
 					if (key === 'solo_api_available_gateways' || key === 'solo_api_mail_gateway') {
-						obj[key] = Serialize.serialize(this.state[key]);
+						obj[key] = serialize(this.state[key]);
 					} else if (this.state[key] === null || typeof this.state[key] == 'undefined') {
 						obj[key] = defaultState[key];
 					} else {

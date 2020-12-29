@@ -5,23 +5,23 @@
  * @since 2.0.0
  */
 function getExternals() {
-  const ext = {};
-  const wplib = [
-    'components',
-    'blocks',
-    'element',
-    'i18n',
-  ];
-  wplib.forEach((name) => {
-    ext[`@wordpress/${name}`] = `wp.${name}`;
-  });
+	const ext = {};
+	const wplib = [
+		'components',
+		'blocks',
+		'element',
+		'i18n',
+	];
+	wplib.forEach((name) => {
+		ext[`@wordpress/${name}`] = `wp.${name}`;
+	});
 
-  ext['@wordpress/block-editor'] = 'wp.blockEditor';
-  ext['@wordpress/api-fetch'] = 'wp.apiFetch';
+	ext['@wordpress/block-editor'] = 'wp.blockEditor';
+	ext['@wordpress/api-fetch'] = 'wp.apiFetch';
 
-  return ext;
+	return ext;
 }
 
 module.exports = {
-  externals: getExternals(),
+	externals: getExternals(),
 };
