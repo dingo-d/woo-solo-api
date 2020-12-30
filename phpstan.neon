@@ -5,14 +5,15 @@ parameters:
     level: max
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
+    bootstrapFiles:
+        - tests/phpstan/constants.php
+    dynamicConstantNames:
+        - ASSETS_MANIFEST
+    scanFiles:
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+        # wc_admin_connect_page() comes from woocommerce-admin package
+        - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
     paths:
         - src/
     excludes_analyse:
         - src/Core/CompiledContainer.php
-    bootstrapFiles:
-        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
-        - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
-        - vendor/php-stubs/wordpress-globals/source/wp-admin/includes/file.php
-    ignoreErrors:
-        # Custom constant
-        - '#Constant ASSETS_MANIFEST not found\.#'
