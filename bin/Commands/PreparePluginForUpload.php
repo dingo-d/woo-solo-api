@@ -86,6 +86,7 @@ class PreparePluginForUpload extends Command
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
+
 		$io = new SymfonyStyle($input, $output);
 		$filesystem = new Filesystem();
 
@@ -107,7 +108,7 @@ class PreparePluginForUpload extends Command
 			echo "Error copying directory at {$exception->getPath()}.";
 		}
 
-		$io->write('Folder successfully copied.');
+		$io->info('Folder successfully copied.');
 
 		// Run npm install and build, run composer install --no-ansi --no-dev --no-interaction --no-progress --optimize-autoloader
 		$commands = 'npm install && npm run build && composer install --no-ansi --no-dev --no-interaction --no-progress --optimize-autoloader';
@@ -121,7 +122,7 @@ class PreparePluginForUpload extends Command
 			throw new ProcessFailedException($installProcess);
 		}
 
-		$io->write('Packages successfully installed for the deployment package.');
+		$io->info('Packages successfully installed for the deployment package.');
 
 		// Remove all the files from the .gitignore and .gitattributes, we don't need dev stuff in the release.
 		$filesystem->remove($folderToCreate . "/{$slug}/{$version}");
@@ -139,7 +140,7 @@ class PreparePluginForUpload extends Command
 		// Remove node_modules.
 		$filesystem->remove($folderToCreate . '/node_modules');
 
-		$io->write('Extra files and folders removed from the deployment package.');
+		$io->info('Extra files and folders removed from the deployment package.');
 
 		// Reinstall the npm packages so that we may continue with the development later on.
 		$reInstallProcess = new Process('npm install && npm run build', $source);
@@ -151,7 +152,7 @@ class PreparePluginForUpload extends Command
 			throw new ProcessFailedException($reInstallProcess);
 		}
 
-		$io->write('JS packages successfully reinstalled for the development process.');
+		$io->info('JS packages successfully reinstalled for the development process.');
 
 		$io->success("Plugin ready for upload.");
 
@@ -169,8 +170,8 @@ class PreparePluginForUpload extends Command
 	{
 		return array_values(
 			array_filter(
-				array_map(function($element) {
-					if (strpos($element, 'export-ignore') > 0 ) {
+				array_map(function ($element) {
+					if (strpos($element, 'export-ignore') > 0) {
 						return str_replace(' export-ignore', '', $element);
 					}
 
