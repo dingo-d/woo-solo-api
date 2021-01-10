@@ -3,7 +3,7 @@
 # This will also make them unavailable when using Composer with `--prefer-dist`.
 # https://blog.madewithlove.be/post/gitattributes/
 #
-/.git
+/.git export-ignore
 /.github export-ignore
 /bin export-ignore
 /tests export-ignore
@@ -19,6 +19,7 @@
 .gitignore export-ignore
 .phpcs.xml.dist export-ignore
 .stylelintrc export-ignore
+.idea export-ignore
 babel.config.json export-ignore
 codeception.dist.yml export-ignore
 composer.json export-ignore
