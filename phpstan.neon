@@ -17,3 +17,6 @@ parameters:
         - src/
     excludes_analyse:
         - src/Core/CompiledContainer.php
+    ignoreErrors:
+        # Uses func_get_args()
+        - '#^Function apply_filters invoked with ([3456789]|10) parameters, 2 required\.$#'
