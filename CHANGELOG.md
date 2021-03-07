@@ -13,6 +13,18 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.1.0] - 2021-03-07
+
+### Added
+
+* Added new filters and arguments to existing filters (See FAQ section for more info)
+* Added a check if WooCommerce plugin is active to prevent fatal errors if you disable WooCommerce before this plugin
+
+### Fixed
+
+* Change name of the language translation files so that they work properly
+  * In case the translation doesn't work automatically, place the woo-solo-api-hr.mo in the
+    /wp-content/languages/plugins folder
 
 ## [2.0.8] - 2020-12-29
 
@@ -328,6 +340,15 @@ A lot of issues were fixed. The plugin should be more stable and work better now
 * Initial release
 
 [Unreleased]: https://github.com/dingo-d/woo-solo-api/compare/master...HEAD
+[2.1.0]: https://github.com/dingo-d/woo-solo-api/compare/2.0.8...2.1.0
+[2.0.8]: https://github.com/dingo-d/woo-solo-api/compare/2.0.7...2.0.8
+[2.0.7]: https://github.com/dingo-d/woo-solo-api/compare/2.0.6...2.0.7
+[2.0.6]: https://github.com/dingo-d/woo-solo-api/compare/2.0.5...2.0.6
+[2.0.5]: https://github.com/dingo-d/woo-solo-api/compare/2.0.4...2.0.5
+[2.0.4]: https://github.com/dingo-d/woo-solo-api/compare/2.0.3...2.0.4
+[2.0.3]: https://github.com/dingo-d/woo-solo-api/compare/2.0.2...2.0.3
+[2.0.2]: https://github.com/dingo-d/woo-solo-api/compare/2.0.1...2.0.2
+[2.0.1]: https://github.com/dingo-d/woo-solo-api/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/dingo-d/woo-solo-api/compare/1.9.6...2.0.0
 [1.9.6]: https://github.com/dingo-d/woo-solo-api/compare/1.9.5...1.9.6
 [1.9.5]: https://github.com/dingo-d/woo-solo-api/compare/1.9.4...1.9.5

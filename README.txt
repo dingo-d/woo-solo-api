@@ -66,6 +66,20 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 == Changelog ==
 
+= 2.1.0 =
+Release Date: March 7th, 2021
+
+Added:
+
+* Added new filters and arguments to existing filters (See FAQ section for more info)
+* Added a check if WooCommerce plugin is active to prevent fatal errors if you disable WooCommerce before this plugin
+
+Fixed:
+
+* Change name of the language translation files so that they work properly
+  * In case the translation doesn't work automatically, place the woo-solo-api-hr.mo in the
+    /wp-content/languages/plugins folder
+
 = 2.0.8 =
 Release Date: December 29th, 2020
 
