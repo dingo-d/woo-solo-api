@@ -1,96 +1,85 @@
 name: Continuous integration code quality checks
 
 on:
-    pull_request:
-        branches: [main, develop]
-    push:
-        branches: [main]
+  # Run on PRs and pushes, only on significant changes.
+  push:
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
 
 jobs:
-    phpcs_check:
-        name: PHPCS check on PHP ${{ matrix.php }}
-        runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                php: [7.3, 7.4]
+  phpcs:
+    name: PHPCS check on PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.3', '7.4']
 
-        steps:
-            # Checkout repository
-            - name: Checkout
-              uses: actions/checkout@v2
+      steps:
+        # Checkout repository
+        - name: Checkout
+          uses: actions/checkout@v2
 
-            # Setup PHP versions, run checks
-            - name: PHP setup
-              uses: shivammathur/setup-php@v2
-              with:
-                php-version: ${{ matrix.php }}
+        # Setup PHP versions, run checks
+        - name: PHP setup
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: ${{ matrix.php }}
 
-            - name: Get composer cache directory
-              id: composer-cache
-              run: |
-                echo "::set-output name=dir::$(composer config cache-files-dir)"
+        # Install dependencies and handle caching in one go.
+        # @link https://github.com/marketplace/actions/install-composer-dependencies
+        - name: Install Composer dependencies
+          uses: ramsey/composer-install@v1
+          with:
+            dependency-versions: 'highest'
 
-            - name: Cache composer dependencies
-              uses: actions/cache@v1
-              with:
-                path: ${{ steps.composer-cache.outputs.dir }}
-                key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-                restore-keys: |
-                  ${{ runner.os }}-composer-
+        - name: Check coding standards using PHPCS
+          run: composer standards:check -- --runtime-set testVersion ${{ matrix.php }}-
 
-            - name: Install composer packages
-              run: composer install --no-progress
+  phpstan:
+    name: PHPStan check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-            - name: Check coding standards using PHPCS
-              run: composer standards:check -- --runtime-set testVersion ${{ matrix.php }}-
+      - name: PHP setup
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
 
-    phpstan:
-        name: PHPStan check
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v1
+        with:
+          dependency-versions: 'highest'
 
-            - uses: php-actions/composer@v2
+      - name: Analyse code using phpstan
+        uses: dingo-d/phpstan-wp-action@v1
 
-            - name: Analyse code using phpstan
-              uses: dingo-d/phpstan-wp-action@v1
+  phpunit:
+    name: PHPUnit on PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.3', '7.4']
 
-    phpunit:
-        name: PHPUnit on PHP ${{ matrix.php }}
-        runs-on: ubuntu-latest
-        strategy:
-            fail-fast: false
-            matrix:
-                php: [7.3, 7.4]
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
 
-        steps:
-            # Checkout repository
-            - name: Checkout
-              uses: actions/checkout@v2
+        - name: PHP setup
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: ${{ matrix.php }}
 
-            # Setup PHP versions
-            - name: PHP setup
-              uses: shivammathur/setup-php@v2
-              with:
-                php-version: ${{ matrix.php }}
-
-            - name: Get composer cache directory
-              id: composer-cache
-              run: |
-                echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-            - name: Cache composer dependencies
-              uses: actions/cache@v1
-              with:
-                path: ${{ steps.composer-cache.outputs.dir }}
-                key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-                restore-keys: |
-                  ${{ runner.os }}-composer-
-
-            - name: Install composer packages
-              run: composer install --no-progress
-
-            - name: Run unit tests
-              run: composer test:unit
+        - name: Install Composer dependencies
+          uses: ramsey/composer-install@v1
+          with:
+            dependency-versions: 'highest'
+    
+        - name: Run unit tests
+          run: composer test:unit

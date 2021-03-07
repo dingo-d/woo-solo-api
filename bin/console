@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+use MadeByDenis\Commands\{CleanCodeCoverage, PreparePluginForUpload};
 use Symfony\Component\Console\Application;
-use MadeByDenis\Commands\CleanCodeCoverage;
 
 if (!in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
     echo 'Warning: The console should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
@@ -14,4 +14,5 @@ require dirname(__DIR__).'/vendor/autoload.php';
 
 $app = new Application();
 $app->add(new CleanCodeCoverage());
+$app->add(new PreparePluginForUpload());
 $app->run();
