@@ -179,22 +179,46 @@ class SendCustomerEmail extends ScheduleEvent
 			 * Email message can be set in the options and will be outputted here.
 			 * If, for whatever reason we want to modify it some more, we can do that here.
 			 *
+			 * Usage:
+			 *
+			 * add_filter('woo_solo_api_modify_options_email_message', 'my_message_filter', 10, 3);
+			 *
+			 * function my_message_filter($emailMessage, $orderId, $email) {
+			 *   // (maybe) modify $emailMessage.
+			 *   return $emailMessage;
+			 * }
+			 *
+			 * @since 2.1.0 Added order ID and email as a parameters for the filter.
 			 * @since 2.0.0
 			 *
 			 * @param string $emailMessage Email message from options to filter.
+			 * @param int    $orderId Order ID.
+			 * @param string $email Email address of the person for whom this message needs to be send to.
 			 */
-			apply_filters('woo_solo_api_modify_options_email_message', $emailMessage) :
+			apply_filters('woo_solo_api_modify_options_email_message', $emailMessage, $orderId, $email) :
 
 			/**
 			 * Modify the default email message
 			 *
 			 * If you don't set the message in the options, you can still filter the default one.
 			 *
+			 * Usage:
+			 *
+			 * add_filter('woo_solo_api_modify_default_email_message', 'my_message_filter', 10, 3);
+			 *
+			 * function my_message_filter($defaultMessage, $orderId, $email) {
+			 *   // (maybe) modify $defaultMessage.
+			 *   return $defaultMessage;
+			 * }
+			 *
+			 * @since 2.1.0 Added order ID and email as a parameters for the filter.
 			 * @since 2.0.0
 			 *
 			 * @param string $defaultMessage Email message to filter.
+			 * @param int    $orderId Order ID.
+			 * @param string $email Email address of the person for whom this message needs to be send to.
 			 */
-			apply_filters('woo_solo_api_modify_default_email_message', $defaultMessage);
+			apply_filters('woo_solo_api_modify_default_email_message', $defaultMessage, $orderId, $email);
 
 		$emailTitle = !empty($emailTitle) ?
 			/**
@@ -203,11 +227,22 @@ class SendCustomerEmail extends ScheduleEvent
 			 * Email title for the customer can be set in the options,
 			 * but you can modify it further with this filter.
 			 *
+			 * Usage:
+			 *
+			 * add_filter('woo_solo_api_modify_options_email_title', 'my_title_filter', 10, 2);
+			 *
+			 * function my_title_filter($emailTitle, $orderId) {
+			 *   // (maybe) modify $emailTitle.
+			 *   return $emailTitle;
+			 * }
+			 *
+			 * @since 2.1.0 Added order ID as a parameter for the filter.
 			 * @since 2.0.0
 			 *
 			 * @param string $emailTitle Email title.
+			 * @param int    $orderId Order ID.
 			 */
-			apply_filters('woo_solo_api_modify_options_email_title', $emailTitle) :
+			apply_filters('woo_solo_api_modify_options_email_title', $emailTitle, $orderId) :
 
 			/**
 			 * Modify the default email title from the options
@@ -215,11 +250,22 @@ class SendCustomerEmail extends ScheduleEvent
 			 * If you don't use the title from the options, you can use default one.
 			 * And modify it.
 			 *
+			 * Usage:
+			 *
+			 * add_filter('woo_solo_api_modify_default_email_title', 'my_title_filter', 10, 2);
+			 *
+			 * function my_title_filter($defaultTitle, $orderId) {
+			 *   // (maybe) modify $defaultTitle.
+			 *   return $defaultTitle;
+			 * }
+			 *
+			 * @since 2.1.0 Added order ID as a parameter for the filter.
 			 * @since 2.0.0
 			 *
 			 * @param string $emailTitle Email title.
+			 * @param int    $orderId Order ID.
 			 */
-			apply_filters('woo_solo_api_modify_default_email_title', $defaultTitle);
+			apply_filters('woo_solo_api_modify_default_email_title', $defaultTitle, $orderId);
 
 		// Send mail with the attachment.
 		$headers = [
@@ -234,7 +280,7 @@ class SendCustomerEmail extends ScheduleEvent
 		 * case you'll probably need to modify the headers sent with the email.
 		 * Default ones are
 		 *
-		 * [
+		 *  [
 				'MIME-Version: 1.0',
 				'Content-Type: text/html',
 			];
