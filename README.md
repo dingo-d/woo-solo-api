@@ -1,15 +1,15 @@
 <p align="center">
-  <img alt="Woo Solo Api" src="https://repository-images.githubusercontent.com/110279928/a5ffbd00-29cc-11eb-92ac-f1f6524a5c69"/>
+  <img alt="Woo Solo API" src="https://repository-images.githubusercontent.com/110279928/a5ffbd00-29cc-11eb-92ac-f1f6524a5c69"/>
 </p>
 
 [![codecov](https://img.shields.io/codecov/c/github/dingo-d/woo-solo-api?style=for-the-badge&token=ijU4RyOGxL)](https://codecov.io/gh/dingo-d/woo-solo-api)
 [![GitHub tag](https://img.shields.io/github/tag/dingo-d/woo-solo-api.svg?style=for-the-badge)](https://github.com/dingo-d/woo-solo-api)
 [![GitHub stars](https://img.shields.io/github/stars/dingo-d/woo-solo-api.svg?style=for-the-badge&label=Stars)](https://github.com/dingo-d/woo-solo-api)
-![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/woo-solo-api?style=for-the-badge)
-![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/woo-solo-api?style=for-the-badge)
+[![Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/woo-solo-api?style=for-the-badge)](https://www.php.net/supported-versions.php)
+[![Tested WP Version](https://img.shields.io/wordpress/plugin/tested/woo-solo-api?style=for-the-badge)](https://wordpress.org/download/releases/)
 [![license](https://img.shields.io/github/license/dingo-d/woo-solo-api.svg?style=for-the-badge)](https://github.com/dingo-d/woo-solo-api)
 
-# Woo Solo Api
+# Woo Solo API
 
 **Contributors**: dingo_bastard  
 **Tags**: woocommerce, api, solo api, solo, api integration, shop, payment, woo  
@@ -26,7 +26,7 @@ This plugin provides integration of the SOLO service with WooCommerce store.
 
 ## Description
 
-Woo Solo Api plugin will integrate with your checkout process, and will send the API request with
+Woo Solo API plugin will integrate with your checkout process, and will send the API request with
 the order details to the SOLO service which will in turn create a PDF of the invoice or order on your SOLO dashboard.
 
 Additionally, the invoice or order will be stored on your site, and you'll have the option of sending this PDF as a separate

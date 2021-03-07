@@ -149,7 +149,7 @@ class EnqueueResources implements Assets
 	{
 		$data = ASSETS_MANIFEST;
 
-		if (!$key || $data === null) {
+		if ($key === '' || $data === '') {
 			return '';
 		}
 
@@ -159,6 +159,6 @@ class EnqueueResources implements Assets
 			return '';
 		}
 
-		return isset($data[$key]) ? $data[$key] : '';
+		return $data[$key] ?? '';
 	}
 }
