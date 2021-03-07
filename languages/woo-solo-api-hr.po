@@ -1,0 +1,714 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Woo Solo Api\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-solo-api\n"
+"POT-Creation-Date: 2021-03-07 09:00+0100\n"
+"PO-Revision-Date: 2021-03-07 09:01+0100\n"
+"Last-Translator: \n"
+"Language-Team: Denis Žoljom\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: e__;esc_html__;esc_html_e;esc_attr__;esc_attr_e;"
+"esc_html_x;__;_n_noop\n"
+"X-Poedit-SearchPath-0: assets\n"
+"X-Poedit-SearchPath-1: src\n"
+"X-Poedit-SearchPathExcluded-0: bin\n"
+"X-Poedit-SearchPathExcluded-1: languages\n"
+"X-Poedit-SearchPathExcluded-2: node_modules\n"
+"X-Poedit-SearchPathExcluded-3: tests\n"
+"X-Poedit-SearchPathExcluded-4: vendor\n"
+"X-Poedit-SearchPathExcluded-5: views\n"
+"X-Poedit-SearchPathExcluded-6: webpack\n"
+
+#: src/Admin/AdminMenus/OptionsSubmenu.php:54
+msgid "Woo Solo Api Options"
+msgstr "Woo Solo API opcije"
+
+#: src/Admin/AdminMenus/OptionsSubmenu.php:62
+msgid "Solo API Options"
+msgstr "Solo API opcije"
+
+#: src/Admin/AdminNotices/DatabaseTableMissingNotice.php:76
+msgid ""
+"Woo Orders table seems to be missing. Please reactivate the plugin "
+"(deactivate and activate) to create it."
+msgstr ""
+"Tablica s narudžbama nedostaje u bazi. Molimo vas da deaktivirate i "
+"aktivirate plugin da biste ju kreirali."
+
+#: src/Admin/PluginsPage.php:47
+msgid "SOLO API Settings"
+msgstr "Solo API opcije"
+
+#: src/Assets/EnqueueResources.php:135
+msgid "Options saved."
+msgstr "Opcije spremljene."
+
+#: src/BackgroundJobs/SendCustomerEmail.php:90
+msgid "invoice-"
+msgstr "racun-"
+
+#: src/BackgroundJobs/SendCustomerEmail.php:95
+msgid "offer-"
+msgstr "ponuda-"
+
+#: src/BackgroundJobs/SendCustomerEmail.php:167
+msgid "invoice"
+msgstr "racun"
+
+#: src/BackgroundJobs/SendCustomerEmail.php:168
+msgid "offer"
+msgstr "ponuda"
+
+#: src/BackgroundJobs/SendCustomerEmail.php:171
+#, php-format
+msgid "Your %s is in the attachment."
+msgstr "Vaš %s se nalazi u privitku."
+
+#: src/BackgroundJobs/SendCustomerEmail.php:173
+#, php-format
+msgid "Your %1$s from %2$s"
+msgstr "Vaš %1$s od %2$s"
+
+#: src/Core/Plugin.php:76
+msgid "This plugin requires PHP 7.3 or greater to function."
+msgstr "Ovaj dodatak zhtjeva PHP verziju 7.3 ili veću da bi funkcionirao."
+
+#: src/Core/Plugin.php:85
+msgid "This plugin requires WooCommerce plugin to be active."
+msgstr "Ovaj dodatak zahtjeva da WooCommerce dodatak bude aktivan."
+
+#: src/Core/Plugin.php:182
+msgid "manifest.json is missing. Bundle the plugin before using it."
+msgstr ""
+"manifest.json nedostaje. Dodatak more proći kroz webpack bundle process "
+"prije korištenja."
+
+#: src/ECommerce/WooCommerce/AdminOrder.php:57
+msgid "Customer shipping PIN number"
+msgstr "OIB broj za dostavu"
+
+#: src/ECommerce/WooCommerce/AdminOrder.php:61
+msgid "Customer billing PIN number"
+msgstr "OIB broj za naplatu"
+
+#: src/ECommerce/WooCommerce/AdminOrder.php:65
+msgid "Customer shipping IBAN number"
+msgstr "IBAN broj za dostavu"
+
+#: src/ECommerce/WooCommerce/AdminOrder.php:69
+msgid "Customer billing IBAN number"
+msgstr "IBAN broj za naplatu"
+
+#: src/ECommerce/WooCommerce/CheckoutFields.php:59
+#: src/ECommerce/WooCommerce/CheckoutFields.php:67
+msgid "PIN number"
+msgstr "OIB broj"
+
+#: src/ECommerce/WooCommerce/CheckoutFields.php:95
+#: src/ECommerce/WooCommerce/CheckoutFields.php:103
+msgid "IBAN number"
+msgstr "IBAN broj"
+
+#: src/ECommerce/WooCommerce/CheckoutFields.php:131
+#: src/ECommerce/WooCommerce/CheckoutFields.php:139
+msgid "Company name"
+msgstr "Ime tvrtke"
+
+#: src/Exception/ApiRequestException.php:42
+#, php-format
+msgid "API request error happened. %1$s. (Error code %2$s)."
+msgstr "API poziv ima grešku. %1$s. (Error kod %2$s)"
+
+#: src/Exception/WpException.php:43
+#, php-format
+msgid "WordPress internal error happened. %1$s. (Error code %2$s)."
+msgstr "Dogodila se interna WordPress greška. %1$s. (Error kod %2$s)."
+
+#: src/Privacy/DataHandling.php:78 src/Privacy/DataHandling.php:177
+msgid "Woo Solo Api Order Data"
+msgstr "Woo Solo API podaci o narudžbi"
+
+#: src/Privacy/DataHandling.php:103
+msgid "Order Item"
+msgstr "Broj narudžbe"
+
+#: src/Privacy/DataHandling.php:107
+msgid "WooCommerce order item ID"
+msgstr "WooCommerce broj narudžbe"
+
+#: src/Privacy/DataHandling.php:111
+msgid "Solo ID"
+msgstr "Solo ID"
+
+#: src/Privacy/DataHandling.php:115
+msgid "Customer email"
+msgstr "E-mail kupca"
+
+#: src/Privacy/DataHandling.php:119
+msgid "Is sent to API"
+msgstr "Je li poslan na Solo API"
+
+#: src/Privacy/DataHandling.php:123
+msgid "Is sent to user"
+msgstr "Je li poslan kupcu"
+
+#: src/Privacy/DataHandling.php:127
+msgid "API request error messages"
+msgstr "API greške"
+
+#: src/Privacy/DataHandling.php:131
+msgid "Created at"
+msgstr "Napravljen"
+
+#: src/Privacy/DataHandling.php:135
+msgid "Updated at"
+msgstr "Ažuriran"
+
+#: src/Privacy/DataHandling.php:142
+msgid "Woo Solo Api Order Items"
+msgstr "Woo Solo Api narudžbe"
+
+#: src/Request/SoloApiRequest.php:261
+msgid "Shipping fee"
+msgstr "Naknada za slanje"
+
+#: src/Rest/Endpoints/OrderDetails.php:173
+msgid "Flag that notifies if the PDF bill was sent to customer."
+msgstr "Oznaka koja označava je li PDF račun poslan kupcu."
+
+#: src/Settings/PluginSettings.php:63
+msgid "Solo API token"
+msgstr "Solo Api token"
+
+#: src/Settings/PluginSettings.php:75
+msgid "Unit measure of the shop (e.g. piece, hour, m³, etc.)"
+msgstr "Jedinična mjera za trgovinu (npr. komad, sat, m³ itd.)"
+
+#: src/Settings/PluginSettings.php:87
+msgid "Language of the bill or the invoice"
+msgstr "Jezik ponude ili računa"
+
+#: src/Settings/PluginSettings.php:99
+msgid "Currency of the bill or the invoice"
+msgstr "Valuta ponude ili računa"
+
+#: src/Settings/PluginSettings.php:111
+msgid "Service type. A unique ID of the service (must be a number)"
+msgstr "Tip usluge. Jedinstven ID usluge (mora biti broj)"
+
+#: src/Settings/PluginSettings.php:123
+msgid "Show taxes option"
+msgstr "Opcija za prikaz poreza"
+
+#: src/Settings/PluginSettings.php:135
+msgid "The type of invoice (R, R1, R2, No label or In advance)"
+msgstr "Tip računa (R, R1, R2, Bez oznake ili avansni)"
+
+#: src/Settings/PluginSettings.php:147
+msgid "The title of the invoice email"
+msgstr "Naslov e-maila sa računom"
+
+#: src/Settings/PluginSettings.php:159
+msgid "The message of the invoice email"
+msgstr "Poruka e-maila sa računom"
+
+#: src/Settings/PluginSettings.php:171
+msgid "Change the 'from' name that shows when WordPress sends the mail"
+msgstr "Promijenite 'od' ime koje se pokazuje kada WordPress šalje e-mail"
+
+#: src/Settings/PluginSettings.php:183
+msgid "Enable PIN field in the WooCommerce checkout"
+msgstr ""
+"Omogućite OIB polje na formi za plaćanje i dostavu na naplatnoj stranici"
+
+#: src/Settings/PluginSettings.php:195
+msgid "Enable IBAN field in the WooCommerce checkout"
+msgstr ""
+"Omogućite IBAN polje na formi za plaćanje i dostavu na naplatnoj stranici"
+
+#: src/Settings/PluginSettings.php:207
+msgid "Specify the due date on the bill or the invoice"
+msgstr "Specificirajte datum dospijeća ponude ili računa"
+
+#: src/Settings/PluginSettings.php:219
+msgid "Array of gateways that the email with the invoice should be sent"
+msgstr ""
+"Lista platnih procesora za koje bi e-mail prema kupcu trebao biti poslan"
+
+#: src/Settings/PluginSettings.php:231
+msgid "Send the email to the client with the PDF of the bill or the invoice"
+msgstr "Pošaljite email kupcu s PDF računom u dodatku"
+
+#: src/Settings/PluginSettings.php:243
+msgid "When to send the PDF - on checkout or order confirmation"
+msgstr "Kada poslati PDF - na stranici plaćanja ili na potvrdu narudžbe"
+
+#: src/Settings/PluginSettings.php:268
+msgid "Available payment gateways"
+msgstr "Dostupni platni procesori"
+
+#: src/Settings/PluginSettings.php:281
+msgid "Type of payment document"
+msgstr "Tip plaćanja"
+
+#: src/Settings/PluginSettings.php:293
+msgid "Should the invoice be fiscalized or not"
+msgstr "Treba li račun biti fiskaliziran ili ne"
+
+#: src/Settings/PluginSettings.php:305
+msgid ""
+"Type of payment on api gateway (transactional account, cash, cards, etc.)"
+msgstr ""
+"Tip plaćanja na platnom procesoru (transakcijski račun, gotovina, kartice, "
+"itd.)"
+
+#~ msgid "Transactional account"
+#~ msgstr "Transakcijski račun"
+
+#~ msgid "Cash"
+#~ msgstr "Gotovina"
+
+#~ msgid "Cards"
+#~ msgstr "Kartice"
+
+#~ msgid "Cheque"
+#~ msgstr "Ček"
+
+#~ msgid "Other"
+#~ msgstr "Ostalo"
+
+#~ msgid "1 day"
+#~ msgstr "1 dan"
+
+#~ msgid "2 days"
+#~ msgstr "2 dana"
+
+#~ msgid "3 days"
+#~ msgstr "3 dana"
+
+#~ msgid "4 days"
+#~ msgstr "4 dana"
+
+#~ msgid "5 days"
+#~ msgstr "5 dana"
+
+#~ msgid "6 days"
+#~ msgstr "6 dana"
+
+#~ msgid "1 week"
+#~ msgstr "1 tjedan"
+
+#~ msgid "2 weeks"
+#~ msgstr "2 tjedna"
+
+#~ msgid "3 weeks"
+#~ msgstr "3 tjedna"
+
+#~ msgid "Errors happened during saving"
+#~ msgstr "Dogodila se pogreška prilikom spremanja"
+
+#~ msgid "Settings saved"
+#~ msgstr "Opcije su spremljene"
+
+#~ msgid "Validation error: "
+#~ msgstr "Validacijska greška: "
+
+#~ msgid "-"
+#~ msgstr "-"
+
+#~ msgid "Empty API token"
+#~ msgstr "Prazan API token"
+
+#~ msgid "piece"
+#~ msgstr "komad"
+
+#~ msgid ""
+#~ "For more details on the options you can read the official SOLO API "
+#~ "documentation here: "
+#~ msgstr ""
+#~ "Za više informacija o opcijama możete pročitati službenu SOLO API "
+#~ "dokumentaciju ovdje: "
+
+#~ msgid "hour"
+#~ msgstr "sat"
+
+#~ msgid "year"
+#~ msgstr "godina"
+
+#~ msgid "km"
+#~ msgstr "km"
+
+#~ msgid "Enter your personal token that you obtained from your SOLO account"
+#~ msgstr "Unesite vaš vlastiti token koji ste dobili sa SOLO računa"
+
+#~ msgid "litre"
+#~ msgstr "litra"
+
+#~ msgid "Solo Api Settings"
+#~ msgstr "Solo Api opcije"
+
+#~ msgid "kg"
+#~ msgstr "kg"
+
+#~ msgid "Unit measure"
+#~ msgstr "Jedinična mjera"
+
+#~ msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
+#~ msgstr "Izaberite zadanu mjeru za vašu trgovinu (npr. komad, sat, m³ itd.)"
+
+#~ msgid "kWh"
+#~ msgstr "kwh"
+
+#~ msgid "m³"
+#~ msgstr "m³"
+
+#~ msgid "Enter the type of the service"
+#~ msgstr "Unesite tip usluge"
+
+#~ msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
+#~ msgstr "Možete ju naći u postavkama vašeg računa (Usluge -> Tipovi usluga)"
+
+#~ msgid "tonne"
+#~ msgstr "tona"
+
+#~ msgid "Invoice Language"
+#~ msgstr "Jezik računa"
+
+#~ msgid "Select the language of the invoice/offer"
+#~ msgstr "Odaberite jezik za račun/ponudu"
+
+#~ msgid "m²"
+#~ msgstr "m²"
+
+#~ msgid "Show taxes"
+#~ msgstr "Prikaz poreza"
+
+#~ msgid "Show tax"
+#~ msgstr "Prikaži porez"
+
+#~ msgid "Don't show tax"
+#~ msgstr "Nemoj prikazati porez"
+
+#~ msgid "m"
+#~ msgstr "m"
+
+#~ msgid "Currency"
+#~ msgstr "Valuta"
+
+#~ msgid "day"
+#~ msgstr "dan"
+
+#~ msgid "month"
+#~ msgstr "mjesec"
+
+#~ msgid "Type of invoice"
+#~ msgstr "Tip računa"
+
+#~ msgid "Only works with invoice, not with offer"
+#~ msgstr "Radi samo sa računima, ne sa ponudama"
+
+#~ msgid "night"
+#~ msgstr "noć"
+
+#~ msgid "Choose the type of payment for each enabled payment gateway"
+#~ msgstr "Izaberite tip plaćanja za svaki odabrani platni procesor"
+
+#~ msgid "cart"
+#~ msgstr "kartica"
+
+#~ msgid "Offer"
+#~ msgstr "Ponuda"
+
+#~ msgid "Invoice"
+#~ msgstr "Račun"
+
+#~ msgid "account"
+#~ msgstr "račun"
+
+#~ msgid "Payment option types"
+#~ msgstr "Načini plaćanja"
+
+#~ msgid "pair"
+#~ msgstr "par"
+
+#~ msgid "Check if you want the invoice to be fiscalized *"
+#~ msgstr "Izaberite želite li fiskalizirati račun *"
+
+#~ msgid "Fiscalize"
+#~ msgstr "Fiskalizirajte"
+
+#~ msgid "Don't fiscalize"
+#~ msgstr "Nemojte fiskalizirati"
+
+#~ msgid "ml"
+#~ msgstr "ml"
+
+#~ msgid ""
+#~ "* Fiscalization certificate must be added in the SOLO options, and it "
+#~ "only applies to invoices."
+#~ msgstr ""
+#~ "* Fiskalizacijski certifikat mora biti dodan u SOLO opcijama na vašem "
+#~ "korisničkom računu i samo se odnosi na račune."
+
+#~ msgid "pax"
+#~ msgstr "pax"
+
+#~ msgid "Invoice/Offer due date"
+#~ msgstr "Datum isporuke računa/ponude"
+
+#~ msgid "room"
+#~ msgstr "soba"
+
+#~ msgid "You can check the currency rate at <a>Croatian National Bank</a>."
+#~ msgstr ""
+#~ "Možete provjeriti tečajnu listu na stanicama <a>Hrvatske Nacionalne "
+#~ "Banke</a>."
+
+#~ msgid ""
+#~ "The currency will be automatically added if the selected currency is "
+#~ "different from HRK. Also, a note about conversion rate will be added to "
+#~ "the invoice/offer."
+#~ msgstr ""
+#~ "Valuta će automatski biti dodana, ukoliko se odabrana valuta razlikuje od "
+#~ "HRK. Također, poruka o konverziji će biti dodana na račun/ponudu."
+
+#~ msgid "apartment"
+#~ msgstr "stan"
+
+#~ msgid "Additional Settings"
+#~ msgstr "Dodatne opcije"
+
+#~ msgid "WooCommerce checkout settings"
+#~ msgstr "WooCommerce opcije plaćanja"
+
+#~ msgid "term"
+#~ msgstr "termin"
+
+#~ msgid ""
+#~ "Enable the PIN field on the billing and shipping from in the checkout"
+#~ msgstr ""
+#~ "Omogućite OIB polje na formi za plaćanje i dostavu na naplatnoj stranici"
+
+#~ msgid "set"
+#~ msgstr "set"
+
+#~ msgid ""
+#~ "Enable the IBAN field on the billing and shipping from in the checkout"
+#~ msgstr ""
+#~ "Omogućite IBAN polje na formi za plaćanje i dostavu na naplatnoj stranici"
+
+#~ msgid "Enable"
+#~ msgstr "Omogućite"
+
+#~ msgid "Disable"
+#~ msgstr "Onemogućite"
+
+#~ msgid "package"
+#~ msgstr "paket"
+
+#~ msgid "PDF settings"
+#~ msgstr "Opcije PDFa"
+
+#~ msgid ""
+#~ "Send the email to the client with the PDF of the order or the invoice"
+#~ msgstr "Pošaljite email kupcu s PDF računom u dodatku"
+
+#~ msgid "Send email"
+#~ msgstr "Pošaljite e-mail"
+
+#~ msgid "Don't send email"
+#~ msgstr "Nemojte poslati e-mail"
+
+#~ msgid "point"
+#~ msgstr "bod"
+
+#~ msgid "Send mail to selected payment gateways"
+#~ msgstr "Pošaljite e-mail za odabrane platne procesore"
+
+#~ msgid "service"
+#~ msgstr "servis"
+
+#~ msgid "pal"
+#~ msgstr "pal"
+
+#~ msgid "PDF send control"
+#~ msgstr "Opcije slanja PDFa"
+
+#~ msgid ""
+#~ "Decide when to send the PDF of the order or invoice.On customer checkout, "
+#~ "or when you approve the order in the WooCommerce admin.This will "
+#~ "determine when the call to the SOLO API will be made"
+#~ msgstr ""
+#~ "Odaberite kada želite poslati račun ili ponudu. Na stranici plaćanja ili "
+#~ "kada odobrite račun u WooCommerce prikazu u admin sučelju. Ovo će "
+#~ "odrediti kada se API poziv prema SOLO servisu izvršava"
+
+#~ msgid "Send on:"
+#~ msgstr "Poslati na:"
+
+#~ msgid "kont"
+#~ msgstr "kont"
+
+#~ msgid "Checkout"
+#~ msgstr "Naplati"
+
+#~ msgid "Status change to 'completed'"
+#~ msgstr "Promijeni statusa u 'izvršeno'"
+
+#~ msgid "čl"
+#~ msgstr "čl"
+
+#~ msgid "Email Settings"
+#~ msgstr "Postavke e-maila"
+
+#~ msgid "tis"
+#~ msgstr "tis"
+
+#~ msgid "Set the title of the mail that will be send with the PDF invoice"
+#~ msgstr ""
+#~ "Postavite naslov e-maila koji će biti poslan s PDF računom u dodatku"
+
+#~ msgid "sec"
+#~ msgstr "sek"
+
+#~ msgid ""
+#~ "Type the message that will appear on the mail with the invoice PDF "
+#~ "attached"
+#~ msgstr ""
+#~ "Upišite poruku koja će se prikazati uz e-mail koji će biti poslan s PDF "
+#~ "računom u dodatku"
+
+#~ msgid "min"
+#~ msgstr "min"
+
+#~ msgid ""
+#~ "<str>CAUTION</str>: This change is global, every mail send from your "
+#~ "WordPress will have this 'from' name"
+#~ msgstr ""
+#~ "OPREZ: Ova promijena je globalna, svaki e-mail koji šaljete sa vaše "
+#~ "stranice će imate ovo 'od' ime"
+
+#~ msgid "str"
+#~ msgstr "str"
+
+#~ msgid "kpl"
+#~ msgstr "kpl"
+
+#~ msgid "Solo Api Test"
+#~ msgstr "Solo API test"
+
+#~ msgid "This serves for testing purposes only"
+#~ msgstr "Ovo služi radi testiranja"
+
+#~ msgid "pšl"
+#~ msgstr "pšl"
+
+#~ msgid ""
+#~ "Pressing the button will make a request to your Solo API account,and will "
+#~ "list all the invoices you have"
+#~ msgstr ""
+#~ "Pritiskom na gumb napravit ćete poziv na Solo API račun, i izlistat će "
+#~ "vam se svi računi koje imate"
+
+#~ msgid "ha"
+#~ msgstr "ha"
+
+#~ msgid "Make a request"
+#~ msgstr "Napravite upit"
+
+#~ msgid "g"
+#~ msgstr "g"
+
+#~ msgid "Save settings"
+#~ msgstr "Spremite postavke"
+
+#~ msgid "x"
+#~ msgstr "x"
+
+#~ msgid "Solo API order details"
+#~ msgstr "Solo API detalji narudžbe"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "WooCommerce Order ID"
+#~ msgstr "WooCommerce ID narudžbe"
+
+#~ msgid "Customer Email"
+#~ msgstr "Email kupca"
+
+#~ msgid "Is sent to Solo API"
+#~ msgstr "Je li poslan na Solo API"
+
+#~ msgid "Is pdf sent to customer"
+#~ msgstr "Je li PDF poslan kupcu"
+
+#~ msgid "API response errors"
+#~ msgstr "API greške"
+
+#~ msgid "Croatian"
+#~ msgstr "Hrvatski"
+
+#~ msgid "English"
+#~ msgstr "Engleski"
+
+#~ msgid "German"
+#~ msgstr "Njemački"
+
+#~ msgid "French"
+#~ msgstr "Francuski"
+
+#~ msgid "Italian"
+#~ msgstr "Talijanksi"
+
+#~ msgid "Spanish"
+#~ msgstr "Španjolski"
+
+#~ msgid "Woo Solo Api"
+#~ msgstr "Woo Solo Api opcije"
+
+#~ msgid "https://madebydenis.com/woo-solo-api"
+#~ msgstr "https://madebydenis.com/woo-solo-api"
+
+#~ msgid ""
+#~ "This plugin provides integration of the SOLO API service with WooCommerce."
+#~ msgstr ""
+#~ "Ovaj dodatak omogućuje integraciju SOLO servisa sa WooCommerce dodatkom."
+
+#~ msgid "Denis Žoljom"
+#~ msgstr "Denis Žoljom"
+
+#~ msgid "https://madebydenis.com"
+#~ msgstr "https://madebydenis.com"
+
+#~ msgctxt "placeholder"
+#~ msgid "01234567891"
+#~ msgstr "01234567891"
+
+#~ msgctxt "placeholder"
+#~ msgid "HR12345678901234567890"
+#~ msgstr "HR12345678901234567890"
+
+#~ msgctxt "placeholder"
+#~ msgid "Cool company inc."
+#~ msgstr "Ime tvrtke doo."
+
+#~ msgid "Number not only once is invalid."
+#~ msgstr "Sigurnosna provjera nije prošla (invalid nonce)."
+
+#~ msgid "User is not authorized to do this action."
+#~ msgstr "Korisnik nije autoriziran za ovu radnju."
+
+#~ msgid "Error occurred"
+#~ msgstr "Došlo je do pogreške"
+
+#~ msgid "You cannot access this file outside WordPress."
+#~ msgstr "Ne možete pristupiti ovom fileu izvan WordPressa."

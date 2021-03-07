@@ -18,6 +18,7 @@ use MadeByDenis\WooSoloApi\Admin\AdminMenus\OptionsSubmenu;
 use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
 use MadeByDenis\WooSoloApi\BackgroundJobs\MakeSoloApiCall;
 use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
+use MadeByDenis\WooSoloApi\Database\PluginActivationCheck;
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\AdminOrder;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\CheckoutFields;
@@ -130,6 +131,15 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	 */
 	public function register(): void
 	{
+		/**
+		 * If WooCommerce is not active deactivate the plugin and prevent execution of the container.
+		 * This prevents nasty errors if users accidentally deactivate WooCommerce before this plugin.
+		 */
+		if (!PluginActivationCheck::isWooCommerceActive()) {
+			PluginActivationCheck::deactivatePlugin();
+			return;
+		}
+
 		add_action('plugins_loaded', [$this, 'registerServices']);
 
 		$this->registerAssetsManifestData();

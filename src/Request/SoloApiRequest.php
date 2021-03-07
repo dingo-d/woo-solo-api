@@ -220,12 +220,44 @@ class SoloApiRequest implements ApiRequest
 			 * We can hook into this if we want to change it.
 			 * But this hook will affect every item. So use it with care.
 			 *
+			 * Usage:
+			 *
+			 * add_filter('woo_solo_api_add_global_discount', 'my_global_discount', 10, 1);
+			 *
+			 * function my_global_discount($globalDiscount) {
+			 *   // (maybe) modify $globalDiscount.
+			 *   return $globalDiscount;
+			 * }
+			 *
 			 * @since 2.0.0
 			 *
 			 * @param int $globalDiscount The value of the global discount to apply to every item.
 			 */
 			$requestBody["popust_{$itemNo}"] = apply_filters('woo_solo_api_add_global_discount', $globalDiscount = 0);
-			$requestBody["porez_stopa_{$itemNo}"] = $taxRate;
+
+			/**
+			 * Modify tax rates
+			 *
+			 * This hook is used to set different tax rates for items based on certain criteria.
+			 * For instance, if you want to modify taxes based on location you can change it here
+			 * (if for some reason it's not working from the default settings).
+			 *
+			 * Usage:
+			 *
+			 * add_filter('woo_solo_api_modify_tax_rate', 'my_tax_rate', 10, 3);
+			 *
+			 * function my_tax_rate($taxRate, $itemData, $taxRates) {
+			 *   // (maybe) modify $taxRate.
+			 *   return $taxRate;
+			 * }
+			 *
+			 * @since 2.1.0
+			 *
+			 * @param float $taxRate  The value of the tax rate for the current order item.
+			 * @param array $itemData The data for the current order item.
+			 * @param array $taxRates The value of the tax rates for the current order item.
+			 */
+			$requestBody["porez_stopa_{$itemNo}"] = apply_filters('woo_solo_api_modify_tax_rate', $taxRate, $itemData, $taxRates);
 
 			$itemNo++;
 		}
@@ -329,11 +361,21 @@ class SoloApiRequest implements ApiRequest
 		 * If you need to extend the customer note, you can just hook to this filter
 		 * and modify the existing content
 		 *
+		 * Usage:
+		 *
+		 * add_filter('woo_solo_api_modify_customer_note', 'my_customer_filter', 10, 2);
+		 *
+		 * function my_customer_filter($customerNote, $order) {
+		 *   // (maybe) modify $customerNote.
+		 *   return $customerNote;
+		 * }
+		 *
+		 * @since 2.1.0 Added order as a parameter for the filter.
 		 * @since 2.0.2
 		 *
 		 * @param string $customerNote Existing customer note.
 		 */
-		$customerNote = apply_filters('woo_solo_api_modify_customer_note', $customerNote);
+		$customerNote = apply_filters('woo_solo_api_modify_customer_note', $customerNote, $order);
 
 		$requestBody['napomene'] = wp_kses_post($customerNote);
 
