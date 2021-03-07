@@ -374,6 +374,7 @@ class SoloApiRequest implements ApiRequest
 		 * @since 2.0.2
 		 *
 		 * @param string $customerNote Existing customer note.
+		 * @param $order $order Order object
 		 */
 		$customerNote = apply_filters('woo_solo_api_modify_customer_note', $customerNote, $order);
 
