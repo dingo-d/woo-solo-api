@@ -498,72 +498,113 @@ Please don't try to guilt trip me to work on your site specific issues. I will t
 
 Sure you can, besides actually adding things in the settings of the plugin you can modify certain things using these hooks:
 
+--------------
+
 Filters the custom message for customer note
 
 If you need to extend the customer note, you can just hook to this filter
 and modify the existing content
 
+Usage:
+
+<code>
+add_filter('woo_solo_api_modify_customer_note', 'my_customer_filter', 10, 2);
+
+function my_customer_filter($customerNote, $order) {
+  // (maybe) modify $customerNote.
+  return $customerNote;
+}
+</code>
+
 @param string $customerNote Existing customer note.
+@param $order $order Order object
 
-<code>
-apply_filters('woo_solo_api_modify_customer_note', $customerNote);
-</code>
+--------------
 
-Adds a global discount
-
-WooCommerce will handle counting the discounts for us.
-This is why this is set to 0.
-We can hook into this if we want to change it.
-But this hook will affect every item. So use it with care.
-
-@param int $globalDiscount The value of the global discount to apply to every item.
-
-<code>
-apply_filters('woo_solo_api_add_global_discount', $globalDiscount = 0);
-</code>
-
-Filters the email message from the options
+Modify the email message from the options
 
 Email message can be set in the options and will be outputted here.
 If, for whatever reason we want to modify it some more, we can do that here.
 
-@param string $emailMessage Email message from options to filter.
+Usage:
 
 <code>
-apply_filters('woo_solo_api_modify_options_email_message', $emailMessage);
+add_filter('woo_solo_api_modify_options_email_message', 'my_message_filter', 10, 3);
+
+function my_message_filter($emailMessage, $orderId, $email) {
+  // (maybe) modify $emailMessage.
+  return $emailMessage;
+}
 </code>
 
-Filters the default email message
+@param string $emailMessage Email message from options to filter.
+@param int    $orderId Order ID.
+@param string $email Email address of the person for whom this message needs to be send to.
+
+--------------
+
+Modify the default email message
 
 If you don't set the message in the options, you can still filter the default one.
 
-@param string $defaultMessage Email message to filter.
+Usage:
 
 <code>
-apply_filters('woo_solo_api_modify_default_email_message', $defaultMessage);
+add_filter('woo_solo_api_modify_default_email_message', 'my_message_filter', 10, 3);
+
+function my_message_filter($defaultMessage, $orderId, $email) {
+  // (maybe) modify $defaultMessage.
+  return $defaultMessage;
+}
 </code>
+
+@param string $defaultMessage Email message to filter.
+@param int    $orderId Order ID.
+@param string $email Email address of the person for whom this message needs to be send to.
+
+--------------
 
 Modify the email title from the options
 
 Email title for the customer can be set in the options,
 but you can modify it further with this filter.
 
-@param string $emailTitle Email title.
+Usage:
 
 <code>
-apply_filters('woo_solo_api_modify_options_email_title', $emailTitle);
+add_filter('woo_solo_api_modify_options_email_title', 'my_title_filter', 10, 2);
+
+function my_title_filter($emailTitle, $orderId) {
+  // (maybe) modify $emailTitle.
+  return $emailTitle;
+}
 </code>
+
+@param string $emailTitle Email title.
+@param int    $orderId Order ID.
+
+--------------
 
 Modify the default email title from the options
 
 If you don't use the title from the options, you can use default one.
 And modify it.
 
-@param string $emailTitle Email title.
+Usage:
 
 <code>
-apply_filters('woo_solo_api_modify_default_email_title', $defaultTitle);
+add_filter('woo_solo_api_modify_default_email_title', 'my_title_filter', 10, 2);
+
+function my_title_filter($defaultTitle, $orderId) {
+  // (maybe) modify $defaultTitle.
+  return $defaultTitle;
+}
 </code>
+
+@param string $emailTitle Email title.
+@param int    $orderId Order ID.
+
+--------------
 
 Filter email headers
 
@@ -578,16 +619,77 @@ Default ones are
 
 You can add to that list.
 
-@param array $headers Email headers to pass to wp_mail.
+Usage:
 
 <code>
-apply_filters('woo_solo_api_email_headers', $headers);
+add_filter('woo_solo_api_email_headers', 'my_custom_email_headers', 10);
+
+function my_custom_email_headers($headers) {
+  // (maybe) modify $headers.
+  return $headers;
+}
 </code>
+
+@param array $headers Email headers to pass to wp_mail.
+
+--------------
 
 Filter the from name set from the options
 
-@param string $name Name to change in the "From" field.
+Usage:
 
 <code>
-apply_filters('woo_solo_api_change_email_from_name', $name);
+add_filter('woo_solo_api_change_email_from_name', 'my_custom_from_name', 10);
+
+function my_custom_from_name($name) {
+  // (maybe) modify $name.
+  return $name;
+}
 </code>
+
+@param string $name Name to change in the "From" field.
+
+--------------
+
+Adds a global discount
+
+WooCommerce will handle counting the discounts for us.
+This is why this is set to 0.
+We can hook into this if we want to change it.
+But this hook will affect every item. So use it with care.
+
+Usage:
+
+<code>
+add_filter('woo_solo_api_add_global_discount', 'my_global_discount', 10, 1);
+
+function my_global_discount($globalDiscount) {
+  // (maybe) modify $globalDiscount.
+  return $globalDiscount;
+}
+</code>
+
+@param int $globalDiscount The value of the global discount to apply to every item.
+
+--------------
+
+Modify tax rates
+
+This hook is used to set different tax rates for items based on certain criteria.
+For instance, if you want to modify taxes based on location you can change it here
+(if for some reason it's not working from the default settings).
+
+Usage:
+
+<code>
+add_filter('woo_solo_api_modify_tax_rate', 'my_tax_rate', 10, 3);
+
+function my_tax_rate($taxRate, $itemData, $taxRates) {
+  // (maybe) modify $taxRate.
+  return $taxRate;
+}
+</code>
+
+@param float $taxRate  The value of the tax rate for the current order item.
+@param array $itemData The data for the current order item.
+@param array $taxRates The value of the tax rates for the current order item.
