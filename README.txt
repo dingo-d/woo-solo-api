@@ -4,9 +4,9 @@ Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 5.3
 Requires PHP: 7.3
 Tested up to: 5.6
-Stable tag: 2.0.8
+Stable tag: 2.1.0
 WC requires at least: 4.0.0
-WC tested up to: 4.8.0
+WC tested up to: 5.0.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
