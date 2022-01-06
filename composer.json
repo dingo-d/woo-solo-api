@@ -68,8 +68,6 @@
 		"analyze": "@php ./vendor/bin/phpstan analyze",
 		"selenium:start": "selenium-server -port 4444",
     	"chrome:start" : "chromedriver --url-base=/wd/hub",
-		"test:prepare": "@php ./vendor/bin/pcov clobber",
-		"test:revert": "@php ./vendor/bin/pcov unclobber",
 		"test:build": "@php ./vendor/bin/codecept build",
 		"test:clean": "@php ./vendor/bin/codecept clean",
 		"test:acceptance": "@php ./vendor/bin/codecept run Acceptance --ansi",
@@ -78,7 +76,7 @@
 		"test:unit": "@php ./vendor/bin/codecept run Unit --ansi",
 		"test:coverage": [
 			"@php ./vendor/bin/codecept run Integration --coverage --coverage-xml --coverage-html --ansi",
-			"@php bin/console clean-coverage /Users/denis.zoljom/Sites/personal/plugins-testing/ --ansi"
+			"@php bin/console clean-coverage /home/dzoljom/Sites/wp-testing/ --ansi"
 		],
 		"test:generate-scenarios": "@php vendor/bin/codecept generate:scenarios --ansi"
 	},
