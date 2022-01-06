@@ -15,10 +15,10 @@
 **Tags**: woocommerce, api, solo api, solo, api integration, shop, payment, woo  
 **Requires at least**: 5.3  
 **Requires PHP**: 7.3  
-**Tested up to**: 5.6  
-**Stable tag**: 2.0.8
+**Tested up to**: 5.9  
+**Stable tag**: 2.2.0
 **WC requires at least**: 4.0.0  
-**WC tested up to**: 4.8.0  
+**WC tested up to**: 6.0.0  
 **License**: MIT  
 **License URI**: https://opensource.org/licenses/MIT  
 
@@ -41,9 +41,9 @@ For more information about the SOLO API visit this link: https://solo.com.hr/api
 
 ### Requirements
 
-* PHP 7.2 or greater
-* WordPress 5.1 or above
-* WooCommerce 3.9 or above
+* PHP 7.3 or greater
+* WordPress 5.3 or above
+* WooCommerce 4.0 or above
 
 ## Development
 
