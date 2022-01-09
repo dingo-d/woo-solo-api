@@ -48,6 +48,10 @@ class AccountDetails extends BaseRoute implements RestCallable
 	{
 		$soloApiToken = get_option('solo_api_token');
 
+		if (!\is_string($soloApiToken)) {
+			return new \WP_Error(esc_html__('Solo API token must be a string', 'woo-solo-api'));
+		}
+
 		$response = wp_remote_get("https://api.solo.com.hr/racun?token={$soloApiToken}");
 
 		if (is_wp_error($response)) {
