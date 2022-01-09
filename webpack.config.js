@@ -6,6 +6,9 @@
  * @param {Object} argv Arguments object.
  * @since 2.0.0
  */
+
+const BundleOutputPlugin = require('webpack-bundle-output');
+
 module.exports = (env, argv) => {
 	const projectConfig = {
 		config: {
@@ -28,5 +31,12 @@ module.exports = (env, argv) => {
 
 	return {
 		...project,
+
+		plugins: [
+			// Load all plugins config.
+			...project.plugins,
+
+			new BundleOutputPlugin()
+		],
 	};
 };
