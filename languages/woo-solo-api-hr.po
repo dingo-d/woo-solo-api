@@ -2,18 +2,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woo Solo Api\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-solo-api\n"
-"POT-Creation-Date: 2021-03-07 09:00+0100\n"
-"PO-Revision-Date: 2021-03-07 09:01+0100\n"
+"POT-Creation-Date: 2022-01-09 19:36+0100\n"
+"PO-Revision-Date: 2022-01-09 19:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: Denis Žoljom\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
-"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: e__;esc_html__;esc_html_e;esc_attr__;esc_attr_e;"
 "esc_html_x;__;_n_noop\n"
@@ -26,6 +26,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-4: vendor\n"
 "X-Poedit-SearchPathExcluded-5: views\n"
 "X-Poedit-SearchPathExcluded-6: webpack\n"
+"X-Poedit-SearchPathExcluded-7: assets/public\n"
 
 #: src/Admin/AdminMenus/OptionsSubmenu.php:54
 msgid "Woo Solo Api Options"
@@ -47,45 +48,59 @@ msgstr ""
 msgid "SOLO API Settings"
 msgstr "Solo API opcije"
 
-#: src/Assets/EnqueueResources.php:135
+#: src/Assets/EnqueueResources.php:136
 msgid "Options saved."
 msgstr "Opcije spremljene."
 
-#: src/BackgroundJobs/SendCustomerEmail.php:90
+#: src/BackgroundJobs/SendCustomerEmail.php:91
+msgid "PDF invoice/order is missing"
+msgstr "Nedostaje PDF faktura/narudžba"
+
+#: src/BackgroundJobs/SendCustomerEmail.php:99
 msgid "invoice-"
 msgstr "racun-"
 
-#: src/BackgroundJobs/SendCustomerEmail.php:95
+#: src/BackgroundJobs/SendCustomerEmail.php:104
 msgid "offer-"
 msgstr "ponuda-"
 
-#: src/BackgroundJobs/SendCustomerEmail.php:167
+#: src/BackgroundJobs/SendCustomerEmail.php:160
+msgid "Error in sending customer email. Attachment URL cannot be parsed."
+msgstr ""
+"Pogreška u slanju e-pošte klijentu. URL privitka nije moguće raščlaniti."
+
+#: src/BackgroundJobs/SendCustomerEmail.php:182
+msgid "Error in sending customer email. Email message must be of string type."
+msgstr ""
+"Pogreška u slanju e-pošte klijentu. Poruka e-pošte mora biti niz znakova."
+
+#: src/BackgroundJobs/SendCustomerEmail.php:190
 msgid "invoice"
 msgstr "racun"
 
-#: src/BackgroundJobs/SendCustomerEmail.php:168
+#: src/BackgroundJobs/SendCustomerEmail.php:191
 msgid "offer"
 msgstr "ponuda"
 
-#: src/BackgroundJobs/SendCustomerEmail.php:171
+#: src/BackgroundJobs/SendCustomerEmail.php:194
 #, php-format
 msgid "Your %s is in the attachment."
 msgstr "Vaš %s se nalazi u privitku."
 
-#: src/BackgroundJobs/SendCustomerEmail.php:173
+#: src/BackgroundJobs/SendCustomerEmail.php:196
 #, php-format
 msgid "Your %1$s from %2$s"
 msgstr "Vaš %1$s od %2$s"
 
-#: src/Core/Plugin.php:76
+#: src/Core/Plugin.php:77
 msgid "This plugin requires PHP 7.3 or greater to function."
 msgstr "Ovaj dodatak zhtjeva PHP verziju 7.3 ili veću da bi funkcionirao."
 
-#: src/Core/Plugin.php:85
+#: src/Core/Plugin.php:86
 msgid "This plugin requires WooCommerce plugin to be active."
 msgstr "Ovaj dodatak zahtjeva da WooCommerce dodatak bude aktivan."
 
-#: src/Core/Plugin.php:182
+#: src/Core/Plugin.php:192
 msgid "manifest.json is missing. Bundle the plugin before using it."
 msgstr ""
 "manifest.json nedostaje. Dodatak more proći kroz webpack bundle process "
@@ -176,9 +191,33 @@ msgstr "Ažuriran"
 msgid "Woo Solo Api Order Items"
 msgstr "Woo Solo Api narudžbe"
 
-#: src/Request/SoloApiRequest.php:261
+#: src/Request/SoloApiRequest.php:104
+msgid "Due date option needs to be a string"
+msgstr "Opcija datuma dospijeća mora biti niz znakova"
+
+#: src/Request/SoloApiRequest.php:108
+msgid "Currency option needs to be a string"
+msgstr "Opcija valute mora biti niz znakova"
+
+#: src/Request/SoloApiRequest.php:112
+msgid "Language option needs to be a string"
+msgstr "Opcija jezika mora biti niz znakova"
+
+#: src/Request/SoloApiRequest.php:308
 msgid "Shipping fee"
 msgstr "Naknada za slanje"
+
+#: src/Request/SoloApiRequest.php:340
+msgid "Central bank rates API returned an empty result"
+msgstr "API za stope središnje banke vratio je prazan rezultat"
+
+#: src/Request/SoloApiRequest.php:475
+msgid "Response details from the API is not of an array type"
+msgstr "Detalji odgovora iz API-ja nisu tipa polja"
+
+#: src/Rest/Endpoints/AccountDetails.php:52
+msgid "Solo API token must be a string"
+msgstr "Solo API token mora biti niz znakova"
 
 #: src/Rest/Endpoints/OrderDetails.php:173
 msgid "Flag that notifies if the PDF bill was sent to customer."
@@ -270,21 +309,6 @@ msgstr ""
 "Tip plaćanja na platnom procesoru (transakcijski račun, gotovina, kartice, "
 "itd.)"
 
-#~ msgid "Transactional account"
-#~ msgstr "Transakcijski račun"
-
-#~ msgid "Cash"
-#~ msgstr "Gotovina"
-
-#~ msgid "Cards"
-#~ msgstr "Kartice"
-
-#~ msgid "Cheque"
-#~ msgstr "Ček"
-
-#~ msgid "Other"
-#~ msgstr "Ostalo"
-
 #~ msgid "1 day"
 #~ msgstr "1 dan"
 
@@ -312,30 +336,44 @@ msgstr ""
 #~ msgid "3 weeks"
 #~ msgstr "3 tjedna"
 
-#~ msgid "Errors happened during saving"
-#~ msgstr "Dogodila se pogreška prilikom spremanja"
+#~ msgid "Croatian"
+#~ msgstr "Hrvatski"
 
-#~ msgid "Settings saved"
-#~ msgstr "Opcije su spremljene"
+#~ msgid "English"
+#~ msgstr "Engleski"
 
-#~ msgid "Validation error: "
-#~ msgstr "Validacijska greška: "
+#~ msgid "German"
+#~ msgstr "Njemački"
+
+#~ msgid "French"
+#~ msgstr "Francuski"
+
+#~ msgid "Italian"
+#~ msgstr "Talijanksi"
+
+#~ msgid "Spanish"
+#~ msgstr "Španjolski"
+
+#~ msgid "Transactional account"
+#~ msgstr "Transakcijski račun"
+
+#~ msgid "Cash"
+#~ msgstr "Gotovina"
+
+#~ msgid "Cards"
+#~ msgstr "Kartice"
+
+#~ msgid "Cheque"
+#~ msgstr "Ček"
+
+#~ msgid "Other"
+#~ msgstr "Ostalo"
 
 #~ msgid "-"
 #~ msgstr "-"
 
-#~ msgid "Empty API token"
-#~ msgstr "Prazan API token"
-
 #~ msgid "piece"
 #~ msgstr "komad"
-
-#~ msgid ""
-#~ "For more details on the options you can read the official SOLO API "
-#~ "documentation here: "
-#~ msgstr ""
-#~ "Za više informacija o opcijama możete pročitati službenu SOLO API "
-#~ "dokumentaciju ovdje: "
 
 #~ msgid "hour"
 #~ msgstr "sat"
@@ -346,23 +384,11 @@ msgstr ""
 #~ msgid "km"
 #~ msgstr "km"
 
-#~ msgid "Enter your personal token that you obtained from your SOLO account"
-#~ msgstr "Unesite vaš vlastiti token koji ste dobili sa SOLO računa"
-
 #~ msgid "litre"
 #~ msgstr "litra"
 
-#~ msgid "Solo Api Settings"
-#~ msgstr "Solo Api opcije"
-
 #~ msgid "kg"
 #~ msgstr "kg"
-
-#~ msgid "Unit measure"
-#~ msgstr "Jedinična mjera"
-
-#~ msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
-#~ msgstr "Izaberite zadanu mjeru za vašu trgovinu (npr. komad, sat, m³ itd.)"
 
 #~ msgid "kWh"
 #~ msgstr "kwh"
@@ -370,23 +396,138 @@ msgstr ""
 #~ msgid "m³"
 #~ msgstr "m³"
 
+#~ msgid "tonne"
+#~ msgstr "tona"
+
+#~ msgid "m²"
+#~ msgstr "m²"
+
+#~ msgid "m"
+#~ msgstr "m"
+
+#~ msgid "day"
+#~ msgstr "dan"
+
+#~ msgid "month"
+#~ msgstr "mjesec"
+
+#~ msgid "night"
+#~ msgstr "noć"
+
+#~ msgid "cart"
+#~ msgstr "kartica"
+
+#~ msgid "account"
+#~ msgstr "račun"
+
+#~ msgid "pair"
+#~ msgstr "par"
+
+#~ msgid "ml"
+#~ msgstr "ml"
+
+#~ msgid "pax"
+#~ msgstr "pax"
+
+#~ msgid "room"
+#~ msgstr "soba"
+
+#~ msgid "apartment"
+#~ msgstr "stan"
+
+#~ msgid "term"
+#~ msgstr "termin"
+
+#~ msgid "set"
+#~ msgstr "set"
+
+#~ msgid "package"
+#~ msgstr "paket"
+
+#~ msgid "point"
+#~ msgstr "bod"
+
+#~ msgid "service"
+#~ msgstr "servis"
+
+#~ msgid "pal"
+#~ msgstr "pal"
+
+#~ msgid "kont"
+#~ msgstr "kont"
+
+#~ msgid "čl"
+#~ msgstr "čl"
+
+#~ msgid "tis"
+#~ msgstr "tis"
+
+#~ msgid "sec"
+#~ msgstr "sek"
+
+#~ msgid "min"
+#~ msgstr "min"
+
+#~ msgid "str"
+#~ msgstr "str"
+
+#~ msgid "kpl"
+#~ msgstr "kpl"
+
+#~ msgid "pšl"
+#~ msgstr "pšl"
+
+#~ msgid "ha"
+#~ msgstr "ha"
+
+#~ msgid "g"
+#~ msgstr "g"
+
+#~ msgid "x"
+#~ msgstr "x"
+
+#~ msgid "Errors happened during saving"
+#~ msgstr "Dogodila se pogreška prilikom spremanja"
+
+#~ msgid "Settings saved"
+#~ msgstr "Opcije su spremljene"
+
+#~ msgid "Validation error: "
+#~ msgstr "Validacijska greška: "
+
+#~ msgid "Empty API token"
+#~ msgstr "Prazan API token"
+
+#~ msgid ""
+#~ "For more details on the options you can read the official SOLO API "
+#~ "documentation here: "
+#~ msgstr ""
+#~ "Za više informacija o opcijama możete pročitati službenu SOLO API "
+#~ "dokumentaciju ovdje: "
+
+#~ msgid "Enter your personal token that you obtained from your SOLO account"
+#~ msgstr "Unesite vaš vlastiti token koji ste dobili sa SOLO računa"
+
+#~ msgid "Solo Api Settings"
+#~ msgstr "Solo Api opcije"
+
+#~ msgid "Unit measure"
+#~ msgstr "Jedinična mjera"
+
+#~ msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
+#~ msgstr "Izaberite zadanu mjeru za vašu trgovinu (npr. komad, sat, m³ itd.)"
+
 #~ msgid "Enter the type of the service"
 #~ msgstr "Unesite tip usluge"
 
 #~ msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
 #~ msgstr "Možete ju naći u postavkama vašeg računa (Usluge -> Tipovi usluga)"
 
-#~ msgid "tonne"
-#~ msgstr "tona"
-
 #~ msgid "Invoice Language"
 #~ msgstr "Jezik računa"
 
 #~ msgid "Select the language of the invoice/offer"
 #~ msgstr "Odaberite jezik za račun/ponudu"
-
-#~ msgid "m²"
-#~ msgstr "m²"
 
 #~ msgid "Show taxes"
 #~ msgstr "Prikaz poreza"
@@ -397,17 +538,8 @@ msgstr ""
 #~ msgid "Don't show tax"
 #~ msgstr "Nemoj prikazati porez"
 
-#~ msgid "m"
-#~ msgstr "m"
-
 #~ msgid "Currency"
 #~ msgstr "Valuta"
-
-#~ msgid "day"
-#~ msgstr "dan"
-
-#~ msgid "month"
-#~ msgstr "mjesec"
 
 #~ msgid "Type of invoice"
 #~ msgstr "Tip računa"
@@ -415,14 +547,8 @@ msgstr ""
 #~ msgid "Only works with invoice, not with offer"
 #~ msgstr "Radi samo sa računima, ne sa ponudama"
 
-#~ msgid "night"
-#~ msgstr "noć"
-
 #~ msgid "Choose the type of payment for each enabled payment gateway"
 #~ msgstr "Izaberite tip plaćanja za svaki odabrani platni procesor"
-
-#~ msgid "cart"
-#~ msgstr "kartica"
 
 #~ msgid "Offer"
 #~ msgstr "Ponuda"
@@ -430,14 +556,8 @@ msgstr ""
 #~ msgid "Invoice"
 #~ msgstr "Račun"
 
-#~ msgid "account"
-#~ msgstr "račun"
-
 #~ msgid "Payment option types"
 #~ msgstr "Načini plaćanja"
-
-#~ msgid "pair"
-#~ msgstr "par"
 
 #~ msgid "Check if you want the invoice to be fiscalized *"
 #~ msgstr "Izaberite želite li fiskalizirati račun *"
@@ -448,9 +568,6 @@ msgstr ""
 #~ msgid "Don't fiscalize"
 #~ msgstr "Nemojte fiskalizirati"
 
-#~ msgid "ml"
-#~ msgstr "ml"
-
 #~ msgid ""
 #~ "* Fiscalization certificate must be added in the SOLO options, and it "
 #~ "only applies to invoices."
@@ -458,14 +575,8 @@ msgstr ""
 #~ "* Fiskalizacijski certifikat mora biti dodan u SOLO opcijama na vašem "
 #~ "korisničkom računu i samo se odnosi na račune."
 
-#~ msgid "pax"
-#~ msgstr "pax"
-
 #~ msgid "Invoice/Offer due date"
 #~ msgstr "Datum isporuke računa/ponude"
-
-#~ msgid "room"
-#~ msgstr "soba"
 
 #~ msgid "You can check the currency rate at <a>Croatian National Bank</a>."
 #~ msgstr ""
@@ -480,30 +591,16 @@ msgstr ""
 #~ "Valuta će automatski biti dodana, ukoliko se odabrana valuta razlikuje od "
 #~ "HRK. Također, poruka o konverziji će biti dodana na račun/ponudu."
 
-#~ msgid "apartment"
-#~ msgstr "stan"
-
 #~ msgid "Additional Settings"
 #~ msgstr "Dodatne opcije"
 
 #~ msgid "WooCommerce checkout settings"
 #~ msgstr "WooCommerce opcije plaćanja"
 
-#~ msgid "term"
-#~ msgstr "termin"
-
 #~ msgid ""
 #~ "Enable the PIN field on the billing and shipping from in the checkout"
 #~ msgstr ""
 #~ "Omogućite OIB polje na formi za plaćanje i dostavu na naplatnoj stranici"
-
-#~ msgid "set"
-#~ msgstr "set"
-
-#~ msgid ""
-#~ "Enable the IBAN field on the billing and shipping from in the checkout"
-#~ msgstr ""
-#~ "Omogućite IBAN polje na formi za plaćanje i dostavu na naplatnoj stranici"
 
 #~ msgid "Enable"
 #~ msgstr "Omogućite"
@@ -511,8 +608,10 @@ msgstr ""
 #~ msgid "Disable"
 #~ msgstr "Onemogućite"
 
-#~ msgid "package"
-#~ msgstr "paket"
+#~ msgid ""
+#~ "Enable the IBAN field on the billing and shipping from in the checkout"
+#~ msgstr ""
+#~ "Omogućite IBAN polje na formi za plaćanje i dostavu na naplatnoj stranici"
 
 #~ msgid "PDF settings"
 #~ msgstr "Opcije PDFa"
@@ -527,17 +626,8 @@ msgstr ""
 #~ msgid "Don't send email"
 #~ msgstr "Nemojte poslati e-mail"
 
-#~ msgid "point"
-#~ msgstr "bod"
-
 #~ msgid "Send mail to selected payment gateways"
 #~ msgstr "Pošaljite e-mail za odabrane platne procesore"
-
-#~ msgid "service"
-#~ msgstr "servis"
-
-#~ msgid "pal"
-#~ msgstr "pal"
 
 #~ msgid "PDF send control"
 #~ msgstr "Opcije slanja PDFa"
@@ -554,30 +644,18 @@ msgstr ""
 #~ msgid "Send on:"
 #~ msgstr "Poslati na:"
 
-#~ msgid "kont"
-#~ msgstr "kont"
-
 #~ msgid "Checkout"
 #~ msgstr "Naplati"
 
 #~ msgid "Status change to 'completed'"
 #~ msgstr "Promijeni statusa u 'izvršeno'"
 
-#~ msgid "čl"
-#~ msgstr "čl"
-
 #~ msgid "Email Settings"
 #~ msgstr "Postavke e-maila"
-
-#~ msgid "tis"
-#~ msgstr "tis"
 
 #~ msgid "Set the title of the mail that will be send with the PDF invoice"
 #~ msgstr ""
 #~ "Postavite naslov e-maila koji će biti poslan s PDF računom u dodatku"
-
-#~ msgid "sec"
-#~ msgstr "sek"
 
 #~ msgid ""
 #~ "Type the message that will appear on the mail with the invoice PDF "
@@ -586,9 +664,6 @@ msgstr ""
 #~ "Upišite poruku koja će se prikazati uz e-mail koji će biti poslan s PDF "
 #~ "računom u dodatku"
 
-#~ msgid "min"
-#~ msgstr "min"
-
 #~ msgid ""
 #~ "<str>CAUTION</str>: This change is global, every mail send from your "
 #~ "WordPress will have this 'from' name"
@@ -596,20 +671,11 @@ msgstr ""
 #~ "OPREZ: Ova promijena je globalna, svaki e-mail koji šaljete sa vaše "
 #~ "stranice će imate ovo 'od' ime"
 
-#~ msgid "str"
-#~ msgstr "str"
-
-#~ msgid "kpl"
-#~ msgstr "kpl"
-
 #~ msgid "Solo Api Test"
 #~ msgstr "Solo API test"
 
 #~ msgid "This serves for testing purposes only"
 #~ msgstr "Ovo služi radi testiranja"
-
-#~ msgid "pšl"
-#~ msgstr "pšl"
 
 #~ msgid ""
 #~ "Pressing the button will make a request to your Solo API account,and will "
@@ -618,20 +684,11 @@ msgstr ""
 #~ "Pritiskom na gumb napravit ćete poziv na Solo API račun, i izlistat će "
 #~ "vam se svi računi koje imate"
 
-#~ msgid "ha"
-#~ msgstr "ha"
-
 #~ msgid "Make a request"
 #~ msgstr "Napravite upit"
 
-#~ msgid "g"
-#~ msgstr "g"
-
 #~ msgid "Save settings"
 #~ msgstr "Spremite postavke"
-
-#~ msgid "x"
-#~ msgstr "x"
 
 #~ msgid "Solo API order details"
 #~ msgstr "Solo API detalji narudžbe"
@@ -653,24 +710,6 @@ msgstr ""
 
 #~ msgid "API response errors"
 #~ msgstr "API greške"
-
-#~ msgid "Croatian"
-#~ msgstr "Hrvatski"
-
-#~ msgid "English"
-#~ msgstr "Engleski"
-
-#~ msgid "German"
-#~ msgstr "Njemački"
-
-#~ msgid "French"
-#~ msgstr "Francuski"
-
-#~ msgid "Italian"
-#~ msgstr "Talijanksi"
-
-#~ msgid "Spanish"
-#~ msgstr "Španjolski"
 
 #~ msgid "Woo Solo Api"
 #~ msgstr "Woo Solo Api opcije"
