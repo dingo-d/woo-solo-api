@@ -74,6 +74,6 @@ class AdminDbNoticeTest extends WPTestCase
 	{
 		$render = $this->dbAdminNotice->render([]);
 
-		$this->assertEquals('<pre>Undefined index: view_url</pre>', $render);
+		$this->assertEquals('<pre>Undefined index: view_url at src/Admin/AdminNotices/DatabaseTableMissingNotice.php:98</pre>', $render);
 	}
 }
