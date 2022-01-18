@@ -13,6 +13,17 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.2.0] - 2022-01-18
+
+### Added
+
+* Added new filters (See FAQ section for more info)
+
+### Fixed
+
+* Fix the localization notice
+* Fix PHPStan errors
+
 ## [2.1.0] - 2021-03-07
 
 ### Added

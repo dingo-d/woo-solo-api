@@ -18,7 +18,7 @@
  * Text Domain:          woo-solo-api
  * Domain Path:          /languages
  * WC requires at least: 4.0.0
- * WC tested up to:      5.0.0
+ * WC tested up to:      6.0.0
  * Requires PHP:         7.3
  */
 
@@ -28,7 +28,7 @@ use MadeByDenis\WooSoloApi\Core\PluginFactory;
 use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
 
 /**
-* Include the autoloader so we can dynamically include the rest of the classes.
+* Include the autoloader, so we can dynamically include the rest of the classes.
 *
 * @since 2.0.0
 */
@@ -40,7 +40,7 @@ require_once __DIR__ . '/vendor/autoload.php';
  * @since 2.0.0
  */
 if (! defined('ABSPATH')) {
-    $errorMessage = esc_html__('You cannot access this file outside WordPress.', 'woo-solo-api');
+    $errorMessage = \esc_html__('You cannot access this file outside WordPress.', 'woo-solo-api');
 
     throw PluginActivationFailure::activationMessage($errorMessage);
 }
@@ -50,7 +50,7 @@ if (! defined('ABSPATH')) {
 *
 * @since 2.0.0
 */
-register_activation_hook(
+\register_activation_hook(
     __FILE__,
     function () {
         PluginFactory::create()->activate();
@@ -62,7 +62,7 @@ register_activation_hook(
 *
 * @since 2.0.0
 */
-register_deactivation_hook(
+\register_deactivation_hook(
     __FILE__,
     function () {
         PluginFactory::create()->deactivate();
