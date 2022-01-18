@@ -17,7 +17,7 @@
 		}
 	],
 	"require": {
-		"php": "^7.4",
+		"php": "^7.3",
 		"php-di/php-di": "^6.0",
 		"ext-json": "*"
 	},
