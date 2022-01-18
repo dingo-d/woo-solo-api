@@ -11,7 +11,11 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\BackgroundJobs;
 
+use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
+use MadeByDenis\WooSoloApi\Exception\OrderValidationException;
 use MadeByDenis\WooSoloApi\Request\ApiRequest;
+use RuntimeException;
+use TypeError;
 
 /**
  * Call towards SOLO API
@@ -57,7 +61,12 @@ class MakeSoloApiCall extends ScheduleEvent
 	{
 		$order = $args[0];
 
-		$this->soloRequest->executeApiCall($order);
+		try {
+			$this->soloRequest->executeApiCall($order);
+		} catch (RuntimeException | OrderValidationException | TypeError $e) {
+			// Write error to the database for better logging.
+			SoloOrdersTable::addApiResponseError($order->get_id(), $e->getMessage()); // @phpstan-ignore-line
+		}
 	}
 
 	/**

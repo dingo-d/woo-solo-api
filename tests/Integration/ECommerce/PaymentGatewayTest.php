@@ -33,10 +33,9 @@ class PaymentGatewayTest extends WPTestCase
 
 		$this->assertInstanceOf('WC_Payment_Gateways', $paymentGatewayList);
 
-		$this->assertTrue(isset(array_flip($paymentGatewayIds)['bacs']));
-		$this->assertTrue(isset(array_flip($paymentGatewayIds)['cheque']));
-		$this->assertTrue(isset(array_flip($paymentGatewayIds)['cod']));
-		$this->assertTrue(isset(array_flip($paymentGatewayIds)['paypal']));
+		$this->assertTrue(isset(array_flip($paymentGatewayIds)['bacs']), 'BACS provider doesn\'t exist');
+		$this->assertTrue(isset(array_flip($paymentGatewayIds)['cheque']), 'Checque provider doesn\'t exist');
+		$this->assertTrue(isset(array_flip($paymentGatewayIds)['cod']), 'COD provider doesn\'t exist');
 
 		// In the test we don't have any available PG.
 		$this->assertEmpty($availablePaymentGateways);

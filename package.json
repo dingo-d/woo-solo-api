@@ -1,6 +1,6 @@
 {
 	"name": "woo-solo-api",
-	"version": "2.0.0",
+	"version": "2.2.0",
 	"description": "This plugin provides integration of the SOLO API service with WooCommerce.",
 	"authors": [
 		{
@@ -65,7 +65,7 @@
 		"normalize-scss": "^7.0.1",
 		"optimize-css-assets-webpack-plugin": "^5.0.4",
 		"php-serialize": "^4.0.2",
-		"postcss": "^8.2.1",
+		"postcss": "^8.2.13",
 		"postcss-loader": "^4.1.0",
 		"precss": "^4.0.0",
 		"process": "^0.11.10",
@@ -87,6 +87,7 @@
 	"devDependencies": {
 		"@wordpress/babel-plugin-makepot": "^3.10.0",
 		"@wordpress/eslint-plugin": "^7.4.0",
-		"stylelint-config-wordpress": "^17.0.0"
+		"stylelint-config-wordpress": "^17.0.0",
+		"webpack-bundle-output": "^1.0.2"
 	}
 }

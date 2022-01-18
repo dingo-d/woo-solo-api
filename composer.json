@@ -22,25 +22,25 @@
 		"ext-json": "*"
 	},
 	"require-dev": {
-		"brain/monkey": "^2.5",
-		"codeception/module-asserts": "^1.1",
-		"codeception/module-cli": "^1.0",
-		"codeception/module-db": "^1.0",
-		"codeception/module-filesystem": "^1.0",
+		"brain/monkey": "^2.6.1",
+		"codeception/module-asserts": "^1.0",
 		"codeception/module-phpbrowser": "^1.0",
 		"codeception/module-webdriver": "^1.0",
+		"codeception/module-db": "^1.0",
+		"codeception/module-filesystem": "^1.0",
+		"codeception/module-cli": "^1.0",
 		"codeception/util-universalframework": "^1.0",
-		"codedungeon/phpunit-result-printer": "^0.29.3",
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"lucatume/wp-browser": "^2.6",
-		"php-stubs/woocommerce-stubs": "^4.6",
-		"php-stubs/wordpress-globals": "^0.2.0",
-		"phpcompatibility/php-compatibility": "^9.3",
-		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"codedungeon/phpunit-result-printer": "^0.31.0",
+		"dealerdirect/phpcodesniffer-composer-installer": "^v0.7.1",
+		"lucatume/wp-browser": "^3.0.19",
+		"php-stubs/woocommerce-stubs": "^v6.0.0",
+		"php-stubs/wordpress-globals": "^v0.2.0",
+		"phpcompatibility/php-compatibility": "^9.3.5",
+		"phpcompatibility/phpcompatibility-wp": "^2.1.3",
 		"roave/security-advisories": "dev-master",
-		"squizlabs/php_codesniffer": "^3.5.0",
-		"symfony/console": "^5.2",
-		"szepeviktor/phpstan-wordpress": "^0.7"
+		"squizlabs/php_codesniffer": "^3.6.2",
+		"symfony/console": "^v5.4.2",
+		"szepeviktor/phpstan-wordpress": "^v1.0.2"
 	},
 	"autoload-dev": {
 		"psr-4": {
@@ -57,7 +57,10 @@
 	"config": {
 		"sort-packages": true,
 		"optimize-autoloader": true,
-		"process-timeout": 2000
+		"process-timeout": 2000,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	},
 	"scripts": {
 		"standards:check": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
@@ -65,8 +68,6 @@
 		"analyze": "@php ./vendor/bin/phpstan analyze",
 		"selenium:start": "selenium-server -port 4444",
     	"chrome:start" : "chromedriver --url-base=/wd/hub",
-		"test:prepare": "@php ./vendor/bin/pcov clobber",
-		"test:revert": "@php ./vendor/bin/pcov unclobber",
 		"test:build": "@php ./vendor/bin/codecept build",
 		"test:clean": "@php ./vendor/bin/codecept clean",
 		"test:acceptance": "@php ./vendor/bin/codecept run Acceptance --ansi",
@@ -75,7 +76,7 @@
 		"test:unit": "@php ./vendor/bin/codecept run Unit --ansi",
 		"test:coverage": [
 			"@php ./vendor/bin/codecept run Integration --coverage --coverage-xml --coverage-html --ansi",
-			"@php bin/console clean-coverage /Users/denis.zoljom/Sites/personal/plugins-testing/ --ansi"
+			"@php bin/console clean-coverage /home/dzoljom/Sites/wp-testing/ --ansi"
 		],
 		"test:generate-scenarios": "@php vendor/bin/codecept generate:scenarios --ansi"
 	},

@@ -82,11 +82,12 @@ class MakeApiRequest implements Registrable
 	 *
 	 * @since 1.0.0
 	 *
+	 * @since 2.2.0 Add woo_solo_api_overwrite_request_on_checkout filter
 	 * @since 2.0.0 Refactored method -
 	 *                    Extracted logic to private methods
 	 *                    Added a database checks for consistency, preventing the duplicate calls
 	 * @since 1.9.5 Add check if the order was sent to avoid multiple API calls. Separate order completed call.
-	 * @since 1.4.0 Fix the send api method.
+	 * @since 1.4.0 Fix the 'send api method'.
 	 * @since 1.3.0 Added tax checks and additional debug options.
 	 */
 	public function sendApiRequestOnCheckout($order, bool $sentToAdmin, bool $plainText, object $email): void // phpcs:ignore
@@ -98,6 +99,35 @@ class MakeApiRequest implements Registrable
 
 		// Double check just to be sure.
 		$sendControl = get_option('solo_api_send_control');
+
+		/**
+		 * Overwrite the checkout request for specific payment cases
+		 *
+		 * This filter is used if you have globally selected the API request to happen on
+		 * manual status change of the order, but you want to allow some payment gateways to
+		 * execute on the checkout.
+		 *
+		 * Usage:
+		 *
+		 * add_filter('woo_solo_api_overwrite_request_on_checkout', 'my_payment_processor_overwrite', 10, 2);
+		 *
+		 * function my_payment_processor_overwrite($sendControl, $order) {
+		 *   // Say we want to allow api call on checkout for direct bank transfer (bacs),
+		 *   // and all others on status change.
+		 *
+		 *   // Check the payment gateway from the order.
+		 *   $paymentMethod = $order->get_payment_method();
+		 *
+		 *   // Check if the current payment method is the one you want to overwrite.
+		 *   if ($paymentMethod === 'bacs') {
+		 *     return 'checkout';
+		 *   }
+		 *
+		 *   // Default fallback.
+		 *   return $sendControl;
+		 * }
+		 */
+		$sendControl = \apply_filters('woo_solo_api_overwrite_request_on_checkout', $sendControl, $order);
 
 		if ($sendControl === 'status_change') {
 			return;

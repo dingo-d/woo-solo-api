@@ -3,10 +3,10 @@ Contributors: dingo_bastard
 Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 5.3
 Requires PHP: 7.3
-Tested up to: 5.6
-Stable tag: 2.1.0
+Tested up to: 5.9
+Stable tag: 2.2.0
 WC requires at least: 4.0.0
-WC tested up to: 5.0.0
+WC tested up to: 6.0.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -51,7 +51,7 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 == Requirements ==
 
 * PHP 7.3 or greater
-* WordPress 5.2 or above
+* WordPress 5.3 or above
 * WooCommerce 4.0.0 or above
 * Non IE browser
 
@@ -65,6 +65,18 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 6. You can check the sent orders, whether the order was sent to API, and if the customer got the PDF or not (or if error happened on the API)
 
 == Changelog ==
+
+= 2.2.0 =
+Release Date: January 18th, 2022
+
+Added:
+
+* Added new filters (See FAQ section for more info)
+
+Fixed:
+
+* Fix the localization notice
+* Fix PHPStan errors
 
 = 2.1.0 =
 Release Date: March 7th, 2021
@@ -500,6 +512,37 @@ Sure you can, besides actually adding things in the settings of the plugin you c
 
 --------------
 
+Overwrite the checkout request for specific payment cases
+
+This filter is used if you have globally selected the API request to happen on
+manual status change of the order, but you want to allow some payment gateways to
+execute on the checkout.
+
+Usage:
+
+add_filter('woo_solo_api_overwrite_request_on_checkout', 'my_payment_processor_overwrite', 10, 2);
+
+function my_payment_processor_overwrite($sendControl, $order) {
+  // Say we want to allow api call on checkout for direct bank transfer (bacs),
+  // and all others on status change.
+
+  // Check the payment gateway from the order.
+  $paymentMethod = $order->get_payment_method();
+
+  // Check if the current payment method is the one you want to overwrite.
+  if ($paymentMethod === 'bacs') {
+    return 'checkout';
+  }
+
+  // Default fallback.
+  return $sendControl;
+}
+
+@param string $sendControl Type of send control. Can be 'checkout' or 'status_change'.
+@param WC_Order $order Order object.
+
+--------------
+
 Filters the custom message for customer note
 
 If you need to extend the customer note, you can just hook to this filter
@@ -517,7 +560,25 @@ function my_customer_filter($customerNote, $order) {
 </code>
 
 @param string $customerNote Existing customer note.
-@param $order $order Order object
+@param WC_Order $order Order object
+
+--------------
+
+Filters the Solo API request body before it's being prepared for sending
+
+If you need to modify the request towards the SOLO API,
+you can just hook to this filter and modify the request body.
+
+Usage:
+
+add_filter('woo_solo_api_modify_request_body', 'my_customer_filter', 10, 2);
+
+function my_customer_filter($requestBody, $order) {
+  // (maybe) modify $requestBody.
+  return $requestBody;
+}
+
+@param array $requestBody Existing customer note.
 
 --------------
 

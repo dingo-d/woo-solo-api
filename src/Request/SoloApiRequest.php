@@ -15,6 +15,8 @@ use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
 use MadeByDenis\WooSoloApi\Exception\{ApiRequestException, OrderValidationException, WpException};
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
+use RuntimeException;
+use TypeError;
 use WC_Order;
 use WC_Order_Refund;
 use WC_Tax;
@@ -74,8 +76,8 @@ class SoloApiRequest implements ApiRequest
 	 * @since  1.8.1 Added a check for no taxes on items.
 	 * @since  1.7.0 Fixed tax rates and payment types per payment gateway.
 	 * @since  1.4.0 Separated the send method for more control. Add
-	 *               Check to send the mail in this method, so that the
-	 *               method that controls the send is not called at all.
+	 *               a check to send the mail in this method, so that the
+	 *               method that controls sending is not called at all.
 	 *
 	 * @param bool|WC_Order|WC_Order_Refund $order Order data.
 	 *
@@ -88,14 +90,27 @@ class SoloApiRequest implements ApiRequest
 		}
 
 		// Options.
-		$token = get_option('solo_api_token');
-		$measure = get_option('solo_api_measure');
-		$currency = get_option('solo_api_currency');
-		$serviceType = get_option('solo_api_service_type');
-		$showTaxes = get_option('solo_api_show_taxes');
-		$invoiceType = get_option('solo_api_invoice_type');
-		$dueDate = get_option('solo_api_due_date');
-		$languages = $this->detectLanguage();
+		$token = get_option('solo_api_token', '');
+		$measure = get_option('solo_api_measure', '1');
+		$currency = get_option('solo_api_currency', '1');
+		$serviceType = get_option('solo_api_service_type', 0);
+		$showTaxes = get_option('solo_api_show_taxes', false);
+		$invoiceType = get_option('solo_api_invoice_type', '1');
+		$dueDate = get_option('solo_api_due_date', '1');
+		$languages = get_option('solo_api_languages', '1');
+
+		// Defensive coding.
+		if (!is_string($dueDate)) {
+			throw new TypeError(esc_html__('Due date option needs to be a string', 'woo-solo-api'));
+		}
+
+		if (!is_string($currency)) {
+			throw new TypeError(esc_html__('Currency option needs to be a string', 'woo-solo-api'));
+		}
+
+		if (!is_string($languages)) {
+			throw new TypeError(esc_html__('Language option needs to be a string', 'woo-solo-api'));
+		}
 
 		$orderData = $order->get_data(); // The Order data.
 
@@ -320,6 +335,11 @@ class SoloApiRequest implements ApiRequest
 
 		if ($currency !== '1') { // Only for foreign currency.
 			$apiRates = $this->getHnbRates();
+
+			if (empty($apiRates)) {
+				throw new RuntimeException(esc_html__('Central bank rates API returned an empty result', 'woo-solo-api'));
+			}
+
 			$currency = $this->getCurrency($currency);
 
 			$currencyRate = $apiRates[$currency];
@@ -380,6 +400,27 @@ class SoloApiRequest implements ApiRequest
 
 		$requestBody['napomene'] = wp_kses_post($customerNote);
 
+		/**
+		 * Filters the Solo API request body before it's being prepared for sending
+		 *
+		 * If you need to modify the request towards the SOLO API,
+		 * you can just hook to this filter and modify the request body.
+		 *
+		 * Usage:
+		 *
+		 * add_filter('woo_solo_api_modify_request_body', 'my_customer_filter', 10, 2);
+		 *
+		 * function my_customer_filter($requestBody, $order) {
+		 *   // (maybe) modify $requestBody.
+		 *   return $requestBody;
+		 * }
+		 *
+		 * @since 2.2.0
+		 *
+		 * @param array $requestBody Existing customer note.
+		 */
+		$requestBody = \apply_filters('woo_solo_api_modify_request_body', $requestBody, $order);
+
 		$postData = $this->prepareRequestData($requestBody);
 
 		if (defined('WP_DEBUG') && WP_DEBUG === true) {
@@ -431,11 +472,12 @@ class SoloApiRequest implements ApiRequest
 
 		$responseDetails = json_decode($responseBody, true);
 
+		if (!is_array($responseDetails)) {
+			throw new TypeError(esc_html__('Response details from the API is not of an array type', 'woo-solo-api'));
+		}
+
 		// Usually an error if API throttling happened.
 		if ($responseDetails['status'] !== 0) {
-			// Write error to the database for better logging.
-			SoloOrdersTable::addApiResponseError($orderId, $responseBody);
-
 			throw ApiRequestException::apiResponse($responseDetails['status'], $responseDetails['message']);
 		}
 
@@ -559,7 +601,17 @@ class SoloApiRequest implements ApiRequest
 	 */
 	private function getHnbRates(): array
 	{
-		$apiRates = json_decode(get_transient(FetchExchangeRate::TRANSIENT), true);
+		$exchangeRates = get_transient(FetchExchangeRate::TRANSIENT);
+
+		if (!is_string($exchangeRates)) {
+			return [];
+		}
+
+		$apiRates = json_decode($exchangeRates, true);
+
+		if (!is_array($apiRates)) {
+			return [];
+		}
 
 		$ratesOut = [];
 
@@ -619,29 +671,5 @@ class SoloApiRequest implements ApiRequest
 		$query = http_build_query($requestBody);
 
 		return (string) preg_replace('/usluga(\d+)/', 'usluga', $query);
-	}
-
-	/**
-	 * Detect current language
-	 *
-	 * This is a placeholder for logic used to detect languages if translation plugins
-	 * are installed.
-	 *
-	 * The Solo service only permits 6 languages:
-	 *
-	 * Croatian (1)
-	 * English (2)
-	 * German (3)
-	 * French (4)
-	 * Italian (5)
-	 * Spanish (6)
-	 *
-	 * If these are not found or detected, the language will fall back to settings one.
-	 *
-	 * @return string Identifier of the language.
-	 */
-	private function detectLanguage(): string
-	{
-		return get_option('solo_api_languages');
 	}
 }
