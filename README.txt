@@ -520,6 +520,7 @@ execute on the checkout.
 
 Usage:
 
+<code>
 add_filter('woo_solo_api_overwrite_request_on_checkout', 'my_payment_processor_overwrite', 10, 2);
 
 function my_payment_processor_overwrite($sendControl, $order) {
@@ -537,9 +538,12 @@ function my_payment_processor_overwrite($sendControl, $order) {
   // Default fallback.
   return $sendControl;
 }
+</code>
 
+<code>
 @param string $sendControl Type of send control. Can be 'checkout' or 'status_change'.
 @param WC_Order $order Order object.
+</code>
 
 --------------
 
@@ -559,8 +563,10 @@ function my_customer_filter($customerNote, $order) {
 }
 </code>
 
+<code>
 @param string $customerNote Existing customer note.
 @param WC_Order $order Order object
+</code>
 
 --------------
 
@@ -571,14 +577,18 @@ you can just hook to this filter and modify the request body.
 
 Usage:
 
+<code>
 add_filter('woo_solo_api_modify_request_body', 'my_customer_filter', 10, 2);
 
 function my_customer_filter($requestBody, $order) {
   // (maybe) modify $requestBody.
   return $requestBody;
 }
+</code>
 
+<code>
 @param array $requestBody Existing customer note.
+</code>
 
 --------------
 
@@ -598,9 +608,11 @@ function my_message_filter($emailMessage, $orderId, $email) {
 }
 </code>
 
+<code>
 @param string $emailMessage Email message from options to filter.
 @param int    $orderId Order ID.
 @param string $email Email address of the person for whom this message needs to be send to.
+</code>
 
 --------------
 
@@ -619,9 +631,11 @@ function my_message_filter($defaultMessage, $orderId, $email) {
 }
 </code>
 
+<code>
 @param string $defaultMessage Email message to filter.
 @param int    $orderId Order ID.
 @param string $email Email address of the person for whom this message needs to be send to.
+</code>
 
 --------------
 
@@ -641,8 +655,10 @@ function my_title_filter($emailTitle, $orderId) {
 }
 </code>
 
+<code>
 @param string $emailTitle Email title.
 @param int    $orderId Order ID.
+</code>
 
 --------------
 
@@ -662,8 +678,10 @@ function my_title_filter($defaultTitle, $orderId) {
 }
 </code>
 
+<code>
 @param string $emailTitle Email title.
 @param int    $orderId Order ID.
+</code>
 
 --------------
 
@@ -673,10 +691,12 @@ When email to customer is sent, maybe you want to add something more. In that
 case you'll probably need to modify the headers sent with the email.
 Default ones are
 
+<code>
 [
 	'MIME-Version: 1.0',
 	'Content-Type: text/html',
 ];
+</code>
 
 You can add to that list.
 
@@ -691,11 +711,13 @@ function my_custom_email_headers($headers) {
 }
 </code>
 
+<code>
 @param array $headers Email headers to pass to wp_mail.
+</code>
 
 --------------
 
-Filter the from name set from the options
+Filter the 'from' name set from the options
 
 Usage:
 
@@ -708,7 +730,9 @@ function my_custom_from_name($name) {
 }
 </code>
 
+<code>
 @param string $name Name to change in the "From" field.
+</code>
 
 --------------
 
@@ -730,7 +754,9 @@ function my_global_discount($globalDiscount) {
 }
 </code>
 
+<code>
 @param int $globalDiscount The value of the global discount to apply to every item.
+</code>
 
 --------------
 
@@ -751,6 +777,8 @@ function my_tax_rate($taxRate, $itemData, $taxRates) {
 }
 </code>
 
+<code>
 @param float $taxRate  The value of the tax rate for the current order item.
 @param array $itemData The data for the current order item.
 @param array $taxRates The value of the tax rates for the current order item.
+</code>
