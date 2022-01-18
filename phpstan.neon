@@ -15,7 +15,7 @@ parameters:
         - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
     paths:
         - src/
-    excludes_analyse:
+    excludePaths:
         - src/Core/CompiledContainer.php
     ignoreErrors:
         # Uses func_get_args()

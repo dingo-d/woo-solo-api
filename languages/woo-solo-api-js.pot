@@ -1,526 +1,533 @@
+#, fuzzy
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"X-Generator: babel-plugin-makepot\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: assets/dev/scripts/index.jsx:111
-msgid "Transactional account"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:112
-msgid "Cash"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:113
-msgid "Cards"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:114
-msgid "Cheque"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:115
-msgid "Other"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:119
-msgid "1 day"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:120
-msgid "2 days"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:121
-msgid "3 days"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:122
-msgid "4 days"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:123
-msgid "5 days"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:124
-msgid "6 days"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:125
+#: assets/dev/scripts/const/dueDate.jsx:10
 msgid "1 week"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:126
+#: assets/dev/scripts/const/dueDate.jsx:11
 msgid "2 weeks"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:127
+#: assets/dev/scripts/const/dueDate.jsx:12
 msgid "3 weeks"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:326
-msgid "Errors happened during saving"
+#: assets/dev/scripts/const/dueDate.jsx:4
+msgid "1 day"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:327
-msgid "Settings saved"
+#: assets/dev/scripts/const/dueDate.jsx:5
+msgid "2 days"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:34
-msgid "-"
+#: assets/dev/scripts/const/dueDate.jsx:6
+msgid "3 days"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:35
-msgid "piece"
+#: assets/dev/scripts/const/dueDate.jsx:7
+msgid "4 days"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:358
-msgid "Validation error: "
+#: assets/dev/scripts/const/dueDate.jsx:8
+msgid "5 days"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:36
-msgid "hour"
+#: assets/dev/scripts/const/dueDate.jsx:9
+msgid "6 days"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:37
-msgid "year"
+#: assets/dev/scripts/const/languages.jsx:4
+msgid "Croatian"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:375
-msgid "Empty API token"
+#: assets/dev/scripts/const/languages.jsx:5
+msgid "English"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:38
-msgid "km"
+#: assets/dev/scripts/const/languages.jsx:6
+msgid "German"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:389
-msgid ""
-"For more details on the options you can read the official SOLO API "
-"documentation here: "
+#: assets/dev/scripts/const/languages.jsx:7
+msgid "French"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:39
-msgid "litre"
+#: assets/dev/scripts/const/languages.jsx:8
+msgid "Italian"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:40
+#: assets/dev/scripts/const/languages.jsx:9
+msgid "Spanish"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.jsx:4
+msgid "Transactional account"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.jsx:5
+msgid "Cash"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.jsx:6
+msgid "Cards"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.jsx:7
+msgid "Cheque"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.jsx:8
+msgid "Other"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:10
 msgid "kg"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:41
+#: assets/dev/scripts/const/unitMeasures.jsx:11
 msgid "kWh"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:42
+#: assets/dev/scripts/const/unitMeasures.jsx:12
 msgid "m³"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:423
-msgid "Solo API token"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:424
-msgid "Enter your personal token that you obtained from your SOLO account"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:43
+#: assets/dev/scripts/const/unitMeasures.jsx:13
 msgid "tonne"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:434
-msgid "Solo Api Settings"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:44
+#: assets/dev/scripts/const/unitMeasures.jsx:14
 msgid "m²"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:442
-msgid "Unit measure"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:443
-msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:45
+#: assets/dev/scripts/const/unitMeasures.jsx:15
 msgid "m"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:455
-msgid "Enter the type of the service"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:456
-msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:46
+#: assets/dev/scripts/const/unitMeasures.jsx:16
 msgid "day"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:468
-msgid "Invoice Language"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:469
-msgid "Select the language of the invoice/offer"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:47
+#: assets/dev/scripts/const/unitMeasures.jsx:17
 msgid "month"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:48
+#: assets/dev/scripts/const/unitMeasures.jsx:18
 msgid "night"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:481
-msgid "Show taxes"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:482
-msgid "Show tax"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:482
-msgid "Don't show tax"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:49
+#: assets/dev/scripts/const/unitMeasures.jsx:19
 msgid "cart"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:493
-msgid "Currency"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:50
+#: assets/dev/scripts/const/unitMeasures.jsx:20
 msgid "account"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:505
-msgid "Type of invoice"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:506
-msgid "Only works with invoice, not with offer"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:51
+#: assets/dev/scripts/const/unitMeasures.jsx:21
 msgid "pair"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:516
-msgid "Choose the type of payment for each enabled payment gateway"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:52
+#: assets/dev/scripts/const/unitMeasures.jsx:22
 msgid "ml"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:528
-msgid "Type of payment document"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:53
+#: assets/dev/scripts/const/unitMeasures.jsx:23
 msgid "pax"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:533
-msgid "Offer"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:534
-msgid "Invoice"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:54
+#: assets/dev/scripts/const/unitMeasures.jsx:24
 msgid "room"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:541
-msgid "Payment option types"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:55
+#: assets/dev/scripts/const/unitMeasures.jsx:25
 msgid "apartment"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:551
-msgid "Check if you want the invoice to be fiscalized *"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:552
-msgid "Fiscalize"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:552
-msgid "Don't fiscalize"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:56
+#: assets/dev/scripts/const/unitMeasures.jsx:26
 msgid "term"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:560
+#: assets/dev/scripts/const/unitMeasures.jsx:27
+msgid "set"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:28
+msgid "package"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:29
+msgid "point"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:30
+msgid "service"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:31
+msgid "pal"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:32
+msgid "kont"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:33
+msgid "čl"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:34
+msgid "tis"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:35
+msgid "sec"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:36
+msgid "min"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:37
+msgid "str"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:38
+msgid "kpl"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:39
+msgid "pšl"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:4
+msgid "-"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:40
+msgid "ha"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:41
+msgid "g"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:42
+msgid "x"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:5
+msgid "piece"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:6
+msgid "hour"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:7
+msgid "year"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:8
+msgid "km"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:9
+msgid "litre"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:237
+msgid "Errors happened during saving"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:238
+msgid "Settings saved"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:269
+msgid "Validation error: "
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:286
+msgid "Empty API token"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:300
+msgid ""
+"For more details on the options you can read the official SOLO API documentation "
+"here: "
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:334
+msgid "Solo API token"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:335
+msgid "Enter your personal token that you obtained from your SOLO account"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:345
+msgid "Solo Api Settings"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:353
+msgid "Unit measure"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:354
+msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:366
+msgid "Enter the type of the service"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:367
+msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:379
+msgid "Invoice Language"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:380
+msgid "Select the language of the invoice/offer"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:392
+msgid "Show taxes"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:393
+msgid "Show tax"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:393
+msgid "Don't show tax"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:404
+msgid "Currency"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:416
+msgid "Type of invoice"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:417
+msgid "Only works with invoice, not with offer"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:427
+msgid "Choose the type of payment for each enabled payment gateway"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:439
+msgid "Type of payment document"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:444
+msgid "Offer"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:445
+msgid "Invoice"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:452
+msgid "Payment option types"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:462
+msgid "Check if you want the invoice to be fiscalized *"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:463
+msgid "Fiscalize"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:463
+msgid "Don't fiscalize"
+msgstr ""
+
+#: assets/dev/scripts/index.jsx:471
 msgid ""
 "* Fiscalization certificate must be added in the SOLO options, and it only "
 "applies to invoices."
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:566
+#: assets/dev/scripts/index.jsx:477
 msgid "Invoice/Offer due date"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:57
-msgid "set"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:575
+#: assets/dev/scripts/index.jsx:486
 msgid "You can check the currency rate at <a>Croatian National Bank</a>."
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:58
-msgid "package"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:584
+#: assets/dev/scripts/index.jsx:495
 msgid ""
-"The currency will be automatically added if the selected currency is "
-"different from HRK. Also, a note about conversion rate will be added to the "
-"invoice/offer."
+"The currency will be automatically added if the selected currency is different "
+"from HRK. Also, a note about conversion rate will be added to the invoice/offer."
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:59
-msgid "point"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:590
+#: assets/dev/scripts/index.jsx:501
 msgid "Additional Settings"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:594
+#: assets/dev/scripts/index.jsx:505
 msgid "WooCommerce checkout settings"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:598
+#: assets/dev/scripts/index.jsx:509
 msgid "Enable the PIN field on the billing and shipping from in the checkout"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:60
-msgid "service"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:608
+#: assets/dev/scripts/index.jsx:519
 msgid "Enable the IBAN field on the billing and shipping from in the checkout"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:609
+#: assets/dev/scripts/index.jsx:520
 msgid "Enable"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:609
+#: assets/dev/scripts/index.jsx:520
 msgid "Disable"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:61
-msgid "pal"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:617
+#: assets/dev/scripts/index.jsx:528
 msgid "PDF settings"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:62
-msgid "kont"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:621
+#: assets/dev/scripts/index.jsx:532
 msgid "Send the email to the client with the PDF of the order or the invoice"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:622
+#: assets/dev/scripts/index.jsx:533
 msgid "Send email"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:622
+#: assets/dev/scripts/index.jsx:533
 msgid "Don't send email"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:63
-msgid "čl"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:630
+#: assets/dev/scripts/index.jsx:541
 msgid "Send mail to selected payment gateways"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:64
-msgid "tis"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:647
+#: assets/dev/scripts/index.jsx:558
 msgid "PDF send control"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:648
+#: assets/dev/scripts/index.jsx:559
 msgid ""
-"Decide when to send the PDF of the order or invoice.On customer checkout, "
-"or when you approve the order in the WooCommerce admin.This will determine "
-"when the call to the SOLO API will be made"
+"Decide when to send the PDF of the order or invoice.On customer checkout, or "
+"when you approve the order in the WooCommerce admin.This will determine when the "
+"call to the SOLO API will be made"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:65
-msgid "sec"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:654
+#: assets/dev/scripts/index.jsx:565
 msgid "Send on:"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:659
+#: assets/dev/scripts/index.jsx:570
 msgid "Checkout"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:66
-msgid "min"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:662
+#: assets/dev/scripts/index.jsx:573
 msgid "Status change to 'completed'"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:67
-msgid "str"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:670
+#: assets/dev/scripts/index.jsx:581
 msgid "Email Settings"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:677
+#: assets/dev/scripts/index.jsx:588
 msgid "Set the title of the mail that will be send with the PDF invoice"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:68
-msgid "kpl"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:689
+#: assets/dev/scripts/index.jsx:600
 msgid "Type the message that will appear on the mail with the invoice PDF attached"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:69
-msgid "pšl"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:70
-msgid "ha"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:701
+#: assets/dev/scripts/index.jsx:612
 msgid "Change the 'from' name that shows when WordPress sends the mail"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:704
+#: assets/dev/scripts/index.jsx:615
 msgid ""
-"<str>CAUTION</str>: This change is global, every mail send from your "
-"WordPress will have this 'from' name"
+"<str>CAUTION</str>: This change is global, every mail send from your WordPress "
+"will have this 'from' name"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:71
-msgid "g"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:719
+#: assets/dev/scripts/index.jsx:630
 msgid "Solo Api Test"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:72
-msgid "x"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:723
+#: assets/dev/scripts/index.jsx:634
 msgid "This serves for testing purposes only"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:725
+#: assets/dev/scripts/index.jsx:636
 msgid ""
-"Pressing the button will make a request to your Solo API account,and will "
-"list all the invoices you have"
+"Pressing the button will make a request to your Solo API account,and will list "
+"all the invoices you have"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:740
+#: assets/dev/scripts/index.jsx:651
 msgid "Make a request"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:751
+#: assets/dev/scripts/index.jsx:662
 msgid "Save settings"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:759
+#: assets/dev/scripts/index.jsx:670
 msgid "Solo API order details"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:76
-msgid "Croatian"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:764
+#: assets/dev/scripts/index.jsx:675
 msgid "ID"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:765
+#: assets/dev/scripts/index.jsx:676
 msgid "WooCommerce Order ID"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:766
+#: assets/dev/scripts/index.jsx:677
 msgid "Solo ID"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:767
+#: assets/dev/scripts/index.jsx:678
 msgid "Customer Email"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:768
+#: assets/dev/scripts/index.jsx:679
 msgid "Is sent to Solo API"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:769
+#: assets/dev/scripts/index.jsx:680
 msgid "Is pdf sent to customer"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:77
-msgid "English"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:770
+#: assets/dev/scripts/index.jsx:681
 msgid "API response errors"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:771
+#: assets/dev/scripts/index.jsx:682
 msgid "Created at"
 msgstr ""
 
-#: assets/dev/scripts/index.jsx:772
+#: assets/dev/scripts/index.jsx:683
 msgid "Updated at"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:78
-msgid "German"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:79
-msgid "French"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:80
-msgid "Italian"
-msgstr ""
-
-#: assets/dev/scripts/index.jsx:81
-msgid "Spanish"
 msgstr ""

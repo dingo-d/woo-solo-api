@@ -132,7 +132,9 @@ class EnqueueResources implements Assets
 	private function getLocalizations(): array
 	{
 		return [
-			'optionSaved' => esc_html__('Options saved.', 'woo-solo-api'),
+			'wooSoloApiLocalizations' => [
+				'optionSaved' => esc_html__('Options saved.', 'woo-solo-api')
+			]
 		];
 	}
 
@@ -155,10 +157,10 @@ class EnqueueResources implements Assets
 
 		$data = json_decode($data, true);
 
-		if (empty($data)) {
+		if (empty($data) || !\is_array($data)) {
 			return '';
 		}
 
-		return $data[$key] ?? '';
+		return (string) $data[$key];
 	}
 }

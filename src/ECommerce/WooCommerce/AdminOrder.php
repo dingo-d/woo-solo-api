@@ -54,19 +54,19 @@ class AdminOrder implements Registrable
 		$billingIban = get_post_meta($order->get_id(), '_billing_iban_number', true);
 
 		if (!empty($shippingPin)) {
-			echo '<p><strong> ' . esc_html__('Customer shipping PIN number', 'woo-solo-api') . ' :</strong> ' . esc_html($shippingPin) . '</p>';
+			echo '<p><strong> ' . esc_html__('Customer shipping PIN number', 'woo-solo-api') . ' :</strong> ' . esc_html($shippingPin) . '</p>'; // @phpstan-ignore-line
 		}
 
 		if (!empty($billingPin)) {
-			echo '<p><strong> ' . esc_html__('Customer billing PIN number', 'woo-solo-api') . ' :</strong> ' . esc_html($billingPin) . '</p>';
+			echo '<p><strong> ' . esc_html__('Customer billing PIN number', 'woo-solo-api') . ' :</strong> ' . esc_html($billingPin) . '</p>'; // @phpstan-ignore-line
 		}
 
 		if (!empty($shippingIban)) {
-			echo '<p><strong> ' . esc_html__('Customer shipping IBAN number', 'woo-solo-api') . ' :</strong> ' . esc_html($shippingIban) . '</p>';
+			echo '<p><strong> ' . esc_html__('Customer shipping IBAN number', 'woo-solo-api') . ' :</strong> ' . esc_html($shippingIban) . '</p>'; // @phpstan-ignore-line
 		}
 
 		if (!empty($billingIban)) {
-			echo '<p><strong> ' . esc_html__('Customer billing IBAN number', 'woo-solo-api') . ' :</strong> ' . esc_html($billingIban) . '</p>';
+			echo '<p><strong> ' . esc_html__('Customer billing IBAN number', 'woo-solo-api') . ' :</strong> ' . esc_html($billingIban) . '</p>'; // @phpstan-ignore-line
 		}
 	}
 }

@@ -62,4 +62,8 @@
 	<!-- Check against minimum WP version. -->
 	<config name="minimum_supported_wp_version" value="5.1"/>
 
+	<rule ref="PSR12.Classes">
+		<exclude name="PSR12.Classes.OpeningBraceSpace.Found"/>
+	</rule>
+
 </ruleset>

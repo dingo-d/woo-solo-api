@@ -58,13 +58,17 @@ class SendCustomerEmail extends ScheduleEvent
 		 * but in the new version we manually serialize this in JS.
 		 * This is why we should check the type and unserialize if necessary to get an array.
 		 */
-		$checkedGateways = get_option('solo_api_mail_gateway');
+		$checkedGateways = get_option('solo_api_mail_gateway', 'a:0:{}');
 
-		if (!is_array($checkedGateways)) {
+		if (!is_array($checkedGateways) && is_string($checkedGateways)) {
 			$checkedGateways = unserialize($checkedGateways);
 		}
 
 		if (empty($checkedGateways)) {
+			return false;
+		}
+
+		if (!is_array($checkedGateways)) {
 			return false;
 		}
 
@@ -81,15 +85,20 @@ class SendCustomerEmail extends ScheduleEvent
 		$responseBody = (array)$body;
 
 		// Create pdf.
-		$pdfLink = esc_url($responseBody[$billType]['pdf']);
+		$pdfLink = (!empty($responseBody[$billType]) && is_array($responseBody[$billType])) ? esc_url($responseBody[$billType]['pdf']) : '';
+
+		if (empty($pdfLink)) {
+			SoloOrdersTable::addApiResponseError($orderId, esc_html__('PDF invoice/order is missing', 'woo-solo-api')); // @phpstan-ignore-line
+			return false;
+		}
 
 		if ($billType === SoloApiRequest::INVOICE) {
-			$soloOrderId = $responseBody[$billType]['broj_racuna'];
+			$soloOrderId = (!empty($responseBody[$billType]) && is_array($responseBody[$billType])) ? $responseBody[$billType]['broj_racuna'] : '';
 			$pdfName = esc_html($soloOrderId);
 			/* translators: name of the invoice file, don't use diacritics! */
 			$pdfName = esc_html__('invoice-', 'woo-solo-api') . $pdfName;
 		} else {
-			$soloOrderId = $responseBody[$billType]['broj_ponude'];
+			$soloOrderId = (!empty($responseBody[$billType]) && is_array($responseBody[$billType])) ? $responseBody[$billType]['broj_ponude'] : '';
 			$pdfName = esc_html($soloOrderId);
 			/* translators: name of the offer file, don't use diacritics! */
 			$pdfName = esc_html__('offer-', 'woo-solo-api') . $pdfName;
@@ -146,6 +155,12 @@ class SendCustomerEmail extends ScheduleEvent
 
 		$urlParse = wp_parse_url($attachment);
 
+		if ($urlParse === false || !is_array($urlParse)) {
+			// phpcs:ignore
+			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Error in sending customer email. Attachment URL cannot be parsed.', 'woo-solo-api')); // @phpstan-ignore-line
+			return false;
+		}
+
 		$attachmentId = wp_insert_attachment(
 			$attachmentArray,
 			$urlParse['path'],
@@ -160,7 +175,15 @@ class SendCustomerEmail extends ScheduleEvent
 		}
 
 		// Wrapping in nl2br to see if HTML will parse correctly.
-		$emailMessage = nl2br(get_option('solo_api_message'));
+		$message = get_option('solo_api_message', '');
+
+		if (!is_string($message)) {
+			// phpcs:ignore
+			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Error in sending customer email. Email message must be of string type.', 'woo-solo-api')); // @phpstan-ignore-line
+			return false;
+		}
+
+		$emailMessage = nl2br($message);
 		$emailTitle = get_option('solo_api_mail_title');
 
 		$billType = ($billType === SoloApiRequest::INVOICE) ?
@@ -293,7 +316,7 @@ class SendCustomerEmail extends ScheduleEvent
 		 */
 		$headers = apply_filters('woo_solo_api_email_headers', $headers);
 
-		wp_mail($email, $emailTitle, $emailMessage, $headers, [$attachment]);
+		wp_mail($email, $emailTitle, $emailMessage, $headers, [$attachment]); // @phpstan-ignore-line
 
 		// Now we delete the saved attachment because of GDPR :).
 		$deleted = wp_delete_attachment($attachmentId, true);
@@ -329,7 +352,7 @@ class SendCustomerEmail extends ScheduleEvent
 		 * Email sent to user - YES;
 		 * Update - YES;
 		 */
-		SoloOrdersTable::updateOrdersTable($orderId, $soloOrderId, true, true, true);
+		SoloOrdersTable::updateOrdersTable($orderId, $soloOrderId, true, true, true); // @phpstan-ignore-line
 
 		return true;
 	}
