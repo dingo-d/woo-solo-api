@@ -4,7 +4,8 @@ $table: (
 
 .details-table {
 	display: grid;
-	grid-template-columns: repeat(9, 1fr);
+	grid-template-columns: repeat(10, 1fr);
+	width: fit-content;
 	border-top: 1px solid map-get-strict($table, 'border-color');
 	border-right: 1px solid map-get-strict($table, 'border-color');
 
