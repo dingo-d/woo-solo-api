@@ -119,6 +119,7 @@ class EnqueueResources implements Assets
 			'wp-api',
 			'wp-i18n',
 			'wp-components',
+			'wp-data',
 			'wp-element',
 			'wp-api-fetch',
 		];
