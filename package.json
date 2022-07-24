@@ -30,7 +30,8 @@
 		"lintJs": "npm run __eslint",
 		"lint": "npm run lintJs && npm run lintStyle && composer standard:check && composer analyze",
 		"start": "webpack --progress --watch --mode development",
-		"build": "webpack --progress --mode production"
+		"build": "webpack --progress --mode production",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"@babel/eslint-parser": "^7.18.9",
