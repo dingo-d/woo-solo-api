@@ -1,6 +1,6 @@
 const {render} = wp.element;
 
-import {setStoreGlobalWindow, setStore} from './store';
+import {setStoreGlobalWindow, setStore} from './store/store';
 import {App} from './components/App';
 
 // Set all store values.

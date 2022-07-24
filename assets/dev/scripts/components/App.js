@@ -8,32 +8,30 @@ import {SettingsPanels} from './SettingsPanels';
 import {OrderPanel} from './OrderPanel';
 
 // Store
-import {STORE_NAME} from "../store";
+import {STORE_NAME} from "../store/store";
 
 /**
  * WordPress dependencies
  */
 const {
-	dispatch,
 	withSelect,
-	subscribe,
-	select,
 } = wp.data;
 
 const {
 	Spinner,
 } = wp.components;
 
-export const App = () => {
-	const isLoading = withSelect((select) => {
-		return select(STORE_NAME).getIsLoading();
-	});
 
-	setTimeout(() => {
-		dispatch(STORE_NAME).unsetIsLoading();
-	}, 3000);
+const Main = (props) => {
+	const {
+		dbOrders,
+	} = props;
 
-	console.log(isLoading);
+	let isLoading = true;
+
+	if (dbOrders.length > 0) {
+		isLoading = false;
+	}
 
 	const optionsWrapperClass = classnames({
 		'options-wrapper': true,
@@ -48,10 +46,18 @@ export const App = () => {
 					<Spinner/> :
 					<>
 						<SettingsPanels/>
-						<OrderPanel/>
+						<OrderPanel orders={dbOrders}/>
 					</>
 				}
 			</div>
 		</>
 	);
 };
+
+export const App = withSelect((select) => {
+	return {
+		dbOrders: select(STORE_NAME).getDbOrders(),
+	};
+})(Main);
+
+

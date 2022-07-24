@@ -1,7 +1,12 @@
+import {actionTypes} from "./types";
+
+const {apiFetch} = wp;
+
 const {
 	createReduxStore,
 	register,
 	select,
+	dispatch,
 } = wp.data;
 
 export const STORE_NAME = 'woo-solo-api-store';
@@ -57,90 +62,79 @@ const DEFAULT_STATE = {
 };
 
 const actions = {
-	setIsLoading() {
+	setIsLoading(value) {
 		return {
-			type: 'SET_IS_LOADING',
-		}
-	},
-	unsetIsLoading() {
-		return {
-			type: 'UNSET_IS_LOADING',
+			type: actionTypes.SET_IS_LOADING,
+			value
 		}
 	},
 	setIsApiRequestOver() {
 		return {
-			type: 'SET_IS_API_REQUEST_OVER',
+			type: actionTypes.SET_IS_API_REQUEST_OVER,
 		}
 	},
 	unsetIsApiRequestOver() {
 		return {
-			type: 'UNSET_IS_API_REQUEST_OVER',
+			type: actionTypes.UNSET_IS_API_REQUEST_OVER,
 		}
 	},
 	setIsSaving() {
 		return {
-			type: 'SET_IS_SAVING',
+			type: actionTypes.SET_IS_SAVING,
 		}
 	},
 	unsetIsSaving() {
 		return {
-			type: 'UNSET_IS_SAVING',
+			type: actionTypes.UNSET_IS_SAVING,
 		}
 	},
 	setIsSaved() {
 		return {
-			type: 'SET_IS_SAVED',
+			type: actionTypes.SET_IS_SAVED,
 		}
 	},
 	unsetIsSaved() {
 		return {
-			type: 'UNSET_IS_SAVED',
+			type: actionTypes.UNSET_IS_SAVED,
 		}
 	},
 	setHasErrors() {
 		return {
-			type: 'SET_HAS_ERRORS',
+			type: actionTypes.SET_HAS_ERRORS,
 		}
 	},
 	unsetHasErrors() {
 		return {
-			type: 'UNSET_HAS_ERRORS',
+			type: actionTypes.UNSET_HAS_ERRORS,
 		}
 	},
 	setErrors(errors) {
 		return {
-			type: 'SET_ERRORS',
+			type: actionTypes.SET_ERRORS,
 			errors
 		}
 	},
 	setApiResponse(response) {
 		return {
-			type: 'SET_API_RESPONSE',
+			type: actionTypes.SET_API_RESPONSE,
 			response
 		}
 	},
 	setDbOrders(dbOrders) {
 		return {
-			type: 'SET_DB_ORDERS',
+			type: actionTypes.SET_DB_ORDERS,
 			dbOrders
 		}
 	},
-	setDbOrderByIndex(dbOrders, index) {
+	fetchDbOrders(path) {
 		return {
-			type: 'SET_DB_ORDER_BY_INDEX',
-			dbOrders,
-			index,
-		};
-	},
-	unsetDbOrderByIndex(index) {
-		return {
-			type: 'UNSET_DB_ORDER_BY_INDEX',
-			index,
-		};
+			type: actionTypes.FETCH_DB_ORDERS,
+			path
+		}
 	},
 	setSettings(settings) {
 		return {
-			type: 'SET_SETTINGS',
+			type: actionTypes.SET_SETTINGS,
 			settings
 		}
 	},
@@ -177,9 +171,6 @@ const selectors = {
 	getDbOrders(state) {
 		return state.dbOrders;
 	},
-	getDbOrder(state, orderId) {
-		return state.dbOrders.find((dbOrder) => dbOrder.orderId === orderId);
-	},
 	getSettings(state) {
 		return state.settings;
 	},
@@ -193,13 +184,7 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 		case 'SET_IS_LOADING': {
 			return {
 				...state,
-				isLoading: true,
-			};
-		}
-		case 'UNSET_IS_LOADING': {
-			return {
-				...state,
-				isLoading: false,
+				isLoading: action.isLoading,
 			};
 		}
 		case 'SET_IS_API_REQUEST_OVER': {
@@ -261,25 +246,10 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 			return state;
 		}
 		case 'SET_DB_ORDERS': {
-			state.dbOrders.push(action.dbOrders);
-			return state;
-		}
-		case 'SET_DB_ORDER_BY_INDEX': {
-			if (JSON.stringify(state.dbOrders[action.index]) !== JSON.stringify(action.dbOrders)) {
-				state.dbOrders[action.index] = action.dbOrders;
-				return state;
-			}
-
-			return state;
-		}
-		case 'UNSET_DB_ORDER_BY_INDEX': {
-			let internalDbOrders = {
+			return {
 				...state,
+				dbOrders: action.dbOrders,
 			};
-
-			internalDbOrders.dbOrders.splice(action.index, 1);
-
-			return internalDbOrders;
 		}
 		case 'SET_SETTINGS': {
 			return {
@@ -287,9 +257,25 @@ const reducer = ( state = DEFAULT_STATE, action ) => {
 				settings: action.settings,
 			};
 		}
+
 		default: {
 			return state;
 		}
+	}
+};
+
+const controls = {
+	FETCH_DB_ORDERS(action) {
+		return apiFetch({path: action.path});
+	}
+};
+
+const resolvers = {
+	*getDbOrders() {
+		const path = '/woo-solo-api/v1/solo-order-details';
+		const dbData = yield actions.fetchDbOrders(path);
+
+		return actions.setDbOrders(dbData);
 	}
 };
 
@@ -301,9 +287,11 @@ export const setStore = () => {
 
 	const WooSoloApiStore = createReduxStore(STORE_NAME,
 		{
-			selectors,
-			actions,
 			reducer,
+			actions,
+			selectors,
+			controls,
+			resolvers,
 		}
 	);
 
