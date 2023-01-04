@@ -212,6 +212,7 @@ class App extends Component {
 					hasErrors: true,
 				});
 
+				// Should be a React reference, not DOM!
 				const target = document.querySelector(`[name=${Object.keys(errors)[0]}]`);
 
 				window.scrollTo({
@@ -243,7 +244,7 @@ class App extends Component {
 
 	objectHasEmptyProperties(object) {
 		for (const key in object) {
-			if (object.hasOwnProperty(key)) {
+			if (object?.hasOwnProperty(key)) {
 				if (object[key] != null && object[key] !== '' && typeof(object[key]) !== 'undefined') {
 					return false;
 				}
@@ -263,7 +264,7 @@ class App extends Component {
 	}
 
 	renderError(type) {
-		if (this.state.errors.hasOwnProperty(type)) {
+		if (this.state.errors?.hasOwnProperty(type)) {
 			return (
 				<p className='components-base-control__error'>
 					{__('Validation error: ', 'woo-solo-api') + this.state.errors[type]}
@@ -273,7 +274,7 @@ class App extends Component {
 	}
 
 	hasErrorClass(type) {
-		return this.state.errors.hasOwnProperty(type) ? 'has-error' : '';
+		return this.state.errors?.hasOwnProperty(type) ? 'has-error' : '';
 	}
 
 	@bind
@@ -289,6 +290,20 @@ class App extends Component {
 		apiFetch({path: '/woo-solo-api/v1/solo-account-details'}).then(res => {
 			this.setState({
 				apiResponse: res,
+				isApiRequestOver: true
+			});
+		});
+	}
+
+	@bind
+	deleteTransient() {
+		this.setState({
+			isApiRequestOver: false,
+		});
+
+		apiFetch({path: '/woo-solo-api/v1/solo-clear-currency-transient'}).then(res => {
+			this.setState({
+				apiResponse: res ? __('Transient deleted', 'woo-solo-api') : __('Transient not deleted', 'woo-solo-api'),
 				isApiRequestOver: true
 			});
 		});
@@ -633,8 +648,7 @@ class App extends Component {
 						<PanelRow className='components-panel__row--single'>
 							<h4>{__('This serves for testing purposes only', 'woo-solo-api')}</h4>
 							<p className='components-base-control__notice'>
-								{__('Pressing the button will make a request to your Solo API account,' +
-									'and will list all the invoices you have', 'woo-solo-api')}
+								{__('Pressing the button will make a request to your Solo API account, and will list all the invoices or offers you have', 'woo-solo-api')}
 							</p>
 							<pre className='components-base-control__code'>
 								<code>
@@ -649,6 +663,17 @@ class App extends Component {
 								onClick={this.callApi}
 							>
 								{__('Make a request', 'woo-solo-api')}
+							</Button>
+							<p className='components-base-control__notice'>
+								{__('Pressing the button will clear the Croatian Central Bank (HNB) API transient.', 'woo-solo-api')}
+							</p>
+							<Button
+								isPrimary
+								isLarge
+								disabled={this.state.isLoading}
+								onClick={this.deleteTransient}
+							>
+								{__('Delete exchange rate transient', 'woo-solo-api')}
 							</Button>
 						</PanelRow>
 					</PanelBody>

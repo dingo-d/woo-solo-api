@@ -1,7 +1,7 @@
 const {__} = wp.i18n;
 
 export const currencies = [
-	{value: '1', label: 'HRK - kn'},
+	{value: '14', label: 'EUR - €'},
 	{value: '2', label: 'AUD - $'},
 	{value: '3', label: 'CAD - $'},
 	{value: '4', label: 'CZK - Kč'},
@@ -14,6 +14,5 @@ export const currencies = [
 	{value: '11', label: 'GBP - £'},
 	{value: '12', label: 'USD - $'},
 	{value: '13', label: 'BAM - KM'},
-	{value: '14', label: 'EUR - €'},
 	{value: '15', label: 'PLN - zł'},
 ];

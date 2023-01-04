@@ -32,7 +32,7 @@ class PluginsPage implements Registrable
 	 */
 	public function register(): void
 	{
-		add_action(self::PLUGIN_LINK_HOOK, [$this, 'addActionLink']);
+		add_filter(self::PLUGIN_LINK_HOOK, [$this, 'addActionLink']);
 	}
 
 	/**

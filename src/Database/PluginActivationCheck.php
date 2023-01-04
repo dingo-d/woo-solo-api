@@ -42,7 +42,7 @@ class PluginActivationCheck
 			)
 		);
 
-		$pluginsArray = array_flip(unserialize($activePlugins)); // @phpstan-ignore-line
+		$pluginsArray = array_flip(unserialize($activePlugins));
 
 		if (isset($pluginsArray['woocommerce/woocommerce.php'])) {
 			return true;
@@ -69,7 +69,7 @@ class PluginActivationCheck
 			)
 		);
 
-		$pluginsArray = array_flip(unserialize($activePluginsList)); // @phpstan-ignore-line
+		$pluginsArray = array_flip(unserialize($activePluginsList));
 		unset($pluginsArray['woo-solo-api/woo-solo-api.php']);
 
 		$updatedPluginsArray = serialize(array_values(array_flip($pluginsArray)));

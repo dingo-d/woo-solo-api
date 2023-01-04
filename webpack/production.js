@@ -5,7 +5,8 @@
  */
 
 const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
 const webpack = require('webpack');
 
 module.exports = (options) => {
@@ -37,18 +38,17 @@ module.exports = (options) => {
 	}
 
 	if (! options.overrides.includes('optimizeCSSAssetsPlugin')) {
-		optimization.minimizer.push(new OptimizeCssAssetsPlugin({
-			cssProcessorPluginOptions: {
-				preset: [
-					'default',
-					{
-						discardComments: {
-							removeAll: true,
+		optimization.minimizer.push(new CssMinimizerPlugin({
+				minimizerOptions: {
+					preset: [
+						"default",
+						{
+							discardComments: {removeAll: true},
 						},
-					},
-				],
-			},
-		}));
+					],
+				},
+			}),
+		);
 	}
 
 	return {

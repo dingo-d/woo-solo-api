@@ -28,7 +28,7 @@ use MadeByDenis\WooSoloApi\Email\EmailFunctionality;
 use MadeByDenis\WooSoloApi\i18n\Internationalization;
 use MadeByDenis\WooSoloApi\Privacy\DataHandling;
 use MadeByDenis\WooSoloApi\Request\SoloApiRequest;
-use MadeByDenis\WooSoloApi\Rest\Endpoints\{OrderDetails, OrderDetailsCollection};
+use MadeByDenis\WooSoloApi\Rest\Endpoints\{ClearExchangeTransient, OrderDetails, OrderDetailsCollection};
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use MadeByDenis\WooSoloApi\Exception\{MissingManifest, PluginActivationFailure};
 use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
@@ -212,6 +212,7 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			AccountDetails::class,
 			AdminOrder::class,
 			CheckoutFields::class,
+			ClearExchangeTransient::class,
 			DataHandling::class,
 			DatabaseTableMissingNotice::class,
 			EmailFunctionality::class,

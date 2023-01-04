@@ -1,12 +1,12 @@
 === Woo Solo Api ===
 Contributors: dingo_bastard
 Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
-Requires at least: 5.3
+Requires at least: 5.8
 Requires PHP: 7.3
-Tested up to: 5.9
-Stable tag: 2.2.0
-WC requires at least: 4.0.0
-WC tested up to: 6.0.0
+Tested up to: 6.1.1
+Stable tag: 2.3.0
+WC requires at least: 6.0.0
+WC tested up to: 7.2.2
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -50,9 +50,9 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 == Requirements ==
 
-* PHP 7.3 or greater
-* WordPress 5.3 or above
-* WooCommerce 4.0.0 or above
+* PHP 7.3 or greater (not fully tested with PHP 8+)
+* WordPress 5.8 or above
+* WooCommerce 6.0.0 or above
 * Non IE browser
 
 == Screenshots ==
@@ -65,6 +65,25 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 6. You can check the sent orders, whether the order was sent to API, and if the customer got the PDF or not (or if error happened on the API)
 
 == Changelog ==
+
+= 2.3.0 =
+Release Date: January 4th, 2023
+
+This release will fix the affected change due to Croatia entering the Euro-zone.
+
+### Added
+
+* Add a fallback to checking if offers exist in case the invoices don't exist
+* Add a way to clear Croatian National Bank API transient response
+
+### Changed
+
+* Update HNB API link to a new v3 working one
+* Fix conversion logic for currencies
+
+### Fixed
+
+* Fix filter type for plugin link hook
 
 = 2.2.0 =
 Release Date: January 18th, 2022

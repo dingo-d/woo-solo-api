@@ -63,6 +63,24 @@ class AccountDetails extends BaseRoute implements RestCallable
 			$data = wp_remote_retrieve_body($response);
 		}
 
+		$dataArray = json_decode($data, true);
+
+		$status = (int) $dataArray['status'];
+
+		// No invoices. Try to fetch offers
+		if ($status === 123) {
+			$response = wp_remote_get("https://api.solo.com.hr/ponuda?token={$soloApiToken}");
+
+			if (is_wp_error($response)) {
+				$errorCode = wp_remote_retrieve_response_code($response);
+				$errorMessage = wp_remote_retrieve_response_message($response);
+
+				$data = $errorCode . ': ' . $errorMessage;
+			} else {
+				$data = wp_remote_retrieve_body($response);
+			}
+		}
+
 		return rest_ensure_response($data);
 	}
 
