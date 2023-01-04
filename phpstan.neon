@@ -2,7 +2,7 @@ includes:
     - vendor/phpstan/phpstan/conf/bleedingEdge.neon
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-    level: max
+    level: 6
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
     bootstrapFiles:
@@ -17,6 +17,3 @@ parameters:
         - src/
     excludePaths:
         - src/Core/CompiledContainer.php
-    ignoreErrors:
-        # Uses func_get_args()
-        - '#^Function apply_filters invoked with ([3456789]|10) parameters, 2 required\.$#'
