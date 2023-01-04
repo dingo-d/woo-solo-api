@@ -68,7 +68,7 @@ final class DiContainer
 	{
 		$builder = new ContainerBuilder();
 
-		if ($this->isDevelopment()) {
+		if (!$this->isDevelopment()) {
 			$builder->enableCompilation(__DIR__);
 		}
 
@@ -153,13 +153,15 @@ final class DiContainer
 	 */
 	private function isDevelopment(): bool
 	{
-		$development = (bool)(getenv('DEVELOPMENT') || (defined('DEVELOPMENT') && DEVELOPMENT));
-		$testing = (bool)(getenv('TEST') || (defined('TEST') && TEST));
+		$development = getenv('DEVELOPMENT') ||
+			(defined('DEVELOPMENT') && DEVELOPMENT) ||
+			(defined('WP_ENVIRONMENT_TYPE') && WP_ENVIRONMENT_TYPE === 'development');
+		$testing = getenv('TEST') || (defined('TEST') && TEST);
 
 		if ($development || $testing) {
-			return false;
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 }
