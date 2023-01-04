@@ -38,6 +38,8 @@ use function wp_remote_retrieve_response_message;
  * This class holds the actual remote call that will be made towards Solo API.
  *
  * @package MadeByDenis\WooSoloApi\Request
+ * @since 2.2.1 Update the way the currency is handled and converted,
+ *              due to Euro being official Croatian currency.
  * @since 2.0.0
  */
 class SoloApiRequest implements ApiRequest
@@ -333,7 +335,7 @@ class SoloApiRequest implements ApiRequest
 			$requestBody['valuta_racuna'] = $currency;
 		}
 
-		if ($currency !== '1') { // Only for foreign currency.
+		if ($currency !== '1' || $currency !== '14') { // Only for foreign currency.
 			$apiRates = $this->getHnbRates();
 
 			if (empty($apiRates)) {
@@ -344,26 +346,32 @@ class SoloApiRequest implements ApiRequest
 
 			$currencyRate = $apiRates[$currency];
 
-			if (!empty($currencyRate)) {
-				$num = (float)str_replace(',', '.', $currencyRate);
-				$requestBody['tecaj'] = str_replace('.', ',', (string)round($num, 6));
+			/**
+			 * On 1.1.2023. Croatia became a part of the Euro-zone, so
+			 * HRK ceased to be a valid Croatian currency.
+			 */
+			if (!in_array($currency, ['EUR', 'HRK'])) {
+				if (!empty($currencyRate)) {
+					$num = 1 / (float)str_replace(',', '.', $currencyRate);
+					$requestBody['tecaj'] = str_replace('.', ',', (string)round($num, 6));
 
-				$translatedCurrencyNote = $this->getCurrencyNote($languages);
+					$translatedCurrencyNote = $this->getCurrencyNote($languages);
 
-				$currencyQuantity = '1';
+					$currencyQuantity = '1';
 
-				// If currency is HUF or JPY then 1 must be 100.
-				if (in_array($currency, ['HUF', 'JPY'])) {
-					$currencyQuantity = '100';
+					// If currency is HUF or JPY then 1 must be 100.
+					if (in_array($currency, ['HUF', 'JPY'])) {
+						$currencyQuantity = '100';
+					}
+
+					$customerNote .= "\n" . sprintf(
+						'%1$s (%2$s EUR = %3$s %4$s)',
+						esc_html($translatedCurrencyNote),
+						esc_html($currencyQuantity),
+						esc_html($requestBody['tecaj']),
+						esc_html($currency)
+					);
 				}
-
-				$customerNote .= "\n" . sprintf(
-					'%1$s (%2$s %3$s = %4$s HRK)',
-					esc_html($translatedCurrencyNote),
-					esc_html($currencyQuantity),
-					esc_html($currency),
-					esc_html($requestBody['tecaj'])
-				);
 			}
 		}
 
@@ -574,7 +582,6 @@ class SoloApiRequest implements ApiRequest
 	private function getCurrency(string $currencyID): string
 	{
 		$currencyMap = [
-			'1' => 'HRK',
 			'2' => 'AUD',
 			'3' => 'CAD',
 			'4' => 'CZK',
@@ -618,6 +625,9 @@ class SoloApiRequest implements ApiRequest
 		foreach ($apiRates as $details) {
 			$ratesOut[$details['valuta']] = $details['srednji_tecaj'];
 		}
+
+		// Add EUR as a default with value 1. Nothing will get converted.
+		$ratesOut['EUR'] = 1;
 
 		return $ratesOut;
 	}
