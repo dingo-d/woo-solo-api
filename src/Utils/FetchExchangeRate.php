@@ -26,7 +26,7 @@ use function set_transient;
  * For the documentation @see https://api.hnb.hr/
  *
  * @package MadeByDenis\WooSoloApi\Utils
- * @since 2.2.1 Updated the Croatian National Bank API URL.
+ * @since 2.3.0 Updated the Croatian National Bank API URL.
  * @since 2.0.0
  */
 class FetchExchangeRate implements Registrable

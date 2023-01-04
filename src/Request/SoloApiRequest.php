@@ -38,7 +38,7 @@ use function wp_remote_retrieve_response_message;
  * This class holds the actual remote call that will be made towards Solo API.
  *
  * @package MadeByDenis\WooSoloApi\Request
- * @since 2.2.1 Update the way the currency is handled and converted,
+ * @since 2.3.0 Update the way the currency is handled and converted,
  *              due to Euro being official Croatian currency.
  * @since 2.0.0
  */

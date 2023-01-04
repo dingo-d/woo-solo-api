@@ -13,6 +13,24 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [2.3.0] - 2023-01-04
+
+This release will fix the affected change due to Croatia entering the Euro-zone.
+
+### Added
+
+* Add a fallback to checking if offers exist in case the invoices don't exist
+* Add a way to clear Croatian National Bank API transient response 
+
+### Changed
+
+* Update HNB API link to a new v3 working one
+* Fix conversion logic for currencies
+
+### Fixed
+
+* Fix filter type for plugin link hook
+
 ## [2.2.0] - 2022-01-18
 
 ### Added
@@ -351,6 +369,8 @@ A lot of issues were fixed. The plugin should be more stable and work better now
 * Initial release
 
 [Unreleased]: https://github.com/dingo-d/woo-solo-api/compare/master...HEAD
+[2.3.0]: https://github.com/dingo-d/woo-solo-api/compare/2.2.0...2.3.0
+[2.2.0]: https://github.com/dingo-d/woo-solo-api/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/dingo-d/woo-solo-api/compare/2.0.8...2.1.0
 [2.0.8]: https://github.com/dingo-d/woo-solo-api/compare/2.0.7...2.0.8
 [2.0.7]: https://github.com/dingo-d/woo-solo-api/compare/2.0.6...2.0.7

@@ -1,6 +1,6 @@
 {
 	"name": "woo-solo-api",
-	"version": "2.2.1",
+	"version": "2.3.0",
 	"description": "This plugin provides integration of the SOLO API service with WooCommerce.",
 	"authors": [
 		{
