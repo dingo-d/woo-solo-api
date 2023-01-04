@@ -26,6 +26,7 @@ use function set_transient;
  * For the documentation @see https://api.hnb.hr/
  *
  * @package MadeByDenis\WooSoloApi\Utils
+ * @since 2.2.1 Updated the Croatian National Bank API URL.
  * @since 2.0.0
  */
 class FetchExchangeRate implements Registrable
@@ -42,13 +43,14 @@ class FetchExchangeRate implements Registrable
 	 *
 	 * @var string
 	 */
-	public const API_URL = 'http://api.hnb.hr/tecajn/v2';
+	public const API_URL = 'https://api.hnb.hr/tecajn-eur/v3';
 
 	/**
 	 * @inheritDoc
 	 */
 	public function register(): void
 	{
+
 		add_action('init', [$this, 'setExchangeRates']);
 	}
 
