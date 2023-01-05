@@ -33,8 +33,8 @@ class EmailFunctionalityTest extends Unit
 		$this->emailFunctionality->register();
 
 		$this->assertNotFalse(
-			has_action('wp_mail_from_name', 'MadeByDenis\WooSoloApi\Email\EmailFunctionality->changeEmailFromName()'),
-			'Action hook not registered'
+			has_filter('wp_mail_from_name', 'MadeByDenis\WooSoloApi\Email\EmailFunctionality->changeEmailFromName()'),
+			'Filter hook not registered'
 		);
 
 		$this->assertSame(
