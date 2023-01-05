@@ -57,7 +57,7 @@ jobs:
           dependency-versions: 'highest'
 
       - name: Analyse code using phpstan
-        uses: dingo-d/phpstan-wp-action@v1
+        uses: dingo-d/phpstan-wp-action@master
 
   phpunit:
     name: PHPUnit on PHP ${{ matrix.php }}
