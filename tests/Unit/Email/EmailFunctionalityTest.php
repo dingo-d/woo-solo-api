@@ -39,11 +39,11 @@ class EmailFunctionalityTest extends Unit
 
 		$this->assertSame(
 			10,
-			has_action(
+			has_filter(
 				'wp_mail_from_name',
 				'MadeByDenis\WooSoloApi\Email\EmailFunctionality->changeEmailFromName()'
 			),
-			'wp_mail_from_name action not registered with default priority of 10'
+			'wp_mail_from_name filter not registered with default priority of 10'
 		);
 	}
 
