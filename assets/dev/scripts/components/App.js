@@ -5,33 +5,25 @@ import classnames from 'classnames';
 // Components
 import {Notification} from './Notification';
 import {SettingsPanels} from './SettingsPanels';
-import {OrderPanel} from './OrderPanel';
-
-// Store
-import {STORE_NAME} from "../store/store";
+// import {OrderPanel} from './OrderPanel';
 
 /**
  * WordPress dependencies
  */
-const {
-	withSelect,
-} = wp.data;
+const {useSelect} = wp.data;
+
+// Store
+import {STORE_NAME} from "../store/store";
 
 const {
 	Spinner,
 } = wp.components;
 
+export const App = () => {
+	const dbOrders = useSelect((select) => select(STORE_NAME).getDbOrders());
+	const settings = useSelect((select) => select(STORE_NAME).getSettings());
 
-const Main = (props) => {
-	const {
-		dbOrders,
-	} = props;
-
-	let isLoading = true;
-
-	if (dbOrders.length > 0) {
-		isLoading = false;
-	}
+	const isLoading = settings?.isLoading ?? true;
 
 	const optionsWrapperClass = classnames({
 		'options-wrapper': true,
@@ -45,19 +37,11 @@ const Main = (props) => {
 				{isLoading ?
 					<Spinner/> :
 					<>
-						<SettingsPanels/>
-						<OrderPanel orders={dbOrders}/>
+						<SettingsPanels />
+						{/*<OrderPanel orders={dbOrders}/>*/}
 					</>
 				}
 			</div>
 		</>
 	);
 };
-
-export const App = withSelect((select) => {
-	return {
-		dbOrders: select(STORE_NAME).getDbOrders(),
-	};
-})(Main);
-
-
