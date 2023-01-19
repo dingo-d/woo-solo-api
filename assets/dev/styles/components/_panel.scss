@@ -6,11 +6,10 @@ $panel: (
 	$this: &;
 
 	&__body {
-
 		&.is-opened {
 			#{$this}__body-title {
 				background-color: map-get-strict($panel, 'body-title-background') !important;
-				margin-bottom: 20px !important;
+				margin-bottom: 1.25rem !important;
 			}
 		}
 	}
@@ -18,7 +17,7 @@ $panel: (
 	&__columns {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		grid-gap: 20px;
+		grid-gap: 1.25rem;
 
 		#{$this}__row {
 			margin-top: 0;
@@ -30,12 +29,13 @@ $panel: (
 		align-items: start;
 
 		select {
-			min-height: 42px;
-			padding: 0 24px 0 12px;
+			min-height: 2.69rem !important;
+			padding: 0 1.5rem 0 0.75rem !important;
+			min-width: 15.5rem;
 		}
 
 		#{$this}__item {
-			margin-top: 20px;
+			margin-top: 1.25rem;
 		}
 
 		&--single {
@@ -45,6 +45,12 @@ $panel: (
 
 		&--top {
 			justify-content: start;
+		}
+	}
+
+	&__item {
+		h4 {
+			margin-top: 0;
 		}
 	}
 }

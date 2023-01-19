@@ -9,18 +9,18 @@ $options-page: (
 	border-bottom: 1px solid map-get-strict($options-page, 'border-color');
 	border-left: 1px solid map-get-strict($options-page, 'border-color');
 	border-right: 1px solid map-get-strict($options-page, 'border-color');
-	padding-bottom: 20px;
+	padding-bottom: 1.25rem;
 
 	&--separated {
-		margin-top: 20px;
+		margin-top: 1.25rem;
 		padding-bottom: 0;
 	}
 
 	&__item {
-		margin: 20px 20px 0;
+		margin: 1.25rem 1.25rem 0;
 
 		.components-snackbar {
-			margin-top: 20px;
+			margin-top: 1.25rem;
 
 			&.is-hidden {
 				opacity: 0;
@@ -38,6 +38,6 @@ $options-page: (
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 20px;
+		padding: 1.25rem;
 	}
 }

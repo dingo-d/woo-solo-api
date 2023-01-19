@@ -3,9 +3,8 @@ $components: (
 );
 
 .components-base-control {
-
 	&__field {
-		margin-bottom: 20px !important;
+		margin-bottom: 1.25rem !important;
 	}
 
 	&__label {
@@ -19,7 +18,7 @@ $components: (
 	}
 
 	&__subtitle {
-		font-size: 1.2em;
+		font-size: 1.2rem;
 	}
 
 	&__notice {
@@ -28,7 +27,7 @@ $components: (
 	}
 
 	&__information {
-		margin: 0 0 0.5em 0;
+		margin: 0 0 0.5rem 0;
 	}
 
 	&__checkboxes {
@@ -36,35 +35,34 @@ $components: (
 	}
 
 	&__textarea {
-		width: 39em;
+		width: 39rem;
 
 		textarea {
-			max-width: 36em;
+			max-width: 36rem;
 		}
 	}
 
 	&__input {
 
 		input {
-			padding: 6px 8px;
+			padding: 0.375rem 0.5rem;
 			max-width: 36em;
 		}
 	}
 
 	&__code {
-		margin-bottom: 20px;
+		margin-bottom: 1.25rem;
 
 		code {
-			width: 50em;
-			max-height: 30em;
+			width: 50rem;
+			max-height: 30rem;
 			display: block;
-			padding: 20px;
+			padding: 1.25rem;
 			overflow: scroll;
 		}
 	}
 
 	&.has-error {
-
 		input,
 		textarea,
 		select {

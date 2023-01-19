@@ -10,7 +10,7 @@ $table: (
 	border-right: 1px solid map-get-strict($table, 'border-color');
 
 	&__element {
-		padding: 8px 4px;
+		padding: 0.5rem 0.25rem;
 		border-left: 1px solid map-get-strict($table, 'border-color');
 		border-bottom: 1px solid map-get-strict($table, 'border-color');
 
