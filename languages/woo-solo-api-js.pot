@@ -3,81 +3,546 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "X-Generator: babel-plugin-makepot\n"
 
-#: assets/dev/scripts/components/Error.js:13
-#: assets/dev/scripts/components/ErrorNotice.js:15
-#: assets/public/application.js:7621
+#: assets/dev/scripts/components/App.js:170
+msgid "Save settings"
+msgstr ""
+
+#: assets/dev/scripts/components/ErrorNotice.js:8
 msgid "Validation error: "
 msgstr ""
 
 #: assets/dev/scripts/components/Notification.js:9
-#: assets/public/application.js:7623
 msgid ""
 "For more details on the options you can read the official SOLO API "
 "documentation here: "
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:33
+#: assets/dev/scripts/components/OrderPanel.js:39
 msgid "Solo API order details"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:39
+#: assets/dev/scripts/components/OrderPanel.js:45
 msgid "ID"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:40
+#: assets/dev/scripts/components/OrderPanel.js:46
 msgid "WooCommerce Order ID"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:41
+#: assets/dev/scripts/components/OrderPanel.js:47
 msgid "Solo ID"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:42
+#: assets/dev/scripts/components/OrderPanel.js:48
 msgid "Customer Email"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:43
+#: assets/dev/scripts/components/OrderPanel.js:49
 msgid "Is sent to Solo API"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:44
+#: assets/dev/scripts/components/OrderPanel.js:50
 msgid "Is pdf sent to customer"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:45
+#: assets/dev/scripts/components/OrderPanel.js:51
 msgid "API response errors"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:46
+#: assets/dev/scripts/components/OrderPanel.js:52
 msgid "Created at"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:47
+#: assets/dev/scripts/components/OrderPanel.js:53
 msgid "Updated at"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:48
+#: assets/dev/scripts/components/OrderPanel.js:54
 msgid "Resend the customer email"
 msgstr ""
 
-#: assets/dev/scripts/components/OrderPanel.js:68
+#: assets/dev/scripts/components/OrderPanel.js:74
 msgid "Resend PDF email"
 msgstr ""
 
-#: assets/dev/scripts/components/SettingsPanels.js:47
-#: assets/dev/scripts/components/SettingsPanels.js:48
-#: assets/dev/scripts/components/SettingsPanels.js:46
-#: assets/dev/scripts/components/SettingsPanels.js:43
-#: assets/dev/scripts/components/SettingsPanels.js:44
-#: assets/public/application.js:7625
+#: assets/dev/scripts/components/Popup.js:13
+msgid "Errors happened during saving"
+msgstr ""
+
+#: assets/dev/scripts/components/Popup.js:14
+msgid "Settings saved"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:104
+msgid "Invoice Language"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:105
+msgid "Select the language of the invoice/offer"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:118
+msgid "Currency"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:128
+msgid "You can check the currency rate at <a>Croatian National Bank</a>."
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:137
+msgid ""
+"The currency will be automatically added if the selected currency is "
+"different from EUR. Also, a note about conversion rate will be added to the "
+"invoice/offer."
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:143
+msgid "Choose the type of payment for each enabled payment gateway"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:155
+msgid "Type of payment document"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:160
+msgid "Offer"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:161
+msgid "Invoice"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:169
+msgid "Payment option types"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:180
+msgid "Check if you want the invoice to be fiscalized *"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:181
+msgid "Fiscalize"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:181
+msgid "Don't fiscalize"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:190
+msgid ""
+"* Fiscalization certificate must be added in the SOLO options, and it only "
+"applies to invoices."
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:198
+msgid "Enter the type of the service"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:199
+msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:212
+msgid "Show taxes"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:213
+msgid "Show tax"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:213
+msgid "Don't show tax"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:225
+msgid "Type of invoice"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:226
+msgid "Only works with invoice, not with offer"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:239
+msgid "Invoice/Offer due date"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:252
+msgid "Additional Settings"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:258
+msgid "WooCommerce checkout settings"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:262
+msgid "Enable the PIN field on the billing and shipping from in the checkout"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:273
+msgid "Enable the IBAN field on the billing and shipping from in the checkout"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:274
+msgid "Enable"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:274
+msgid "Disable"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:285
+msgid "PDF settings"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:289
+msgid "Send the email to the client with the PDF of the order or the invoice"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:290
+msgid "Send email"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:290
+msgid "Don't send email"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:301
+msgid "Send mail to selected payment gateways"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:323
+msgid "PDF send control"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:324
+msgid ""
+"Decide when to send the PDF of the order or invoice.On customer checkout, "
+"or when you approve the order in the WooCommerce admin.This will determine "
+"when the call to the SOLO API will be made"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:330
+msgid "Send on:"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:335
+msgid "Checkout"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:338
+msgid "Status change to 'completed'"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:351
+msgid "Email Settings"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:358
+msgid "Set the title of the mail that will be send with the PDF invoice"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:371
+msgid "Type the message that will appear on the mail with the invoice PDF attached"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:384
+msgid "Change the 'from' name that shows when WordPress sends the mail"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:387
+msgid ""
+"<str>CAUTION</str>: This change is global, every mail send from your "
+"WordPress will have this 'from' name"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:403
+msgid "Solo Api Test"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:407
+msgid "This serves for testing purposes only"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:409
+msgid ""
+"Pressing the button will make a request to your Solo API account, and will "
+"list all the invoices or offers you have"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:427
+msgid "Make a request"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:430
+msgid ""
+"Pressing the button will clear the Croatian Central Bank (HNB) API "
+"transient."
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:438
+msgid "Delete exchange rate transient"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:69
 msgid "Solo API token"
 msgstr ""
 
-#: assets/dev/scripts/components/SettingsPanels.js:48
-#: assets/dev/scripts/components/SettingsPanels.js:49
-#: assets/dev/scripts/components/SettingsPanels.js:47
-#: assets/dev/scripts/components/SettingsPanels.js:44
-#: assets/dev/scripts/components/SettingsPanels.js:45
-#: assets/public/application.js:7625
+#: assets/dev/scripts/components/SettingsPanels.js:70
 msgid "Enter your personal token that you obtained from your SOLO account"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:81
+msgid "Solo Api Settings"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:90
+msgid "Unit measure"
+msgstr ""
+
+#: assets/dev/scripts/components/SettingsPanels.js:91
+msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.jsx:10
+msgid "1 week"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.jsx:11
+msgid "2 weeks"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.jsx:12
+msgid "3 weeks"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.jsx:4
+msgid "1 day"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.jsx:5
+msgid "2 days"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.jsx:6
+msgid "3 days"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.jsx:7
+msgid "4 days"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.jsx:8
+msgid "5 days"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.jsx:9
+msgid "6 days"
+msgstr ""
+
+#: assets/dev/scripts/const/invoiceType.jsx:7
+msgid "No label"
+msgstr ""
+
+#: assets/dev/scripts/const/invoiceType.jsx:8
+msgid "In advance"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.jsx:4
+msgid "Croatian"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.jsx:5
+msgid "English"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.jsx:6
+msgid "German"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.jsx:7
+msgid "French"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.jsx:8
+msgid "Italian"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.jsx:9
+msgid "Spanish"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.jsx:4
+msgid "Transactional account"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.jsx:5
+msgid "Cash"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.jsx:6
+msgid "Cards"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.jsx:7
+msgid "Cheque"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.jsx:8
+msgid "Other"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:10
+msgid "kg"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:11
+msgid "kWh"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:12
+msgid "m³"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:13
+msgid "tonne"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:14
+msgid "m²"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:15
+msgid "m"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:16
+msgid "day"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:17
+msgid "month"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:18
+msgid "night"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:19
+msgid "cart"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:20
+msgid "account"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:21
+msgid "pair"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:22
+msgid "ml"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:23
+msgid "pax"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:24
+msgid "room"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:25
+msgid "apartment"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:26
+msgid "term"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:27
+msgid "set"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:28
+msgid "package"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:29
+msgid "point"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:30
+msgid "service"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:31
+msgid "pal"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:32
+msgid "kont"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:33
+msgid "čl"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:34
+msgid "tis"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:35
+msgid "sec"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:36
+msgid "min"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:37
+msgid "str"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:38
+msgid "kpl"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:39
+msgid "pšl"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:4
+msgid "-"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:40
+msgid "ha"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:41
+msgid "g"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:42
+msgid "x"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:5
+msgid "piece"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:6
+msgid "hour"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:7
+msgid "year"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:8
+msgid "km"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.jsx:9
+msgid "litre"
 msgstr ""
