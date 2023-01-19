@@ -5,12 +5,7 @@ const {__} = wp.i18n;
 
 const {Snackbar} = wp.components;
 
-export const Popup = (props) => {
-	const {
-		isSaved,
-		hasErrors,
-	} = props;
-
+export const Popup = ({isSaved, hasErrors}) => {
 	return (
 		<Snackbar className={isSaved ? 'is-visible' : 'is-hidden'}>
 			{
