@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
-import { useState } from 'react';
 
 const {apiFetch} = wp;
 const {__} = wp.i18n;
+const {useState} = wp.element;
+const {useSelect} = wp.data;
 
 const {
 	Button,
@@ -11,21 +12,26 @@ const {
 	PanelRow,
 } = wp.components;
 
-export const OrderPanel = ({orders}) => {
+import {STORE_NAME} from "../store/store";
+
+export const OrderPanel = () => {
+	const dbOrders = useSelect((select) => select(STORE_NAME).getDbOrders());
 	const [isResent, setIsResent] = useState(false);
 
-	const resendEmail = (orderID) => {
-		apiFetch({
-			path: '/woo-solo-api/v1/resend-customer-email',
-			method: 'POST',
-			data: {
-				orderID
-			}
-		}).then(res => {
-			console.log('API call made')
-			console.log(res)
+	const resendEmail = async (orderID) => {
+
+		try {
+			const response = await apiFetch({
+				path: '/woo-solo-api/v1/resend-customer-email',
+				method: 'POST',
+				data: {
+					orderID
+				}
+			});
+			console.log(response)
+		} catch {
 			setIsResent(true);
-		});
+		}
 	};
 
 	return (
@@ -46,7 +52,7 @@ export const OrderPanel = ({orders}) => {
 					<div className="details-table__element details-table__element--heading">{__('Created at', 'woo-solo-api')}</div>
 					<div className="details-table__element details-table__element--heading">{__('Updated at', 'woo-solo-api')}</div>
 					<div className="details-table__element details-table__element--heading">{__('Resend the customer email', 'woo-solo-api')}</div>
-					{orders.map((el) => {
+					{dbOrders.map((el) => {
 						return <>
 							<div className="details-table__element">{el.id}</div>
 							<div className="details-table__element">
