@@ -1,13 +1,6 @@
 /* eslint-disable camelcase */
-const {useSelect} = wp.data;
 const {__} = wp.i18n;
-
-import {STORE_NAME} from "../store/store";
-
-export const ErrorNotice = (props) => {
-	const {type} = props;
-	const errors = useSelect((select) => select(STORE_NAME).getErrors());
-
+export const ErrorNotice = ({errors, type}) => {
 	return (
 		<>
 			{errors?.hasOwnProperty(type) &&
