@@ -6,7 +6,7 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies
  */
-const {useState} = wp.element;
+const {useState, useRef, createRef} = wp.element;
 const {useSelect, useDispatch} = wp.data;
 const {__} = wp.i18n;
 const {models} = wp.api;
@@ -17,7 +17,7 @@ const {
 
 // Components
 import {Notification} from './Notification';
-import {SettingsPanels} from './SettingsPanels';
+import {SettingsPanel} from './SettingsPanel';
 import {OrderPanel} from './OrderPanel';
 import {Popup} from "./Popup";
 
@@ -45,6 +45,20 @@ export const App = () => {
 		}
 
 		return true;
+	}
+
+	// Ref map that we'll pass to the Settings panel component.
+	const refs = new Map();
+
+	if (Object.keys(storeSettings).length > 0) {
+		Object.keys(storeSettings)
+			.filter(setting => setting.startsWith('solo'))
+			.forEach((setting) => {
+				const elRef = createRef();
+				elRef.current = setting;
+
+				refs.set(setting, elRef)
+			});
 	}
 
 	const saveSettings = () => {
@@ -96,15 +110,8 @@ export const App = () => {
 				// 	// });
 				// 	//
 				// });
-
-				// setTimeout(() => {
-				// 	this.setState({
-				// 		isSaved: false
-				// 	});
-				// }, 3000);
 			},
 			error: (model, res) => {
-				debugger;
 				const errors = res.responseJSON.data.params;
 				setIsSaving(isSaving => !isSaving);
 				setHasErrors(hasErrors => !hasErrors);
@@ -118,19 +125,23 @@ export const App = () => {
 				// });
 
 				// Should be a React reference, not DOM!
-				const target = document.querySelector(`[name=${Object.keys(errors)[0]}]`);
+				// const target = document.querySelector(`[name=${Object.keys(errors)[0]}]`);
+				// debugger;
 
-				window.scrollTo({
-					top: target.offsetTop - 30,
-					left: 0,
-					behavior: 'smooth',
-				});
+				const [refName] = Object.keys(errors);
 
-				// setTimeout(() => {
-				// 	this.setState({
-				// 		isSaved: false
-				// 	});
-				// }, 3000);
+				const errorRef = refs.get(refName)
+				console.log(errors)
+				console.log(refName)
+				console.log(errorRef)
+				console.log(refs)
+				errorRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
+				// window.scrollTo({
+				// 	top: target.offsetTop - 30,
+				// 	left: 0,
+				// 	behavior: 'smooth',
+				// });
 			}
 		});
 
@@ -152,11 +163,12 @@ export const App = () => {
 				<>
 					<div className={optionsWrapperClass}>
 						{Object.keys(storeSettings).length > 0 &&
-							<SettingsPanels
+							<SettingsPanel
 								isSaving={isSaving}
 								settings={savedSettings}
 								initialSettings={storeSettings}
 								errors={errors}
+								settingRefs={refs}
 								onUpdate={setSavedSettings}
 							/>
 						}

@@ -15,19 +15,21 @@ const {
 	SelectControl,
 } = wp.components;
 
-
-
 import {ErrorNotice} from './ErrorNotice';
 
 // Constants
-import {currencies} from './../const/currencies.jsx'
-import {dueDate} from './../const/dueDate.jsx';
-import {invoiceType} from './../const/invoiceType.jsx';
-import {languages} from './../const/languages.jsx';
-import {paymentTypeOptions} from './../const/paymentTypeOptions.jsx';
-import {unitMeasures} from './../const/unitMeasures.jsx';
+import {currencies} from '../const/currencies.js'
+import {dueDate} from '../const/dueDate.js';
+import {invoiceType} from '../const/invoiceType.js';
+import {languages} from '../const/languages.js';
+import {paymentTypeOptions} from '../const/paymentTypeOptions.js';
+import {unitMeasures} from '../const/unitMeasures.js';
 
-export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onUpdate}) => {
+export const SettingsPanel = ({isSaving, settings, initialSettings, errors, settingRefs, onUpdate}) => {
+	// To do: replace all local state and passed props to the store.
+	// Create dispatchers for updating settings.
+	// That way, we should have a good separation of concerns.
+
 	const [apiResponse, setApiResponse] = useState('');
 	const [isRequestPending, setIsRequestPending] = useState(false);
 
@@ -64,6 +66,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 			>
 				<PanelRow>
 					<TextControl
+						ref={settingRefs.get('solo_api_token')}
 						className={`components-base-control__input ${hasErrorClass('solo_api_token')}`}
 						name='solo_api_token'
 						label={__('Solo API token', 'woo-solo-api')}
@@ -85,6 +88,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 					<div className="components-panel__column">
 						<PanelRow>
 							<SelectControl
+								ref={settingRefs.get('solo_api_measure')}
 								className={hasErrorClass('solo_api_measure')}
 								name='solo_api_measure'
 								label={__('Unit measure', 'woo-solo-api')}
@@ -99,6 +103,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 						</PanelRow>
 						<PanelRow>
 							<SelectControl
+								ref={settingRefs.get('solo_api_languages')}
 								className={hasErrorClass('solo_api_languages')}
 								name='solo_api_languages'
 								label={__('Invoice Language', 'woo-solo-api')}
@@ -113,6 +118,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 						</PanelRow>
 						<PanelRow>
 							<SelectControl
+								ref={settingRefs.get('solo_api_currency')}
 								className={hasErrorClass('solo_api_currency')}
 								name='solo_api_currency'
 								label={__('Currency', 'woo-solo-api')}
@@ -150,6 +156,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 								return <div className='components-panel__item' key={type}>
 									<h4>{paymentGateways[type]}</h4>
 									<SelectControl
+										ref={settingRefs.get(offer)}
 										className={hasErrorClass(offer)}
 										name={offer}
 										label={__('Type of payment document', 'woo-solo-api')}
@@ -164,6 +171,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 
 									<ErrorNotice errors={errors} type={offer} />
 									<SelectControl
+										ref={settingRefs.get(payment)}
 										className={hasErrorClass(payment)}
 										name={payment}
 										label={__('Payment option types', 'woo-solo-api')}
@@ -175,6 +183,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 
 									<ErrorNotice errors={errors} type={payment} />
 									<ToggleControl
+										ref={settingRefs.get(fiscal)}
 										className={hasErrorClass(fiscal)}
 										name={fiscal}
 										label={__('Check if you want the invoice to be fiscalized *', 'woo-solo-api')}
@@ -193,6 +202,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 					<div className="components-panel__column">
 						<PanelRow>
 							<TextControl
+								ref={settingRefs.get('solo_api_service_type')}
 								className={`components-base-control__input ${hasErrorClass('solo_api_service_type')}`}
 								name='solo_api_service_type'
 								label={__('Enter the type of the service', 'woo-solo-api')}
@@ -207,6 +217,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 						</PanelRow>
 						<PanelRow>
 							<ToggleControl
+								ref={settingRefs.get('solo_api_show_taxes')}
 								className={hasErrorClass('solo_api_show_taxes')}
 								name='solo_api_show_taxes'
 								label={__('Show taxes', 'woo-solo-api')}
@@ -220,6 +231,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 						</PanelRow>
 						<PanelRow>
 							<SelectControl
+								ref={settingRefs.get('solo_api_invoice_type')}
 								className={hasErrorClass('solo_api_invoice_type')}
 								name='solo_api_invoice_type'
 								label={__('Type of invoice', 'woo-solo-api')}
@@ -234,6 +246,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 						</PanelRow>
 						<PanelRow className='components-panel__row--top components-panel__row--single'>
 							<SelectControl
+								ref={settingRefs.get('solo_api_due_date')}
 								className={hasErrorClass('solo_api_due_date')}
 								name={'solo_api_due_date'}
 								label={__('Invoice/Offer due date', 'woo-solo-api')}
@@ -257,6 +270,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 						<PanelRow className='components-panel__row--single'>
 							<h4>{__('WooCommerce checkout settings', 'woo-solo-api')}</h4>
 							<ToggleControl
+								ref={settingRefs.get('solo_api_enable_pin')}
 								className={hasErrorClass('solo_api_enable_pin')}
 								name='solo_api_enable_pin'
 								label={__('Enable the PIN field on the billing and shipping from in the checkout', 'woo-solo-api')}
@@ -268,6 +282,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 
 							<ErrorNotice errors={errors} type={'solo_api_enable_pin'} />
 							<ToggleControl
+								ref={settingRefs.get('solo_api_enable_iban')}
 								className={hasErrorClass('solo_api_enable_iban')}
 								name='solo_api_enable_iban'
 								label={__('Enable the IBAN field on the billing and shipping from in the checkout', 'woo-solo-api')}
@@ -284,6 +299,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 						<PanelRow className='components-panel__row--single'>
 							<h4>{__('PDF settings', 'woo-solo-api')}</h4>
 							<ToggleControl
+								ref={settingRefs.get('solo_api_send_pdf')}
 								className={hasErrorClass('solo_api_send_pdf')}
 								name='solo_api_send_pdf'
 								label={__('Send the email to the client with the PDF of the order or the invoice', 'woo-solo-api')}
@@ -302,6 +318,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 									{
 										Object.keys(paymentGateways).map((type) => {
 											return <CheckboxControl
+												ref={settingRefs.get(type)}
 												className={`components-base-control__checkboxes ${hasErrorClass('solo_api_mail_gateway')}`}
 												name={type}
 												label={paymentGateways[type]}
@@ -325,6 +342,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 										'On customer checkout, or when you approve the order in the WooCommerce admin.' +
 										'This will determine when the call to the SOLO API will be made', 'woo-solo-api')}</p>
 									<SelectControl
+										ref={settingRefs.get('solo_api_send_control')}
 										className={hasErrorClass('solo_api_send_control')}
 										name='solo_api_send_control'
 										label={__('Send on:', 'woo-solo-api')}
@@ -353,6 +371,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 			>
 				<PanelRow>
 					<TextControl
+						ref={settingRefs.get('solo_api_mail_title')}
 						className={`components-base-control__input ${hasErrorClass('solo_api_mail_title')}`}
 						name='solo_api_mail_title'
 						label={__('Set the title of the mail that will be send with the PDF invoice', 'woo-solo-api')}
@@ -366,6 +385,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 				</PanelRow>
 				<PanelRow>
 					<TextareaControl
+						ref={settingRefs.get('solo_api_message')}
 						className={`components-base-control__textarea ${hasErrorClass('solo_api_message')}`}
 						name='solo_api_message'
 						label={__('Type the message that will appear on the mail with the invoice PDF attached', 'woo-solo-api')}
@@ -379,6 +399,7 @@ export const SettingsPanels = ({isSaving, settings, initialSettings, errors, onU
 				</PanelRow>
 				<PanelRow>
 					<TextControl
+						ref={settingRefs.get('solo_api_change_mail_from')}
 						className={`components-base-control__input ${hasErrorClass('solo_api_change_mail_from')}`}
 						name='solo_api_change_mail_from'
 						label={__('Change the \'from\' name that shows when WordPress sends the mail', 'woo-solo-api')}
