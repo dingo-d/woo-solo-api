@@ -7,8 +7,9 @@
 function getExternals() {
 	const ext = {};
 	const wplib = [
+		'api',
 		'components',
-		'blocks',
+		'data',
 		'element',
 		'i18n',
 	];
