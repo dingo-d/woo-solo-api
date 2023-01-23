@@ -13,5 +13,20 @@ export const resolvers = {
 		return actions.setDbOrders(dbData);
 
 	},
+	*getErrors() {
+		const errors = yield actions.getErrors();
+
+		return actions.setErrors(errors);
+	},
+	*getIsSaving() {
+		const isSaving = yield actions.getIsSaving();
+
+		return actions.setErrors(isSaving);
+	},
+	*getIsSaved() {
+		const isSaved = yield actions.getIsSaved();
+
+		return actions.setErrors(isSaved);
+	},
 };
 

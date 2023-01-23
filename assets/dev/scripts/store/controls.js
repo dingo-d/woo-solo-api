@@ -2,6 +2,9 @@ import {unserialize} from 'php-serialize';
 
 const {apiFetch} = wp;
 const {models} = wp.api;
+const {useSelect} = wp.data;
+
+import {STORE_NAME} from "./store";
 
 export const controls = {
 	FETCH_FROM_API(action) {
@@ -64,5 +67,17 @@ export const controls = {
 				isLoading: false,
 			}};
 		});
+	},
+	GET_ERRORS() {
+		const errors = useSelect((select) => select(STORE_NAME).getErrors());
+		return typeof errors !== 'undefined' ?
+			errors :
+			{}
+	},
+	GET_IS_SAVING() {
+		return useSelect((select) => select(STORE_NAME).getIsSaving());
+	},
+	GET_IS_SAVED() {
+		return useSelect((select) => select(STORE_NAME).getIsSaved());
 	},
 };
