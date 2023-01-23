@@ -1,6 +1,8 @@
-/* eslint-disable camelcase */
-const {__} = wp.i18n;
+/* eslint-disable camelcase, no-unused-vars */
+/* global wp, window */
+/* eslint operator-linebreak: ["error", "after"] */
 
+const {__} = wp.i18n;
 const {ExternalLink} = wp.components;
 
 export const Notification = () => {
@@ -13,5 +15,5 @@ export const Notification = () => {
 				</ExternalLink>
 			</p>
 		</div>
-	)
-}
+	);
+};
