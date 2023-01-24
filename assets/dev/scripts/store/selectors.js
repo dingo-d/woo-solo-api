@@ -8,8 +8,8 @@ export const selectors = {
 	getErrors(state) {
 		return state.errors;
 	},
-	getIsSaving(state) {
-		return state.isSaving;
+	getIsActive(state) {
+		return state.isActive;
 	},
 	getIsSaved(state) {
 		return state.isSaved;

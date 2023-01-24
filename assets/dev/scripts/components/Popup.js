@@ -12,11 +12,10 @@ export const Popup = () => {
 	const errors = useSelect((select) => select(STORE_NAME).getErrors());
 	const hasErrors = Object.keys(errors).length > 0;
 
-	// isSaved should be also fetched from the store...
-	const isSaving = useSelect((select) => select(STORE_NAME).getIsSaving());
+	const isActive = useSelect((select) => select(STORE_NAME).getIsActive());
 
 	return (
-		<Snackbar className={isSaving ? 'is-visible' : 'is-hidden'}>
+		<Snackbar className={isActive ? 'is-visible' : 'is-hidden'}>
 			{
 				hasErrors ?
 					__('Errors happened during saving', 'woo-solo-api') :

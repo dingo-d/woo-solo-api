@@ -29,7 +29,7 @@ import {STORE_NAME} from '../../store/store';
 export const GeneralSettingsPanel = () => {
 	const settings = useSelect((select) => select(STORE_NAME).getSettings());
 	const errors = useSelect((select) => select(STORE_NAME).getErrors());
-	const isSaving = useSelect((select) => select(STORE_NAME).getIsSaving());
+	const isActive = useSelect((select) => select(STORE_NAME).getIsActive());
 
 	const {setSettings, setErrors} = useDispatch(STORE_NAME);
 
@@ -56,7 +56,7 @@ export const GeneralSettingsPanel = () => {
 							label={__('Unit measure', 'woo-solo-api')}
 							help={__('Select the default measure in your shop (e.g. piece, hour, m³ etc.)', 'woo-solo-api')}
 							value={settings.solo_api_measure}
-							disabled={isSaving}
+							disabled={isActive}
 							onChange={(value) => setSettings({...settings, solo_api_measure: value, settingsRefs})}
 							options={unitMeasures}
 						/>
@@ -70,7 +70,7 @@ export const GeneralSettingsPanel = () => {
 							label={__('Invoice Language', 'woo-solo-api')}
 							help={__('Select the language of the invoice/offer', 'woo-solo-api')}
 							value={settings.solo_api_languages}
-							disabled={isSaving}
+							disabled={isActive}
 							onChange={(value) => setSettings({...settings, solo_api_languages: value, settingsRefs})}
 							options={languages}
 						/>
@@ -83,7 +83,7 @@ export const GeneralSettingsPanel = () => {
 							name='solo_api_currency'
 							label={__('Currency', 'woo-solo-api')}
 							value={settings.solo_api_currency}
-							disabled={isSaving}
+							disabled={isActive}
 							onChange={(value) => setSettings({...settings, solo_api_currency: value, settingsRefs})}
 							options={currencies}
 						/>
@@ -120,7 +120,7 @@ export const GeneralSettingsPanel = () => {
 									name={offer}
 									label={__('Type of payment document', 'woo-solo-api')}
 									value={settings[offer]}
-									disabled={isSaving}
+									disabled={isActive}
 									onChange={(value) => setSettings({...settings, [offer]: value, settingsRefs})}
 									options={[
 										{value: 'ponuda', label: __('Offer', 'woo-solo-api')},
@@ -134,7 +134,7 @@ export const GeneralSettingsPanel = () => {
 									name={payment}
 									label={__('Payment option types', 'woo-solo-api')}
 									value={settings[payment]}
-									disabled={isSaving}
+									disabled={isActive}
 									onChange={(value) => setSettings({...settings, [payment]: value, settingsRefs})}
 									options={paymentTypeOptions}
 								/>
@@ -146,7 +146,7 @@ export const GeneralSettingsPanel = () => {
 									label={__('Check if you want the invoice to be fiscalized *', 'woo-solo-api')}
 									help={settings[fiscal] ? __('Fiscalize', 'woo-solo-api') : __('Don\'t fiscalize', 'woo-solo-api')}
 									checked={settings[fiscal]}
-									disabled={isSaving}
+									disabled={isActive}
 									onChange={(value) => setSettings({...settings, [fiscal]: value, settingsRefs})}
 								/>
 								<ErrorNotice errors={errors} type={fiscal} />
@@ -164,7 +164,7 @@ export const GeneralSettingsPanel = () => {
 							label={__('Enter the type of the service', 'woo-solo-api')}
 							help={__('You can find it in your account settings (Usluge -> Tipovi usluga)', 'woo-solo-api')}
 							type='text'
-							disabled={isSaving}
+							disabled={isActive}
 							value={settings.solo_api_service_type}
 							onChange={(value) => setSettings({...settings, solo_api_service_type: value, settingsRefs})}
 						/>
@@ -178,7 +178,7 @@ export const GeneralSettingsPanel = () => {
 							label={__('Show taxes', 'woo-solo-api')}
 							help={settings.solo_api_show_taxes ? __('Show tax', 'woo-solo-api') : __('Don\'t show tax', 'woo-solo-api')}
 							checked={settings.solo_api_show_taxes}
-							disabled={isSaving}
+							disabled={isActive}
 							onChange={() => setSettings({...settings, solo_api_show_taxes: ! settings.solo_api_show_taxes, settingsRefs})}
 						/>
 						<ErrorNotice errors={errors} type={'solo_api_show_taxes'} />
@@ -191,7 +191,7 @@ export const GeneralSettingsPanel = () => {
 							label={__('Type of invoice', 'woo-solo-api')}
 							help={__('Only works with invoice, not with offer', 'woo-solo-api')}
 							value={settings.solo_api_invoice_type}
-							disabled={isSaving}
+							disabled={isActive}
 							onChange={(value) => setSettings({...settings, solo_api_invoice_type: value, settingsRefs})}
 							options={invoiceType}
 						/>
@@ -204,7 +204,7 @@ export const GeneralSettingsPanel = () => {
 							name={'solo_api_due_date'}
 							label={__('Invoice/Offer due date', 'woo-solo-api')}
 							value={settings.solo_api_due_date}
-							disabled={isSaving}
+							disabled={isActive}
 							onChange={(value) => setSettings({...settings, solo_api_due_date: value, settingsRefs})}
 							options={dueDate}
 						/>

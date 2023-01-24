@@ -22,7 +22,7 @@ import {STORE_NAME} from '../../store/store';
 export const AdditionalSettingsPanel = () => {
 	const settings = useSelect((select) => select(STORE_NAME).getSettings());
 	const errors = useSelect((select) => select(STORE_NAME).getErrors());
-	const isSaving = useSelect((select) => select(STORE_NAME).getIsSaving());
+	const isActive = useSelect((select) => select(STORE_NAME).getIsActive());
 
 	const {setSettings} = useDispatch(STORE_NAME);
 
@@ -50,7 +50,7 @@ export const AdditionalSettingsPanel = () => {
 							label={__('Enable the PIN field on the billing and shipping from in the checkout', 'woo-solo-api')}
 							help={settings.solo_api_enable_pin ? __('Enable', 'woo-solo-api') : __('Disable', 'woo-solo-api')}
 							checked={settings.solo_api_enable_pin}
-							disabled={isSaving}
+							disabled={isActive}
 							onChange={() => setSettings({...settings, solo_api_enable_pin: ! settings.solo_api_enable_pin, settingsRefs})}
 						/>
 						<ErrorNotice errors={errors} type={'solo_api_enable_pin'} />
@@ -61,7 +61,7 @@ export const AdditionalSettingsPanel = () => {
 							label={__('Enable the IBAN field on the billing and shipping from in the checkout', 'woo-solo-api')}
 							help={settings.solo_api_enable_iban ? __('Enable', 'woo-solo-api') : __('Disable', 'woo-solo-api')}
 							checked={settings.solo_api_enable_iban}
-							disabled={isSaving}
+							disabled={isActive}
 							onChange={() => setSettings({...settings, solo_api_enable_iban: ! settings.solo_api_enable_iban, settingsRefs})}
 						/>
 						<ErrorNotice errors={errors} type={'solo_api_enable_iban'} />
@@ -77,7 +77,7 @@ export const AdditionalSettingsPanel = () => {
 							label={__('Send the email to the client with the PDF of the order or the invoice', 'woo-solo-api')}
 							help={settings.solo_api_send_pdf ? __('Send email', 'woo-solo-api') : __('Don\'t send email', 'woo-solo-api')}
 							checked={settings.solo_api_send_pdf}
-							disabled={isSaving}
+							disabled={isActive}
 							onChange={() => setSettings({...settings, solo_api_send_pdf: ! settings.solo_api_send_pdf, settingsRefs})}
 						/>
 						<ErrorNotice errors={errors} type={'solo_api_send_pdf'} />
@@ -116,7 +116,7 @@ export const AdditionalSettingsPanel = () => {
 									className={hasErrorClass('solo_api_send_control')}
 									name='solo_api_send_control'
 									label={__('Send on:', 'woo-solo-api')}
-									disabled={isSaving}
+									disabled={isActive}
 									value={settings.solo_api_send_control}
 									onChange={(value) => setSettings({...settings, solo_api_send_control: value, settingsRefs})}
 									options={[

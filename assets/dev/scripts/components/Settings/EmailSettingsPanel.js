@@ -2,7 +2,7 @@
 /* global wp */
 /* eslint operator-linebreak: ["error", "after"] */
 
-const {useState, createInterpolateElement, useRef} = wp.element;
+const {createInterpolateElement, useRef} = wp.element;
 const {useSelect, useDispatch} = wp.data;
 const {__} = wp.i18n;
 
@@ -21,7 +21,7 @@ import {STORE_NAME} from '../../store/store';
 export const EmailSettingsPanel = () => {
 	const settings = useSelect((select) => select(STORE_NAME).getSettings());
 	const errors = useSelect((select) => select(STORE_NAME).getErrors());
-	const isSaving = useSelect((select) => select(STORE_NAME).getIsSaving());
+	const isActive = useSelect((select) => select(STORE_NAME).getIsActive());
 
 	const {setSettings} = useDispatch(STORE_NAME);
 
@@ -43,7 +43,7 @@ export const EmailSettingsPanel = () => {
 					name='solo_api_mail_title'
 					label={__('Set the title of the mail that will be send with the PDF invoice', 'woo-solo-api')}
 					type='text'
-					disabled={isSaving}
+					disabled={isActive}
 					value={settings.solo_api_mail_title}
 					onChange={(value) => setSettings({...settings, solo_api_mail_title: value, settingsRefs})}
 				/>
@@ -57,7 +57,7 @@ export const EmailSettingsPanel = () => {
 					name='solo_api_message'
 					label={__('Type the message that will appear on the mail with the invoice PDF attached', 'woo-solo-api')}
 					rows='10'
-					disabled={isSaving}
+					disabled={isActive}
 					value={settings.solo_api_message}
 					onChange={(value) => setSettings({...settings, solo_api_message: value, settingsRefs})}
 				/>
@@ -79,7 +79,7 @@ export const EmailSettingsPanel = () => {
 						)
 					}
 					type='text'
-					disabled={isSaving}
+					disabled={isActive}
 					value={settings.solo_api_change_mail_from}
 					onChange={(value) => setSettings({...settings, solo_api_change_mail_from: value, settingsRefs})}
 				/>

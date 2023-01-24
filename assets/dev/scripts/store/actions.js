@@ -19,10 +19,10 @@ export const actions = {
 			errors,
 		};
 	},
-	setIsSaving(isSaving) {
+	setIsActive(isActive) {
 		return {
-			type: actionTypes.SET_IS_SAVING,
-			isSaving,
+			type: actionTypes.SET_IS_ACTIVE,
+			isActive,
 		};
 	},
 	setIsSaved(isSaved) {
@@ -36,14 +36,19 @@ export const actions = {
 			type: actionTypes.GET_SETTINGS,
 		};
 	},
+	getDbOrders() {
+		return {
+			type: actionTypes.GET_DB_ORDERS,
+		};
+	},
 	getErrors() {
 		return {
 			type: actionTypes.GET_ERRORS,
 		};
 	},
-	getIsSaving() {
+	getIsActive() {
 		return {
-			type: actionTypes.GET_IS_SAVING,
+			type: actionTypes.GET_IS_ACTIVE,
 		};
 	},
 	getIsSaved() {

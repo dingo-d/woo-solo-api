@@ -78,8 +78,11 @@ export const controls = {
 			errors :
 			{};
 	},
-	GET_IS_SAVING() {
-		return useSelect((select) => select(STORE_NAME).getIsSaving());
+	GET_DB_ORDERS() {
+		return useSelect((select) => select(STORE_NAME).getDbOrders());
+	},
+	GET_IS_ACTIVE() {
+		return useSelect((select) => select(STORE_NAME).getIsActive());
 	},
 	GET_IS_SAVED() {
 		return useSelect((select) => select(STORE_NAME).getIsSaved());

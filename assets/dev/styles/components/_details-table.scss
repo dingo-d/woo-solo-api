@@ -2,7 +2,7 @@ $table: (
 	'border-color': $base-silver-color,
 );
 
-.details-table {
+.order-table {
 	display: grid;
 	grid-template-columns: repeat(10, 1fr);
 	width: fit-content;

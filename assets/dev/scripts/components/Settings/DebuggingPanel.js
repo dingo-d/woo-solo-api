@@ -3,7 +3,7 @@
 /* eslint operator-linebreak: ["error", "after"] */
 
 const {useState} = wp.element;
-const {useSelect, useDispatch} = wp.data;
+const {useDispatch} = wp.data;
 const {__} = wp.i18n;
 const {apiFetch} = wp;
 
@@ -25,11 +25,13 @@ export const DebuggingPanel = () => {
 
 	const callApi = async () => {
 		setApiResponse('');
+		setErrors({});
 		setIsRequestPending(! isRequestPending);
 
 		try {
 			const response = await apiFetch({path: '/woo-solo-api/v1/solo-account-details'});
 			setApiResponse(response);
+			setIsRequestPending(false);
 		} catch (error) {
 			setErrors({apiError: error});
 			setApiResponse(error);
@@ -41,6 +43,7 @@ export const DebuggingPanel = () => {
 
 	const deleteTransient = async () => {
 		setApiResponse('');
+		setErrors({});
 		setIsRequestPending(! isRequestPending);
 
 		try {
@@ -50,6 +53,7 @@ export const DebuggingPanel = () => {
 				__('Exchange rate transient is cleared.', 'woo-solo-api') :
 				__('Exchange rate transient wasn\'t cleared.', 'woo-solo-api') // eslint-disable-line
 			);
+			setIsRequestPending(false);
 		} catch (error) {
 			setErrors({apiError: error});
 			setApiResponse(error);

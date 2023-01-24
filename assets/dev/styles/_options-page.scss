@@ -19,18 +19,19 @@ $options-page: (
 	&__item {
 		margin: 1.25rem 1.25rem 0;
 
-		.components-snackbar {
-			margin-top: 1.25rem;
+	}
 
-			&.is-hidden {
-				opacity: 0;
-				transition: all 250ms linear;
-			}
+	.components-snackbar {
+		margin-top: 1.25rem;
 
-			&.is-visible {
-				opacity: 1;
-				transition: all 250ms linear;
-			}
+		&.is-hidden {
+			opacity: 0;
+			transition: all 250ms linear;
+		}
+
+		&.is-visible {
+			opacity: 1;
+			transition: all 250ms linear;
 		}
 	}
 

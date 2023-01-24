@@ -27,11 +27,11 @@ import {STORE_NAME} from '../store/store';
 
 export const App = () => {
 	const storeSettings = useSelect((select) => select(STORE_NAME).getSettings());
-	const isSaving = useSelect((select) => select(STORE_NAME).getIsSaving());
+	const isActive = useSelect((select) => select(STORE_NAME).getIsActive());
 
 	const isLoading = storeSettings?.isLoading ?? true;
 
-	const {setErrors, setIsSaving, setIsSaved} = useDispatch(STORE_NAME);
+	const {setErrors, setIsActive, setIsSaved} = useDispatch(STORE_NAME);
 
 	// Can we do this better?
 	const objectHasEmptyProperties = (object) => {
@@ -49,12 +49,12 @@ export const App = () => {
 	const settingsListLength = Object.keys(storeSettings).length;
 
 	const saveSettings = () => {
-		setIsSaving(true);
+		setIsActive(true);
 		setErrors({}); // Reset the errors.
 
 		// No changes from the original, bail out.
 		if (settingsListLength === 0) {
-			setIsSaving(false);
+			setIsActive(false);
 			setIsSaved(false);
 			return;
 		}
@@ -78,7 +78,7 @@ export const App = () => {
 
 		settingsModel.save(options, {
 			success: () => {
-				setIsSaving(false);
+				setIsActive(false);
 				setIsSaved(true);
 			},
 			error: (model, res) => {
@@ -92,7 +92,7 @@ export const App = () => {
 					behavior: 'smooth',
 				});
 
-				setIsSaving(false);
+				setIsActive(false);
 				setIsSaved(false);
 				setErrors({...errorsRes});
 			},
@@ -118,12 +118,12 @@ export const App = () => {
 							<Button
 								isPrimary
 								isLarge
-								disabled={isSaving}
+								disabled={isActive}
 								onClick={saveSettings}
 							>
 								{__('Save settings', 'woo-solo-api')}
 							</Button>
-							{isSaving ? <Spinner/> : ''}
+							{isActive ? <Spinner/> : ''}
 							<Popup />
 						</div>
 					</div>

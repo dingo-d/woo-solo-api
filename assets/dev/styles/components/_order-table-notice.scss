@@ -1,0 +1,8 @@
+.order-table-notice {
+	margin-top: 1rem;
+
+	&.has-error {
+		color: red;
+		font-weight: 700;
+	}
+}

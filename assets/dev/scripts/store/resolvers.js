@@ -17,10 +17,10 @@ export const resolvers = {
 
 		return actions.setErrors(errors);
 	},
-	*getIsSaving() {
-		const isSaving = yield actions.getIsSaving();
+	*getIsActive() {
+		const isActive = yield actions.getIsActive();
 
-		return actions.setErrors(isSaving);
+		return actions.setIsActive(isActive);
 	},
 	*getIsSaved() {
 		const isSaved = yield actions.getIsSaved();

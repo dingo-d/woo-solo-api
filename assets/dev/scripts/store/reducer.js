@@ -34,7 +34,7 @@ const DEFAULT_STATE = {
 	dbOrders: [],
 	settings: {},
 	errors: {},
-	isSaving: false,
+	isActive: false,
 	isSaved: false,
 };
 
@@ -46,16 +46,22 @@ export const reducer = ( state = DEFAULT_STATE, action ) => {
 				settings: action.settings,
 			};
 
+		case actionTypes.SET_DB_ORDERS:
+			return {
+				...state,
+				dbOrders: action.dbOrders,
+			};
+
 		case actionTypes.SET_ERRORS:
 			return {
 				...state,
 				errors: action.errors,
 			};
 
-		case actionTypes.SET_IS_SAVING:
+		case actionTypes.SET_IS_ACTIVE:
 			return {
 				...state,
-				isSaving: action.isSaving,
+				isActive: action.isActive,
 			};
 
 		case actionTypes.SET_IS_SAVED:
