@@ -581,6 +581,11 @@ class SoloApiRequest implements ApiRequest
 	 */
 	private function getCurrency(string $currencyID): string
 	{
+		// Fallback in the case the old ID is still present:
+		if ($currencyID === '1') {
+			$currencyID = '14';
+		}
+
 		$currencyMap = [
 			'2' => 'AUD',
 			'3' => 'CAD',
