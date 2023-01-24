@@ -1,10 +1,14 @@
+/* eslint-disable camelcase, no-unused-vars */
+/* global wp */
+/* eslint operator-linebreak: ["error", "after"] */
+
 import {unserialize} from 'php-serialize';
 
 const {apiFetch} = wp;
 const {models} = wp.api;
 const {useSelect} = wp.data;
 
-import {STORE_NAME} from "./store";
+import {STORE_NAME} from './store';
 
 export const controls = {
 	FETCH_FROM_API(action) {
@@ -13,9 +17,9 @@ export const controls = {
 	GET_SETTINGS() {
 		const settingsModel = new models.Settings();
 
-		return settingsModel.fetch().then(res => {
+		return settingsModel.fetch().then((res) => {
 			let availableGateways;
-			let settings = {};
+			const settings = {};
 
 			if (res.solo_api_available_gateways === null) {
 				availableGateways = [];
@@ -25,7 +29,7 @@ export const controls = {
 					[];
 			}
 
-			Object.keys(availableGateways).forEach(gatewayType => {
+			Object.keys(availableGateways).forEach((gatewayType) => {
 				settings[`solo_api_bill_offer-${gatewayType}`] = res[`solo_api_bill_offer-${gatewayType}`];
 				settings[`solo_api_fiscalization-${gatewayType}`] = res[`solo_api_fiscalization-${gatewayType}`];
 				settings[`solo_api_payment_type-${gatewayType}`] = res[`solo_api_payment_type-${gatewayType}`];
@@ -48,7 +52,7 @@ export const controls = {
 			return {...settings, ...{
 				solo_api_token: res.solo_api_token,
 				solo_api_measure: res.solo_api_measure,
-				solo_api_payment_type: solo_api_payment_type,
+				solo_api_payment_type,
 				solo_api_languages: res.solo_api_languages,
 				solo_api_currency: res.solo_api_currency,
 				solo_api_service_type: res.solo_api_service_type,
@@ -72,7 +76,7 @@ export const controls = {
 		const errors = useSelect((select) => select(STORE_NAME).getErrors());
 		return typeof errors !== 'undefined' ?
 			errors :
-			{}
+			{};
 	},
 	GET_IS_SAVING() {
 		return useSelect((select) => select(STORE_NAME).getIsSaving());

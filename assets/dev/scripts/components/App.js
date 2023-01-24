@@ -50,6 +50,7 @@ export const App = () => {
 
 	const saveSettings = () => {
 		setIsSaving(true);
+		setErrors({}); // Reset the errors.
 
 		// No changes from the original, bail out.
 		if (settingsListLength === 0) {

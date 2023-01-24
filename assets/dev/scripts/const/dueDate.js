@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* global wp */
+
 const {__} = wp.i18n;
 
 export const dueDate = [

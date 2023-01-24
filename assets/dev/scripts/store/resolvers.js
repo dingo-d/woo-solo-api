@@ -1,4 +1,4 @@
-import {actions} from "./actions";
+import {actions} from './actions';
 
 export const resolvers = {
 	*getSettings() {
@@ -11,7 +11,6 @@ export const resolvers = {
 		const dbData = yield actions.fetchFromApi(path);
 
 		return actions.setDbOrders(dbData);
-
 	},
 	*getErrors() {
 		const errors = yield actions.getErrors();

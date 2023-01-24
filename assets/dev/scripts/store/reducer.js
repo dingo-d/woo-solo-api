@@ -1,4 +1,4 @@
-import {actionTypes} from "./types";
+import {actionTypes} from './types';
 
 /**
  * Set default store state.
@@ -43,25 +43,25 @@ export const reducer = ( state = DEFAULT_STATE, action ) => {
 		case actionTypes.SET_SETTINGS:
 			return {
 				...state,
-				settings: action.settings
+				settings: action.settings,
 			};
 
 		case actionTypes.SET_ERRORS:
 			return {
 				...state,
-				errors: action.errors
+				errors: action.errors,
 			};
 
 		case actionTypes.SET_IS_SAVING:
 			return {
 				...state,
-				isSaving: action.isSaving
+				isSaving: action.isSaving,
 			};
 
 		case actionTypes.SET_IS_SAVED:
 			return {
 				...state,
-				isSaved: action.isSaved
+				isSaved: action.isSaved,
 			};
 
 		default: {
