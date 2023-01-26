@@ -1,4 +1,4 @@
-const {render} = wp.element;
+import {render} from '@wordpress/element';
 
 import {setStoreGlobalWindow, setStore} from './store/store';
 import {App} from './components/App';

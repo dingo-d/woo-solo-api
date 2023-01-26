@@ -2,17 +2,16 @@
 /* global wp */
 /* eslint operator-linebreak: ["error", "after"] */
 
-const {useState} = wp.element;
-const {useDispatch} = wp.data;
-const {__} = wp.i18n;
-const {apiFetch} = wp;
-
-const {
+import {useState} from '@wordpress/element';
+import {useDispatch} from '@wordpress/data';
+import {__} from '@wordpress/i18n';
+import apiFetch from '@wordpress/api-fetch';
+import {
 	Button,
 	PanelBody,
 	PanelRow,
 	Spinner,
-} = wp.components;
+} from '@wordpress/components';
 
 // Store
 import {STORE_NAME} from '../../store/store';

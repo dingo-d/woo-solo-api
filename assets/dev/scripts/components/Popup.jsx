@@ -2,9 +2,9 @@
 /* global wp, window */
 /* eslint operator-linebreak: ["error", "after"] */
 
-const {__} = wp.i18n;
-const {useSelect} = wp.data;
-const {Snackbar} = wp.components;
+import {__} from '@wordpress/i18n';
+import {useSelect} from '@wordpress/data';
+import {Snackbar} from '@wordpress/components';
 
 import {STORE_NAME} from '../store/store';
 

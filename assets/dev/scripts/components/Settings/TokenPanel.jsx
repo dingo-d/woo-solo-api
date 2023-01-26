@@ -2,15 +2,15 @@
 /* global wp */
 /* eslint operator-linebreak: ["error", "after"] */
 
-const {useRef} = wp.element;
-const {useSelect, useDispatch} = wp.data;
-const {__} = wp.i18n;
+import {useRef} from '@wordpress/element';
+import {useSelect, useDispatch} from '@wordpress/data';
+import {__} from '@wordpress/i18n';
 
-const {
+import {
 	TextControl,
 	PanelBody,
 	PanelRow,
-} = wp.components;
+} from '@wordpress/components';
 
 import {ErrorNotice} from '../ErrorNotice';
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* global wp */
 
-const {__} = wp.i18n;
+import {__} from '@wordpress/i18n';
 
 export const dueDate = [
 	{value: '1d', label: __('1 day', 'woo-solo-api')},

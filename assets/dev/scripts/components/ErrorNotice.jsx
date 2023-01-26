@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 /* global wp */
 
-const {__} = wp.i18n;
-const {useSelect} = wp.data;
+import {__} from '@wordpress/i18n';
+import {useSelect} from '@wordpress/data';
 
 import {STORE_NAME} from '../store/store';
 

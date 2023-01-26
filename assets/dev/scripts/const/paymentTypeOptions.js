@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* global wp */
 
-const {__} = wp.i18n;
+import {__} from '@wordpress/i18n';
 
 export const paymentTypeOptions = [
 	{value: '1', label: __('Transactional account', 'woo-solo-api')},

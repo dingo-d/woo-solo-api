@@ -2,8 +2,8 @@
 /* global wp, window */
 /* eslint operator-linebreak: ["error", "after"] */
 
-const {__} = wp.i18n;
-const {ExternalLink} = wp.components;
+import {__} from '@wordpress/i18n';
+import {ExternalLink} from '@wordpress/components';
 
 export const Notification = () => {
 	return (

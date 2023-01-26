@@ -8,9 +8,7 @@ import {reducer} from './reducer';
 import {resolvers} from './resolvers';
 import {selectors} from './selectors';
 
-const {
-	registerStore,
-} = wp.data;
+import {createReduxStore, register} from '@wordpress/data';
 
 export const STORE_NAME = 'woo-solo-api/store';
 
@@ -20,7 +18,7 @@ export const setStore = () => {
 		window.wooSoloApi = {};
 	}
 
-	registerStore(
+	const store = createReduxStore(
 		STORE_NAME,
 		{
 			selectors,
@@ -30,6 +28,8 @@ export const setStore = () => {
 			controls,
 		} // eslint-disable-line
 	);
+
+	register(store);
 };
 
 // Set global window data for easier debugging.

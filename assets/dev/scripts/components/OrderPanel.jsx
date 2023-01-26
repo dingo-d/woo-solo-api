@@ -4,18 +4,18 @@
 
 import classnames from 'classnames';
 
-const {apiFetch} = wp;
-const {__} = wp.i18n;
-const {useState} = wp.element;
-const {useSelect, useDispatch} = wp.data;
+import apiFetch from '@wordpress/api-fetch';
+import {__} from '@wordpress/i18n';
+import {useState} from '@wordpress/element';
+import {useSelect, useDispatch} from '@wordpress/data';
 
-const {
+import {
 	Button,
 	ExternalLink,
 	PanelBody,
 	PanelRow,
 	Snackbar,
-} = wp.components;
+} from '@wordpress/components';
 
 import {STORE_NAME} from '../store/store';
 

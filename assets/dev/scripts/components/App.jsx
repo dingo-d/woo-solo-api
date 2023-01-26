@@ -8,13 +8,13 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies
  */
-const {useSelect, useDispatch} = wp.data;
-const {__} = wp.i18n;
-const {models} = wp.api;
-const {
+import apiFetch from '@wordpress/api-fetch';
+import {useSelect, useDispatch} from '@wordpress/data';
+import {__} from '@wordpress/i18n';
+import {
 	Button,
 	Spinner,
-} = wp.components;
+} from '@wordpress/components';
 
 // Components
 import {Notification} from './Notification';
@@ -28,8 +28,6 @@ import {STORE_NAME} from '../store/store';
 export const App = () => {
 	const storeSettings = useSelect((select) => select(STORE_NAME).getSettings());
 	const isActive = useSelect((select) => select(STORE_NAME).getIsActive());
-
-	const isLoading = storeSettings?.isLoading ?? true;
 
 	const {setErrors, setIsActive, setIsSaved} = useDispatch(STORE_NAME);
 
@@ -48,7 +46,9 @@ export const App = () => {
 
 	const settingsListLength = Object.keys(storeSettings).length;
 
-	const saveSettings = () => {
+	const isLoading = settingsListLength <= 0;
+
+	const saveSettings = async () => {
 		setIsActive(true);
 		setErrors({}); // Reset the errors.
 
@@ -74,29 +74,31 @@ export const App = () => {
 				return obj;
 			}, {});
 
-		const settingsModel = new models.Settings();
+		try {
+			await apiFetch({
+				path: '/wp/v2/settings',
+				method: 'PUT',
+				data: options,
+			});
+			setIsActive(false);
+			setIsSaved(true);
+		} catch (error) {
+			const errorsRes = error.data.params;
+			const refName = Object.keys(errorsRes)[0];
+			const refs = storeSettings.settingsRefs;
+			window.scrollTo({
+				top: refs.current[refName].offsetTop - 60,
+				left: 0,
+				behavior: 'smooth',
+			});
 
-		settingsModel.save(options, {
-			success: () => {
-				setIsActive(false);
-				setIsSaved(true);
-			},
-			error: (model, res) => {
-				const errorsRes = res.responseJSON.data.params;
-				const refName = Object.keys(errorsRes)[0];
-				const refs = storeSettings.settingsRefs;
-
-				window.scrollTo({
-					top: refs.current[refName].offsetTop - 60,
-					left: 0,
-					behavior: 'smooth',
-				});
-
-				setIsActive(false);
-				setIsSaved(false);
-				setErrors({...errorsRes});
-			},
-		});
+			setIsActive(false);
+			setIsSaved(false);
+			setErrors({...errorsRes});
+		} finally {
+			setIsActive(false);
+			setIsSaved(false);
+		}
 	};
 
 	const optionsWrapperClass = classnames({
