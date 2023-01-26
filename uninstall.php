@@ -68,11 +68,11 @@ delete_option('solo_api_due_date');
 delete_option('solo_api_mail_gateway');
 delete_option('solo_api_send_pdf');
 
-$available_woo_gateways = WC()->payment_gateways->get_available_payment_gateways();
+$availableWooGateways = WC()->payment_gateways->get_available_payment_gateways();
 
-foreach ($available_woo_gateways as $gateway_woo_sett => $gateway_woo_val) {
-    delete_option('solo_api_bill_offer-' . esc_attr($gateway_woo_val->id));
-    delete_option('solo_api_fiscalization-' . esc_attr($gateway_woo_val->id));
+foreach ($availableWooGateways as $gatewayWooVal) {
+    delete_option('solo_api_bill_offer-' . esc_attr($gatewayWooVal->id));
+    delete_option('solo_api_fiscalization-' . esc_attr($gatewayWooVal->id));
 }
 
 add_action('wp_mail_from_name', 'solo_api_revert_mail_from_name');
