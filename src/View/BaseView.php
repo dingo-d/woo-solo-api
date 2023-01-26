@@ -57,7 +57,7 @@ class BaseView implements View
 	 *
 	 * @throws InvalidUri If an invalid URI was passed into the View.
 	 */
-	public final function __construct(string $uri)
+	final public function __construct(string $uri)
 	{
 		$this->uri = $this->validate($uri);
 	}
