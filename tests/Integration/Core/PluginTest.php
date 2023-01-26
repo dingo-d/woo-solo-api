@@ -8,6 +8,10 @@ use Mockery;
 use WP_Upgrader;
 use Yoast\WPTestUtils\WPIntegration\TestCase;
 
+if (!empty($GLOBALS['argv']) && $GLOBALS['argv'][1] === '--group=unit') {
+	return;
+}
+
 uses(TestCase::class);
 
 beforeEach(function () {
