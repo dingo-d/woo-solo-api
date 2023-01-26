@@ -16,6 +16,8 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
 use function add_action;
 use function get_transient;
 use function set_transient;
+use function wp_remote_get;
+use function wp_remote_retrieve_body;
 
 /**
  * Fetch exchange rate utility
@@ -50,7 +52,6 @@ class FetchExchangeRate implements Registrable
 	 */
 	public function register(): void
 	{
-
 		add_action('init', [$this, 'setExchangeRates']);
 	}
 
