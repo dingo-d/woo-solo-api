@@ -21,7 +21,9 @@ use MadeByDenis\WooSoloApi\Database\PluginActivationCheck;
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\MakeApiRequest;
 use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
+use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use Tests\Fixtures\MockApiRequest;
+use WP_Upgrader;
 
 use function add_action;
 use function deactivate_plugins;
@@ -147,6 +149,7 @@ final class Plugin extends Autowiring implements Registrable, HasActivation, Has
 		}
 
 		add_action('plugins_loaded', [$this, 'registerServices']);
+		add_action('upgrader_process_complete', [$this, 'updatePluginActions'], 10, 2);
 	}
 
 	/**
@@ -172,6 +175,44 @@ final class Plugin extends Autowiring implements Registrable, HasActivation, Has
 				}
 			}
 		);
+	}
+
+	/**
+	 * Run actions on plugin update
+	 *
+	 * @param WP_Upgrader $upgrader WP_Upgrader instance.
+	 * @param array<string, mixed> $hookExtra Array of bulk item update data.
+	 *
+	 * @return void
+	 */
+	public function updatePluginActions(WP_Upgrader $upgrader, array $hookExtra): void
+	{
+		$wooSoloPlugin = plugin_basename(__FILE__);
+
+		if ($hookExtra['action'] !== 'update' && $hookExtra['type'] !== 'plugin') {
+			return;
+		}
+
+		foreach ($hookExtra['plugins'] as $installedPlugins) {
+			if ($installedPlugins !== $wooSoloPlugin) {
+				continue;
+			}
+
+			// Clear exchange rate transient.
+			\delete_transient(FetchExchangeRate::TRANSIENT);
+		}
+	}
+
+	/**
+	 * Get the list of services to register.
+	 *
+	 * A list of classes which contain hooks.
+	 *
+	 * @return array<class-string, string|string[]> Array of fully qualified service class names.
+	 */
+	protected function getServiceClasses(): array
+	{
+		return [];
 	}
 
 	/**
@@ -303,26 +344,6 @@ final class Plugin extends Autowiring implements Registrable, HasActivation, Has
 			},
 			$dependencies
 		);
-	}
-
-	/**
-	 * Get the list of services to register.
-	 *
-	 * A list of classes which contain hooks.
-	 *
-	 * @return array<class-string, string|string[]> Array of fully qualified service class names.
-	 */
-	protected function getServiceClasses(): array
-	{
-		$services = [];
-
-		// Test mocks.
-		if (getenv('TEST') === 'true') {
-			$services[MakeSoloApiCall::class] = [MockApiRequest::class];
-			$services[MakeApiRequest::class] = [SoloOrdersTable::class, MockApiRequest::class];
-		}
-
-		return $services;
 	}
 
 	/**
