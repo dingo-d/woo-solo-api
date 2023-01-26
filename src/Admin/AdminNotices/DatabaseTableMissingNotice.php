@@ -39,16 +39,16 @@ class DatabaseTableMissingNotice implements Registrable, Renderable
 	/**
 	 * @var SoloOrdersTable
 	 */
-	private $ordersTable;
+	private SoloOrdersTable $soloOrdersTable;
 
 	/**
 	 * DatabaseTableMissingNotice constructor
 	 *
-	 * @param SoloOrdersTable $ordersTable Dependency that manages database concern.
+	 * @param SoloOrdersTable $soloOrdersTable Dependency that manages database concern.
 	 */
-	public function __construct(SoloOrdersTable $ordersTable)
+	public function __construct(SoloOrdersTable $soloOrdersTable)
 	{
-		$this->ordersTable = $ordersTable;
+		$this->soloOrdersTable = $soloOrdersTable;
 	}
 
 	/**
@@ -68,7 +68,7 @@ class DatabaseTableMissingNotice implements Registrable, Renderable
 	 */
 	public function missingDatabaseTableNoticeCheck(): void
 	{
-		if (!$this->ordersTable->databaseTableIsMissing()) {
+		if (!$this->soloOrdersTable->databaseTableIsMissing()) {
 			return;
 		}
 
@@ -87,7 +87,7 @@ class DatabaseTableMissingNotice implements Registrable, Renderable
 	 *
 	 * We need to pass the view URL using the attributes.
 	 *
-	 * @param array $context Context in which to render.
+	 * @param array<mixed> $context Context in which to render.
 	 *
 	 * @return string Rendered HTML.
 	 */

@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Assets;
 
+use Kucrut\Vite;
+
 use function add_action;
 use function esc_html__;
 
@@ -26,10 +28,9 @@ class EnqueueResources implements Assets
 {
 
 	public const JS_HANDLE = 'woo-solo-api-js';
-	public const JS_URI = 'application.js';
+	public const JS_URI = '/assets/dev/application.jsx';
 
 	public const CSS_HANDLE = 'woo-solo-api-css';
-	public const CSS_URI = 'application.css';
 
 	public const VERSION = false;
 	public const IN_FOOTER = true;
@@ -49,18 +50,23 @@ class EnqueueResources implements Assets
 	/**
 	 * @inheritDoc
 	 */
-	public function enqueueStyles($hookSuffix)
+	public function enqueueStyles($hookSuffix): void
 	{
 		if ($hookSuffix !== 'woocommerce_page_solo_api_options') {
 			return;
 		}
 
-		wp_register_style(
-			self::CSS_HANDLE,
-			$this->getManifestAssetsData(self::CSS_URI),
-			['wp-components'],
-			self::VERSION,
-			self::MEDIA_ALL
+		Vite\register_asset(
+			dirname(__DIR__, 2) . '/assets/public',
+			self::JS_URI,
+			[
+				'handle' => self::CSS_HANDLE,
+				'dependencies' => [],
+				'css-dependencies' => ['wp-components'],
+				'css-media' => self::MEDIA_ALL,
+				'css-only' => false,
+				'in-footer' => self::IN_FOOTER,
+			]
 		);
 
 		wp_enqueue_style(self::CSS_HANDLE);
@@ -69,18 +75,23 @@ class EnqueueResources implements Assets
 	/**
 	 * @inheritDoc
 	 */
-	public function enqueueScripts($hookSuffix)
+	public function enqueueScripts($hookSuffix): void
 	{
 		if ($hookSuffix !== 'woocommerce_page_solo_api_options') {
 			return;
 		}
 
-		wp_register_script(
-			self::JS_HANDLE,
-			$this->getManifestAssetsData(self::JS_URI),
-			$this->getJsDependencies(),
-			self::VERSION,
-			self::IN_FOOTER
+		Vite\register_asset(
+			dirname(__DIR__, 2) . '/assets/public',
+			self::JS_URI,
+			[
+				'handle' => self::JS_HANDLE,
+				'dependencies' => $this->getJsDependencies(),
+				'css-dependencies' => [],
+				'css-media' => self::MEDIA_ALL,
+				'css-only' => false,
+				'in-footer' => self::IN_FOOTER,
+			]
 		);
 
 		wp_enqueue_script(self::JS_HANDLE);
@@ -111,7 +122,7 @@ class EnqueueResources implements Assets
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/wp_enqueue_script/#default-scripts-included-and-registered-by-wordpress
 	 *
-	 * @return array List of all the script dependencies
+	 * @return string[] List of all the script dependencies
 	 */
 	private function getJsDependencies(): array
 	{
@@ -128,7 +139,7 @@ class EnqueueResources implements Assets
 	/**
 	 * Get script localizations
 	 *
-	 * @return array Key value pair of different localizations
+	 * @return array<string, array<string, string>> Key value pair of different localizations
 	 */
 	private function getLocalizations(): array
 	{
@@ -137,31 +148,5 @@ class EnqueueResources implements Assets
 				'optionSaved' => esc_html__('Options saved.', 'woo-solo-api')
 			]
 		];
-	}
-
-	/**
-	 * Return full path for specific asset from manifest.json
-	 *
-	 * This is used for cache busting assets.
-	 *
-	 * @param string $key File name key you want to get from manifest.
-	 *
-	 * @return string Full path to asset.
-	 */
-	private function getManifestAssetsData(string $key = ''): string
-	{
-		$data = ASSETS_MANIFEST;
-
-		if ($key === '' || $data === '') {
-			return '';
-		}
-
-		$data = json_decode($data, true);
-
-		if (empty($data) || !\is_array($data)) {
-			return '';
-		}
-
-		return (string) $data[$key];
 	}
 }

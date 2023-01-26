@@ -25,7 +25,6 @@ use MadeByDenis\WooSoloApi\Exception\InvalidUri;
  */
 class BaseView implements View
 {
-
 	/**
 	 * Extension to use for view files.
 	 */

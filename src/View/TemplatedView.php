@@ -27,7 +27,6 @@ use function get_template_directory;
  */
 final class TemplatedView extends BaseView
 {
-
 	/**
 	 * Validate an URI.
 	 *

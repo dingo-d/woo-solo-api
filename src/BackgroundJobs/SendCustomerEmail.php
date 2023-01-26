@@ -60,20 +60,20 @@ class SendCustomerEmail extends ScheduleEvent
 		 */
 		$checkedGateways = get_option('solo_api_mail_gateway', 'a:0:{}');
 
-		if (!is_array($checkedGateways) && is_string($checkedGateways)) {
+		if (is_string($checkedGateways)) {
 			$checkedGateways = unserialize($checkedGateways);
 		}
 
 		if (empty($checkedGateways)) {
-			return false;
+			return;
 		}
 
 		if (!is_array($checkedGateways)) {
-			return false;
+			return;
 		}
 
 		if (!in_array($paymentMethod, $checkedGateways, true)) {
-			return false;
+			return;
 		}
 
 		global $wp_filesystem;
@@ -88,8 +88,8 @@ class SendCustomerEmail extends ScheduleEvent
 		$pdfLink = (!empty($responseBody[$billType]) && is_array($responseBody[$billType])) ? esc_url($responseBody[$billType]['pdf']) : '';
 
 		if (empty($pdfLink)) {
-			SoloOrdersTable::addApiResponseError($orderId, esc_html__('PDF invoice/order is missing', 'woo-solo-api')); // @phpstan-ignore-line
-			return false;
+			SoloOrdersTable::addApiResponseError($orderId, esc_html__('PDF invoice/order is missing', 'woo-solo-api'));
+			return;
 		}
 
 		if ($billType === SoloApiRequest::INVOICE) {
@@ -110,7 +110,7 @@ class SendCustomerEmail extends ScheduleEvent
 			$errorCode = wp_remote_retrieve_response_code($pdfGet);
 			$errorMessage = wp_remote_retrieve_response_message($pdfGet);
 
-			return new WP_Error($errorCode, $errorMessage);
+			return new WP_Error($errorCode, $errorMessage); // @phpstan-ignore-line
 		}
 
 		$pdfContents = $pdfGet['body'];
@@ -119,7 +119,7 @@ class SendCustomerEmail extends ScheduleEvent
 		if (!WP_Filesystem()) {
 			// Our credentials were no good, ask the user for them again.
 			request_filesystem_credentials('', '', true, '', null, false);
-			return true;
+			return;
 		}
 
 		$uploadDir = wp_upload_dir();
@@ -157,8 +157,8 @@ class SendCustomerEmail extends ScheduleEvent
 
 		if ($urlParse === false || !is_array($urlParse)) {
 			// phpcs:ignore
-			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Error in sending customer email. Attachment URL cannot be parsed.', 'woo-solo-api')); // @phpstan-ignore-line
-			return false;
+			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Error in sending customer email. Attachment URL cannot be parsed.', 'woo-solo-api'));
+			return;
 		}
 
 		$attachmentId = wp_insert_attachment(
@@ -167,11 +167,11 @@ class SendCustomerEmail extends ScheduleEvent
 			0
 		); // Create attachment in the Media screen.
 
-		if (is_wp_error($attachmentId)) {
+		if (is_wp_error($attachmentId)) { // @phpstan-ignore-line
 			$errorCode = wp_remote_retrieve_response_code($attachmentId);
 			$errorMessage = wp_remote_retrieve_response_message($attachmentId);
 
-			return new WP_Error($errorCode, $errorMessage);
+			return new WP_Error($errorCode, $errorMessage); // @phpstan-ignore-line
 		}
 
 		// Wrapping in nl2br to see if HTML will parse correctly.
@@ -179,8 +179,8 @@ class SendCustomerEmail extends ScheduleEvent
 
 		if (!is_string($message)) {
 			// phpcs:ignore
-			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Error in sending customer email. Email message must be of string type.', 'woo-solo-api')); // @phpstan-ignore-line
-			return false;
+			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Error in sending customer email. Email message must be of string type.', 'woo-solo-api'));
+			return;
 		}
 
 		$emailMessage = nl2br($message);
@@ -316,7 +316,7 @@ class SendCustomerEmail extends ScheduleEvent
 		 */
 		$headers = apply_filters('woo_solo_api_email_headers', $headers);
 
-		wp_mail($email, $emailTitle, $emailMessage, $headers, [$attachment]); // @phpstan-ignore-line
+		wp_mail($email, $emailTitle, $emailMessage, $headers, [$attachment]);
 
 		// Now we delete the saved attachment because of GDPR :).
 		$deleted = wp_delete_attachment($attachmentId, true);
@@ -324,7 +324,7 @@ class SendCustomerEmail extends ScheduleEvent
 		// If for some reason WP won't delete it, try to force deletion.
 		if ($deleted === false || $deleted === null) {
 			if (!file_exists($attachment)) {
-				return false;
+				return;
 			}
 
 			unlink($attachment);
@@ -352,9 +352,9 @@ class SendCustomerEmail extends ScheduleEvent
 		 * Email sent to user - YES;
 		 * Update - YES;
 		 */
-		SoloOrdersTable::updateOrdersTable($orderId, $soloOrderId, true, true, true); // @phpstan-ignore-line
+		SoloOrdersTable::updateOrdersTable($orderId, $soloOrderId, true, true, true);
 
-		return true;
+		return;
 	}
 
 	/**

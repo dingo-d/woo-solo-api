@@ -24,7 +24,7 @@ interface Renderable
     /**
      * Render the current Renderable.
      *
-     * @param array $context Context in which to render.
+     * @param array<mixed> $context Context in which to render.
      *
      * @return string Rendered HTML.
      */

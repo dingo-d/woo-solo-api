@@ -91,9 +91,7 @@ final class OptionsSubmenu extends AdminSubmenu
 	 */
 	protected function processAttributes($attr): array
 	{
-		$attr = (array) $attr;
-
-		return $attr;
+		return (array) $attr;
 	}
 
 	/**

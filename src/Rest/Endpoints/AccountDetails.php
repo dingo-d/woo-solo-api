@@ -27,6 +27,8 @@ use function get_option;
  */
 class AccountDetails extends BaseRoute implements RestCallable
 {
+	use IsUserLoggedIn;
+
 	public const ROUTE_NAME = '/solo-account-details';
 
 	/**
@@ -37,7 +39,7 @@ class AccountDetails extends BaseRoute implements RestCallable
 		return [
 			'methods' => static::READABLE,
 			'callback' => [$this, 'restCallback'],
-			'permission_callback' => [$this, 'restPermissionCheck'],
+			'permission_callback' => [$this, 'canUserAccessEndpoint'],
 		];
 	}
 
@@ -82,17 +84,5 @@ class AccountDetails extends BaseRoute implements RestCallable
 		}
 
 		return rest_ensure_response($data);
-	}
-
-	/**
-	 * Check if the current user has necessary privileges to access the endpoint
-	 *
-	 * @param WP_REST_Request $request
-	 *
-	 * @return bool
-	 */
-	public function restPermissionCheck(WP_REST_Request $request)
-	{
-		return is_user_logged_in() && current_user_can('manage_options');
 	}
 }

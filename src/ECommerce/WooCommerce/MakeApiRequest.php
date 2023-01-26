@@ -39,23 +39,23 @@ class MakeApiRequest implements Registrable
 	/**
 	 * @var SoloOrdersTable
 	 */
-	private $ordersTable;
+	private $soloOrdersTable;
 
 	/**
 	 * @var ApiRequest
 	 */
-	private $soloRequest;
+	private $soloApiRequest;
 
 	/**
 	 * ApiRequest constructor
 	 *
-	 * @param SoloOrdersTable $ordersTable Dependency that manages database concern.
-	 * @param ApiRequest $soloRequest Api request dependency.
+	 * @param SoloOrdersTable $soloOrdersTable Dependency that manages database concern.
+	 * @param ApiRequest $soloApiRequest Api request dependency.
 	 */
-	public function __construct(SoloOrdersTable $ordersTable, ApiRequest $soloRequest)
+	public function __construct(SoloOrdersTable $soloOrdersTable, ApiRequest $soloApiRequest)
 	{
-		$this->ordersTable = $ordersTable;
-		$this->soloRequest = $soloRequest;
+		$this->soloOrdersTable = $soloOrdersTable;
+		$this->soloApiRequest = $soloApiRequest;
 	}
 
 	/**
@@ -141,7 +141,7 @@ class MakeApiRequest implements Registrable
 		 * This checks the option where sent orders are stored and if the order is stored,
 		 * don't send request to solo API.
 		 */
-		if ($this->ordersTable->wasOrderSent($orderId)) {
+		if ($this->soloOrdersTable->wasOrderSent($orderId)) {
 			return;
 		}
 
@@ -150,7 +150,7 @@ class MakeApiRequest implements Registrable
 		 * This can happen if the API call failed. If it does, we won't create a new entry
 		 * in the woo orders table, we'll just update it.
 		 */
-		$orderEntryExists = $this->ordersTable->orderExists($orderId);
+		$orderEntryExists = $this->soloOrdersTable->orderExists($orderId);
 
 		/**
 		 * Create a database entry for consistency checks
@@ -161,7 +161,7 @@ class MakeApiRequest implements Registrable
 		 */
 		SoloOrdersTable::updateOrdersTable($orderId, '', false, false, $orderEntryExists);
 
-		$this->soloRequest->executeApiCall($order);
+		$this->soloApiRequest->executeApiCall($order);
 	}
 
 	/**
@@ -189,7 +189,7 @@ class MakeApiRequest implements Registrable
 		 * This checks the option where sent orders are stored and if the order is stored,
 		 * don't send request to solo API.
 		 */
-		if ($this->ordersTable->wasOrderSent($orderId)) {
+		if ($this->soloOrdersTable->wasOrderSent($orderId)) {
 			return;
 		}
 
@@ -212,7 +212,7 @@ class MakeApiRequest implements Registrable
 			 * This can happen if the API call failed. If it does, we won't create a new entry
 			 * in the woo orders table, we'll just update it.
 			 */
-			$orderEntryExists = $this->ordersTable->orderExists($orderId);
+			$orderEntryExists = $this->soloOrdersTable->orderExists($orderId);
 
 			/**
 			 * Create a database entry for consistency checks
@@ -227,7 +227,7 @@ class MakeApiRequest implements Registrable
 			wp_schedule_single_event(
 				time() + (30 * $callNumber),
 				MakeSoloApiCall::JOB_NAME,
-				['order' => $order]
+				[$order]
 			);
 
 			$callNumber++;

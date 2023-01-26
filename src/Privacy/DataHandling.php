@@ -35,16 +35,16 @@ class DataHandling implements Registrable
 	/**
 	 * @var SoloOrdersTable
 	 */
-	private $ordersTable;
+	private $soloOrdersTable;
 
 	/**
 	 * DatabaseTableMissingNotice constructor
 	 *
-	 * @param SoloOrdersTable $ordersTable Dependency that manages database concern.
+	 * @param SoloOrdersTable $soloOrdersTable Dependency that manages database concern.
 	 */
-	public function __construct(SoloOrdersTable $ordersTable)
+	public function __construct(SoloOrdersTable $soloOrdersTable)
 	{
-		$this->ordersTable = $ordersTable;
+		$this->soloOrdersTable = $soloOrdersTable;
 	}
 
 	public function register(): void
@@ -56,21 +56,9 @@ class DataHandling implements Registrable
 	/**
 	 * Callback that will handle the array of exporter callbacks
 	 *
-	 * @param array $args {
-	 *     An array of callable exporters of personal data. Default empty array.
+	 * @param array<string, array<mixed>> $args An array of callable exporters of personal data. Default empty array.
 	 *
-	 * @type array ...$0 {
-	 *         Array of personal data exporters.
-	 *
-	 * @type callable $callback Callable exporter function that accepts an
-	 *                                                email address and a page and returns an array
-	 *                                                of name => value pairs of personal data.
-	 * @type string $exporter_friendly_name Translated user facing friendly name for the
-	 *                                                exporter.
-	 *     }
-	 * }
-	 *
-	 * @return array Updated list of exporters.
+	 * @return array<string, array<mixed>> Updated list of exporters.
 	 */
 	public function dataExportHandler(array $args): array
 	{
@@ -88,11 +76,11 @@ class DataHandling implements Registrable
 	 * @param string $emailAddress Email address that can be queried against.
 	 * @param int $page Pagination identifier.
 	 *
-	 * @return array Array of exported data.
+	 * @return array<string, mixed> Array of exported data.
 	 */
-	public function soloOrderDataExporter(string $emailAddress, $page = 1)
+	public function soloOrderDataExporter(string $emailAddress, $page = 1): array
 	{
-		$results = $this->ordersTable->getOrderDetails($emailAddress);
+		$results = $this->soloOrdersTable->getOrderDetails($emailAddress);
 
 		$exportedItems = [];
 
@@ -155,21 +143,9 @@ class DataHandling implements Registrable
 	/**
 	 * Callback that will handle the array of eraser callbacks
 	 *
-	 * @param array $args {
-	 *     An array of callable erasers of personal data. Default empty array.
+	 * @param array<string, mixed> $args An array of callable erasers of personal data. Default empty array.
 	 *
-	 * @type array ...$0 {
-	 *         Array of personal data erasers.
-	 *
-	 * @type callable $callback Callable exporter function that accepts an
-	 *                                                email address and a page and returns an array
-	 *                                                of name => value pairs of personal data.
-	 * @type string $exporter_friendly_name Translated user facing friendly name for the
-	 *                                                exporter.
-	 *     }
-	 * }
-	 *
-	 * @return array Updated list of erasers.
+	 * @return array<string, mixed> Updated list of erasers.
 	 */
 	public function dataDeletionHandler(array $args): array
 	{
@@ -187,11 +163,11 @@ class DataHandling implements Registrable
 	 * @param string $emailAddress Email address that can be queried against.
 	 * @param int $page Pagination identifier.
 	 *
-	 * @return array Array of erased data.
+	 * @return array<string, mixed> Array of erased data.
 	 */
-	public function soloOrderDataEraser(string $emailAddress, $page = 1)
+	public function soloOrderDataEraser(string $emailAddress, $page = 1): array
 	{
-		$results = $this->ordersTable->deleteOrderDetails($emailAddress);
+		$results = $this->soloOrdersTable->deleteOrderDetails($emailAddress);
 
 		return [
 			'items_removed' => $results,

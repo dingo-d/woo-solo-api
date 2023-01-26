@@ -25,7 +25,6 @@ use MadeByDenis\WooSoloApi\Exception\InvalidUri;
  */
 final class EscapedView implements View
 {
-
 	/**
 	 * Tags that are allowed to be rendered.
 	 *

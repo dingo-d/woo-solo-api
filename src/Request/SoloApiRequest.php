@@ -335,7 +335,8 @@ class SoloApiRequest implements ApiRequest
 			$requestBody['valuta_racuna'] = $currency;
 		}
 
-		if ($currency !== '1' || $currency !== '14') { // Only for foreign currency.
+		// Only for foreign currency.
+		if ($currency !== '1' || $currency !== '14') { // @phpstan-ignore-line.
 			$apiRates = $this->getHnbRates();
 
 			if (empty($apiRates)) {
@@ -402,7 +403,9 @@ class SoloApiRequest implements ApiRequest
 		 * @since 2.0.2
 		 *
 		 * @param string $customerNote Existing customer note.
-		 * @param $order $order Order object
+		 * @param object|WC_Order $order Order object.
+		 *
+		 * @return string Modified customer note.
 		 */
 		$customerNote = apply_filters('woo_solo_api_modify_customer_note', $customerNote, $order);
 
@@ -426,6 +429,9 @@ class SoloApiRequest implements ApiRequest
 		 * @since 2.2.0
 		 *
 		 * @param array $requestBody Existing customer note.
+		 * @param object|WP_Order $order Order object.
+		 *
+		 * @return array Modified request body.
 		 */
 		$requestBody = \apply_filters('woo_solo_api_modify_request_body', $requestBody, $order);
 
@@ -522,11 +528,11 @@ class SoloApiRequest implements ApiRequest
 				time() + 15,
 				SendCustomerEmail::JOB_NAME,
 				[
-					'orderId' => $orderId,
-					'responseDetails' => $responseDetails,
-					'email' => $email,
-					'billType' => $billType,
-					'paymentMethod' => $paymentMethod,
+					$orderId,
+					$responseDetails,
+					$email,
+					$billType,
+					$paymentMethod,
 				]
 			);
 		}
@@ -609,7 +615,7 @@ class SoloApiRequest implements ApiRequest
 	/**
 	 * Get the HNB money exchange rates from the transient
 	 *
-	 * @array The array consisting of currency => middle rate value pairs.
+	 * @return array<string, string> The array consisting of currency => middle rate value pairs.
 	 */
 	private function getHnbRates(): array
 	{
@@ -678,7 +684,8 @@ class SoloApiRequest implements ApiRequest
 	 * so we number them, and once we turn the array to HTTP query string, we can use regex to replace numbers
 	 * in the query string and use that as a body.
 	 *
-	 * @param array $requestBody
+	 * @param array<mixed> $requestBody Request body.
+	 *
 	 * @return string Prepared body
 	 */
 	private function prepareRequestData(array $requestBody): string

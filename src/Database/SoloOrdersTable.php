@@ -106,9 +106,9 @@ class SoloOrdersTable
 	 *
 	 * @param string $emailAddress Email address to query against.
 	 *
-	 * @return array|null
+	 * @return array<mixed>|null
 	 */
-	public function getOrderDetails(string $emailAddress)
+	public function getOrderDetails(string $emailAddress): ?array
 	{
 		global $wpdb;
 
@@ -293,9 +293,9 @@ class SoloOrdersTable
 	 *
 	 * @param int|null $id ID of the order.
 	 *
-	 * @return array|null Collection of orders from the DB or one order from the DB.
+	 * @return array<mixed>|null Collection of orders from the DB or one order from the DB.
 	 */
-	public function getOrders(int $id = null)
+	public function getOrders(int $id = null): ?array
 	{
 		global $wpdb;
 

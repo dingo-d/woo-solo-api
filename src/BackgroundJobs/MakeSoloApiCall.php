@@ -42,16 +42,16 @@ class MakeSoloApiCall extends ScheduleEvent
 	/**
 	 * @var ApiRequest
 	 */
-	private $soloRequest;
+	private ApiRequest $soloApiRequest;
 
 	/**
 	 * MakeSoloApiCall constructor.
 	 *
-	 * @param ApiRequest $soloRequest Request dependency.
+	 * @param ApiRequest $soloApiRequest Request dependency.
 	 */
-	public function __construct(ApiRequest $soloRequest)
+	public function __construct(ApiRequest $soloApiRequest)
 	{
-		$this->soloRequest = $soloRequest;
+		$this->soloApiRequest = $soloApiRequest;
 	}
 
 	/**
@@ -62,10 +62,10 @@ class MakeSoloApiCall extends ScheduleEvent
 		$order = $args[0];
 
 		try {
-			$this->soloRequest->executeApiCall($order);
+			$this->soloApiRequest->executeApiCall($order);
 		} catch (RuntimeException | OrderValidationException | TypeError $e) {
 			// Write error to the database for better logging.
-			SoloOrdersTable::addApiResponseError($order->get_id(), $e->getMessage()); // @phpstan-ignore-line
+			SoloOrdersTable::addApiResponseError($order->get_id(), $e->getMessage());
 		}
 	}
 
