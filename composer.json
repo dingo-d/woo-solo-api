@@ -25,14 +25,15 @@
 	"require-dev": {
 		"brain/monkey": "^2.6.1",
 		"codeception/module-asserts": "^1.0",
-		"codeception/module-phpbrowser": "^1.0",
-		"codeception/module-webdriver": "^1.0",
+		"codeception/module-cli": "^1.0",
 		"codeception/module-db": "^1.0",
 		"codeception/module-filesystem": "^1.0",
-		"codeception/module-cli": "^1.0",
+		"codeception/module-phpbrowser": "^1.0",
+		"codeception/module-webdriver": "^1.0",
 		"codeception/util-universalframework": "^1.0",
 		"codedungeon/phpunit-result-printer": "^0.31.0",
 		"dealerdirect/phpcodesniffer-composer-installer": "^v0.7.1",
+		"dingo-d/wp-pest": "^1.6",
 		"lucatume/wp-browser": "^3.1",
 		"php-stubs/woocommerce-stubs": "^v6.0.0",
 		"php-stubs/wordpress-globals": "^v0.2.0",
@@ -60,7 +61,9 @@
 		"optimize-autoloader": true,
 		"process-timeout": 2000,
 		"allow-plugins": {
-			"dealerdirect/phpcodesniffer-composer-installer": true
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"composer/installers": true,
+			"pestphp/pest-plugin": true
 		}
 	},
 	"scripts": {
