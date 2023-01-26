@@ -21,7 +21,6 @@ namespace MadeByDenis\WooSoloApi\Core;
  */
 interface Registrable
 {
-
 	/**
 	 * Register the current Registrable.
 	 *

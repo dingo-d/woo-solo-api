@@ -26,14 +26,17 @@ final class PluginFactory
      *
      * This always returns a shared instance.
      *
+     * @param array<string, string[]> $prefixes List of PSR-4 prefixes.
+     * @param string $namespace Main plugin namespace.
+     *
      * @return Plugin Plugin instance.
      */
-    public static function create(): Plugin
+    public static function create(array $prefixes, string $namespace): Plugin
     {
         static $plugin = null;
 
         if ($plugin === null) {
-            $plugin = new Plugin();
+            $plugin = new Plugin($prefixes, $namespace);
         }
 
         return $plugin;

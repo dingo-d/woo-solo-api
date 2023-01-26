@@ -11,28 +11,16 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Core;
 
+use DI\Container;
+use DI\ContainerBuilder;
+use DI\Definition\Helper\AutowireDefinitionHelper;
+use DI\Definition\Reference;
 use Exception;
-use MadeByDenis\WooSoloApi\Admin\AdminNotices\DatabaseTableMissingNotice;
-use MadeByDenis\WooSoloApi\Admin\PluginsPage;
-use MadeByDenis\WooSoloApi\Admin\AdminMenus\OptionsSubmenu;
-use MadeByDenis\WooSoloApi\Assets\EnqueueResources;
 use MadeByDenis\WooSoloApi\BackgroundJobs\MakeSoloApiCall;
-use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
 use MadeByDenis\WooSoloApi\Database\PluginActivationCheck;
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
-use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\AdminOrder;
-use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\CheckoutFields;
 use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\MakeApiRequest;
-use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\WooPaymentGateways;
-use MadeByDenis\WooSoloApi\Email\EmailFunctionality;
-use MadeByDenis\WooSoloApi\i18n\Internationalization;
-use MadeByDenis\WooSoloApi\Privacy\DataHandling;
-use MadeByDenis\WooSoloApi\Request\SoloApiRequest;
-use MadeByDenis\WooSoloApi\Rest\Endpoints\{ClearExchangeTransient, OrderDetails, OrderDetailsCollection};
-use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
-use MadeByDenis\WooSoloApi\Exception\{MissingManifest, PluginActivationFailure};
-use MadeByDenis\WooSoloApi\Rest\Endpoints\AccountDetails;
-use MadeByDenis\WooSoloApi\Settings\PluginSettings;
+use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
 use Tests\Fixtures\MockApiRequest;
 
 use function add_action;
@@ -49,15 +37,33 @@ use function flush_rewrite_rules;
  * @package Developer_Portal\Core
  * @since 2.0.0
  */
-final class Plugin implements Registrable, HasActivation, HasDeactivation
+final class Plugin extends Autowiring implements Registrable, HasActivation, HasDeactivation
 {
-
 	/**
 	 * Array of instantiated services.
 	 *
-	 * @var array
+	 * @var Object[]
 	 */
-	private $services = [];
+	private array $services = [];
+
+	/**
+	 * @var array<string, mixed>
+	 */
+	protected array $psr4Prefixes;
+
+	protected string $namespace;
+
+	/**
+	 * Constructs object and inserts prefixes from composer.
+	 *
+	 * @param array<string, mixed> $psr4Prefixes Composer's ClassLoader psr4Prefixes. $ClassLoader->getPsr4Prefixes().
+	 * @param string $projectNamespace Projects namespace.
+	 */
+	public function __construct(array $psr4Prefixes, string $projectNamespace)
+	{
+		$this->psr4Prefixes = $psr4Prefixes;
+		$this->namespace = $projectNamespace;
+	}
 
 	/**
 	 * Activate the plugin
@@ -141,8 +147,6 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 		}
 
 		add_action('plugins_loaded', [$this, 'registerServices']);
-
-		$this->registerAssetsManifestData();
 	}
 
 	/**
@@ -158,44 +162,147 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 			return;
 		}
 
-		static $container = null;
+		$this->services = $this->getServiceClassesWithDi();
 
-		if ($container === null) {
-			$container = new DiContainer();
-		}
-
-		$this->services = $container->getDiServices($this->getServiceClasses());
-
-		array_walk(
+		\array_walk(
 			$this->services,
 			static function ($class) {
-				if (!$class instanceof Registrable) {
-					return;
+				if ($class instanceof Registrable) {
+					$class->register();
 				}
-
-				$class->register();
 			}
 		);
 	}
 
 	/**
-	 * Register bundled asset manifest
+	 * Merges the autowired definition list with custom user-defined definition list.
 	 *
-	 * @return void
-	 * @throws MissingManifest Throws error if manifest is missing.
+	 * You can override autowired definition lists in $this->getServiceClasses().
+	 *
+	 * Taken from the following link, licenced under MIT.
+	 * @link https://github.com/infinum/eightshift-libs/blob/develop/src/Main/AbstractMain.php
+	 *
+	 * @throws Exception Exception thrown in case class is missing.
+	 *
+	 * @return array<string, mixed>
 	 */
-	public function registerAssetsManifestData()
+	private function getServiceClassesWithAutowire(): array
 	{
-		$response = file_get_contents(dirname(__DIR__, 2) . '/assets/public/manifest.json');
+		return $this->buildServiceClasses($this->getServiceClasses());
+	}
 
-		if (!$response) {
-			$error_message = esc_html__('manifest.json is missing. Bundle the plugin before using it.', 'woo-solo-api');
-			throw MissingManifest::message($error_message);
+	/**
+	 * Return array of services with Dependency Injection parameters.
+	 *
+	 * Taken from the following link, licenced under MIT.
+	 * @link https://github.com/infinum/eightshift-libs/blob/develop/src/Main/AbstractMain.php
+	 *
+	 * @return Object[]
+	 *
+	 * @throws Exception Exception thrown by the DI container.
+	 */
+	private function getServiceClassesWithDi(): array
+	{
+		$services = $this->getServiceClassesPreparedArray();
+
+		$container = $this->getDiContainer($services);
+
+		return \array_map(
+			static function ($class) use ($container) {
+				return $container->get($class);
+			},
+			\array_keys($services)
+		);
+	}
+
+	/**
+	 * Get services classes array and prepare it for dependency injection.
+	 * Key should be a class name, and value should be an empty array or the dependencies of the class.
+	 *
+	 * Taken from the following link, licenced under MIT.
+	 * @link https://github.com/infinum/eightshift-libs/blob/develop/src/Main/AbstractMain.php
+	 *
+	 * @throws Exception Exception thrown in case class is missing.
+	 *
+	 * @return array<string, mixed>
+	 */
+	private function getServiceClassesPreparedArray(): array
+	{
+		$output = [];
+
+		foreach ($this->getServiceClassesWithAutowire() as $class => $dependencies) {
+			if (\is_array($dependencies)) {
+				$output[$class] = $dependencies;
+				continue;
+			}
+
+			$output[$dependencies] = [];
 		}
 
-		if (!defined('ASSETS_MANIFEST')) {
-			define('ASSETS_MANIFEST', (string)$response);
+		return $output;
+	}
+
+	/**
+	 * Implement PHP-DI.
+	 *
+	 * Build and return a DI container.
+	 * Wire all the dependencies automatically, based on the provided array of
+	 * class => dependencies from the get_di_items().
+	 *
+	 * Taken from the following link, licenced under MIT.
+	 * @link https://github.com/infinum/eightshift-libs/blob/develop/src/Main/AbstractMain.php
+	 *
+	 * @param array<string, mixed> $services Array of service.
+	 *
+	 * @throws Exception Exception thrown by the DI container.
+	 *
+	 * @return Container
+	 */
+	private function getDiContainer(array $services): Container
+	{
+		$definitions = [];
+
+		foreach ($services as $serviceKey => $serviceValues) {
+			if (\gettype($serviceValues) !== 'array') {
+				continue;
+			}
+
+			$autowire = new AutowireDefinitionHelper();
+
+			$definitions[$serviceKey] = $autowire->constructor(...$this->getDiDependencies($serviceValues));
 		}
+
+		$builder = new ContainerBuilder();
+
+		if (!$this->isDevelopment()) {
+			$builder->enableCompilation(__DIR__);
+		}
+
+		return $builder->addDefinitions($definitions)->build();
+	}
+
+	/**
+	 * Return prepared Dependency Injection objects.
+	 * If you pass a class use PHP-DI to prepare if not just output it.
+	 *
+	 * Taken from the following link, licenced under MIT.
+	 * @link https://github.com/infinum/eightshift-libs/blob/develop/src/Main/AbstractMain.php
+	 *
+	 * @param array<string, mixed> $dependencies Array of classes/parameters to push in constructor.
+	 *
+	 * @return array<string, mixed>
+	 */
+	private function getDiDependencies(array $dependencies): array
+	{
+		return \array_map(
+			function ($dependency) {
+				if (\class_exists($dependency)) {
+					return new Reference($dependency);
+				}
+				return $dependency;
+			},
+			$dependencies
+		);
 	}
 
 	/**
@@ -203,31 +310,11 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 	 *
 	 * A list of classes which contain hooks.
 	 *
-	 * @return array<int|string, array<int, string>|string> Array that contains FQCN as a key of the class to instantiate,
-	 *                                                      and array as a value of that key that denotes its dependencies.
+	 * @return array<class-string, string|string[]> Array of fully qualified service class names.
 	 */
-	private function getServiceClasses(): array
+	protected function getServiceClasses(): array
 	{
-		$services = [
-			AccountDetails::class,
-			AdminOrder::class,
-			CheckoutFields::class,
-			ClearExchangeTransient::class,
-			DataHandling::class,
-			DatabaseTableMissingNotice::class,
-			EmailFunctionality::class,
-			EnqueueResources::class,
-			FetchExchangeRate::class,
-			Internationalization::class,
-			OptionsSubmenu::class,
-			OrderDetails::class,
-			OrderDetailsCollection::class,
-			PluginsPage::class,
-			PluginSettings::class => [WooPaymentGateways::class],
-			SendCustomerEmail::class,
-			MakeSoloApiCall::class => [SoloApiRequest::class],
-			MakeApiRequest::class => [SoloOrdersTable::class, SoloApiRequest::class],
-		];
+		$services = [];
 
 		// Test mocks.
 		if (getenv('TEST') === 'true') {
@@ -236,5 +323,29 @@ final class Plugin implements Registrable, HasActivation, HasDeactivation
 		}
 
 		return $services;
+	}
+
+	/**
+	 * Helper to determine if we should compile the container
+	 *
+	 * Only compile container when on production, not when testing or in development.
+	 *
+	 * @since 3.0.0 Moved to Plugin class.
+	 * @since 2.0.0
+	 *
+	 * @return bool
+	 */
+	private function isDevelopment(): bool
+	{
+		$development = getenv('DEVELOPMENT') ||
+			(defined('DEVELOPMENT') && DEVELOPMENT) ||
+			(defined('WP_ENVIRONMENT_TYPE') && WP_ENVIRONMENT_TYPE === 'development');
+		$testing = getenv('TEST') || (defined('TEST') && TEST);
+
+		if ($development || $testing) {
+			return true;
+		}
+
+		return false;
 	}
 }
