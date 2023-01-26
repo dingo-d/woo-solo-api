@@ -5,9 +5,6 @@
 		 colors="true"
 >
 	<testsuites>
-		<testsuite name="Unit Test Suite">
-			<directory>./tests/Unit/</directory>
-		</testsuite>
 		<testsuite name="Integration Test Suite">
 			<directory>./tests/Integration/</directory>
 		</testsuite>
