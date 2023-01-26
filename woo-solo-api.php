@@ -32,7 +32,7 @@ use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
 *
 * @since 2.0.0
 */
-require_once __DIR__ . '/vendor/autoload.php';
+$loader = require __DIR__ . '/vendor/autoload.php';
 
 /**
  * Make sure this file is only run from within WordPress.
@@ -52,8 +52,8 @@ if (! defined('ABSPATH')) {
 */
 \register_activation_hook(
     __FILE__,
-    function () {
-        PluginFactory::create()->activate();
+    function () use ($loader) {
+        PluginFactory::create($loader->getPrefixesPsr4(), __NAMESPACE__)->activate();
     }
 );
 
@@ -64,8 +64,8 @@ if (! defined('ABSPATH')) {
 */
 \register_deactivation_hook(
     __FILE__,
-    function () {
-        PluginFactory::create()->deactivate();
+    function () use ($loader) {
+        PluginFactory::create($loader->getPrefixesPsr4(), __NAMESPACE__)->deactivate();
     }
 );
 
@@ -74,4 +74,4 @@ if (! defined('ABSPATH')) {
 *
 * @since 2.0.0
 */
-PluginFactory::create()->register();
+PluginFactory::create($loader->getPrefixesPsr4(), __NAMESPACE__)->register();
