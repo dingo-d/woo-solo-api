@@ -17,9 +17,10 @@
 		}
 	],
 	"require": {
-		"php": "^7.3",
-		"php-di/php-di": "^6.0",
-		"ext-json": "*"
+		"php": "^7.4",
+		"ext-json": "*",
+		"kucrut/vite-for-wp": "^0.5.2",
+		"php-di/php-di": "^6.4.0"
 	},
 	"require-dev": {
 		"brain/monkey": "^2.6.1",
