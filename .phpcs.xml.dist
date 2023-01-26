@@ -52,7 +52,7 @@
 	</rule>
 
 	<!-- Check code for cross-version PHP compatibility. -->
-	<config name="testVersion" value="7.2-"/>
+	<config name="testVersion" value="7.4-"/>
 	<rule ref="PHPCompatibility"/>
 
 	<rule ref="PHPCompatibilityWP">
@@ -60,7 +60,7 @@
 	</rule>
 
 	<!-- Check against minimum WP version. -->
-	<config name="minimum_supported_wp_version" value="5.1"/>
+	<config name="minimum_supported_wp_version" value="5.9"/>
 
 	<rule ref="PSR12.Classes">
 		<exclude name="PSR12.Classes.OpeningBraceSpace.Found"/>
