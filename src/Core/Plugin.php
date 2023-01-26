@@ -180,16 +180,16 @@ final class Plugin extends Autowiring implements Registrable, HasActivation, Has
 	/**
 	 * Run actions on plugin update
 	 *
-	 * @param WP_Upgrader $upgrader WP_Upgrader instance.
+	 * @param object|WP_Upgrader $upgrader WP_Upgrader instance.
 	 * @param array<string, mixed> $hookExtra Array of bulk item update data.
 	 *
 	 * @return void
 	 */
-	public function updatePluginActions(WP_Upgrader $upgrader, array $hookExtra): void
+	public function updatePluginActions(object $upgrader, array $hookExtra): void
 	{
-		$wooSoloPlugin = plugin_basename(__FILE__);
+		$wooSoloPlugin = 'woo-solo-api/woo-solo-api.php';
 
-		if ($hookExtra['action'] !== 'update' && $hookExtra['type'] !== 'plugin') {
+		if ($hookExtra['action'] !== 'update' || $hookExtra['type'] !== 'plugin') {
 			return;
 		}
 
