@@ -61,10 +61,12 @@
 		"standards:fix": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
 		"analyze": "@php ./vendor/bin/phpstan analyze",
 		"test:integration": "@php ./vendor/bin/pest --group=integration",
+		"test:unit": "@php ./vendor/bin/pest --group=unit",
 		"test:coverage": "@php ./vendor/bin/pest --group=integration --coverage",
 		"check-all": [
 			"@standards:check",
 			"@analyze",
+			"@test:unit",
 			"@test:integration"
 		]
 	},
