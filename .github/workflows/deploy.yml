@@ -11,22 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
-      - name: Install Composer dependencies
-        uses: "ramsey/composer-install@v1"
-
-      - uses: php-actions/composer@v4
+      - uses: shivammathur/setup-php@v2
         with:
-          dev: no
-          php_version: 7.3
-          composer_version: 2
+          php-version: "7.4"
+      - uses: ramsey/composer-install@v2
+        with:
+          composer-options: "--ignore-platform-reqs --optimize-autoloader"
 
       - name: Build plugin
         run: |
-          npm install
+          npm ci --no-progress --no-dev
           npm run build
 
       - name: Deploy plugin to wordpress.org
