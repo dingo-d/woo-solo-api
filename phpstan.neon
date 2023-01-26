@@ -5,10 +5,6 @@ parameters:
     level: 6
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
-    bootstrapFiles:
-        - tests/phpstan/constants.php
-    dynamicConstantNames:
-        - ASSETS_MANIFEST
     scanFiles:
         - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
         # wc_admin_connect_page() comes from woocommerce-admin package
