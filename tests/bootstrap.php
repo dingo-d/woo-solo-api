@@ -47,6 +47,7 @@ if (isset($GLOBALS['argv']) && in_array('--group=integration', $GLOBALS['argv'],
 	 */
 	function _manually_load_plugin()
 	{
+		require dirname(__DIR__, 2) . '/woocommerce/woocommerce.php';
 		require dirname(__DIR__) . '/woo-solo-api.php';
 	}
 
