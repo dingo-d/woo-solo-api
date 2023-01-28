@@ -177,6 +177,14 @@ class OrderDetails extends BaseRoute implements RestCallable
 					'type' => 'boolean',
 					'context' => ['view'],
 				],
+				'pdf_url' => [
+					'description' => esc_html__(
+						'URL of the sent PDF. Used to resend the PDF in case there was some failure with the request.',
+						'woo-solo-api'
+					),
+					'type' => 'string',
+					'context' => ['view'],
+				],
 				'error_message' => [
 					'description' => 'Error message send by the Solo API.',
 					'type' => 'string',

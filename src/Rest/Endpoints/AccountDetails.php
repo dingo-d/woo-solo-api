@@ -13,6 +13,7 @@ namespace MadeByDenis\WooSoloApi\Rest\Endpoints;
 
 use MadeByDenis\WooSoloApi\Rest\BaseRoute;
 use MadeByDenis\WooSoloApi\Rest\RestCallable;
+use WP_Error;
 use WP_REST_Request;
 
 use function get_option;
@@ -51,7 +52,7 @@ class AccountDetails extends BaseRoute implements RestCallable
 		$soloApiToken = get_option('solo_api_token');
 
 		if (!\is_string($soloApiToken)) {
-			return new \WP_Error(esc_html__('Solo API token must be a string', 'woo-solo-api'));
+			return new WP_Error(esc_html__('Solo API token must be a string', 'woo-solo-api'));
 		}
 
 		$response = wp_remote_get("https://api.solo.com.hr/racun?token={$soloApiToken}");

@@ -12,15 +12,11 @@ declare(strict_types=1);
 namespace MadeByDenis\WooSoloApi\Rest\Endpoints;
 
 use Exception;
-use MadeByDenis\WooSoloApi\BackgroundJobs\SendCustomerEmail;
-use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 use MadeByDenis\WooSoloApi\Request\ApiRequest;
 use MadeByDenis\WooSoloApi\Rest\BaseRoute;
 use MadeByDenis\WooSoloApi\Rest\RestCallable;
 use WP_Error;
 use WP_REST_Request;
-
-use function get_option;
 
 /**
  * Account details endpoint
@@ -30,11 +26,11 @@ use function get_option;
  * @package MadeByDenis\WooSoloApi\Rest\Endpoints
  * @since 2.0.0
  */
-class ResendCustomerEmail extends BaseRoute implements RestCallable
+class ResendApiOrder extends BaseRoute implements RestCallable
 {
 	use IsUserLoggedIn;
 
-	public const ROUTE_NAME = '/resend-customer-email';
+	public const ROUTE_NAME = '/resend-api-order';
 
 	private ApiRequest $soloApiRequest;
 
@@ -87,26 +83,26 @@ class ResendCustomerEmail extends BaseRoute implements RestCallable
 
 		try {
 			$this->soloApiRequest->executeApiCall($orderObject);
-
+			$message = esc_html__('API call to SOLO service executed, please wait a bit for it to execute, then reload this page.', 'woo-solo-api');
 			$data = [
 				'code'    => 'success',
-				'message' => esc_html__('API call to SOLO service executed', 'woo-solo-api'),
+				'message' => $message,
 				'data'    => [
 					'status' => 200,
-					'message' => esc_html__('API call to SOLO service executed', 'woo-solo-api'),
+					'message' => $message,
 				]
 			];
-		} catch(Exception $exception) {
-			$data = [
-				'code'    => 'rest_exception',
-				'message' => $exception->getMessage(),
-				'data'    => [
-					'status' => $exception->getCode(),
-					'message' => $exception->getMessage()
+		} catch (Exception $exception) {
+			$data = new WP_Error(
+				'api_exception',
+				$exception->getMessage(),
+				[
+					'code' => $exception->getCode(),
+					'message' => $exception->getMessage(),
 				]
-			];
+			);
 		}
-error_log(print_r($data, true));
+
 		return rest_ensure_response($data);
 	}
 }
