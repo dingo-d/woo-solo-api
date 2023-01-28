@@ -130,6 +130,11 @@ class SendCustomerEmail extends ScheduleEvent
 			wp_mkdir_p($newDir);
 		}
 
+		/**
+		 * Remove any slashes that might affect the storage of the file.
+		 */
+		$pdfName = \wp_unslash($pdfName);
+
 		$attachment = $newDir . '/' . $pdfName . '.pdf';
 
 		if (file_exists($attachment)) {
