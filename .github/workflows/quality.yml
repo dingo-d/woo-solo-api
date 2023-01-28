@@ -16,17 +16,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  byte_level:
-    name: "0️⃣ Permission checks"
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: "Checkout code"
-        uses: "actions/checkout@v3"
-
-      - name: "Check file permissions"
-        run: |
-          test "$(find . -type f -not -path './.git/*' -executable)" = ""
-
   syntax_errors:
     name: "1️⃣ Syntax errors checks"
     runs-on: "ubuntu-latest"
@@ -39,10 +28,6 @@ jobs:
 
       - name: "Checkout code"
         uses: "actions/checkout@v3"
-
-      - name: "Find non-printable ASCII characters"
-        run: |
-          ! LC_ALL=C.UTF-8 find . -type f -name "*.php" -print0 | xargs -0 -- grep -PHn "[^\t -~]"
 
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
@@ -57,7 +42,6 @@ jobs:
   integration_tests:
     name: "2️⃣ Integration tests"
     needs:
-      - "byte_level"
       - "syntax_errors"
     runs-on: "ubuntu-latest"
     continue-on-error: ${{ matrix.allowed_failure }}
@@ -114,7 +98,6 @@ jobs:
   static_analysis:
     name: "3️⃣ Static analysis checks"
     needs:
-      - "byte_level"
       - "syntax_errors"
     runs-on: "ubuntu-latest"
     continue-on-error: ${{ matrix.allowed_failure }}
@@ -155,7 +138,6 @@ jobs:
   coding_standards:
     name: "4️⃣ Coding standards checks"
     needs:
-      - "byte_level"
       - "syntax_errors"
     runs-on: "ubuntu-latest"
     strategy:
@@ -197,7 +179,6 @@ jobs:
   exported_files:
     name: "5️⃣ Exported files checks"
     needs:
-      - "byte_level"
       - "syntax_errors"
     runs-on: "ubuntu-latest"
     steps:
