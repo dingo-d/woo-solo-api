@@ -13,3 +13,5 @@ parameters:
         - src/
     excludePaths:
         - src/Core/CompiledContainer.php
+        - wp/
+        - wp-content/
