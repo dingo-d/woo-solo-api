@@ -20,6 +20,7 @@
 .phpcs.xml.dist export-ignore
 .stylelintrc export-ignore
 .idea export-ignore
+.distignore export-ignore
 babel.config.json export-ignore
 codeception.dist.yml export-ignore
 composer.json export-ignore
@@ -28,7 +29,9 @@ husky.config.js export-ignore
 phpstan.neon export-ignore
 package.json export-ignore
 package-lock.json export-ignore
+phpunit.xml export-ignore
 postcss.config.js export-ignore
+vite.config.js export-ignore
 webpack.config.js export-ignore
 
 composer.lock -diff
