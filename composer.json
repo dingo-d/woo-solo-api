@@ -61,9 +61,8 @@
 		"test:types": "@php ./vendor/bin/phpstan analyze",
 		"test:style": "@php ./vendor/bin/phpcs",
 		"test:lint": "@php ./vendor/bin/parallel-lint src/ tests/",
-		"test:unit": "@php ./vendor/bin/pest --group=unit",
+		"test:unit": "@php ./vgendor/bin/pest --group=unit",
 		"test:integration": "@php ./vendor/bin/pest --group=integration",
-		"test:unit": "@php ./vendor/bin/pest --group=unit",
 		"test:coverage": "@php ./vendor/bin/pest --group=integration --coverage",
 		"check-all": [
 			"@test:types",

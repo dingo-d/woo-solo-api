@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b0aa1a34aef92d1fb9e589a9ea0773a",
+    "content-hash": "9633b5c7390a24f1fe9c00edbaf0ab29",
     "packages": [
         {
             "name": "kucrut/vite-for-wp",
@@ -5767,7 +5767,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4",
+        "php": "^7.4 | ^8.0 | ^8.1 | ^8.2",
         "ext-json": "*"
     },
     "platform-dev": [],
