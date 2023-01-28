@@ -85,7 +85,7 @@ export const AdditionalSettingsPanel = () => {
 					{settings.solo_api_send_pdf &&
 						<>
 							<PanelRow className='components-panel__row--single'>
-								<h4>{__('Send mail to selected payment gateways', 'woo-solo-api')}</h4>
+								<h4>{__('Send mail to selected payment types', 'woo-solo-api')}</h4>
 								{
 									Object.keys(paymentGateways).map((type) => {
 										return <CheckboxControl

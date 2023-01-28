@@ -24,8 +24,7 @@ export const OrderPanel = () => {
 	const errors = useSelect((select) => select(STORE_NAME).getErrors());
 	const {setErrors} = useDispatch(STORE_NAME);
 
-	const hasErrors = errors?.dbOrderErrors?.message.length > 0;
-
+	const hasErrors = errors?.dbOrderErrors?.length > 0;
 	const [apiResponse, setApiResponse] = useState('');
 	const [isRequestPending, setIsRequestPending] = useState(false);
 
@@ -41,17 +40,17 @@ export const OrderPanel = () => {
 
 		try {
 			const response = await apiFetch({
-				path: '/woo-solo-api/v1/resend-customer-email',
+				path: '/woo-solo-api/v1/resend-api-order',
 				method: 'POST',
 				data: {
 					orderID,
 				},
 			});
 
-			setApiResponse(response);
+			setApiResponse(response.message);
 			setIsRequestPending(false);
 		} catch (error) {
-			setErrors({dbOrderErrors: error});
+			setErrors({dbOrderErrors: error.message});
 			setIsRequestPending(false);
 		} finally {
 			setIsRequestPending(false);
@@ -75,7 +74,7 @@ export const OrderPanel = () => {
 					<div className='order-table__element order-table__element--heading'>{__('API response errors', 'woo-solo-api')}</div>
 					<div className='order-table__element order-table__element--heading'>{__('Created at', 'woo-solo-api')}</div>
 					<div className='order-table__element order-table__element--heading'>{__('Updated at', 'woo-solo-api')}</div>
-					<div className='order-table__element order-table__element--heading'>{__('Resend the customer email', 'woo-solo-api')}</div>
+					<div className='order-table__element order-table__element--heading'>{__('Resend to API', 'woo-solo-api')}</div>
 					{dbOrders.map((el) => {
 						return <>
 							<div className='order-table__element'>{el.id}</div>
@@ -90,13 +89,15 @@ export const OrderPanel = () => {
 							<div className='order-table__element'>{el.created_at}</div>
 							<div className='order-table__element'>{el.updated_at}</div>
 							<div className='order-table__element'>
-								<Button
-									isPrimary
-									disabled={isRequestPending}
-									onClick={() => resendEmail(el.order_id)}
-								>
-									{__('Resend PDF email', 'woo-solo-api')}
-								</Button>
+								{el.is_sent_to_api !== '1' &&
+									<Button
+										isPrimary
+										disabled={isRequestPending}
+										onClick={() => resendEmail(el.order_id)}
+									>
+										{__('Resend order to API', 'woo-solo-api')}
+									</Button>
+								}
 							</div>
 						</>;
 					})}
@@ -104,7 +105,7 @@ export const OrderPanel = () => {
 				<div className={noticeClass}>
 					{
 						hasErrors &&
-						errors?.dbOrderErrors?.message
+						errors?.dbOrderErrors
 					}
 					{
 						apiResponse &&

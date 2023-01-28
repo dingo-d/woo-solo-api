@@ -8,6 +8,8 @@ $table: (
 	width: fit-content;
 	border-top: 1px solid map-get-strict($table, 'border-color');
 	border-right: 1px solid map-get-strict($table, 'border-color');
+	max-height: 21rem;
+	overflow: scroll;
 
 	&__element {
 		padding: 0.5rem 0.25rem;

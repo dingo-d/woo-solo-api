@@ -105,7 +105,7 @@ export const GeneralSettingsPanel = () => {
 					</PanelRow>
 					<PanelRow className='components-panel__row--single'>
 						<h3 className='components-base-control__subtitle'>
-							{__('Choose the type of payment for each enabled payment gateway', 'woo-solo-api')}
+							{__('Choose the type of payment for each enabled payment gateway/type', 'woo-solo-api')}
 						</h3>
 						{Object.keys(paymentGateways).map((type) => {
 							const offer = `solo_api_bill_offer-${type}`;
