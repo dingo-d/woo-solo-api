@@ -47,7 +47,6 @@ export const EmailSettingsPanel = () => {
 					value={settings.solo_api_mail_title}
 					onChange={(value) => setSettings({...settings, solo_api_mail_title: value, settingsRefs})}
 				/>
-
 				<ErrorNotice errors={errors} type={'solo_api_mail_title'} />
 			</PanelRow>
 			<PanelRow>
@@ -61,7 +60,6 @@ export const EmailSettingsPanel = () => {
 					value={settings.solo_api_message}
 					onChange={(value) => setSettings({...settings, solo_api_message: value, settingsRefs})}
 				/>
-
 				<ErrorNotice errors={errors} type={'solo_api_message'} />
 			</PanelRow>
 			<PanelRow>
@@ -83,7 +81,6 @@ export const EmailSettingsPanel = () => {
 					value={settings.solo_api_change_mail_from}
 					onChange={(value) => setSettings({...settings, solo_api_change_mail_from: value, settingsRefs})}
 				/>
-
 				<ErrorNotice errors={errors} type={'solo_api_change_mail_from'} />
 			</PanelRow>
 		</PanelBody>

@@ -33,7 +33,7 @@ export const OrderPanel = () => {
 		'has-error': hasErrors,
 	});
 
-	const resendEmail = async (orderID, ev) => {
+	const resendEmail = async (orderID) => {
 		setApiResponse('');
 		setErrors({});
 		setIsRequestPending(! isRequestPending);
@@ -112,7 +112,8 @@ export const OrderPanel = () => {
 						apiResponse
 					}
 				</div>
-				<Snackbar className={isRequestPending ? 'is-visible' : 'is-hidden'}>{__('Request sent', 'woo-solo-api')}
+				<Snackbar className={isRequestPending ? 'is-visible' : 'is-hidden'}>
+					{__('Request sent', 'woo-solo-api')}
 				</Snackbar>
 			</PanelRow>
 		</PanelBody>

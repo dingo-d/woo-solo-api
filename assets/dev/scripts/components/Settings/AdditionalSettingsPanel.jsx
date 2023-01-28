@@ -127,7 +127,6 @@ export const AdditionalSettingsPanel = () => {
 										},
 									]}
 								/>
-
 								<ErrorNotice errors={errors} type={'solo_api_send_control'} />
 							</PanelRow>
 						</>

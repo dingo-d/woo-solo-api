@@ -47,7 +47,6 @@ export const TokenPanel = () => {
 					value={settings.solo_api_token}
 					onChange={(value) => setSettings({...settings, solo_api_token: value, settingsRefs})}
 				/>
-
 				<ErrorNotice errors={errors} type={'solo_api_token'} />
 			</PanelRow>
 		</PanelBody>

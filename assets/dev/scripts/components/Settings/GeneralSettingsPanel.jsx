@@ -5,7 +5,6 @@
 import {createInterpolateElement, useRef} from '@wordpress/element';
 import {useSelect, useDispatch} from '@wordpress/data';
 import {__} from '@wordpress/i18n';
-
 import {
 	TextControl,
 	PanelBody,
@@ -31,7 +30,7 @@ export const GeneralSettingsPanel = () => {
 	const errors = useSelect((select) => select(STORE_NAME).getErrors());
 	const isActive = useSelect((select) => select(STORE_NAME).getIsActive());
 
-	const {setSettings, setErrors} = useDispatch(STORE_NAME);
+	const {setSettings} = useDispatch(STORE_NAME);
 
 	const hasErrorClass = (type) => {
 		return errors?.hasOwnProperty(type) ? 'has-error' : '';
