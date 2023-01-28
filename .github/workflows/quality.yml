@@ -1,85 +1,213 @@
 name: Continuous integration code quality checks
 
 on:
-  # Run on PRs and pushes, only on significant changes.
   push:
+    branches:
+      - "develop"
+      - "main"
     paths-ignore:
-      - '**.md'
+      - "**.md"
   pull_request:
     paths-ignore:
-      - '**.md'
+      - "**.md"
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
-  phpcs:
-    name: PHPCS check on PHP ${{ matrix.php }}
-    runs-on: ubuntu-latest
+  byte_level:
+    name: "0️⃣ Permission checks"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
+
+      - name: "Check file permissions"
+        run: |
+          test "$(find . -type f -not -path './.git/*' -executable)" = ""
+
+  syntax_errors:
+    name: "1️⃣ Syntax errors checks"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Set up PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "7.4"
+          coverage: "none"
+
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
+
+      - name: "Find non-printable ASCII characters"
+        run: |
+          ! LC_ALL=C.UTF-8 find . -type f -name "*.php" -print0 | xargs -0 -- grep -PHn "[^\t -~]"
+
+      - name: "Install dependencies"
+        uses: "ramsey/composer-install@v2"
+        with:
+          dependency-versions: "highest"
+          # Bust the cache at least once a month - output format: YYYY-MM-DD.
+          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+
+      - name: "Check source code for syntax errors"
+        run: "composer exec -- parallel-lint src/ tests/"
+
+  integration_tests:
+    name: "2️⃣ Integration tests"
+    needs:
+      - "byte_level"
+      - "syntax_errors"
+    runs-on: "ubuntu-latest"
+    continue-on-error: ${{ matrix.allowed_failure }}
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.4']
-
+        php: [ '7.4' ]
+        allowed_failure: [ false ]
+        dependencies:
+          - "lowest"
+          - "highest"
+        include:
+          - php: '8.0'
+            allowed_failure: true
+          - php: '8.1'
+            allowed_failure: true
+          - php: '8.2'
+            allowed_failure: true
+        exclude:
+          - php: '8.1'
+            allowed_failure: true
+            dependencies: "lowest" # Fails due to PHP parser error on a specific version.
     steps:
-      # Checkout repository
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      # Setup PHP versions, run checks
-      - name: PHP setup
-        uses: shivammathur/setup-php@v2
+      - name: "Set up PHP"
+        uses: "shivammathur/setup-php@v2"
         with:
-          php-version: ${{ matrix.php }}
+          php-version: "${{ matrix.php }}"
+          coverage: "xdebug"
 
-      # Install dependencies and handle caching in one go.
-      # @link https://github.com/marketplace/actions/install-composer-dependencies
-      - name: Install Composer dependencies
-        uses: ramsey/composer-install@v2
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
+
+      - name: "Install dependencies"
+        uses: "ramsey/composer-install@v2"
         with:
-          dependency-versions: 'highest'
+          dependency-versions: "${{ matrix.dependencies }}"
+          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
 
-      - name: Check coding standards using PHPCS
-        run: composer standards:check -- --runtime-set testVersion ${{ matrix.php }}-
+      - name: "Execute unit tests"
+        run: "composer run test:coverage"
 
-  phpstan:
-    name: PHPStan check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: PHP setup
-        uses: shivammathur/setup-php@v2
+      - name: "Upload coverage to Codecov"
+        env:
+          CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"
+        if: "${{ env.CODECOV_TOKEN && matrix.php == '7.4' && matrix.dependencies == 'highest' }}"
+        uses: "codecov/codecov-action@v3"
         with:
-          php-version: '7.4'
+          token: "${{ env.CODECOV_TOKEN }}"
+          files: "./tests/coverage/clover.xml"
+          flags: "unittests"
+          name: "libs-codecov"
+          fail_ci_if_error: "true"
 
-      - name: Install Composer dependencies
-        uses: ramsey/composer-install@v2
-        with:
-          dependency-versions: 'highest'
-
-      - name: Analyse code using phpstan
-        uses: dingo-d/phpstan-wp-action@v1
-
-  phpunit:
-    name: PHPUnit on PHP ${{ matrix.php }}
-    runs-on: ubuntu-latest
+  static_analysis:
+    name: "3️⃣ Static analysis checks"
+    needs:
+      - "byte_level"
+      - "syntax_errors"
+    runs-on: "ubuntu-latest"
+    continue-on-error: ${{ matrix.allowed_failure }}
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.4']
-
+        php: [ '7.4' ]
+        allowed_failure: [ false ]
+        include:
+          - php: '8.0'
+            allowed_failure: true
+          - php: '8.1'
+            allowed_failure: true
+          - php: '8.2'
+            allowed_failure: true
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: PHP setup
-        uses: shivammathur/setup-php@v2
+      - name: "Set up PHP"
+        uses: "shivammathur/setup-php@v2"
         with:
-          php-version: ${{ matrix.php }}
+          php-version: "${{ matrix.php }}"
+          coverage: "none"
 
-      - name: Install Composer dependencies
-        uses: ramsey/composer-install@v2
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
+
+      - name: "Validate Composer configuration"
+        run: "composer validate --strict"
+
+      - name: "Install dependencies"
+        uses: "ramsey/composer-install@v2"
         with:
-          dependency-versions: 'highest'
+          dependency-versions: "highest"
+          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
 
-      - name: Run unit tests
-        run: composer test:unit
+      - name: "Execute static analysis"
+        run: "composer run test:types"
+
+  coding_standards:
+    name: "4️⃣ Coding standards checks"
+    needs:
+      - "byte_level"
+      - "syntax_errors"
+    runs-on: "ubuntu-latest"
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.4' ]
+        allowed_failure: [ false ]
+        include:
+          - php: '8.0'
+            allowed_failure: true # Change to false once php-compatibility 10 comes out
+          - php: '8.1'
+            allowed_failure: true # Change to false once php-compatibility 10 comes out
+          - php: '8.2'
+            allowed_failure: true # Change to false once php-compatibility 10 comes out
+    steps:
+      - name: "Set up PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php }}"
+          coverage: "none"
+          tools: "cs2pr"
+
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
+
+      - name: "Check adherence to EditorConfig"
+        uses: "greut/eclint-action@v0"
+
+      - name: "Install dependencies"
+        uses: "ramsey/composer-install@v2"
+        with:
+          dependency-versions: "highest"
+          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+
+      - name: "Check coding style"
+        run: |
+          composer run test:style -- -q --report=checkstyle | cs2pr
+
+  exported_files:
+    name: "5️⃣ Exported files checks"
+    needs:
+      - "byte_level"
+      - "syntax_errors"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
+
+      - name: "Check exported files"
+        run: |
+          EXPECTED="CHANGELOG.md,LICENSE,README.md,composer.json,composer.lock,woo-solo-api.php,uninstall.php"
+          CURRENT="$(git archive HEAD | tar --list --exclude="src" --exclude="src/*" --exclude="views" --exclude="views/*" --exclude="assets" --exclude="assets/*" | paste -s -d ",")"
+          echo "CURRENT=${CURRENT}"
+          echo "EXPECTED=${EXPECTED}"
+          test "${CURRENT}" = "${EXPECTED}"
