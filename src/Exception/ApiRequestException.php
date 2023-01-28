@@ -39,11 +39,11 @@ final class ApiRequestException extends RuntimeException implements GeneralExcep
 	{
 		$exceptionMessage = sprintf(
 			/* translators: %1$s: error message, %2$s: error code. */
-			esc_html__('API request error happened. %1$s. (Error code %2$s).', 'woo-solo-api'),
-			esc_html($message),
-			esc_html((string)$code)
+			esc_html__('(Error code %1$s). API request error happened. %2$s', 'woo-solo-api'),
+			esc_html((string)$code),
+			esc_html($message)
 		);
 
-		return new static($exceptionMessage);
+		return new static($exceptionMessage, $code);
 	}
 }
