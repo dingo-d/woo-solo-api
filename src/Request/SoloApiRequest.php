@@ -162,9 +162,35 @@ class SoloApiRequest implements ApiRequest
 			}
 		}
 
-		$paymentMethod = $orderData['payment_method'];
+		$paymentMethod = esc_attr($orderData['payment_method']);
 
-		$billType = get_option('solo_api_bill_offer-' . esc_attr($paymentMethod));
+		$billType = get_option('solo_api_bill_offer-' . $paymentMethod);
+
+		/**
+		 * Filters the bill type
+		 *
+		 * Use this filter if you need to dynamically change the bill type.
+		 * Usage:
+		 *
+		 * add_filter('woo_solo_api_modify_bill_type', 'my_customer_filter', 10, 3);
+		 *
+		 * function my_customer_filter($billType, $paymentMethod, $order) {
+		 *   // (maybe) modify $billType, based on some external parameters or $paymentMethod or $order.
+		 *   return $billType;
+		 * }
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $billType Existing bill type.
+		 * @param string $paymentMethod Selected payment method for the current order.
+		 * @param object|WC_Order $order Current order.
+		 *
+		 * @return string Modified bill type. API allows only 'ponuda', 'racun', or 'katalog'.
+		 *                If you put anything else, the API call will fail. The 'katalog' implementation
+		 *                is not supported by this plugin at this time.
+		 */
+		$billType = apply_filters('woo_solo_api_modify_bill_type', $billType, $paymentMethod, $order);
+
 		$soloApiFiscalization = get_option('solo_api_fiscalization-' . esc_attr($paymentMethod));
 		$paymentType = get_option('solo_api_payment_type-' . esc_attr($paymentMethod));
 
@@ -225,6 +251,85 @@ class SoloApiRequest implements ApiRequest
 			$requestBody["usluga{$itemNo}"] = $itemNo;
 
 			$requestBody["opis_usluge_{$itemNo}"] = $productName;
+
+			/**
+			 * Filters the Unit measure for the current item
+			 *
+			 * Use this filter if you need to dynamically change measure for the item.
+			 * Unit measure *MUST* be an integer corresponding to the following list:
+			 *
+			 * 1:  '-'
+			 * 2:  'piece'
+			 * 3:  'hour'
+			 * 4:  'year'
+			 * 5:  'km'
+			 * 6:  'litre'
+			 * 7:  'kg'
+			 * 8:  'kWh'
+			 * 9:  'm³'
+			 * 10: 'tonne'
+			 * 11: 'm²'
+			 * 12: 'm'
+			 * 13: 'day'
+			 * 14: 'month'
+			 * 15: 'night'
+			 * 16: 'cart'
+			 * 17: 'account'
+			 * 18: 'pair'
+			 * 19: 'ml'
+			 * 20: 'pax'
+			 * 21: 'room'
+			 * 22: 'apartment'
+			 * 23: 'term'
+			 * 24: 'set'
+			 * 25: 'package'
+			 * 26: 'point'
+			 * 27: 'service'
+			 * 28: 'pal'
+			 * 29: 'kont'
+			 * 30: 'čl'
+			 * 31: 'tis'
+			 * 32: 'sec'
+			 * 33: 'min'
+			 * 34: 'str'
+			 * 35: 'kpl'
+			 * 36: 'pšl'
+			 * 37: 'ha'
+			 * 38: 'g'
+			 * 39: 'x'
+			 *
+			 * add_filter('woo_solo_api_modify_item_measure', 'my_customer_filter', 10, 4);
+			 *
+			 * function my_customer_filter($measure, $itemNo, $order, $itemData) {
+			 *   // Modify multiple item numbers in your order based on some settings, meta value, etc.
+			 *   switch ($itemNo) {
+			 *      case 0:
+			 *          $measure = 7;
+			 *          break;
+			 *      case 1:
+			 *          $measure = 19;
+			 *          break;
+			 *      default:
+			 *          $measure = 2;
+			 *          break;
+			 *   }
+			 *
+			 *   // Or filter based on $order object or $itemData which contains other information about the product.
+			 *
+			 *   return $measure;
+			 * }
+			 *
+			 * @since 3.0.0
+			 *
+			 * @param int $measure Current unit measure.
+			 * @param int $itemNo Current item in the list.
+			 * @param object|WC_Order $order Current order.
+			 * @param array $itemData Current item data.
+			 *
+			 * @return int Modified unit measure. Be careful to select the measure from the settings.
+			 */
+			$measure = apply_filters('woo_solo_api_modify_item_measure', $measure, $itemNo, $order, $itemData);
+
 			$requestBody["jed_mjera_{$itemNo}"] = $measure;
 			$requestBody["cijena_{$itemNo}"] = $lineTotal;
 			$requestBody["kolicina_{$itemNo}"] = $quantity;
@@ -261,9 +366,9 @@ class SoloApiRequest implements ApiRequest
 			 *
 			 * Usage:
 			 *
-			 * add_filter('woo_solo_api_modify_tax_rate', 'my_tax_rate', 10, 3);
+			 * add_filter('woo_solo_api_modify_tax_rate', 'my_tax_rate', 10, 4);
 			 *
-			 * function my_tax_rate($taxRate, $itemData, $taxRates) {
+			 * function my_tax_rate($taxRate, $itemData, $taxRates, $itemNo) {
 			 *   // (maybe) modify $taxRate.
 			 *   return $taxRate;
 			 * }
@@ -273,8 +378,9 @@ class SoloApiRequest implements ApiRequest
 			 * @param float $taxRate  The value of the tax rate for the current order item.
 			 * @param array $itemData The data for the current order item.
 			 * @param array $taxRates The value of the tax rates for the current order item.
+			 * @param int $itemNo Item number.
 			 */
-			$requestBody["porez_stopa_{$itemNo}"] = apply_filters('woo_solo_api_modify_tax_rate', $taxRate, $itemData, $taxRates);
+			$requestBody["porez_stopa_{$itemNo}"] = apply_filters('woo_solo_api_modify_tax_rate', $taxRate, $itemData, $taxRates, $itemNo);
 
 			$itemNo++;
 		}
@@ -308,6 +414,97 @@ class SoloApiRequest implements ApiRequest
 
 			$requestBody["usluga{$itemNo}"] = $itemNo;
 			$requestBody["opis_usluge_{$itemNo}"] = esc_html__('Shipping fee', 'woo-solo-api');
+
+			/**
+			 * Filters the Unit measure for the current shipping item
+			 *
+			 * Use this filter if you need to dynamically change measure for the shipping item.
+			 * Unit measure *MUST* be an integer corresponding to the following list:
+			 *
+			 * 1:  '-'
+			 * 2:  'piece'
+			 * 3:  'hour'
+			 * 4:  'year'
+			 * 5:  'km'
+			 * 6:  'litre'
+			 * 7:  'kg'
+			 * 8:  'kWh'
+			 * 9:  'm³'
+			 * 10: 'tonne'
+			 * 11: 'm²'
+			 * 12: 'm'
+			 * 13: 'day'
+			 * 14: 'month'
+			 * 15: 'night'
+			 * 16: 'cart'
+			 * 17: 'account'
+			 * 18: 'pair'
+			 * 19: 'ml'
+			 * 20: 'pax'
+			 * 21: 'room'
+			 * 22: 'apartment'
+			 * 23: 'term'
+			 * 24: 'set'
+			 * 25: 'package'
+			 * 26: 'point'
+			 * 27: 'service'
+			 * 28: 'pal'
+			 * 29: 'kont'
+			 * 30: 'čl'
+			 * 31: 'tis'
+			 * 32: 'sec'
+			 * 33: 'min'
+			 * 34: 'str'
+			 * 35: 'kpl'
+			 * 36: 'pšl'
+			 * 37: 'ha'
+			 * 38: 'g'
+			 * 39: 'x'
+			 *
+			 * add_filter('woo_solo_api_modify_shipping_item_measure', 'my_customer_filter', 10, 4);
+			 *
+			 * function my_customer_filter($measure, $itemNo, $order, $itemData) {
+			 *   // Modify multiple item numbers in your order based on some settings, meta value, etc.
+			 *   switch ($itemNo) {
+			 *      case 0:
+			 *          $measure = 7;
+			 *          break;
+			 *      case 1:
+			 *          $measure = 19;
+			 *          break;
+			 *      default:
+			 *          $measure = 2;
+			 *          break;
+			 *   }
+			 *
+			 *   // Or filter based on $order object or $itemData which contains other information about the product.
+			 *
+			 *   return $measure;
+			 * }
+			 *
+			 * In reality the filter will probably be used like this:
+			 *
+			 * add_filter('woo_solo_api_modify_shipping_item_measure', 'my_customer_filter', 10, 4);
+			 *
+			 * function my_customer_filter($measure, $itemNo, $order, $itemData) {
+			 *     return 2; // Corresponds to: piece.
+			 * }
+			 *
+			 * @since 3.0.0
+			 *
+			 * @param int $measure Current shipping unit measure. Will be picked up by whatever is in the default measure.
+			 * @param int $itemNo Current item in the list.
+			 * @param object|WC_Order $order Current order.
+			 * @param object|null $shippingObject Current shipping item data.
+			 *
+			 * @return int Modified shipping unit measure.
+			 *             If not used, the measure will be picked up from the item's unit measure.
+			 *             The default value should probably be set tot 2 (piece),
+			 *             so if you're changing the default value of the measure from piece to anything else,
+			 *             make sure shipping fee is set to 2.
+			 */
+			$measure = apply_filters('woo_solo_api_modify_shipping_item_measure', $measure, $itemNo, $order, $shippingObject = null);
+
 			$requestBody["jed_mjera_{$itemNo}"] = $measure;
 			$requestBody["cijena_{$itemNo}"] = $shippingPrice;
 			$requestBody["kolicina_{$itemNo}"] = 1;
@@ -487,11 +684,15 @@ class SoloApiRequest implements ApiRequest
 		$responseDetails = json_decode($responseBody, true);
 
 		if (!is_array($responseDetails)) {
+			SoloOrdersTable::addApiResponseError($orderId, $responseBody);
+
 			throw new TypeError(esc_html__('Response details from the API is not of an array type', 'woo-solo-api'));
 		}
 
 		// Usually an error if API throttling happened.
 		if ($responseDetails['status'] !== 0) {
+			SoloOrdersTable::addApiResponseError($orderId, $responseBody);
+
 			throw ApiRequestException::apiResponse($responseDetails['status'], $responseDetails['message']);
 		}
 
