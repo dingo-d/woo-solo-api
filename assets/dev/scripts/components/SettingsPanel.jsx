@@ -6,7 +6,6 @@ import {TokenPanel} from './Settings/TokenPanel';
 import {GeneralSettingsPanel} from './Settings/GeneralSettingsPanel';
 import {AdditionalSettingsPanel} from './Settings/AdditionalSettingsPanel';
 import {EmailSettingsPanel} from './Settings/EmailSettingsPanel';
-import {DebuggingPanel} from './Settings/DebuggingPanel';
 
 export const SettingsPanel = () => {
 	return (
@@ -15,7 +14,6 @@ export const SettingsPanel = () => {
 			<GeneralSettingsPanel />
 			<AdditionalSettingsPanel />
 			<EmailSettingsPanel />
-			<DebuggingPanel />
 		</>
 	);
 };

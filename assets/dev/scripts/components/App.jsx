@@ -21,6 +21,7 @@ import {Notification} from './Notification';
 import {SettingsPanel} from './SettingsPanel';
 import {OrderPanel} from './OrderPanel';
 import {Popup} from './Popup';
+import {DebuggingPanel} from './Settings/DebuggingPanel';
 
 // Store
 import {STORE_NAME} from '../store/store';
@@ -131,6 +132,9 @@ export const App = () => {
 					</div>
 					<div className='options-wrapper options-wrapper--separated'>
 						<OrderPanel />
+					</div>
+					<div className='options-wrapper options-wrapper--separated'>
+						<DebuggingPanel />
 					</div>
 				</>
 			}
