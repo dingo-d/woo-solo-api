@@ -79,7 +79,7 @@ final class Plugin extends Autowiring implements Registrable, HasActivation, Has
 			include ABSPATH . '/wp-admin/includes/plugin.php';
 		}
 
-		if (version_compare((string)PHP_VERSION_ID, '70300', '<')) {
+		if (version_compare((string)PHP_VERSION_ID, '70400', '<')) {
 			deactivate_plugins(plugin_basename(__FILE__));
 
 			$error_message = esc_html__('This plugin requires PHP 7.4 or greater to function.', 'woo-solo-api');
