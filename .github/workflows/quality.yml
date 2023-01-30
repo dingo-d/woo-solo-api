@@ -80,20 +80,40 @@ jobs:
           dependency-versions: "${{ matrix.dependencies }}"
           custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
 
-      - name: "Execute unit tests"
-        run: "composer run test:coverage"
+      - name: "Setup test suite"
+        run: "vendor/bin/wp-pest setup plugin --plugin-slug=woo-solo-api --skip-delete"
 
-      - name: "Upload coverage to Codecov"
-        env:
-          CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"
-        if: "${{ env.CODECOV_TOKEN && matrix.php == '7.4' && matrix.dependencies == 'highest' }}"
-        uses: "codecov/codecov-action@v3"
-        with:
-          token: "${{ env.CODECOV_TOKEN }}"
-          files: "./tests/coverage/clover.xml"
-          flags: "unittests"
-          name: "libs-codecov"
-          fail_ci_if_error: "true"
+      - name: "Execute unit tests"
+        run: "./vendor/bin/pest --group=unit"
+
+      - name: "Execute integration tests"
+        run: "./vendor/bin/pest --group=integration"
+
+#      - name: "Upload unit test coverage to Codecov"
+#        if:
+#        env:
+#          CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"
+#        if: "${{ env.CODECOV_TOKEN && matrix.php == '7.4' && matrix.dependencies == 'highest' }}"
+#        uses: "codecov/codecov-action@v3"
+#        with:
+#          token: "${{ env.CODECOV_TOKEN }}"
+#          files: "./tests/coverage/clover.xml"
+#          flags: "unittests"
+#          name: "libs-codecov"
+#          fail_ci_if_error: "true"
+#
+#      - name: "Upload integration test coverage to Codecov"
+#        if:
+#        env:
+#          CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"
+#        if: "${{ env.CODECOV_TOKEN && matrix.php == '7.4' && matrix.dependencies == 'highest' }}"
+#        uses: "codecov/codecov-action@v3"
+#        with:
+#          token: "${{ env.CODECOV_TOKEN }}"
+#          files: "./tests/coverage/clover.xml"
+#          flags: "integrationtests"
+#          name: "libs-codecov"
+#          fail_ci_if_error: "true"
 
   static_analysis:
     name: "3️⃣ Static analysis checks"
