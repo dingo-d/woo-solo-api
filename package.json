@@ -24,11 +24,9 @@
 	},
 	"homepage": "https://github.com/dingo-d/woo-solo-api#readme",
 	"scripts": {
-		"__eslint": "eslint assets/dev/**/*.js",
-		"__stylelint": "stylelint assets/dev/**/*.scss",
-		"lintStyle": "npm run __stylelint",
-		"lintJs": "npm run __eslint",
-		"lint": "npm run lintJs && npm run lintStyle && composer standard:check && composer analyze",
+		"lintJs": "eslint 'assets/dev/**/*.js'",
+		"lintStyle": "stylelint 'assets/dev/**/*.scss'",
+		"lint": "npm run lintJs && npm run lintStyle",
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview"
@@ -42,16 +40,17 @@
 		"buffer": "^6.0.3",
 		"classnames": "^2.3.2",
 		"form-urlencoded": "^6.1.0",
-		"php-serialize": "^4.0.2",
-		"stylelint": "^14.16.1"
+		"php-serialize": "^4.0.2"
 	},
 	"devDependencies": {
 		"@kucrut/vite-for-wp": "^0.5.2",
 		"@rollup/plugin-inject": "^5.0.3",
 		"@wordpress/eslint-plugin": "^13.9.0",
 		"@wordpress/stylelint-config": "^21.8.0",
+		"eslint": "^8.33.0",
 		"rollup-plugin-external-globals": "^0.7.1",
 		"sass": "^1.57.1",
+		"stylelint": "^14.16.1",
 		"vite": "^4.0.4"
 	}
 }
