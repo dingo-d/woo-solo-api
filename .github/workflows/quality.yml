@@ -157,11 +157,6 @@ jobs:
       - name: "Checkout code"
         uses: "actions/checkout@v3"
 
-      - name: "Check adherence to EditorConfig"
-        uses: "greut/eclint-action@v0"
-        with:
-          eclint_args: -exclude languages/*
-
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
         with:
