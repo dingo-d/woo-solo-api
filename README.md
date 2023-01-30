@@ -147,7 +147,7 @@ well (shocker, I know) :D
 
 If you want me to add a new feature to the plugin you can contact me and pay me to work on the feature you need. My rate is 50€/hr.
 
-Note that some features are not possible to make within this plugin. For instance, some apps and plugins will utilize WooCommerce REST API endpoints to trigger orders. Their API is poorly written, and when you do these kind of actions, the hooks that will look if something changed won't get triggered, which means this plugin cannot know of the order status. It is what it is. I could make some kind of a listener/cron jobs to manually check these things, but this is a paid feature.
+Note that some features are not possible to make within this plugin. For instance, some apps and plugins will utilize WooCommerce REST API endpoints to trigger orders. Their API is poorly written, and when you do these kind of actions, the hooks that will look if something changed won't get triggered, which means this plugin cannot know of the order status. It is what it is. I could make some kind of listener/cron jobs to manually check these things, but this is a paid feature.
 
 ### Can I modify how the email looks, or customer notice?
 
@@ -219,6 +219,20 @@ And modify it.
 @param string $emailTitle Email title.
 
 apply_filters('woo_solo_api_modify_default_email_title', $defaultTitle);
+```
+
+#### Modify tax rates
+
+This hook is used to set different tax rates for items based on certain criteria.
+For instance, if you want to modify taxes based on location you can change it here
+(if for some reason it's not working from the default settings).
+
+```php
+@param float $taxRate  The value of the tax rate for the current order item.
+@param array $itemData The data for the current order item.
+@param array $taxRates The value of the tax rates for the current order item.
+
+add_filter('woo_solo_api_modify_tax_rate', 'my_tax_rate', 10, 3);
 ```
 
 #### Filter email headers

@@ -1,12 +1,12 @@
 === Woo Solo Api ===
 Contributors: dingo_bastard
 Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
-Requires at least: 5.8
-Requires PHP: 7.3
+Requires at least: 5.9
+Requires PHP: 7.4
 Tested up to: 6.1.1
-Stable tag: 2.3.0
+Stable tag: 3.0.0
 WC requires at least: 6.0.0
-WC tested up to: 7.2.2
+WC tested up to: 7.3.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -50,8 +50,8 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 == Requirements ==
 
-* PHP 7.3 or greater (not fully tested with PHP 8+)
-* WordPress 5.8 or above
+* PHP 7.4 or greater
+* WordPress 5.9 or above
 * WooCommerce 6.0.0 or above
 * Non IE browser
 
@@ -60,11 +60,39 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 1. After installation, you can go to the plugin settings and add your SOLO token
 2. You can set up various options that are directly linked to how you want the invoice to look like
 3. You can add some additional WooCommerce settings such as PIN and IBAN fields
-4. You can add the mail settings that will be send (if you choose to) to the client when the order is completed
+4. You can add the mail settings that will be sent (if you choose to) to the client when the order is completed
 5. You can test if your API key works properly and that communication with the Solo API works
 6. You can check the sent orders, whether the order was sent to API, and if the customer got the PDF or not (or if error happened on the API)
 
 == Changelog ==
+
+= 3.0.0 =
+Release Date: January 30th, 2023
+
+This update was mostly a dev update to make the plugin easier to maintain.
+A lot was changed under the hood (from handling dependency injection to build process, and how settings are handled).
+Minor issues in the plugin should be fixed, most notable is that the translation for Croatian language should work now.
+Also, the plugin should work with PHP 8+ (beta compatibility). PHP 8.2 could throw some notices, but WP is not yet fully compatible with PHP 8, so you can report any issues you find.
+
+### Added
+
+* Improved handling of dependencies in files
+* Method that will delete HNB exchange rate transient on plugin update
+* Improved error handling on API call failures
+
+### Changed
+
+* Minimum PHP version updated to 7.4, beta compatibility with PHP 8+ added
+* Build process changed from Webpack to Vite
+* Updated the options page a bit (better organization)
+  * The settings are a bit more fool-proof now in the way settings are fetched, stored and handled across the admin app.
+
+### Fixed
+
+* Translations for Croatian language should work now
+* If people didn't update their plugin or settings, the currency should automatically default to EUR
+* All outstanding coding style and type errors
+* Better exception descriptions
 
 = 2.3.0 =
 Release Date: January 4th, 2023
@@ -513,17 +541,30 @@ Also be sure to separate those two taxes. For instance you can set the item tax 
 
 = Why is the PHP 7.3 required? =
 
-Because the reality is that PHP 8 right outside the door. And if you have older PHP versions, you are not only doing a disservice to the planet, you're also harming your own site speed and security. You can always ask your hosting provider to fix this for you, or if you have control over cPanel on shared hosting, you are likely to be able to update PHP version yourself. Just make sure you tick all the required PHP extensions (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions).
+PHP 7.4 is in the end of life(https://www.php.net/supported-versions.php) phase. You should really move on to PHP 8.
+
+If you have older PHP versions, you are not only doing a disservice to the planet, you're also harming your own site speed and security. You can always ask your hosting provider to fix this for you, or if you have control over cPanel on shared hosting, you are likely to be able to update PHP version yourself. Just make sure you tick all the required PHP
+extensions (https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions).
 
 = I didn't receive an invoice when testing the plugin. What's wrong? =
 
 Give it a minute, scroll your site. The API communication happens using WP cron, which depends on the site activity to work. You can always check the 'Solo API order details' tab in the settings to see if there was some error from the API.
 If that fails, turn on the debug mode (https://wordpress.org/support/article/debugging-in-wordpress/) and try to test again. If there was a fatal error it should be shown in the logs.
 
+In the version 3 of the plugin, for every failed request you'll be able to see the error and try to rerun the call towards the API.
+
 = This plugin doesn't work with XYZ plugin =
 
-Could be. I didn't test it out with every plugin in the wild. That takes time. And money. And so far, nobody paid me to work on this plugin. In the near future I might be able to do some paid work, but that will depend on many different things.
-Please don't try to guilt trip me to work on your site specific issues. I will try to help to the best of my abilities. But the plugin is free, and I am not doing paid support, so don't expect me to work miracles. Also, don't expect me to drop everything just to work on your issue. If I don't answer in a day or two, be patient. I have a private life as well (shocker, I know) :D
+Could be. I didn't test it out with every plugin in the wild. That takes time. And money. In the near future I might be able to do some paid work, but that will depend on many things.
+
+Please don't try to guilt-trip me to work on your site specific issues. I will try to help to the best of my abilities.
+But the plugin is free, so don't expect me to work miracles. Also, don't expect me to
+drop everything just to work on your issue. If I don't answer in a day or two, be patient. I have a private life as
+well (shocker, I know) :D
+
+If you want me to add a new feature to the plugin you can contact me and pay me to work on the feature you need. My rate is 50€/hr.
+
+Note that some features are not possible to make within this plugin. For instance, some apps and plugins will utilize WooCommerce REST API endpoints to trigger orders. Their API is poorly written, and when you do these kind of actions, the hooks that will look if something changed won't get triggered, which means this plugin cannot know of the order status. It is what it is. I could make some kind of listener/cron jobs to manually check these things, but this is a paid feature.
 
 = Can I modify how the email looks, or customer notice? =
 
@@ -801,3 +842,87 @@ function my_tax_rate($taxRate, $itemData, $taxRates) {
 @param array $itemData The data for the current order item.
 @param array $taxRates The value of the tax rates for the current order item.
 </code>
+
+--------------
+
+Modify the bill type
+
+Use this filter if you need to dynamically change the bill type.
+
+Usage:
+
+<code>
+add_filter('woo_solo_api_modify_bill_type', 'my_customer_filter', 10, 3);
+
+function my_customer_filter($billType, $paymentMethod, $order) {
+  // (maybe) modify $billType, based on some external parameters or $paymentMethod or $order.
+  return $billType;
+}
+</code>
+
+<code>
+@param string $billType Existing bill type.
+@param string $paymentMethod Selected payment method for the current order.
+@param object|WC_Order $order Current order.
+</code>
+
+--------------
+
+Filter the unit measure for the current item
+
+Use this filter if you need to dynamically change measure for the item.
+Unit measure *MUST* be an integer in the list of measures (check the API documentation for details).
+
+<code>
+add_filter('woo_solo_api_modify_item_measure', 'my_customer_filter', 10, 4);
+
+function my_customer_filter($measure, $itemNo, $order, $itemData) {
+  // Modify multiple item numbers in your order based on some settings, meta value, etc.
+  switch ($itemNo) {
+    case 0:
+      $measure = 7;
+      break;
+    case 1:
+      $measure = 19;
+      break;
+    default:
+      $measure = 2;
+      break;
+  }
+
+  // Or filter based on $order object or $itemData which contains other information about the product.
+
+  return $measure;
+}
+</code>
+
+<code>
+@param int $measure Current unit measure.
+@param int $itemNo Current item in the list.
+@param object|WC_Order $order Current order.
+@param array $itemData Current item data.
+<code>
+
+--------------
+
+Filter the unit measure for the current shipping item
+
+Use this filter if you need to dynamically change measure for the shipping item.
+Unit measure *MUST* be an integer corresponding to the list of measures.
+
+Be careful when changing the measure using the above filter, as the shipping item should probably be a `piece (2)`.
+
+<code>
+add_filter('woo_solo_api_modify_shipping_item_measure', 'my_customer_filter', 10, 4);
+
+function my_customer_filter($measure, $itemNo, $order, $itemData) {
+    return 2; // Corresponds to: piece.
+}
+</code>
+
+<code>
+@param int $measure Current shipping unit measure. Will be picked up by whatever is in the default measure.
+@param int $itemNo Current item in the list.
+@param object|WC_Order $order Current order.
+@param object|null $shippingObject Current shipping item data.
+<code>
