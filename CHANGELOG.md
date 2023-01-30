@@ -16,6 +16,33 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [3.0.0] - 2023-01-30
+
+This update was mostly a dev update to make the plugin easier to maintain.
+A lot was changed under the hood (from handling dependency injection to build process, and how settings are handled).
+Minor issues in the plugin should be fixed, most notable is that the translation for Croatian language should work now.
+Also, the plugin should work with PHP 8+ (beta compatibility). PHP 8.2 could throw some notices, but WP is not yet fully compatible with PHP 8, so you can report any issues you find.
+
+### Added
+
+* Improved handling of dependencies in files
+* Method that will delete HNB exchange rate transient on plugin update
+* Improved error handling on API call failures
+
+### Changed
+
+* Minimum PHP version updated to 7.4, beta compatibility with PHP 8+ added 
+* Build process changed from Webpack to Vite 
+* Updated the options page a bit (better organization)
+  * The settings are a bit more fool-proof now in the way settings are fetched, stored and handled across the admin app.
+
+### Fixed
+
+* Translations for Croatian language should work now
+* If people didn't update their plugin or settings, the currency should automatically default to EUR
+* All outstanding coding style and type errors
+* Better exception descriptions
+
 ## [2.3.0] - 2023-01-04
 
 This release will fix the affected change due to Croatia entering the Euro-zone.
@@ -376,65 +403,35 @@ A lot of issues were fixed. The plugin should be more stable and work better now
 * Initial release
 
 [Unreleased]: https://github.com/dingo-d/woo-solo-api/compare/master...HEAD
-
-[2.3.0]: https://github.com/dingo-d/woo-solo-api/compare/2.2.0...2.3.0
-
-[2.2.0]: https://github.com/dingo-d/woo-solo-api/compare/2.1.0...2.2.0
-
-[2.1.0]: https://github.com/dingo-d/woo-solo-api/compare/2.0.8...2.1.0
-
-[2.0.8]: https://github.com/dingo-d/woo-solo-api/compare/2.0.7...2.0.8
-
-[2.0.7]: https://github.com/dingo-d/woo-solo-api/compare/2.0.6...2.0.7
-
-[2.0.6]: https://github.com/dingo-d/woo-solo-api/compare/2.0.5...2.0.6
-
-[2.0.5]: https://github.com/dingo-d/woo-solo-api/compare/2.0.4...2.0.5
-
-[2.0.4]: https://github.com/dingo-d/woo-solo-api/compare/2.0.3...2.0.4
-
-[2.0.3]: https://github.com/dingo-d/woo-solo-api/compare/2.0.2...2.0.3
-
-[2.0.2]: https://github.com/dingo-d/woo-solo-api/compare/2.0.1...2.0.2
-
-[2.0.1]: https://github.com/dingo-d/woo-solo-api/compare/2.0.0...2.0.1
-
-[2.0.0]: https://github.com/dingo-d/woo-solo-api/compare/1.9.6...2.0.0
-
-[1.9.6]: https://github.com/dingo-d/woo-solo-api/compare/1.9.5...1.9.6
-
-[1.9.5]: https://github.com/dingo-d/woo-solo-api/compare/1.9.4...1.9.5
-
-[1.9.4]: https://github.com/dingo-d/woo-solo-api/compare/1.9.3...1.9.4
-
-[1.9.3]: https://github.com/dingo-d/woo-solo-api/compare/1.9.2...1.9.3
-
-[1.9.2]: https://github.com/dingo-d/woo-solo-api/compare/1.9.1...1.9.2
-
-[1.9.1]: https://github.com/dingo-d/woo-solo-api/compare/1.9.0...1.9.1
-
-[1.9.0]: https://github.com/dingo-d/woo-solo-api/compare/1.8.1...1.9.0
-
-[1.8.1]: https://github.com/dingo-d/woo-solo-api/compare/1.8.0...1.8.1
-
-[1.8.0]: https://github.com/dingo-d/woo-solo-api/compare/1.7.5...1.8.0
-
-[1.7.5]: https://github.com/dingo-d/woo-solo-api/compare/1.7...1.7.5
-
-[1.7]: https://github.com/dingo-d/woo-solo-api/compare/1.6...1.7
-
-[1.6]: https://github.com/dingo-d/woo-solo-api/compare/1.5...1.6
-
-[1.5]: https://github.com/dingo-d/woo-solo-api/compare/1.4...1.5
-
-[1.4]: https://github.com/dingo-d/woo-solo-api/compare/1.3...1.4
-
-[1.3]: https://github.com/dingo-d/woo-solo-api/compare/1.2...1.3
-
-[1.2]: https://github.com/dingo-d/woo-solo-api/compare/1.1...1.2
-
-[1.1]: https://github.com/dingo-d/woo-solo-api/compare/1.0.1...1.1
-
-[1.0.1]: https://github.com/dingo-d/woo-solo-api/compare/1.1...1.0.1
-
-[1.0]: https://github.com/dingo-d/woo-solo-api/compare/24cff4a3cc72cfda688a01122ad86bb66e85c2a8...1.0
+[3.0.0]: https://github.com/dingo-d/woo-solo-api/compare/2.3.0...3.0.0  
+[2.3.0]: https://github.com/dingo-d/woo-solo-api/compare/2.2.0...2.3.0  
+[2.2.0]: https://github.com/dingo-d/woo-solo-api/compare/2.1.0...2.2.0  
+[2.1.0]: https://github.com/dingo-d/woo-solo-api/compare/2.0.8...2.1.0  
+[2.0.8]: https://github.com/dingo-d/woo-solo-api/compare/2.0.7...2.0.8  
+[2.0.7]: https://github.com/dingo-d/woo-solo-api/compare/2.0.6...2.0.7  
+[2.0.6]: https://github.com/dingo-d/woo-solo-api/compare/2.0.5...2.0.6  
+[2.0.5]: https://github.com/dingo-d/woo-solo-api/compare/2.0.4...2.0.5  
+[2.0.4]: https://github.com/dingo-d/woo-solo-api/compare/2.0.3...2.0.4  
+[2.0.3]: https://github.com/dingo-d/woo-solo-api/compare/2.0.2...2.0.3  
+[2.0.2]: https://github.com/dingo-d/woo-solo-api/compare/2.0.1...2.0.2  
+[2.0.1]: https://github.com/dingo-d/woo-solo-api/compare/2.0.0...2.0.1  
+[2.0.0]: https://github.com/dingo-d/woo-solo-api/compare/1.9.6...2.0.0  
+[1.9.6]: https://github.com/dingo-d/woo-solo-api/compare/1.9.5...1.9.6  
+[1.9.5]: https://github.com/dingo-d/woo-solo-api/compare/1.9.4...1.9.5  
+[1.9.4]: https://github.com/dingo-d/woo-solo-api/compare/1.9.3...1.9.4  
+[1.9.3]: https://github.com/dingo-d/woo-solo-api/compare/1.9.2...1.9.3  
+[1.9.2]: https://github.com/dingo-d/woo-solo-api/compare/1.9.1...1.9.2  
+[1.9.1]: https://github.com/dingo-d/woo-solo-api/compare/1.9.0...1.9.1  
+[1.9.0]: https://github.com/dingo-d/woo-solo-api/compare/1.8.1...1.9.0  
+[1.8.1]: https://github.com/dingo-d/woo-solo-api/compare/1.8.0...1.8.1  
+[1.8.0]: https://github.com/dingo-d/woo-solo-api/compare/1.7.5...1.8.0  
+[1.7.5]: https://github.com/dingo-d/woo-solo-api/compare/1.7...1.7.5  
+[1.7]: https://github.com/dingo-d/woo-solo-api/compare/1.6...1.7  
+[1.6]: https://github.com/dingo-d/woo-solo-api/compare/1.5...1.6  
+[1.5]: https://github.com/dingo-d/woo-solo-api/compare/1.4...1.5  
+[1.4]: https://github.com/dingo-d/woo-solo-api/compare/1.3...1.4  
+[1.3]: https://github.com/dingo-d/woo-solo-api/compare/1.2...1.3  
+[1.2]: https://github.com/dingo-d/woo-solo-api/compare/1.1...1.2  
+[1.1]: https://github.com/dingo-d/woo-solo-api/compare/1.0.1...1.1  
+[1.0.1]: https://github.com/dingo-d/woo-solo-api/compare/1.1...1.0.1  
+[1.0]: https://github.com/dingo-d/woo-solo-api/compare/24cff4a3cc72cfda688a01122ad86bb66e85c2a8...1.0  
