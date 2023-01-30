@@ -7,8 +7,11 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 ## [Unreleased]
 
 ### Added
+
 ### Changed
+
 ### Removed
+
 ### Fixed
 
 _No documentation available about unreleased changes as of yet._
@@ -20,7 +23,7 @@ This release will fix the affected change due to Croatia entering the Euro-zone.
 ### Added
 
 * Add a fallback to checking if offers exist in case the invoices don't exist
-* Add a way to clear Croatian National Bank API transient response 
+* Add a way to clear Croatian National Bank API transient response
 
 ### Changed
 
@@ -117,30 +120,32 @@ This release will fix the affected change due to Croatia entering the Euro-zone.
 ### Fixed
 
 * Autoload order in main plugin file, so that the first error can be thrown correctly, if it happens
-* Fix the uninstall error because of a missing autoloader file
+* Fix the uninstallation error because of a missing autoloader file
 * Add fallbacks in case there is no gateway set, so that the JS doesn't fail when deserializing arrays
 
 ## [2.0.0] - 2020-11-22
 
 This is a very big update. I called this the refactor, because the basic functionality of the plugin remained the
- same. But in all reality, this was a total plugin rewrite. You'll need to make sure you have PHP 7.3 installed on your server.
+same. But in all reality, this was a total plugin rewrite. You'll need to make sure you have PHP 7.3 installed on your
+server.
 
 The options remained the same, so none of the settings on an already existing version should disappear. Plugin will
- need to be disabled and then enabled again once updated, so that the database table can be created.
+need to be disabled and then enabled again once updated, so that the database table can be created.
 
 There is one bug that is coming from the fact that the new settings page is built using Gutenberg blocks. Due to a
- nature of translations and how they work in GB, and the fact that I'm relying on webpack to bundle my assets. The
-  translations are not working properly. There is an issue opened in WP-CLI ([make-json does not work for .jsx files
-  ](https://github.com/wp-cli/i18n-command/issues/200)), but so far we don't have a fix for this. Once the fix comes
-   out I'll update the plugin's translation files. The plugin's .po file is fully translated to Croatian, but we need a json file as well for the JavaScript translations.
+nature of translations and how they work in GB, and the fact that I'm relying on webpack to bundle my assets. The
+translations are not working properly. There is an issue opened in WP-CLI ([make-json does not work for .jsx files
+](https://github.com/wp-cli/i18n-command/issues/200)), but so far we don't have a fix for this. Once the fix comes
+out I'll update the plugin's translation files. The plugin's .po file is fully translated to Croatian, but we need a
+json file as well for the JavaScript translations.
 
 The options page has been revamped and is built using Gutenberg components. So that's nice.
 
 Api calls towards Solo service are now run as a background process. So don't be alarmed if the order doesn't appear
- immediately, or if the Solo invoice/order doesn't come immediately to the customer. Give it some time, and rummage
-  around a bit, to trigger WordPress cron :D
+immediately, or if the Solo invoice/order doesn't come immediately to the customer. Give it some time, and rummage
+around a bit, to trigger WordPress cron :D
 
-A lot of issues were fixed. The plugin should be more stable and work better now. 
+A lot of issues were fixed. The plugin should be more stable and work better now.
 
 ### Added
 
@@ -149,25 +154,27 @@ A lot of issues were fixed. The plugin should be more stable and work better now
   * Account Details - fetches orders from SOLO API (for testing if api calls work)
   * Order Details and its collection - details about orders fetched from the database
 * Added new database for sending orders to API
-  * We need to keep track if the order was sent or not, and it's better to have a table with this information in it. We can update it when the API request is made, and when the process for triggering user email happens. This gives us more control later on if we need to debug something (missing emails, missing requests, etc.).
+  * We need to keep track if the order was sent or not, and it's better to have a table with this information in it. We
+    can update it when the API request is made, and when the process for triggering user email happens. This gives us
+    more control later on if we need to debug something (missing emails, missing requests, etc.).
 * Add privacy related functionality
   * This functionality hooks into WP's own core privacy functionality. So that if the user requests their data to be
-  either exported or deleted we remove the data in the custom table we created.
+    either exported or deleted we remove the data in the custom table we created.
 * Added filters for modifying certain data in the plugin
 * Link the invoice from the Solo service with the WooCommerce invoice
-  
+
 ### Changed
 
 * Refactored the entire plugin structure to use dependency injection, autowiring, PSR-4 autoloading and PSR-12 coding
- standards
+  standards
 * Replaced old settings page with new, core editor powered settings page
 * Settings page now includes WooCommerce navbar
 * Sending any remote call towards Solo API is now done utilizing WordPress cron.
   * It's not ideal, as Wordpress cron is
- not a real cron, but it seems to be working. With queueing calls we are less likely to trigger API throttling from
-  the Solo Api. Oftentimes there would be no orders created in the Solo service, and the user would be none the wiser
-   what happened. By queueing we avoid this throttling. Also, we have a better way of logging errors from the API.
- 
+    not a real cron, but it seems to be working. With queueing calls we are less likely to trigger API throttling from
+    the Solo Api. Oftentimes there would be no orders created in the Solo service, and the user would be none the wiser
+    what happened. By queueing we avoid this throttling. Also, we have a better way of logging errors from the API.
+
 ### Removed
 
 * Removed the filter for PDF file types as those are no longer saved in the media uploads folder
@@ -223,8 +230,7 @@ A lot of issues were fixed. The plugin should be more stable and work better now
 ### Fixed
 
 * Fixed important GDPR issue – no longer saving offers and invoices because they contain sensitive information, and
- google will crawl your site and make them public
-
+  google will crawl your site and make them public
 
 ## [1.9.3] - 2018-08-26
 
@@ -319,9 +325,10 @@ A lot of issues were fixed. The plugin should be more stable and work better now
 
 ### Added
 
-* Added automatic conversion rate from Croatian National Bank (https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista)
+* Added automatic conversion rate from Croatian National
+  Bank (https://www.hnb.hr/temeljne-funkcije/monetarna-politika/tecajna-lista/tecajna-lista)
 * Add a fix for duplicated orders – you can now choose if you want to make SOLO API call on the checkout or when
- changing order status manually
+  changing order status manually
 
 ### Fixed
 
@@ -369,34 +376,65 @@ A lot of issues were fixed. The plugin should be more stable and work better now
 * Initial release
 
 [Unreleased]: https://github.com/dingo-d/woo-solo-api/compare/master...HEAD
+
 [2.3.0]: https://github.com/dingo-d/woo-solo-api/compare/2.2.0...2.3.0
+
 [2.2.0]: https://github.com/dingo-d/woo-solo-api/compare/2.1.0...2.2.0
+
 [2.1.0]: https://github.com/dingo-d/woo-solo-api/compare/2.0.8...2.1.0
+
 [2.0.8]: https://github.com/dingo-d/woo-solo-api/compare/2.0.7...2.0.8
+
 [2.0.7]: https://github.com/dingo-d/woo-solo-api/compare/2.0.6...2.0.7
+
 [2.0.6]: https://github.com/dingo-d/woo-solo-api/compare/2.0.5...2.0.6
+
 [2.0.5]: https://github.com/dingo-d/woo-solo-api/compare/2.0.4...2.0.5
+
 [2.0.4]: https://github.com/dingo-d/woo-solo-api/compare/2.0.3...2.0.4
+
 [2.0.3]: https://github.com/dingo-d/woo-solo-api/compare/2.0.2...2.0.3
+
 [2.0.2]: https://github.com/dingo-d/woo-solo-api/compare/2.0.1...2.0.2
+
 [2.0.1]: https://github.com/dingo-d/woo-solo-api/compare/2.0.0...2.0.1
+
 [2.0.0]: https://github.com/dingo-d/woo-solo-api/compare/1.9.6...2.0.0
+
 [1.9.6]: https://github.com/dingo-d/woo-solo-api/compare/1.9.5...1.9.6
+
 [1.9.5]: https://github.com/dingo-d/woo-solo-api/compare/1.9.4...1.9.5
+
 [1.9.4]: https://github.com/dingo-d/woo-solo-api/compare/1.9.3...1.9.4
+
 [1.9.3]: https://github.com/dingo-d/woo-solo-api/compare/1.9.2...1.9.3
+
 [1.9.2]: https://github.com/dingo-d/woo-solo-api/compare/1.9.1...1.9.2
+
 [1.9.1]: https://github.com/dingo-d/woo-solo-api/compare/1.9.0...1.9.1
+
 [1.9.0]: https://github.com/dingo-d/woo-solo-api/compare/1.8.1...1.9.0
+
 [1.8.1]: https://github.com/dingo-d/woo-solo-api/compare/1.8.0...1.8.1
+
 [1.8.0]: https://github.com/dingo-d/woo-solo-api/compare/1.7.5...1.8.0
+
 [1.7.5]: https://github.com/dingo-d/woo-solo-api/compare/1.7...1.7.5
+
 [1.7]: https://github.com/dingo-d/woo-solo-api/compare/1.6...1.7
+
 [1.6]: https://github.com/dingo-d/woo-solo-api/compare/1.5...1.6
+
 [1.5]: https://github.com/dingo-d/woo-solo-api/compare/1.4...1.5
+
 [1.4]: https://github.com/dingo-d/woo-solo-api/compare/1.3...1.4
+
 [1.3]: https://github.com/dingo-d/woo-solo-api/compare/1.2...1.3
+
 [1.2]: https://github.com/dingo-d/woo-solo-api/compare/1.1...1.2
+
 [1.1]: https://github.com/dingo-d/woo-solo-api/compare/1.0.1...1.1
+
 [1.0.1]: https://github.com/dingo-d/woo-solo-api/compare/1.1...1.0.1
+
 [1.0]: https://github.com/dingo-d/woo-solo-api/compare/24cff4a3cc72cfda688a01122ad86bb66e85c2a8...1.0
