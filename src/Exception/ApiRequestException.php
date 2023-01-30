@@ -44,6 +44,6 @@ final class ApiRequestException extends RuntimeException implements GeneralExcep
 			esc_html($message)
 		);
 
-		return new static($exceptionMessage, $code);
+		return new ApiRequestException($exceptionMessage, $code);
 	}
 }
