@@ -301,7 +301,7 @@ class PluginSettings implements Registrable
 				'solo_api_payment_type-' . esc_attr($wooPaymentGatewaysID),
 				$this->setSettingsArguments(
 					'string',
-					esc_html__('Type of payment on api wooPaymentGateways (transactional account, cash, cards, etc.)', 'woo-solo-api'),
+					esc_html__('Type of payment on api payment gateways (transactional account, cash, cards, etc.)', 'woo-solo-api'),
 					'sanitize_text_field',
 					true,
 					'1'

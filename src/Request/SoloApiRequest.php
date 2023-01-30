@@ -816,7 +816,7 @@ class SoloApiRequest implements ApiRequest
 	/**
 	 * Get the HNB money exchange rates from the transient
 	 *
-	 * @return array<string, string> The array consisting of currency => middle rate value pairs.
+	 * @return array<int|string, mixed> The array consisting of currency => middle rate value pairs.
 	 */
 	private function getHnbRates(): array
 	{

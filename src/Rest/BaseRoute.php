@@ -81,7 +81,7 @@ abstract class BaseRoute implements Route, Registrable
 	/**
 	 * Get callback arguments array
 	 *
-	 * @return array<string, mixed> Either an array of options for the endpoint, or an array of arrays for multiple methods.
+	 * @return array<mixed> Either an array of options for the endpoint, or an array of arrays for multiple methods.
 	 */
 	abstract protected function getCallbackArguments(): array;
 

@@ -82,7 +82,7 @@ final class Plugin extends Autowiring implements Registrable, HasActivation, Has
 		if (version_compare((string)PHP_VERSION_ID, '70300', '<')) {
 			deactivate_plugins(plugin_basename(__FILE__));
 
-			$error_message = esc_html__('This plugin requires PHP 7.3 or greater to function.', 'woo-solo-api');
+			$error_message = esc_html__('This plugin requires PHP 7.4 or greater to function.', 'woo-solo-api');
 
 			throw PluginActivationFailure::activationMessage($error_message);
 		}

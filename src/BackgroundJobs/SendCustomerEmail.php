@@ -160,7 +160,7 @@ class SendCustomerEmail extends ScheduleEvent
 
 		$urlParse = wp_parse_url($attachment);
 
-		if ($urlParse === false || !is_array($urlParse)) {
+		if ($urlParse === false) {
 			// phpcs:ignore
 			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Error in sending customer email. Attachment URL cannot be parsed.', 'woo-solo-api'));
 			return;
