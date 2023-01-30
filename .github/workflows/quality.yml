@@ -166,3 +166,26 @@ jobs:
       - name: "Check coding style"
         run: |
           composer run test:style -- -q --report=checkstyle | cs2pr
+
+
+  asset_lint:
+    name: "5️⃣ ES Lint and Stylelint checks"
+    needs:
+      - "syntax_errors"
+    runs-on: "ubuntu-latest"
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [ '16.x', '18.x' ]
+
+    steps:
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
+
+      - name: "Use Node.js ${{ matrix.node }}"
+        uses: "actions/setup-node@v3"
+        with:
+          node-version: "${{ matrix.node }}"
+      - run: |
+          npm install
+          gsnpm run lint
