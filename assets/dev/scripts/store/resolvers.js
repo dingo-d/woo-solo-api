@@ -9,7 +9,7 @@ export const resolvers = {
 			.filter((setting) => setting.includes('solo_api_'))
 			.reduce((obj, key) => {
 				return Object.assign(obj, {
-					[key]: settingsRes[key]
+					[key]: settingsRes[key],
 				});
 			}, {});
 

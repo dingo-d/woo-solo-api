@@ -2,7 +2,7 @@
 	margin-top: 1rem;
 
 	&.has-error {
-		color: red;
+		color: var(--woo-rouge-color);
 		font-weight: 700;
 	}
 }

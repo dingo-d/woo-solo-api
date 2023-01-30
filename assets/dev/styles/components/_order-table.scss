@@ -1,20 +1,16 @@
-$table: (
-	'border-color': $base-silver-color,
-);
-
 .order-table {
 	display: grid;
 	grid-template-columns: repeat(10, 1fr);
 	width: fit-content;
-	border-top: 1px solid map-get-strict($table, 'border-color');
-	border-right: 1px solid map-get-strict($table, 'border-color');
+	border-top: 1px solid var(--woo-silver-color);
+	border-right: 1px solid var(--woo-silver-color);
 	max-height: 21rem;
 	overflow: scroll;
 
 	&__element {
 		padding: 0.5rem 0.25rem;
-		border-left: 1px solid map-get-strict($table, 'border-color');
-		border-bottom: 1px solid map-get-strict($table, 'border-color');
+		border-left: 1px solid var(--woo-silver-color);
+		border-bottom: 1px solid var(--woo-silver-color);
 
 		&--heading {
 			font-weight: 600;

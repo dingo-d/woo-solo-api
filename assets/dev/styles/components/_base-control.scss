@@ -3,6 +3,7 @@ $components: (
 );
 
 .components-base-control {
+
 	&__field {
 		margin-bottom: 1.25rem !important;
 	}
@@ -13,7 +14,7 @@ $components: (
 	}
 
 	&__error {
-		color: map-get-strict($components, 'error-color');
+		color: var(--woo-rouge-color);
 		font-weight: 600;
 	}
 
@@ -63,11 +64,12 @@ $components: (
 	}
 
 	&.has-error {
+
 		input,
 		textarea,
 		select {
-			border-color: map-get-strict($components, 'error-color');
-			box-shadow: 0 0 0 1px map-get-strict($components, 'error-color');
+			border-color: var(--woo-rouge-color);
+			box-shadow: 0 0 0 1px var(--woo-rouge-color);
 		}
 	}
 }

@@ -1,14 +1,11 @@
-$panel: (
-	body-title-background: $base-dove-color,
-);
-
 .components-panel {
 	$this: &;
 
 	&__body {
+
 		&.is-opened {
 			#{$this}__body-title {
-				background-color: map-get-strict($panel, 'body-title-background') !important;
+				background-color: var(--woo-dove-color) !important;
 				margin-bottom: 1.25rem !important;
 			}
 		}
@@ -29,7 +26,7 @@ $panel: (
 		align-items: start;
 
 		select {
-			min-height: 2.69rem !important;
+			min-height: 2.7rem !important;
 			padding: 0 1.5rem 0 0.75rem !important;
 			min-width: 15.5rem;
 		}
@@ -49,6 +46,7 @@ $panel: (
 	}
 
 	&__item {
+
 		h4 {
 			margin-top: 0;
 		}

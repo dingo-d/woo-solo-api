@@ -1,14 +1,9 @@
 /* stylelint-disable declaration-colon-newline-after */
-$options-page: (
-	background-color: $base-white-color,
-	border-color: $base-silver-color,
-);
-
 .options-wrapper {
-	background: map-get-strict($options-page, 'background-color');
-	border-bottom: 1px solid map-get-strict($options-page, 'border-color');
-	border-left: 1px solid map-get-strict($options-page, 'border-color');
-	border-right: 1px solid map-get-strict($options-page, 'border-color');
+	background: var(--woo-white-color);
+	border-bottom: 1px solid var(--woo-silver-color);
+	border-left: 1px solid var(--woo-silver-color);
+	border-right: 1px solid var(--woo-silver-color);
 	padding-bottom: 1.25rem;
 
 	&--separated {
