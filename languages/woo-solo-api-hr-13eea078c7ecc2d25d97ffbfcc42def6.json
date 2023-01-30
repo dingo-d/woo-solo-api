@@ -1,0 +1,132 @@
+{
+    "translation-revision-date": "2023-01-29 11:06+0100",
+    "generator": "WP-CLI\/2.7.1",
+    "source": "assets\/dev\/scripts\/const\/unitMeasures.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "hr",
+                "plural-forms": "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);"
+            },
+            "-": [
+                "-"
+            ],
+            "piece": [
+                "kom"
+            ],
+            "hour": [
+                "sat"
+            ],
+            "year": [
+                "godina"
+            ],
+            "km": [
+                "km"
+            ],
+            "litre": [
+                "litre"
+            ],
+            "kg": [
+                "kg"
+            ],
+            "kWh": [
+                "kWh"
+            ],
+            "m\u00b3": [
+                "m\u00b3"
+            ],
+            "tonne": [
+                "tona"
+            ],
+            "m\u00b2": [
+                "m\u00b2"
+            ],
+            "m": [
+                "m"
+            ],
+            "day": [
+                "dan"
+            ],
+            "month": [
+                "mjesec"
+            ],
+            "night": [
+                "no\u0107"
+            ],
+            "cart": [
+                "ko\u0161arica"
+            ],
+            "account": [
+                "ra\u010dun"
+            ],
+            "pair": [
+                "par"
+            ],
+            "ml": [
+                "ml"
+            ],
+            "pax": [
+                "pax"
+            ],
+            "room": [
+                "soba"
+            ],
+            "apartment": [
+                "apartman"
+            ],
+            "term": [
+                "termin"
+            ],
+            "set": [
+                "skup"
+            ],
+            "package": [
+                "paket"
+            ],
+            "point": [
+                "to\u010dka"
+            ],
+            "service": [
+                "usluga"
+            ],
+            "pal": [
+                "pal"
+            ],
+            "kont": [
+                "kont"
+            ],
+            "\u010dl": [
+                "\u010dl"
+            ],
+            "tis": [
+                "tis"
+            ],
+            "sec": [
+                "sek"
+            ],
+            "min": [
+                "min"
+            ],
+            "str": [
+                "str"
+            ],
+            "kpl": [
+                "kpl"
+            ],
+            "p\u0161l": [
+                "p\u0161l"
+            ],
+            "ha": [
+                "ha"
+            ],
+            "g": [
+                "g"
+            ],
+            "x": [
+                "x"
+            ]
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "translation-revision-date": "2023-01-29 11:06+0100",
+    "generator": "WP-CLI\/2.7.1",
+    "source": "assets\/dev\/scripts\/const\/dueDate.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "hr",
+                "plural-forms": "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);"
+            },
+            "1 day": [
+                "1 dan"
+            ],
+            "2 days": [
+                "2 dana"
+            ],
+            "3 days": [
+                "3 dana"
+            ],
+            "4 days": [
+                "4 dana"
+            ],
+            "5 days": [
+                "5 dana"
+            ],
+            "6 days": [
+                "6 dana"
+            ],
+            "1 week": [
+                "1 tjedan"
+            ],
+            "2 weeks": [
+                "2 tjedna"
+            ],
+            "3 weeks": [
+                "3 tjedna"
+            ]
+        }
+    }
+}
