@@ -162,7 +162,7 @@ export const GeneralSettingsPanel = () => {
 							name='solo_api_service_type'
 							label={__('Enter the type of the service', 'woo-solo-api')}
 							help={__('You can find it in your account settings (Usluge -> Tipovi usluga)', 'woo-solo-api')}
-							type='text'
+							type='number'
 							disabled={isActive}
 							value={settings.solo_api_service_type}
 							onChange={(value) => setSettings({...settings, solo_api_service_type: value, settingsRefs})}
