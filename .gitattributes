@@ -9,7 +9,6 @@
 /tests export-ignore
 /node_modules export-ignore
 /assets/dev/ export-ignore
-!/assets/public export-ignore
 
 .distignore export-ignore
 .editorconfig export-ignore
