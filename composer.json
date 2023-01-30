@@ -16,6 +16,12 @@
 			"homepage": "https://github.com/dingo-d/woo-solo-api/graphs/contributors"
 		}
 	],
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/dingo-d/wp-pest"
+		}
+	],
 	"require": {
 		"php": "^7.4 | ^8.0 | ^8.1 | ^8.2",
 		"ext-json": "*",
@@ -24,7 +30,7 @@
 	},
 	"require-dev": {
 		"dealerdirect/phpcodesniffer-composer-installer": "^v1.0.0",
-		"dingo-d/wp-pest": "^1.6",
+		"dingo-d/wp-pest": "dev-require-composer-installers-v2",
 		"php-stubs/woocommerce-stubs": "^v7.3.0",
 		"php-stubs/wordpress-globals": "^v0.2.0",
 		"php-parallel-lint/php-parallel-lint": "^1.3",
@@ -46,7 +52,7 @@
 			"MadeByDenis\\WooSoloApi\\": "src/"
 		}
 	},
-	"minimum-stability": "stable",
+	"minimum-stability": "dev",
 	"config": {
 		"sort-packages": true,
 		"optimize-autoloader": true,
@@ -61,7 +67,7 @@
 		"test:types": "@php ./vendor/bin/phpstan analyze",
 		"test:style": "@php ./vendor/bin/phpcs",
 		"test:lint": "@php ./vendor/bin/parallel-lint src/ tests/",
-		"test:unit": "@php ./vgendor/bin/pest --group=unit",
+		"test:unit": "@php ./vendor/bin/pest --group=unit",
 		"test:integration": "@php ./vendor/bin/pest --group=integration",
 		"test:coverage": "@php ./vendor/bin/pest --group=integration --coverage",
 		"check-all": [
