@@ -21,24 +21,24 @@ namespace MadeByDenis\WooSoloApi\Core;
  */
 final class PluginFactory
 {
-    /**
-     * Create and return an instance of the plugin.
-     *
-     * This always returns a shared instance.
-     *
-     * @param array<string, string[]> $prefixes List of PSR-4 prefixes.
-     * @param string $namespace Main plugin namespace.
-     *
-     * @return Plugin Plugin instance.
-     */
-    public static function create(array $prefixes, string $namespace): Plugin
-    {
-        static $plugin = null;
+	/**
+	 * Create and return an instance of the plugin.
+	 *
+	 * This always returns a shared instance.
+	 *
+	 * @param array<string, string[]> $prefixes List of PSR-4 prefixes.
+	 * @param string $namespace Main plugin namespace.
+	 *
+	 * @return Plugin Plugin instance.
+	 */
+	public static function create(array $prefixes, string $namespace): Plugin
+	{
+		static $plugin = null;
 
-        if ($plugin === null) {
-            $plugin = new Plugin($prefixes, $namespace);
-        }
+		if ($plugin === null) {
+			$plugin = new Plugin($prefixes, $namespace);
+		}
 
-        return $plugin;
-    }
+		return $plugin;
+	}
 }

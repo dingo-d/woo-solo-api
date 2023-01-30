@@ -28,10 +28,10 @@ use MadeByDenis\WooSoloApi\Core\PluginFactory;
 use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
 
 /**
-* Include the autoloader, so we can dynamically include the rest of the classes.
-*
-* @since 2.0.0
-*/
+ * Include the autoloader, so we can dynamically include the rest of the classes.
+ *
+ * @since 2.0.0
+ */
 $loader = require __DIR__ . '/vendor/autoload.php';
 
 /**
@@ -39,39 +39,39 @@ $loader = require __DIR__ . '/vendor/autoload.php';
  *
  * @since 2.0.0
  */
-if (! defined('ABSPATH')) {
-    $errorMessage = \esc_html__('You cannot access this file outside WordPress.', 'woo-solo-api');
+if (!defined('ABSPATH')) {
+	$errorMessage = \esc_html__('You cannot access this file outside WordPress.', 'woo-solo-api');
 
-    throw PluginActivationFailure::activationMessage($errorMessage);
+	throw PluginActivationFailure::activationMessage($errorMessage);
 }
 
 /**
-* The code that runs during plugin activation.
-*
-* @since 2.0.0
-*/
+ * The code that runs during plugin activation.
+ *
+ * @since 2.0.0
+ */
 \register_activation_hook(
-    __FILE__,
-    function () use ($loader) {
-        PluginFactory::create($loader->getPrefixesPsr4(), __NAMESPACE__)->activate();
-    }
+	__FILE__,
+	function () use ($loader) {
+		PluginFactory::create($loader->getPrefixesPsr4(), __NAMESPACE__)->activate();
+	}
 );
 
 /**
-* The code that runs during plugin deactivation.
-*
-* @since 2.0.0
-*/
+ * The code that runs during plugin deactivation.
+ *
+ * @since 2.0.0
+ */
 \register_deactivation_hook(
-    __FILE__,
-    function () use ($loader) {
-        PluginFactory::create($loader->getPrefixesPsr4(), __NAMESPACE__)->deactivate();
-    }
+	__FILE__,
+	function () use ($loader) {
+		PluginFactory::create($loader->getPrefixesPsr4(), __NAMESPACE__)->deactivate();
+	}
 );
 
 /**
-* Begin plugin execution.
-*
-* @since 2.0.0
-*/
+ * Begin plugin execution.
+ *
+ * @since 2.0.0
+ */
 PluginFactory::create($loader->getPrefixesPsr4(), __NAMESPACE__)->register();

@@ -1,17 +1,17 @@
 includes:
-    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
-    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+  - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+  - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-    level: 6
-    inferPrivatePropertyTypeFromConstructor: true
-    checkMissingIterableValueType: false
-    scanFiles:
-        - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
-        # wc_admin_connect_page() comes from woocommerce-admin package
-        - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
-    paths:
-        - src/
-    excludePaths:
-        - src/Core/CompiledContainer.php
-        - wp/
-        - wp-content/
+  level: 6
+  inferPrivatePropertyTypeFromConstructor: true
+  checkMissingIterableValueType: false
+  scanFiles:
+    - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
+    # wc_admin_connect_page() comes from woocommerce-admin package
+    - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
+  paths:
+    - src/
+  excludePaths:
+    - src/Core/CompiledContainer.php
+    - wp/
+    - wp-content/

@@ -23,10 +23,10 @@ use MadeByDenis\WooSoloApi\Core\Registrable;
  */
 interface BackgroundProcessManager extends Registrable
 {
-    /**
-     * Register the process you wish to run in the background
-     *
-     * @return mixed
-     */
-    public function registerProcess();
+	/**
+	 * Register the process you wish to run in the background
+	 *
+	 * @return mixed
+	 */
+	public function registerProcess();
 }

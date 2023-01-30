@@ -21,12 +21,12 @@ namespace MadeByDenis\WooSoloApi\Core;
  */
 interface Renderable
 {
-    /**
-     * Render the current Renderable.
-     *
-     * @param array<mixed> $context Context in which to render.
-     *
-     * @return string Rendered HTML.
-     */
-    public function render(array $context = []): string;
+	/**
+	 * Render the current Renderable.
+	 *
+	 * @param array<mixed> $context Context in which to render.
+	 *
+	 * @return string Rendered HTML.
+	 */
+	public function render(array $context = []): string;
 }
