@@ -89,32 +89,6 @@ jobs:
       - name: "Execute integration tests"
         run: "./vendor/bin/pest --group=integration"
 
-#      - name: "Upload unit test coverage to Codecov"
-#        if:
-#        env:
-#          CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"
-#        if: "${{ env.CODECOV_TOKEN && matrix.php == '7.4' && matrix.dependencies == 'highest' }}"
-#        uses: "codecov/codecov-action@v3"
-#        with:
-#          token: "${{ env.CODECOV_TOKEN }}"
-#          files: "./tests/coverage/clover.xml"
-#          flags: "unittests"
-#          name: "libs-codecov"
-#          fail_ci_if_error: "true"
-#
-#      - name: "Upload integration test coverage to Codecov"
-#        if:
-#        env:
-#          CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"
-#        if: "${{ env.CODECOV_TOKEN && matrix.php == '7.4' && matrix.dependencies == 'highest' }}"
-#        uses: "codecov/codecov-action@v3"
-#        with:
-#          token: "${{ env.CODECOV_TOKEN }}"
-#          files: "./tests/coverage/clover.xml"
-#          flags: "integrationtests"
-#          name: "libs-codecov"
-#          fail_ci_if_error: "true"
-
   static_analysis:
     name: "3️⃣ Static analysis checks"
     needs:
@@ -185,6 +159,8 @@ jobs:
 
       - name: "Check adherence to EditorConfig"
         uses: "greut/eclint-action@v0"
+        with:
+          eclint_args: -exclude "languages/*"
 
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
