@@ -26,15 +26,10 @@ use function esc_html__;
  */
 class EnqueueResources implements Assets
 {
-
-	public const JS_HANDLE = 'woo-solo-api-js';
-	public const JS_URI = '/assets/dev/application.jsx';
-
-	public const CSS_HANDLE = 'woo-solo-api-css';
-
+	public const JS_HANDLE = 'woo-solo-api';
+	public const JS_URI = 'assets/dev/application.jsx';
 	public const VERSION = false;
 	public const IN_FOOTER = true;
-
 	public const MEDIA_ALL = 'all';
 
 	/**
@@ -42,34 +37,8 @@ class EnqueueResources implements Assets
 	 */
 	public function register(): void
 	{
-		add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
 		add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
-		add_action('init', [$this, 'setScriptTranslations']);
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function enqueueStyles($hookSuffix): void
-	{
-		if ($hookSuffix !== 'woocommerce_page_solo_api_options') {
-			return;
-		}
-
-		Vite\register_asset(
-			dirname(__DIR__, 2) . '/assets/public',
-			self::JS_URI,
-			[
-				'handle' => self::CSS_HANDLE,
-				'dependencies' => [],
-				'css-dependencies' => ['wp-components'],
-				'css-media' => self::MEDIA_ALL,
-				'css-only' => false,
-				'in-footer' => self::IN_FOOTER,
-			]
-		);
-
-		wp_enqueue_style(self::CSS_HANDLE);
+		add_action('admin_enqueue_scripts', [$this, 'setScriptTranslations'], 100);
 	}
 
 	/**
@@ -81,20 +50,18 @@ class EnqueueResources implements Assets
 			return;
 		}
 
-		Vite\register_asset(
+		Vite\enqueue_asset(
 			dirname(__DIR__, 2) . '/assets/public',
 			self::JS_URI,
 			[
 				'handle' => self::JS_HANDLE,
 				'dependencies' => $this->getJsDependencies(),
-				'css-dependencies' => [],
+				'css-dependencies' => $this->getCssDependencies(),
 				'css-media' => self::MEDIA_ALL,
 				'css-only' => false,
 				'in-footer' => self::IN_FOOTER,
 			]
 		);
-
-		wp_enqueue_script(self::JS_HANDLE);
 
 		foreach ($this->getLocalizations() as $object_name => $data_array) {
 			wp_localize_script(self::JS_HANDLE, $object_name, $data_array);
@@ -113,7 +80,7 @@ class EnqueueResources implements Assets
 		wp_set_script_translations(
 			self::JS_HANDLE,
 			'woo-solo-api',
-			dirname(__FILE__, 3) . '/languages/'
+			plugin_dir_path(dirname(__DIR__)) . 'languages'
 		);
 	}
 
@@ -135,18 +102,27 @@ class EnqueueResources implements Assets
 			'wp-api-fetch',
 		];
 	}
+	/**
+	 * Get style dependencies
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/wp_enqueue_style/
+	 *
+	 * @return string[] List of all the style dependencies
+	 */
+	private function getCssDependencies(): array
+	{
+		return [
+			'wp-components'
+		];
+	}
 
 	/**
 	 * Get script localizations
 	 *
-	 * @return array<string, array<string, string>> Key value pair of different localizations
+	 * @return array<string, array<string, mixed>> Key value a pair of different localizations.
 	 */
 	private function getLocalizations(): array
 	{
-		return [
-			'wooSoloApiLocalizations' => [
-				'optionSaved' => esc_html__('Options saved.', 'woo-solo-api')
-			]
-		];
+		return [];
 	}
 }
