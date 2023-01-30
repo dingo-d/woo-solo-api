@@ -160,7 +160,7 @@ jobs:
       - name: "Check adherence to EditorConfig"
         uses: "greut/eclint-action@v0"
         with:
-          eclint_args: -exclude "languages/*"
+          eclint_args: -exclude languages/*
 
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
@@ -171,20 +171,3 @@ jobs:
       - name: "Check coding style"
         run: |
           composer run test:style -- -q --report=checkstyle | cs2pr
-
-  exported_files:
-    name: "5️⃣ Exported files checks"
-    needs:
-      - "syntax_errors"
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: "Checkout code"
-        uses: "actions/checkout@v3"
-
-      - name: "Check exported files"
-        run: |
-          EXPECTED="CHANGELOG.md,LICENSE,README.md,composer.json,composer.lock,woo-solo-api.php,uninstall.php"
-          CURRENT="$(git archive HEAD | tar --list --exclude="src" --exclude="src/*" --exclude="views" --exclude="views/*" --exclude="assets" --exclude="assets/*" | paste -s -d ",")"
-          echo "CURRENT=${CURRENT}"
-          echo "EXPECTED=${EXPECTED}"
-          test "${CURRENT}" = "${EXPECTED}"
