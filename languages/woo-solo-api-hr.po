@@ -1,19 +1,16 @@
-# Copyright (C) 2023 Denis Žoljom
-# This file is distributed under the MIT.
 msgid ""
 msgstr ""
 "Project-Id-Version: Woo Solo Api 3.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-solo-api\n"
-"POT-Creation-Date: 2023-01-30T07:41:21+00:00\n"
-"PO-Revision-Date: 2023-01-30 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"POT-Creation-Date: 2023-01-30T07:41:21+00:00\n"
+"PO-Revision-Date: 2023-01-30 08:51+0100\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.2.2\n"
 "X-Domain: woo-solo-api\n"
 
@@ -26,8 +23,7 @@ msgid "https://madebydenis.com/woo-solo-api"
 msgstr "https://madebydenis.com/woo-solo-api"
 
 #. Description of the plugin
-msgid ""
-"This plugin provides integration of the SOLO API service with WooCommerce."
+msgid "This plugin provides integration of the SOLO API service with WooCommerce."
 msgstr "Ovaj dodatak omogućuje integraciju Solo API usluge s WooCommerceom."
 
 #. Author of the plugin
@@ -47,12 +43,8 @@ msgid "Solo API Options"
 msgstr "Opcije Solo API-ja"
 
 #: src/Admin/AdminNotices/DatabaseTableMissingNotice.php:75
-msgid ""
-"Woo Orders table seems to be missing. Please reactivate the plugin "
-"(deactivate and activate) to create it."
-msgstr ""
-"Čini se da nedostaje tablica Woo Orders. Ponovno aktivirajte plugin "
-"(deaktivirajte i aktivirajte) da biste ju stvorili."
+msgid "Woo Orders table seems to be missing. Please reactivate the plugin (deactivate and activate) to create it."
+msgstr "Čini se da nedostaje tablica Woo Orders. Ponovno aktivirajte plugin (deaktivirajte i aktivirajte) da biste ju stvorili."
 
 #: src/Admin/PluginsPage.php:47
 msgid "SOLO API Settings"
@@ -78,9 +70,7 @@ msgstr "Pogreška pri slanju e-pošte kupca. URL privitka ne može se parsirati.
 
 #: src/BackgroundJobs/SendCustomerEmail.php:187
 msgid "Error in sending customer email. Email message must be of string type."
-msgstr ""
-"Pogreška pri slanju e-pošte kupca. Poruka e-pošte mora biti znakovni niz "
-"(string)."
+msgstr "Pogreška pri slanju e-pošte kupca. Poruka e-pošte mora biti znakovni niz (string)."
 
 #: src/BackgroundJobs/SendCustomerEmail.php:195
 msgid "invoice"
@@ -169,28 +159,18 @@ msgstr "Nije moguće učitati prikaz URI \"%1$s\". Razlog: \"%2$s\"."
 
 #. translators: 1: the className, 2: the interface name.
 #: src/Exception/InvalidAutowireDependency.php:40
-msgid ""
-"Unable to find \"%1$s\" class that implements %2$s (looking in "
-"$filenameIndex)."
-msgstr ""
-"Nije moguće pronaći klasu \"%1$s\" koja provodi %2$s (gledajući u "
-"$filenameIndex)."
+msgid "Unable to find \"%1$s\" class that implements %2$s (looking in $filenameIndex)."
+msgstr "Nije moguće pronaći klasu \"%1$s\" koja provodi %2$s (gledajući u $filenameIndex)."
 
 #. translators: 1: The class name, 2: The interface name, 3: The interface name.
 #: src/Exception/InvalidAutowireDependency.php:61
 msgid "Found more than 1 class called \"%1$s\" that implements %2$s interface."
-msgstr ""
-"Pronađeno je više od 1 klase pod nazivom \"%1$s\" koja implementira %2$s "
-"sučelje."
+msgstr "Pronađeno je više od 1 klase pod nazivom \"%1$s\" koja implementira %2$s sučelje."
 
 #. translators: 1: %s is replaced with the className and interfaceName, 2: %s is replaced with the parameter name.
 #: src/Exception/InvalidAutowireDependency.php:83
-msgid ""
-"Found a primitive dependency for %1$s with param %2$s. Autowire is unable to "
-"figure out what value needs to be injected here."
-msgstr ""
-"Pronašao sam primitivnu ovisnost za %1$s s param %2$s. Autowire ne može "
-"shvatiti koju vrijednost ovdje treba ubrizgati."
+msgid "Found a primitive dependency for %1$s with param %2$s. Autowire is unable to figure out what value needs to be injected here."
+msgstr "Pronašao sam primitivnu ovisnost za %1$s s param %2$s. Autowire ne može shvatiti koju vrijednost ovdje treba ubrizgati."
 
 #. translators: 1. the view URI.
 #: src/Exception/InvalidUri.php:38
@@ -200,12 +180,10 @@ msgstr "Prikaz URI -a \"%s\" nije dostupan ili čitljiv."
 #. translators: %s is replaced with the className.
 #: src/Exception/NonPsr4CompliantClass.php:35
 msgid ""
-"Unable to autowire %s. Please check if the namespace is PSR-4 compliant (i."
-"e. it needs to match the folder structure).\n"
+"Unable to autowire %s. Please check if the namespace is PSR-4 compliant (i.e. it needs to match the folder structure).\n"
 "\t\t\t\tSee: https://www.php-fig.org/psr/psr-4/#3-examples"
 msgstr ""
-"Nije moguće automatski spojiti %s. Provjerite je li prostor naziva usklađen "
-"s PSR-4 (tj. mora odgovarati strukturi mape).\n"
+"Nije moguće automatski spojiti %s. Provjerite je li prostor naziva usklađen s PSR-4 (tj. mora odgovarati strukturi mape).\n"
 "\t\t\t\tVidi: https://www.php-fig.org/psr/psr-4/#3-examples"
 
 #. translators: %1$s: error message, %2$s: error code.
@@ -213,7 +191,8 @@ msgstr ""
 msgid "WordPress internal error happened. %1$s. (Error code %2$s)."
 msgstr "Dogodila se wordpress interna pogreška. %1$s. (%2$s kod pogreške)."
 
-#: src/Privacy/DataHandling.php:66 src/Privacy/DataHandling.php:153
+#: src/Privacy/DataHandling.php:66
+#: src/Privacy/DataHandling.php:153
 msgid "Woo Solo Api Order Data"
 msgstr "Woo Solo Api podaci o narudžbi"
 
@@ -227,8 +206,8 @@ msgstr "ID stavke narudžbe WooCommerce"
 
 #: src/Privacy/DataHandling.php:99
 #: assets/dev/scripts/components/OrderPanel.jsx:70
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3864
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3754
 msgid "Solo ID"
 msgstr "Solo ID"
 
@@ -250,15 +229,15 @@ msgstr "Poruke o pogreškama zahtjeva na API"
 
 #: src/Privacy/DataHandling.php:119
 #: assets/dev/scripts/components/OrderPanel.jsx:75
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3869
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3759
 msgid "Created at"
 msgstr "Izrađeno u"
 
 #: src/Privacy/DataHandling.php:123
 #: assets/dev/scripts/components/OrderPanel.jsx:76
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3870
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3760
 msgid "Updated at"
 msgstr "Ažurirano na"
 
@@ -299,12 +278,8 @@ msgid "Flag that notifies if the PDF bill was sent to customer."
 msgstr "Označite zastavicom koja obavještava je li račun pdf-a poslan kupcu."
 
 #: src/Rest/Endpoints/OrderDetails.php:181
-msgid ""
-"URL of the sent PDF. Used to resend the PDF in case there was some failure "
-"with the request."
-msgstr ""
-"URL poslanog PDF-a. Koristi se za ponovno slanje PDF-a u slučaju da je došlo "
-"do kvara sa zahtjevom."
+msgid "URL of the sent PDF. Used to resend the PDF in case there was some failure with the request."
+msgstr "URL poslanog PDF-a. Koristi se za ponovno slanje PDF-a u slučaju da je došlo do kvara sa zahtjevom."
 
 #: src/Rest/Endpoints/ResendApiOrder.php:69
 msgid "Order ID is empty."
@@ -316,19 +291,15 @@ msgid "Order with the ID %d doesn't exist."
 msgstr "Narudžba s ID-om %d ne postoji."
 
 #: src/Rest/Endpoints/ResendApiOrder.php:86
-msgid ""
-"API call to SOLO service executed, please wait a bit for it to execute, then "
-"reload this page."
-msgstr ""
-"Izvršen je API poziv solo usluzi, pričekajte malo da se izvrši, a zatim "
-"ponovno učitajte ovu stranicu."
+msgid "API call to SOLO service executed, please wait a bit for it to execute, then reload this page."
+msgstr "Izvršen je API poziv solo usluzi, pričekajte malo da se izvrši, a zatim ponovno učitajte ovu stranicu."
 
 #: src/Settings/PluginSettings.php:62
 #: assets/dev/scripts/components/Settings/TokenPanel.jsx:35
 #: assets/dev/scripts/components/Settings/TokenPanel.jsx:43
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3075
-#: assets/public/assets/application-410bf884.js:3083
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3075
+#: assets/public/assets/application-b618e585.js:3083
 msgid "Solo API token"
 msgstr "Solo API token"
 
@@ -366,11 +337,10 @@ msgstr "Poruka e-pošte na fakturi"
 
 #: src/Settings/PluginSettings.php:170
 #: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:70
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3645
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3645
 msgid "Change the 'from' name that shows when WordPress sends the mail"
-msgstr ""
-"Promjena naziva \"pošiljatelj\" koje pokazuje kada WordPress šalje poštu"
+msgstr "Promjena naziva \"pošiljatelj\" koje pokazuje kada WordPress šalje poštu"
 
 #: src/Settings/PluginSettings.php:182
 msgid "Enable PIN field in the WooCommerce checkout"
@@ -386,8 +356,7 @@ msgstr "Navedite datum dospijeća na računu ili fakturi"
 
 #: src/Settings/PluginSettings.php:218
 msgid "Array of gateways for which the email with the invoice should be sent"
-msgstr ""
-"Lista platnih procesora/tipova za koje treba poslati e-poštu s fakturom"
+msgstr "Lista platnih procesora/tipova za koje treba poslati e-poštu s fakturom"
 
 #: src/Settings/PluginSettings.php:230
 msgid "Send the email to the client with the PDF of the bill or the invoice"
@@ -403,8 +372,8 @@ msgstr "Dostupni tipovi plaćanja/platni procesori"
 
 #: src/Settings/PluginSettings.php:280
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:120
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3339
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3339
 msgid "Type of payment document"
 msgstr "Vrsta dokumenta o plaćanju"
 
@@ -413,820 +382,415 @@ msgid "Should the invoice be fiscalized or not"
 msgstr "Treba li faktura biti fiskalizirana ili ne"
 
 #: src/Settings/PluginSettings.php:304
-msgid ""
-"Type of payment on api payment gateways (transactional account, cash, cards, "
-"etc.)"
-msgstr ""
-"Vrsta plaćanja na api platnim procesorima/tipovima plaćanja (transakcijski "
-"račun, gotovina, kartice itd.)"
+msgid "Type of payment on api payment gateways (transactional account, cash, cards, etc.)"
+msgstr "Vrsta plaćanja na api platnim procesorima/tipovima plaćanja (transakcijski račun, gotovina, kartice itd.)"
 
 #: woo-solo-api.php:43
 msgid "You cannot access this file outside WordPress."
 msgstr "Ovoj datoteci ne možete pristupiti izvan WordPressa."
 
-#: assets/dev/scripts/components/App.jsx:126
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:4069
+#: assets/dev/scripts/components/App.jsx:127
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:4068
 msgid "Save settings"
 msgstr "Spremi postavke"
 
 #: assets/dev/scripts/components/ErrorNotice.jsx:16
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3034
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3034
 msgid "Validation error: "
 msgstr "Pogreška provjere valjanosti: "
 
 #: assets/dev/scripts/components/Notification.jsx:11
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3009
-msgid ""
-"For more details on the options you can read the official SOLO API "
-"documentation here: "
-msgstr ""
-"Za više detalja o opcijama službenu dokumentaciju SOLO API-ja možete "
-"pročitati ovdje: "
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3009
+msgid "For more details on the options you can read the official SOLO API documentation here: "
+msgstr "Za više detalja o opcijama službenu dokumentaciju SOLO API-ja možete pročitati ovdje: "
 
 #: assets/dev/scripts/components/OrderPanel.jsx:62
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3856
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3746
 msgid "Solo API order details"
 msgstr "Detalji solo API narudžbe"
 
 #: assets/dev/scripts/components/OrderPanel.jsx:68
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3862
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3752
 msgid "ID"
 msgstr "ID naloga WooCommerce"
 
 #: assets/dev/scripts/components/OrderPanel.jsx:69
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3863
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3753
 msgid "WooCommerce Order ID"
 msgstr "ID naloga WooCommerce"
 
 #: assets/dev/scripts/components/OrderPanel.jsx:71
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3865
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3755
 msgid "Customer Email"
 msgstr "E-mail klijenta"
 
 #: assets/dev/scripts/components/OrderPanel.jsx:72
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3866
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3756
 msgid "Is sent to Solo API"
 msgstr "Šalje se solo API-ju"
 
 #: assets/dev/scripts/components/OrderPanel.jsx:73
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3867
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3757
 msgid "Is pdf sent to customer"
 msgstr "Šalje se pdf klijentu"
 
 #: assets/dev/scripts/components/OrderPanel.jsx:74
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3868
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3758
 msgid "API response errors"
 msgstr "Pogreške u odgovoru API-ja"
 
 #: assets/dev/scripts/components/OrderPanel.jsx:77
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3871
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3761
 msgid "Resend to API"
 msgstr "Ponovno slanje u API"
 
 #: assets/dev/scripts/components/OrderPanel.jsx:98
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3892
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3782
 msgid "Resend order to API"
 msgstr "Ponovi slanje narudžbe"
 
 #: assets/dev/scripts/components/OrderPanel.jsx:116
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3910
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3800
 msgid "Request sent"
 msgstr "Poslani zahtjev"
 
 #: assets/dev/scripts/components/Popup.jsx:21
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3937
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3827
 msgid "Errors happened during saving"
 msgstr "Tijekom spremanja došlo je do pogrešaka"
 
 #: assets/dev/scripts/components/Popup.jsx:22
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3938
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3828
 msgid "Settings saved"
 msgstr "Postavke spremljene"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:39
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3475
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3475
 msgid "Additional Settings"
 msgstr "Dodatne postavke"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:45
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3481
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3481
 msgid "WooCommerce checkout settings"
 msgstr "Postavke odjave WooCommerce"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:50
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3486
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3486
 msgid "Enable the PIN field on the billing and shipping from in the checkout"
 msgstr "Omogućivanje polja PIN na naplati i otpremi od naplate"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:51
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:62
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3487
-#: assets/public/assets/application-410bf884.js:3498
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3487
+#: assets/public/assets/application-b618e585.js:3498
 msgid "Enable"
 msgstr "Omogući"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:51
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:62
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3487
-#: assets/public/assets/application-410bf884.js:3498
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3487
+#: assets/public/assets/application-b618e585.js:3498
 msgid "Disable"
 msgstr "Onemogući"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:61
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3497
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3497
 msgid "Enable the IBAN field on the billing and shipping from in the checkout"
 msgstr "Omogućivanje polja IBAN na naplati i otpremi iz naplate"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:72
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3508
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3508
 msgid "PDF settings"
 msgstr "Postavke PDF-a"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:77
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3513
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3513
 msgid "Send the email to the client with the PDF of the order or the invoice"
 msgstr "Pošaljite e-poštu klijentu pomoću PDF-a narudžbe ili fakture"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:78
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3514
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3514
 msgid "Send email"
 msgstr "Pošalji e-poštu"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:78
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3514
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3514
 msgid "Don't send email"
 msgstr "Ne šalji e-poštu"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:88
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3524
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3524
 msgid "Send mail to selected payment types"
 msgstr "Slanje pošte odabranim vrstama plaćanja"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:110
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3546
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3546
 msgid "PDF send control"
 msgstr "Kontrola slanja PDF-a"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:118
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3554
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3554
 msgid "Send on:"
 msgstr "Pošalji dalje:"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:123
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3559
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3559
 msgid "Checkout"
 msgstr "Plaćanje"
 
 #: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:126
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3562
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3562
 msgid "Status change to 'completed'"
 msgstr "Promjena statusa u \"dovršeno\""
 
 #: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:52
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3716
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3885
 msgid "Exchange rate transient is cleared."
 msgstr "Prolazni tečaj je očišćen."
 
 #: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:53
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3717
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3886
 msgid "Exchange rate transient wasn't cleared."
 msgstr "Prolazni tečaj nije odobren."
 
 #: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:67
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3731
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3900
 msgid "Solo Api Test"
 msgstr "Solo Api Test"
 
 #: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:71
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3735
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3904
 msgid "This serves for testing purposes only"
 msgstr "To služi samo u svrhu testiranja"
 
 #: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:73
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3737
-msgid ""
-"Pressing the button will make a request to your Solo API account, and will "
-"list all the invoices or offers you have"
-msgstr ""
-"Pritiskom na gumb zatražit ćete vaš Solo API račun i navesti sve račune ili "
-"ponude koje imate"
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3906
+msgid "Pressing the button will make a request to your Solo API account, and will list all the invoices or offers you have"
+msgstr "Pritiskom na gumb zatražit ćete vaš Solo API račun i navesti sve račune ili ponude koje imate"
 
 #: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:91
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3755
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3924
 msgid "Make a request"
 msgstr "Pošalji zahtjev"
 
 #: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:94
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3758
-msgid ""
-"Pressing the button will clear the Croatian Central Bank (HNB) API transient."
-msgstr ""
-"Pritiskom na gumb očistit će se prolazni API Hrvatske središnje banke (HNB)."
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3927
+msgid "Pressing the button will clear the Croatian Central Bank (HNB) API transient."
+msgstr "Pritiskom na gumb očistit će se prolazni API Hrvatske središnje banke (HNB)."
 
 #: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:102
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3766
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3935
 msgid "Delete exchange rate transient"
 msgstr "Brisanje tečaja iz baze"
 
 #: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:36
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3611
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3611
 msgid "Email Settings"
 msgstr "Podešavanje e-maila"
 
 #: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:44
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3619
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3619
 msgid "Set the title of the mail that will be send with the PDF invoice"
 msgstr "Postavljanje naslova pošte koja će se slati pomoću PDF fakture"
 
 #: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:57
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3632
-msgid ""
-"Type the message that will appear on the mail with the invoice PDF attached"
-msgstr ""
-"Upišite poruku koja će se pojaviti na pošti s priloženim PDF-om na fakturi"
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3632
+msgid "Type the message that will appear on the mail with the invoice PDF attached"
+msgstr "Upišite poruku koja će se pojaviti na pošti s priloženim PDF-om na fakturi"
 
 #: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:73
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3648
-msgid ""
-"<str>CAUTION</str>: This change is global, every mail send from your "
-"WordPress will have this 'from' name"
-msgstr ""
-"<str>OPREZ</str>: Ova promjena je globalna, svaka pošta poslana s vašeg "
-"WordPressa imat će ovo ime \"od\""
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3648
+msgid "<str>CAUTION</str>: This change is global, every mail send from your WordPress will have this 'from' name"
+msgstr "<str>OPREZ</str>: Ova promjena je globalna, svaka pošta poslana s vašeg WordPressa imat će ovo ime \"od\""
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:45
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3264
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3264
 msgid "Solo Api Settings"
 msgstr "Postavke SOLO API-ja"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:55
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3274
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3274
 msgid "Unit measure"
 msgstr "Jedinična mjera"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:56
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3275
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3275
 msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
 msgstr "Odaberite zadanu mjeru u svojoj trgovini (npr. komad, sat, m³ itd.)"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:69
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3288
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3288
 msgid "Invoice Language"
 msgstr "Jezik fakture"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:70
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3289
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3289
 msgid "Select the language of the invoice/offer"
 msgstr "Odaberite jezik fakture/ponude"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:83
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3302
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3302
 msgid "Currency"
 msgstr "Valuta"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:92
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3311
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3311
 msgid "You can check the currency rate at <a>Croatian National Bank</a>."
 msgstr "Valutni tečaj možete provjeriti u <a>Hrvatskoj narodnoj banci</a>."
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:101
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3320
-msgid ""
-"The currency will be automatically added if the selected currency is "
-"different from EUR. Also, a note about conversion rate will be added to the "
-"invoice/offer."
-msgstr ""
-"Valuta će se automatski dodati ako se odabrana valuta razlikuje od EUR. "
-"Također, na fakturu/ponudu bit će dodana bilješka o stopi konverzije."
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3320
+msgid "The currency will be automatically added if the selected currency is different from EUR. Also, a note about conversion rate will be added to the invoice/offer."
+msgstr "Valuta će se automatski dodati ako se odabrana valuta razlikuje od EUR. Također, na fakturu/ponudu bit će dodana bilješka o stopi konverzije."
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:107
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3326
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3326
 msgid "Choose the type of payment for each enabled payment gateway/type"
 msgstr "Odaberite vrstu plaćanja za svaki omogućeni pristupnik/vrstu uplate"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:125
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3344
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3344
 msgid "Offer"
 msgstr "Ponuda"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:126
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3345
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3345
 msgid "Invoice"
 msgstr "Faktura"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:134
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3353
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3353
 msgid "Payment option types"
 msgstr "Vrste načina plaćanja"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:145
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3364
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3364
 msgid "Check if you want the invoice to be fiscalized *"
 msgstr "Provjerite želite li da faktura bude fiskalizirana *"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:146
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3365
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3365
 msgid "Fiscalize"
 msgstr "Fiskaliziraj"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:146
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3365
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3365
 msgid "Don't fiscalize"
 msgstr "Nemoj fiskalizirati"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:154
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3373
-msgid ""
-"* Fiscalization certificate must be added in the SOLO options, and it only "
-"applies to invoices."
-msgstr ""
-"* Potvrda o fiskalizaciji mora se dodati u SOLO opcije, a odnosi se samo na "
-"fakture."
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3373
+msgid "* Fiscalization certificate must be added in the SOLO options, and it only applies to invoices."
+msgstr "* Potvrda o fiskalizaciji mora se dodati u SOLO opcije, a odnosi se samo na fakture."
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:163
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3382
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3382
 msgid "Enter the type of the service"
 msgstr "Unesite vrstu usluge"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:164
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3383
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3383
 msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
 msgstr "Možete ga pronaći u postavkama računa (Usluge -> Tipovi usluga)"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:177
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3396
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3396
 msgid "Show taxes"
 msgstr "Pokaži poreze"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:178
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3397
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3397
 msgid "Show tax"
 msgstr "Pokaži porez"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:178
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3397
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3397
 msgid "Don't show tax"
 msgstr "Ne pokazuj porez"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:190
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3409
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3409
 msgid "Type of invoice"
 msgstr "Vrsta fakture"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:191
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3410
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3410
 msgid "Only works with invoice, not with offer"
 msgstr "Radi samo s fakturom, a ne s ponudom"
 
 #: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:204
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3423
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3423
 msgid "Invoice/Offer due date"
 msgstr "Datum dospijeća fakture/ponude"
 
 #: assets/dev/scripts/components/Settings/TokenPanel.jsx:44
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3084
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3084
 msgid "Enter your personal token that you obtained from your SOLO account"
 msgstr "Unesite svoj osobni token koji ste dobili sa solo računa"
-
-#: assets/dev/scripts/const/dueDate.js:7
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3122
-msgid "1 day"
-msgstr "1 dan"
-
-#: assets/dev/scripts/const/dueDate.js:8
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3123
-msgid "2 days"
-msgstr "2 dana"
-
-#: assets/dev/scripts/const/dueDate.js:9
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3124
-msgid "3 days"
-msgstr "3 dana"
-
-#: assets/dev/scripts/const/dueDate.js:10
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3125
-msgid "4 days"
-msgstr "4 dana"
-
-#: assets/dev/scripts/const/dueDate.js:11
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3126
-msgid "5 days"
-msgstr "5 dana"
-
-#: assets/dev/scripts/const/dueDate.js:12
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3127
-msgid "6 days"
-msgstr "6 dana"
-
-#: assets/dev/scripts/const/dueDate.js:13
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3128
-msgid "1 week"
-msgstr "1 tjedan"
-
-#: assets/dev/scripts/const/dueDate.js:14
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3129
-msgid "2 weeks"
-msgstr "2 tjedna"
-
-#: assets/dev/scripts/const/dueDate.js:15
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3130
-msgid "3 weeks"
-msgstr "3 tjedna"
-
-#: assets/dev/scripts/const/invoiceType.js:10
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3142
-msgid "No label"
-msgstr "Nema oznake"
-
-#: assets/dev/scripts/const/invoiceType.js:11
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3143
-msgid "In advance"
-msgstr "Unaprijed"
-
-#: assets/dev/scripts/const/languages.js:7
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3152
-msgid "Croatian"
-msgstr "Hrvatski"
-
-#: assets/dev/scripts/const/languages.js:8
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3153
-msgid "English"
-msgstr "Engleski"
-
-#: assets/dev/scripts/const/languages.js:9
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3154
-msgid "German"
-msgstr "Njemački"
-
-#: assets/dev/scripts/const/languages.js:10
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3155
-msgid "French"
-msgstr "Francuski"
-
-#: assets/dev/scripts/const/languages.js:11
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3156
-msgid "Italian"
-msgstr "Talijanski"
-
-#: assets/dev/scripts/const/languages.js:12
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3157
-msgid "Spanish"
-msgstr "Španjolski"
-
-#: assets/dev/scripts/const/paymentTypeOptions.js:7
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3166
-msgid "Transactional account"
-msgstr "Transakcijski račun"
-
-#: assets/dev/scripts/const/paymentTypeOptions.js:8
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3167
-msgid "Cash"
-msgstr "Gotovina"
-
-#: assets/dev/scripts/const/paymentTypeOptions.js:9
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3168
-msgid "Cards"
-msgstr "Karticama"
-
-#: assets/dev/scripts/const/paymentTypeOptions.js:10
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3169
-msgid "Cheque"
-msgstr "Ček"
-
-#: assets/dev/scripts/const/paymentTypeOptions.js:11
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3170
-msgid "Other"
-msgstr "Ostalo"
-
-#: assets/dev/scripts/const/unitMeasures.js:7
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3179
-msgid "-"
-msgstr "-"
-
-#: assets/dev/scripts/const/unitMeasures.js:8
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3180
-msgid "piece"
-msgstr "kom"
-
-#: assets/dev/scripts/const/unitMeasures.js:9
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3181
-msgid "hour"
-msgstr "sat"
-
-#: assets/dev/scripts/const/unitMeasures.js:10
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3182
-msgid "year"
-msgstr "godina"
-
-#: assets/dev/scripts/const/unitMeasures.js:11
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3183
-msgid "km"
-msgstr "km"
-
-#: assets/dev/scripts/const/unitMeasures.js:12
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3184
-msgid "litre"
-msgstr "litre"
-
-#: assets/dev/scripts/const/unitMeasures.js:13
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3185
-msgid "kg"
-msgstr "kg"
-
-#: assets/dev/scripts/const/unitMeasures.js:14
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3186
-msgid "kWh"
-msgstr "kWh"
-
-#: assets/dev/scripts/const/unitMeasures.js:15
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3187
-msgid "m³"
-msgstr "m³"
-
-#: assets/dev/scripts/const/unitMeasures.js:16
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3188
-msgid "tonne"
-msgstr "tona"
-
-#: assets/dev/scripts/const/unitMeasures.js:17
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3189
-msgid "m²"
-msgstr "m²"
-
-#: assets/dev/scripts/const/unitMeasures.js:18
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3190
-msgid "m"
-msgstr "m"
-
-#: assets/dev/scripts/const/unitMeasures.js:19
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3191
-msgid "day"
-msgstr "dan"
-
-#: assets/dev/scripts/const/unitMeasures.js:20
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3192
-msgid "month"
-msgstr "mjesec"
-
-#: assets/dev/scripts/const/unitMeasures.js:21
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3193
-msgid "night"
-msgstr "noć"
-
-#: assets/dev/scripts/const/unitMeasures.js:22
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3194
-msgid "cart"
-msgstr "košarica"
-
-#: assets/dev/scripts/const/unitMeasures.js:23
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3195
-msgid "account"
-msgstr "račun"
-
-#: assets/dev/scripts/const/unitMeasures.js:24
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3196
-msgid "pair"
-msgstr "par"
-
-#: assets/dev/scripts/const/unitMeasures.js:25
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3197
-msgid "ml"
-msgstr "ml"
-
-#: assets/dev/scripts/const/unitMeasures.js:26
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3198
-msgid "pax"
-msgstr "pax"
-
-#: assets/dev/scripts/const/unitMeasures.js:27
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3199
-msgid "room"
-msgstr "soba"
-
-#: assets/dev/scripts/const/unitMeasures.js:28
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3200
-msgid "apartment"
-msgstr "apartman"
-
-#: assets/dev/scripts/const/unitMeasures.js:29
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3201
-msgid "term"
-msgstr "termin"
-
-#: assets/dev/scripts/const/unitMeasures.js:30
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3202
-msgid "set"
-msgstr "skup"
-
-#: assets/dev/scripts/const/unitMeasures.js:31
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3203
-msgid "package"
-msgstr "paket"
-
-#: assets/dev/scripts/const/unitMeasures.js:32
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3204
-msgid "point"
-msgstr "točka"
-
-#: assets/dev/scripts/const/unitMeasures.js:33
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3205
-msgid "service"
-msgstr "usluga"
-
-#: assets/dev/scripts/const/unitMeasures.js:34
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3206
-msgid "pal"
-msgstr "pal"
-
-#: assets/dev/scripts/const/unitMeasures.js:35
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3207
-msgid "kont"
-msgstr "kont"
-
-#: assets/dev/scripts/const/unitMeasures.js:36
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3208
-msgid "čl"
-msgstr "čl"
-
-#: assets/dev/scripts/const/unitMeasures.js:37
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3209
-msgid "tis"
-msgstr "tis"
-
-#: assets/dev/scripts/const/unitMeasures.js:38
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3210
-msgid "sec"
-msgstr "sek"
-
-#: assets/dev/scripts/const/unitMeasures.js:39
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3211
-msgid "min"
-msgstr "min"
-
-#: assets/dev/scripts/const/unitMeasures.js:40
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3212
-msgid "str"
-msgstr "str"
-
-#: assets/dev/scripts/const/unitMeasures.js:41
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3213
-msgid "kpl"
-msgstr "kpl"
-
-#: assets/dev/scripts/const/unitMeasures.js:42
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3214
-msgid "pšl"
-msgstr "pšl"
-
-#: assets/dev/scripts/const/unitMeasures.js:43
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3215
-msgid "ha"
-msgstr "ha"
-
-#: assets/dev/scripts/const/unitMeasures.js:44
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3216
-msgid "g"
-msgstr "g"
-
-#: assets/dev/scripts/const/unitMeasures.js:45
-#: assets/public/assets/application-410bf884.js:10
-#: assets/public/assets/application-410bf884.js:3217
-msgid "x"
-msgstr "x"
-
-#: assets/public/assets/application-410bf884.js:10
-msgid ""
-"Decide when to send the PDF of the order or invoice.On customer checkout, or "
-"when you approve the order in the WooCommerce admin.This will determine when "
-"the call to the SOLO API will be made"
-msgstr ""
-"Odlučite kada ćete poslati PDF narudžbe ili fakture. Na blagajni kupca ili "
-"kada odobrite narudžbu u administratoru WooCommerce. To će odrediti kada će "
-"se uputiti poziv solo API-ju"
