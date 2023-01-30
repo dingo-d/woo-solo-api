@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace MadeByDenis\WooSoloApi\Assets;
 
+use Kucrut\Vite;
+
 use function add_action;
 use function esc_html__;
 
@@ -24,16 +26,10 @@ use function esc_html__;
  */
 class EnqueueResources implements Assets
 {
-
-	public const JS_HANDLE = 'woo-solo-api-js';
-	public const JS_URI = 'application.js';
-
-	public const CSS_HANDLE = 'woo-solo-api-css';
-	public const CSS_URI = 'application.css';
-
+	public const JS_HANDLE = 'woo-solo-api';
+	public const JS_URI = 'assets/dev/application.jsx';
 	public const VERSION = false;
 	public const IN_FOOTER = true;
-
 	public const MEDIA_ALL = 'all';
 
 	/**
@@ -41,49 +37,31 @@ class EnqueueResources implements Assets
 	 */
 	public function register(): void
 	{
-		add_action('admin_enqueue_scripts', [$this, 'enqueueStyles']);
 		add_action('admin_enqueue_scripts', [$this, 'enqueueScripts']);
-		add_action('init', [$this, 'setScriptTranslations']);
+		add_action('admin_enqueue_scripts', [$this, 'setScriptTranslations'], 100);
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function enqueueStyles($hookSuffix)
+	public function enqueueScripts($hookSuffix): void
 	{
 		if ($hookSuffix !== 'woocommerce_page_solo_api_options') {
 			return;
 		}
 
-		wp_register_style(
-			self::CSS_HANDLE,
-			$this->getManifestAssetsData(self::CSS_URI),
-			['wp-components'],
-			self::VERSION,
-			self::MEDIA_ALL
+		Vite\enqueue_asset(
+			dirname(__DIR__, 2) . '/assets/public',
+			self::JS_URI,
+			[
+				'handle' => self::JS_HANDLE,
+				'dependencies' => $this->getJsDependencies(),
+				'css-dependencies' => $this->getCssDependencies(),
+				'css-media' => self::MEDIA_ALL,
+				'css-only' => false,
+				'in-footer' => self::IN_FOOTER,
+			]
 		);
-
-		wp_enqueue_style(self::CSS_HANDLE);
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function enqueueScripts($hookSuffix)
-	{
-		if ($hookSuffix !== 'woocommerce_page_solo_api_options') {
-			return;
-		}
-
-		wp_register_script(
-			self::JS_HANDLE,
-			$this->getManifestAssetsData(self::JS_URI),
-			$this->getJsDependencies(),
-			self::VERSION,
-			self::IN_FOOTER
-		);
-
-		wp_enqueue_script(self::JS_HANDLE);
 
 		foreach ($this->getLocalizations() as $object_name => $data_array) {
 			wp_localize_script(self::JS_HANDLE, $object_name, $data_array);
@@ -102,7 +80,7 @@ class EnqueueResources implements Assets
 		wp_set_script_translations(
 			self::JS_HANDLE,
 			'woo-solo-api',
-			dirname(__FILE__, 3) . '/languages/'
+			plugin_dir_path(dirname(__DIR__)) . 'languages'
 		);
 	}
 
@@ -111,7 +89,7 @@ class EnqueueResources implements Assets
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/wp_enqueue_script/#default-scripts-included-and-registered-by-wordpress
 	 *
-	 * @return array List of all the script dependencies
+	 * @return string[] List of all the script dependencies
 	 */
 	private function getJsDependencies(): array
 	{
@@ -119,48 +97,32 @@ class EnqueueResources implements Assets
 			'wp-api',
 			'wp-i18n',
 			'wp-components',
+			'wp-data',
 			'wp-element',
 			'wp-api-fetch',
+		];
+	}
+	/**
+	 * Get style dependencies
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/wp_enqueue_style/
+	 *
+	 * @return string[] List of all the style dependencies
+	 */
+	private function getCssDependencies(): array
+	{
+		return [
+			'wp-components'
 		];
 	}
 
 	/**
 	 * Get script localizations
 	 *
-	 * @return array Key value pair of different localizations
+	 * @return array<string, array<string, mixed>> Key value a pair of different localizations.
 	 */
 	private function getLocalizations(): array
 	{
-		return [
-			'wooSoloApiLocalizations' => [
-				'optionSaved' => esc_html__('Options saved.', 'woo-solo-api')
-			]
-		];
-	}
-
-	/**
-	 * Return full path for specific asset from manifest.json
-	 *
-	 * This is used for cache busting assets.
-	 *
-	 * @param string $key File name key you want to get from manifest.
-	 *
-	 * @return string Full path to asset.
-	 */
-	private function getManifestAssetsData(string $key = ''): string
-	{
-		$data = ASSETS_MANIFEST;
-
-		if ($key === '' || $data === '') {
-			return '';
-		}
-
-		$data = json_decode($data, true);
-
-		if (empty($data) || !\is_array($data)) {
-			return '';
-		}
-
-		return (string) $data[$key];
+		return [];
 	}
 }

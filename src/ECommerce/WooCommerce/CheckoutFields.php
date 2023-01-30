@@ -13,7 +13,7 @@ namespace MadeByDenis\WooSoloApi\ECommerce\WooCommerce;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
-use function add_action;
+use function add_filter;
 use function esc_html__;
 use function get_option;
 
@@ -33,9 +33,9 @@ class CheckoutFields implements Registrable
 	 */
 	public function register(): void
 	{
-		add_action('woocommerce_checkout_fields', [$this, 'addPinField']);
-		add_action('woocommerce_checkout_fields', [$this, 'addIbanField']);
-		add_action('woocommerce_checkout_fields', [$this, 'modifyCompanyField']);
+		add_filter('woocommerce_checkout_fields', [$this, 'addPinField']);
+		add_filter('woocommerce_checkout_fields', [$this, 'addIbanField']);
+		add_filter('woocommerce_checkout_fields', [$this, 'modifyCompanyField']);
 	}
 
 	/**
@@ -45,9 +45,9 @@ class CheckoutFields implements Registrable
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $fields Billing and shipping fields.
+	 * @param array<string, mixed> $fields Billing and shipping fields.
 	 *
-	 * @return array Modified checkout fields.
+	 * @return array<string, mixed> Modified checkout fields.
 	 */
 	public function addPinField(array $fields): array
 	{
@@ -81,9 +81,9 @@ class CheckoutFields implements Registrable
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array $fields Billing and shipping fields.
+	 * @param array<string, mixed> $fields Billing and shipping fields.
 	 *
-	 * @return array Modified checkout fields.
+	 * @return array<string, mixed> Modified checkout fields.
 	 */
 	public function addIbanField(array $fields): array
 	{
@@ -117,9 +117,9 @@ class CheckoutFields implements Registrable
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param array $fields Billing and shipping fields.
+	 * @param array<string, mixed> $fields Billing and shipping fields.
 	 *
-	 * @return array Modified checkout fields.
+	 * @return array<string, mixed> Modified checkout fields.
 	 */
 	public function modifyCompanyField(array $fields): array
 	{

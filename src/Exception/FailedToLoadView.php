@@ -37,11 +37,12 @@ final class FailedToLoadView extends RuntimeException implements GeneralExceptio
 	public static function viewException(string $uri, Exception $exception)
 	{
 		$message = sprintf(
-			'Could not load the View URI "%1$s". Reason: "%2$s".',
+			/* translators: 1. View URI, 2. Reason for not exception. */
+			esc_html__('Could not load the View URI "%1$s". Reason: "%2$s".', 'woo-solo-api'),
 			$uri,
 			$exception->getMessage()
 		);
 
-		return new static($message, $exception->getCode(), $exception);
+		return new FailedToLoadView($message, $exception->getCode(), $exception);
 	}
 }

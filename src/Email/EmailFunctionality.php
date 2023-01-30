@@ -13,7 +13,7 @@ namespace MadeByDenis\WooSoloApi\Email;
 
 use MadeByDenis\WooSoloApi\Core\Registrable;
 
-use function add_action;
+use function add_filter;
 use function esc_attr;
 use function get_option;
 
@@ -33,7 +33,7 @@ class EmailFunctionality implements Registrable
 	 */
 	public function register(): void
 	{
-		add_action('wp_mail_from_name', [$this, 'changeEmailFromName']);
+		add_filter('wp_mail_from_name', [$this, 'changeEmailFromName']);
 	}
 
 	/**

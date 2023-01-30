@@ -14,6 +14,8 @@ namespace MadeByDenis\WooSoloApi\Database;
 use MadeByDenis\WooSoloApi\Exception\OrderValidationException;
 use WC_Order;
 
+use function get_transient;
+use function set_transient;
 use function wc_get_order;
 
 /**
@@ -28,6 +30,7 @@ use function wc_get_order;
  */
 class SoloOrdersTable
 {
+	private const ORDER_TABLE_TRANSIENT = 'woo_order_table_exists';
 
 	/**
 	 * @var string Custom table name.
@@ -45,19 +48,25 @@ class SoloOrdersTable
 
 		$tableName = $wpdb->prefix . self::TABLE_NAME;
 
-		$check = $wpdb->query(
-			$wpdb->prepare(
-				"SELECT *
-				FROM information_schema.tables
-				WHERE table_schema = %s
-					AND table_name = %s
-				LIMIT 1;",
-				$wpdb->dbname,
-				$tableName
-			)
-		);
+		$orderTableExists = get_transient(self::ORDER_TABLE_TRANSIENT);
 
-		if ($check === 0) {
+		if ($orderTableExists === false) {
+			$orderTableExists = $wpdb->query(
+				$wpdb->prepare(
+					"SELECT *
+					FROM INFORMATION_SCHEMA.TABLES
+					WHERE TABLE_SCHEMA = %s
+						AND TABLE_NAME = %s
+					LIMIT 1;",
+					DB_NAME,
+					$tableName
+				)
+			);
+
+			set_transient(self::ORDER_TABLE_TRANSIENT, $orderTableExists, WEEK_IN_SECONDS);
+		}
+
+		if ($orderTableExists === 0) {
 			return true;
 		}
 
@@ -106,9 +115,9 @@ class SoloOrdersTable
 	 *
 	 * @param string $emailAddress Email address to query against.
 	 *
-	 * @return array|null
+	 * @return array<mixed>|null
 	 */
-	public function getOrderDetails(string $emailAddress)
+	public function getOrderDetails(string $emailAddress): ?array
 	{
 		global $wpdb;
 
@@ -293,9 +302,9 @@ class SoloOrdersTable
 	 *
 	 * @param int|null $id ID of the order.
 	 *
-	 * @return array|null Collection of orders from the DB or one order from the DB.
+	 * @return array<mixed>|null Collection of orders from the DB or one order from the DB.
 	 */
-	public function getOrders(int $id = null)
+	public function getOrders(int $id = null): ?array
 	{
 		global $wpdb;
 

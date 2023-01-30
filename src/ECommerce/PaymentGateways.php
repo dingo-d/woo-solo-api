@@ -24,21 +24,21 @@ interface PaymentGateways
 	/**
 	 * Get all payment gateways
 	 *
-	 * @return object|array
+	 * @return object|array<mixed>
 	 */
 	public function getPaymentGateways();
 
 	/**
 	 * Get array of registered gateway ids
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function getPaymentGatewayIds(): array;
 
 	/**
 	 * Get available gateways
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function getAvailablePaymentGateways(): array;
 }

@@ -62,7 +62,7 @@ abstract class AdminMenu implements Registrable, Renderable
 	 * The echo doesn't need to be escaped since it's escaped
 	 * in the render method.
 	 *
-	 * @param array|string $attr Attributes as passed to the admin menu.
+	 * @param array<string, mixed>|string $attr Attributes as passed to the admin menu.
 	 *
 	 * @return void The rendered content needs to be echoed.
 	 */
@@ -78,7 +78,7 @@ abstract class AdminMenu implements Registrable, Renderable
 	/**
 	 * Render method to display the admin menu view
 	 *
-	 * @param array $context Passed attributes to the view.
+	 * @param array<mixed> $context Passed attributes to the view.
 	 *
 	 * @return string Rendered view or error message if path is missing.
 	 */
@@ -140,10 +140,10 @@ abstract class AdminMenu implements Registrable, Renderable
 	/**
 	 * Process the admin menu attributes.
 	 *
-	 * @param array|string $attr Raw admin menu attributes passed into the
-	 *                           admin menu function.
+	 * @param array<mixed>|string $attr Raw admin menu attributes passed into the
+	 *                                  admin menu function.
 	 *
-	 * @return array Processed admin menu attributes.
+	 * @return array<mixed> Processed admin menu attributes.
 	 */
 	abstract protected function processAttributes($attr): array;
 

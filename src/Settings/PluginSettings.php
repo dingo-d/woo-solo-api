@@ -29,17 +29,16 @@ use function esc_html__;
  */
 class PluginSettings implements Registrable
 {
-
-	private $gateway;
+	private PaymentGateways $wooPaymentGateways;
 
 	/**
 	 * PluginSettings constructor.
 	 * S
-	 * @param PaymentGateways $gateway
+	 * @param PaymentGateways $wooPaymentGateways
 	 */
-	public function __construct(PaymentGateways $gateway)
+	public function __construct(PaymentGateways $wooPaymentGateways)
 	{
-		$this->gateway = $gateway;
+		$this->wooPaymentGateways = $wooPaymentGateways;
 	}
 
 	/**
@@ -216,7 +215,7 @@ class PluginSettings implements Registrable
 			'solo_api_mail_gateway',
 			$this->setSettingsArguments(
 				'string',
-				esc_html__('Array of gateways that the email with the invoice should be sent', 'woo-solo-api'),
+				esc_html__('Array of gateways for which the email with the invoice should be sent', 'woo-solo-api'),
 				'sanitize_text_field',
 				true,
 				'a:0:{}'
@@ -247,12 +246,12 @@ class PluginSettings implements Registrable
 			)
 		);
 
-		$availableGateways = array_map(function ($paymentGateway) {
+		$availableGateways = array_map(static function ($paymentGateway) {
 			return $paymentGateway->method_title;
-		}, $this->gateway->getAvailablePaymentGateways());
+		}, $this->wooPaymentGateways->getAvailablePaymentGateways());
 
 		/**
-		 * Here, we would store an array with gateways as a value,
+		 * Here, we would store an array with payment gateways as a value,
 		 * but since the values are dynamic (we don't know how many payment gateways we have),
 		 * to avoid the mess with having to specify the schema when making the type as array,
 		 * we just serialize the keys and store them as a string.
@@ -272,10 +271,10 @@ class PluginSettings implements Registrable
 			)
 		);
 
-		foreach ($availableGateways as $gatewayID => $gatewayName) {
+		foreach ($availableGateways as $wooPaymentGatewaysID => $wooPaymentGatewaysName) {
 			register_setting(
 				'solo-api-settings-group',
-				'solo_api_bill_offer-' . esc_attr($gatewayID),
+				'solo_api_bill_offer-' . esc_attr($wooPaymentGatewaysID),
 				$this->setSettingsArguments(
 					'string',
 					esc_html__('Type of payment document', 'woo-solo-api'),
@@ -287,7 +286,7 @@ class PluginSettings implements Registrable
 
 			register_setting(
 				'solo-api-settings-group',
-				'solo_api_fiscalization-' . esc_attr($gatewayID),
+				'solo_api_fiscalization-' . esc_attr($wooPaymentGatewaysID),
 				$this->setSettingsArguments(
 					'boolean',
 					esc_html__('Should the invoice be fiscalized or not', 'woo-solo-api'),
@@ -299,10 +298,10 @@ class PluginSettings implements Registrable
 
 			register_setting(
 				'solo-api-settings-group',
-				'solo_api_payment_type-' . esc_attr($gatewayID),
+				'solo_api_payment_type-' . esc_attr($wooPaymentGatewaysID),
 				$this->setSettingsArguments(
 					'string',
-					esc_html__('Type of payment on api gateway (transactional account, cash, cards, etc.)', 'woo-solo-api'),
+					esc_html__('Type of payment on api payment gateways (transactional account, cash, cards, etc.)', 'woo-solo-api'),
 					'sanitize_text_field',
 					true,
 					'1'
@@ -320,12 +319,12 @@ class PluginSettings implements Registrable
 	 *                     Valid values are 'string', 'boolean', 'integer', 'number', 'array', and 'object'.
 	 * @param string $description A description of the data attached to this setting.
 	 * @param callable $sanitizeCallback A callback function that sanitizes the option's value.
-	 * @param bool|array $showInRest Whether data associated with this setting should be included in the REST API.
-	 *                         When registering complex settings, this argument may optionally be an array
-	 *                         with a 'schema' key.
+	 * @param bool|array<mixed> $showInRest Whether data associated with this setting should be included in the REST API.
+	 *                               When registering complex settings, this argument may optionally be an array
+	 *                               with a 'schema' key.
 	 * @param mixed $default Default value when calling \get_option().
 	 *
-	 * @return array
+	 * @return array<string, mixed> Arguments array.
 	 */
 	private function setSettingsArguments(string $type, string $description, callable $sanitizeCallback, $showInRest, $default): array
 	{

@@ -16,6 +16,10 @@ use MadeByDenis\WooSoloApi\Rest\RestCallable;
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use WP_REST_Request;
 
+use function current_user_can;
+use function is_user_logged_in;
+use function rest_ensure_response;
+
 /**
  * Clear exchange transient endpoint
  *

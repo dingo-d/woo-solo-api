@@ -40,7 +40,7 @@ class Internationalization implements Registrable
 		load_plugin_textdomain(
 			'woo-solo-api',
 			false,
-			dirname(__FILE__, 3) . '/languages/'
+			dirname(__DIR__, 2) . '/languages'
 		);
 	}
 }

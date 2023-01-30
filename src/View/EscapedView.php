@@ -25,89 +25,90 @@ use MadeByDenis\WooSoloApi\Exception\InvalidUri;
  */
 final class EscapedView implements View
 {
-
 	/**
 	 * Tags that are allowed to be rendered.
+	 *
+	 * @var array<string, array<string, bool>>
 	 */
 	public const ALLOWED_TAGS = [
-		'form'   => [
-			'id'     => true,
-			'class'  => true,
+		'form' => [
+			'id' => true,
+			'class' => true,
 			'action' => true,
 			'method' => true,
 		],
-		'input'  => [
-			'id'      => true,
-			'class'   => true,
-			'type'    => true,
-			'name'    => true,
-			'value'   => true,
+		'input' => [
+			'id' => true,
+			'class' => true,
+			'type' => true,
+			'name' => true,
+			'value' => true,
 			'checked' => true,
 		],
 		'select' => [
-			'id'    => true,
+			'id' => true,
 			'class' => true,
-			'type'  => true,
-			'name'  => true,
+			'type' => true,
+			'name' => true,
 			'value' => true,
 		],
 		'option' => [
-			'id'       => true,
-			'class'    => true,
-			'type'     => true,
-			'name'     => true,
-			'value'    => true,
+			'id' => true,
+			'class' => true,
+			'type' => true,
+			'name' => true,
+			'value' => true,
 			'selected' => true,
 		],
-		'label'  => [
+		'label' => [
 			'for' => true,
 		],
-		'div'    => [
+		'div' => [
 			'class' => true,
 		],
-		'svg'    => [
-			'class'   => true,
-			'style'   => true,
-			'width'   => true,
-			'height'  => true,
+		'svg' => [
+			'class' => true,
+			'style' => true,
+			'width' => true,
+			'height' => true,
 			'viewbox' => true,
-			'xmlns'   => true,
+			'xmlns' => true,
 		],
-		'g'      => [
-			'fill'      => true,
+		'g' => [
+			'fill' => true,
 			'fill-rule' => true,
 			'transform' => true,
 		],
-		'path'   => [
-			'd'            => true,
-			'id'           => true,
-			'fill'         => true,
-			'style'        => true,
-			'stroke'       => true,
+		'path' => [
+			'd' => true,
+			'id' => true,
+			'fill' => true,
+			'style' => true,
+			'stroke' => true,
 			'stroke-width' => true,
 		],
-		'mask'   => [
-			'id'   => true,
+		'mask' => [
+			'id' => true,
 			'fill' => true,
 		],
-		'rect'   => [
+		'rect' => [
 			'transform' => true,
-			'fill'      => true,
-			'width'     => true,
-			'height'    => true,
-			'rx'        => true,
-			'ry'        => true,
-			'x'         => true,
-			'y'         => true,
+			'fill' => true,
+			'width' => true,
+			'height' => true,
+			'rx' => true,
+			'ry' => true,
+			'x' => true,
+			'y' => true,
 		],
-		'xmlns'  => [
+		'xmlns' => [
 			'xlink' => true,
 		],
-		'defs'   => [],
-		'span'   => [
+		'defs' => [],
+		'span' => [
 			'title' => true,
 		],
-		'br'     => [],
+		'br' => [],
 	];
 
 	/**
@@ -115,42 +116,42 @@ final class EscapedView implements View
 	 *
 	 * @var View
 	 */
-	private $view;
+	private View $view;
 
 	/**
 	 * Tags that are allowed to pass through the escaping function.
 	 *
-	 * @var array
+	 * @var array<string, array<string, bool>>
 	 */
-	private $allowed_tags;
+	private array $allowedTags;
 
 	/**
 	 * Instantiate a Escaped_View object.
 	 *
 	 * @param View $view View instance to decorate.
-	 * @param array|null $allowed_tags Optional. Array of allowed tags to let
-	 *                                 through escaping functions. Set to sane
-	 *                                 defaults if none provided.
+	 * @param array<string, array<string, bool>>|null $allowedTags Optional. Array of allowed tags to let
+	 *                                through escaping functions. Set to sane
+	 *                                defaults if none provided.
 	 */
-	public function __construct(View $view, $allowed_tags = null)
+	public function __construct(View $view, ?array $allowedTags = null)
 	{
 		$this->view = $view;
-		$this->allowed_tags = null === $allowed_tags ?
+		$this->allowedTags = null === $allowedTags ?
 			$this->prepareAllowedTags(wp_kses_allowed_html('post')) :
-			$allowed_tags;
+			$allowedTags;
 	}
 
 	/**
 	 * Render a given URI.
 	 *
-	 * @param array $context Context in which to render.
+	 * @param array<mixed> $context Context in which to render.
 	 *
 	 * @return string Rendered HTML.
 	 * @throws FailedToLoadView If the View URI could not be loaded.
 	 */
 	public function render(array $context = []): string
 	{
-		return wp_kses($this->view->render($context), $this->allowed_tags);
+		return wp_kses($this->view->render($context), $this->allowedTags);
 	}
 
 	/**
@@ -163,17 +164,17 @@ final class EscapedView implements View
 	 * context if omitted.
 	 *
 	 * @param string $uri URI of the partial to render.
-	 * @param array|null $context Context in which to render the partial.
+	 * @param array<mixed>|null $context Context in which to render the partial.
 	 *
 	 * @return string Rendered HTML.
 	 * @throws InvalidUri If the provided URI was not valid.
 	 * @throws FailedToLoadView If the view could not be loaded.
 	 */
-	public function renderPartial(string $uri, array $context = null): string
+	public function renderPartial(string $uri, ?array $context = null): string
 	{
 		return wp_kses(
 			$this->view->renderPartial($uri, $context),
-			$this->allowed_tags
+			$this->allowedTags
 		);
 	}
 
@@ -184,13 +185,13 @@ final class EscapedView implements View
 	 * This makes sure that the basic form elements always pass through the
 	 * escaping functions.
 	 *
-	 * @param array $allowedTags Allowed tags as fetched from the WordPress
+	 * @param array<string, array<string, bool>> $allowedTags Allowed tags as fetched from the WordPress
 	 *                           defaults.
 	 *
-	 * @return array Modified tags array.
+	 * @return array<string, array<string, bool>> Modified tags array.
 	 */
 	private function prepareAllowedTags(array $allowedTags): array
 	{
-		return (array) array_replace_recursive($allowedTags, self::ALLOWED_TAGS);
+		return array_replace_recursive($allowedTags, self::ALLOWED_TAGS);
 	}
 }

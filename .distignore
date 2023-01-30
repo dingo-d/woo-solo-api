@@ -30,3 +30,4 @@ postcss.config.js
 webpack.config.js
 package.lock
 src/Core/CompiledContainer.php
+vite.config.js

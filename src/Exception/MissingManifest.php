@@ -32,6 +32,6 @@ final class MissingManifest extends InvalidArgumentException implements GeneralE
      */
 	public static function message(string $message)
 	{
-		return new static($message);
+		return new MissingManifest($message);
 	}
 }

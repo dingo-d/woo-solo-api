@@ -27,7 +27,6 @@ use function get_template_directory;
  */
 final class TemplatedView extends BaseView
 {
-
 	/**
 	 * Validate an URI.
 	 *
@@ -58,7 +57,7 @@ final class TemplatedView extends BaseView
 	 *
 	 * @param string $uri URI of the view to get the locations for.
 	 *
-	 * @return array Array of possible locations.
+	 * @return string[] Array of possible locations.
 	 */
 	protected function getLocations(string $uri): array
 	{

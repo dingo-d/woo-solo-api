@@ -45,6 +45,6 @@ final class WpException extends RuntimeException implements GeneralException
 			esc_html((string)$code)
 		);
 
-		return new static($exceptionMessage);
+		return new WpException($exceptionMessage);
 	}
 }

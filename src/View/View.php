@@ -24,13 +24,13 @@ use MadeByDenis\WooSoloApi\Exception\InvalidUri;
 interface View extends Renderable
 {
 	/**
-     * Render a given URI.
-     *
-     * @param array $context Context in which to render.
-     *
-     * @return string Rendered HTML.
-     * @throws FailedToLoadView If the View URI could not be loaded.
-     */
+	 * Render a given URI.
+	 *
+	 * @param array<mixed> $context Context in which to render.
+	 *
+	 * @return string Rendered HTML.
+	 * @throws FailedToLoadView If the View URI could not be loaded.
+	 */
 	public function render(array $context = []): string;
 
 	/**
@@ -42,12 +42,12 @@ interface View extends Renderable
 	 * The passed-in context is optional, and will fall back to the parent's
 	 * context if omitted.
 	 *
-	 * @param string     $uri     URI of the partial to render.
-	 * @param array|null $context Context in which to render the partial.
+	 * @param string $uri URI of the partial to render.
+	 * @param array<mixed>|null $context Context in which to render the partial.
 	 *
 	 * @return string           Rendered HTML.
 	 * @throws InvalidURI       If the provided URI was not valid.
 	 * @throws FailedToLoadView If the view could not be loaded.
 	 */
-	public function renderPartial(string $uri, array $context = null): string;
+	public function renderPartial(string $uri, ?array $context = null): string;
 }

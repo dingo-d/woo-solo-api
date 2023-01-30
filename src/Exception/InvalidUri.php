@@ -34,8 +34,9 @@ final class InvalidUri extends InvalidArgumentException implements GeneralExcept
 	*/
 	public static function fromUri(string $uri)
 	{
-		$message = sprintf('The View URI "%s" is not accessible or readable.', $uri);
+		/* translators: 1. the view URI. */
+		$message = sprintf(esc_html__('The View URI "%s" is not accessible or readable.', 'woo-solo-api'), esc_url($uri));
 
-		return new static($message);
+		return new InvalidUri($message);
 	}
 }

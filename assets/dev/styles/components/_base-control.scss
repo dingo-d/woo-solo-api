@@ -1,11 +1,7 @@
-$components: (
-	'error-color': $base-rouge-color,
-);
-
 .components-base-control {
 
 	&__field {
-		margin-bottom: 20px !important;
+		margin-bottom: 1.25rem !important;
 	}
 
 	&__label {
@@ -14,12 +10,12 @@ $components: (
 	}
 
 	&__error {
-		color: map-get-strict($components, 'error-color');
+		color: var(--woo-rouge-color);
 		font-weight: 600;
 	}
 
 	&__subtitle {
-		font-size: 1.2em;
+		font-size: 1.2rem;
 	}
 
 	&__notice {
@@ -28,7 +24,7 @@ $components: (
 	}
 
 	&__information {
-		margin: 0 0 0.5em 0;
+		margin: 0 0 0.5rem 0;
 	}
 
 	&__checkboxes {
@@ -36,29 +32,29 @@ $components: (
 	}
 
 	&__textarea {
-		width: 39em;
+		width: 39rem;
 
 		textarea {
-			max-width: 36em;
+			max-width: 36rem;
 		}
 	}
 
 	&__input {
 
 		input {
-			padding: 6px 8px;
+			padding: 0.375rem 0.5rem;
 			max-width: 36em;
 		}
 	}
 
 	&__code {
-		margin-bottom: 20px;
+		margin-bottom: 1.25rem;
 
 		code {
-			width: 50em;
-			max-height: 30em;
+			width: 50rem;
+			max-height: 30rem;
 			display: block;
-			padding: 20px;
+			padding: 1.25rem;
 			overflow: scroll;
 		}
 	}
@@ -68,8 +64,8 @@ $components: (
 		input,
 		textarea,
 		select {
-			border-color: map-get-strict($components, 'error-color');
-			box-shadow: 0 0 0 1px map-get-strict($components, 'error-color');
+			border-color: var(--woo-rouge-color);
+			box-shadow: 0 0 0 1px var(--woo-rouge-color);
 		}
 	}
 }

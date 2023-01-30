@@ -21,14 +21,14 @@ namespace MadeByDenis\WooSoloApi\Core;
  */
 interface HasActivation
 {
-  /**
-   * Activate the service.
-   *
-   * Used when adding certain capabilities of a service.
-   *
-   * Example: add_role, add_cap, etc.
-   *
-   * @return void
-   */
-    public function activate(): void;
+	/**
+	 * Activate the service.
+	 *
+	 * Used when adding certain capabilities of a service.
+	 *
+	 * Example: add_role, add_cap, etc.
+	 *
+	 * @return void
+	 */
+	public function activate(): void;
 }

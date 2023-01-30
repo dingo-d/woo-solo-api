@@ -1,0 +1,8 @@
+.order-table-notice {
+	margin-top: 1rem;
+
+	&.has-error {
+		color: var(--woo-rouge-color);
+		font-weight: 700;
+	}
+}

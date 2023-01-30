@@ -37,6 +37,6 @@ final class OrderValidationException extends InvalidArgumentException implements
 			gettype($order)
 		);
 
-		return new static($message);
+		return new OrderValidationException($message);
 	}
 }

@@ -1,753 +1,796 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Woo Solo Api\n"
+"Project-Id-Version: Woo Solo Api 3.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-solo-api\n"
-"POT-Creation-Date: 2022-01-09 19:36+0100\n"
-"PO-Revision-Date: 2022-01-09 19:41+0100\n"
 "Last-Translator: \n"
-"Language-Team: Denis Žoljom\n"
-"Language: hr\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: e__;esc_html__;esc_html_e;esc_attr__;esc_attr_e;"
-"esc_html_x;__;_n_noop\n"
-"X-Poedit-SearchPath-0: assets\n"
-"X-Poedit-SearchPath-1: src\n"
-"X-Poedit-SearchPathExcluded-0: bin\n"
-"X-Poedit-SearchPathExcluded-1: languages\n"
-"X-Poedit-SearchPathExcluded-2: node_modules\n"
-"X-Poedit-SearchPathExcluded-3: tests\n"
-"X-Poedit-SearchPathExcluded-4: vendor\n"
-"X-Poedit-SearchPathExcluded-5: views\n"
-"X-Poedit-SearchPathExcluded-6: webpack\n"
-"X-Poedit-SearchPathExcluded-7: assets/public\n"
+"POT-Creation-Date: 2023-01-30T07:41:21+00:00\n"
+"PO-Revision-Date: 2023-01-30 08:51+0100\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Domain: woo-solo-api\n"
+
+#. Plugin Name of the plugin
+msgid "Woo Solo Api"
+msgstr "Woo Solo Api"
+
+#. Plugin URI of the plugin
+msgid "https://madebydenis.com/woo-solo-api"
+msgstr "https://madebydenis.com/woo-solo-api"
+
+#. Description of the plugin
+msgid "This plugin provides integration of the SOLO API service with WooCommerce."
+msgstr "Ovaj dodatak omogućuje integraciju Solo API usluge s WooCommerceom."
+
+#. Author of the plugin
+msgid "Denis Žoljom"
+msgstr "Denis Žoljom"
+
+#. Author URI of the plugin
+msgid "https://madebydenis.com"
+msgstr "https://madebydenis.com"
 
 #: src/Admin/AdminMenus/OptionsSubmenu.php:54
 msgid "Woo Solo Api Options"
-msgstr "Woo Solo API opcije"
+msgstr "Woo Solo Api Opcije"
 
 #: src/Admin/AdminMenus/OptionsSubmenu.php:62
 msgid "Solo API Options"
-msgstr "Solo API opcije"
+msgstr "Opcije Solo API-ja"
 
-#: src/Admin/AdminNotices/DatabaseTableMissingNotice.php:76
-msgid ""
-"Woo Orders table seems to be missing. Please reactivate the plugin "
-"(deactivate and activate) to create it."
-msgstr ""
-"Tablica s narudžbama nedostaje u bazi. Molimo vas da deaktivirate i "
-"aktivirate plugin da biste ju kreirali."
+#: src/Admin/AdminNotices/DatabaseTableMissingNotice.php:75
+msgid "Woo Orders table seems to be missing. Please reactivate the plugin (deactivate and activate) to create it."
+msgstr "Čini se da nedostaje tablica Woo Orders. Ponovno aktivirajte plugin (deaktivirajte i aktivirajte) da biste ju stvorili."
 
 #: src/Admin/PluginsPage.php:47
 msgid "SOLO API Settings"
-msgstr "Solo API opcije"
-
-#: src/Assets/EnqueueResources.php:136
-msgid "Options saved."
-msgstr "Opcije spremljene."
+msgstr "Postavke SOLO API-ja"
 
 #: src/BackgroundJobs/SendCustomerEmail.php:91
 msgid "PDF invoice/order is missing"
 msgstr "Nedostaje PDF faktura/narudžba"
 
+#. translators: name of the invoice file, don't use diacritics!
 #: src/BackgroundJobs/SendCustomerEmail.php:99
 msgid "invoice-"
-msgstr "racun-"
+msgstr "faktura-"
 
+#. translators: name of the offer file, don't use diacritics!
 #: src/BackgroundJobs/SendCustomerEmail.php:104
 msgid "offer-"
 msgstr "ponuda-"
 
-#: src/BackgroundJobs/SendCustomerEmail.php:160
+#: src/BackgroundJobs/SendCustomerEmail.php:165
 msgid "Error in sending customer email. Attachment URL cannot be parsed."
-msgstr ""
-"Pogreška u slanju e-pošte klijentu. URL privitka nije moguće raščlaniti."
+msgstr "Pogreška pri slanju e-pošte kupca. URL privitka ne može se parsirati."
 
-#: src/BackgroundJobs/SendCustomerEmail.php:182
+#: src/BackgroundJobs/SendCustomerEmail.php:187
 msgid "Error in sending customer email. Email message must be of string type."
-msgstr ""
-"Pogreška u slanju e-pošte klijentu. Poruka e-pošte mora biti niz znakova."
+msgstr "Pogreška pri slanju e-pošte kupca. Poruka e-pošte mora biti znakovni niz (string)."
 
-#: src/BackgroundJobs/SendCustomerEmail.php:190
+#: src/BackgroundJobs/SendCustomerEmail.php:195
 msgid "invoice"
-msgstr "racun"
+msgstr "faktura"
 
-#: src/BackgroundJobs/SendCustomerEmail.php:191
+#: src/BackgroundJobs/SendCustomerEmail.php:196
 msgid "offer"
 msgstr "ponuda"
 
-#: src/BackgroundJobs/SendCustomerEmail.php:194
-#, php-format
+#. translators: 1:Bill type
+#: src/BackgroundJobs/SendCustomerEmail.php:199
 msgid "Your %s is in the attachment."
-msgstr "Vaš %s se nalazi u privitku."
+msgstr "Vaš %s je u prilogu."
 
-#: src/BackgroundJobs/SendCustomerEmail.php:196
-#, php-format
+#. translators: 1:Bill type 2:Your site name
+#: src/BackgroundJobs/SendCustomerEmail.php:201
 msgid "Your %1$s from %2$s"
-msgstr "Vaš %1$s od %2$s"
+msgstr "Vaš %1$s iz %2$s"
 
-#: src/Core/Plugin.php:77
-msgid "This plugin requires PHP 7.3 or greater to function."
-msgstr "Ovaj dodatak zhtjeva PHP verziju 7.3 ili veću da bi funkcionirao."
+#: src/Core/Plugin.php:85
+msgid "This plugin requires PHP 7.4 or greater to function."
+msgstr "Za funkcioniranje ovog dodatka potreban je PHP 7.4 ili noviji."
 
-#: src/Core/Plugin.php:86
+#: src/Core/Plugin.php:94
 msgid "This plugin requires WooCommerce plugin to be active."
-msgstr "Ovaj dodatak zahtjeva da WooCommerce dodatak bude aktivan."
-
-#: src/Core/Plugin.php:192
-msgid "manifest.json is missing. Bundle the plugin before using it."
-msgstr ""
-"manifest.json nedostaje. Dodatak more proći kroz webpack bundle process "
-"prije korištenja."
+msgstr "Ovaj dodatak zahtijeva da dodatak WooCommerce bude aktivan."
 
 #: src/ECommerce/WooCommerce/AdminOrder.php:57
 msgid "Customer shipping PIN number"
-msgstr "OIB broj za dostavu"
+msgstr "OIB broj isporuke kupca"
 
 #: src/ECommerce/WooCommerce/AdminOrder.php:61
 msgid "Customer billing PIN number"
-msgstr "OIB broj za naplatu"
+msgstr "OIB broj za naplatu kupca"
 
 #: src/ECommerce/WooCommerce/AdminOrder.php:65
 msgid "Customer shipping IBAN number"
-msgstr "IBAN broj za dostavu"
+msgstr "IBAN broj za otpremu kupca"
 
 #: src/ECommerce/WooCommerce/AdminOrder.php:69
 msgid "Customer billing IBAN number"
-msgstr "IBAN broj za naplatu"
+msgstr "IBAN broj za naplatu kupca"
 
 #: src/ECommerce/WooCommerce/CheckoutFields.php:59
 #: src/ECommerce/WooCommerce/CheckoutFields.php:67
 msgid "PIN number"
 msgstr "OIB broj"
 
+#: src/ECommerce/WooCommerce/CheckoutFields.php:60
+#: src/ECommerce/WooCommerce/CheckoutFields.php:68
+msgctxt "placeholder"
+msgid "01234567891"
+msgstr "01234567891"
+
 #: src/ECommerce/WooCommerce/CheckoutFields.php:95
 #: src/ECommerce/WooCommerce/CheckoutFields.php:103
 msgid "IBAN number"
 msgstr "IBAN broj"
 
+#: src/ECommerce/WooCommerce/CheckoutFields.php:96
+#: src/ECommerce/WooCommerce/CheckoutFields.php:104
+msgctxt "placeholder"
+msgid "HR12345678901234567890"
+msgstr "HR12345678901234567890"
+
 #: src/ECommerce/WooCommerce/CheckoutFields.php:131
 #: src/ECommerce/WooCommerce/CheckoutFields.php:139
 msgid "Company name"
-msgstr "Ime tvrtke"
+msgstr "Naziv tvrtke"
 
+#: src/ECommerce/WooCommerce/CheckoutFields.php:132
+#: src/ECommerce/WooCommerce/CheckoutFields.php:140
+msgctxt "placeholder"
+msgid "Cool company inc."
+msgstr "Cool tvrtka inc."
+
+#. translators: %1$s: error message, %2$s: error code.
 #: src/Exception/ApiRequestException.php:42
-#, php-format
-msgid "API request error happened. %1$s. (Error code %2$s)."
-msgstr "API poziv ima grešku. %1$s. (Error kod %2$s)"
+msgid "(Error code %1$s). API request error happened. %2$s"
+msgstr "(%1$s kod pogreške). Dogodila se pogreška zahtjeva za API-jem. %2$s"
 
+#. translators: 1. View URI, 2. Reason for not exception.
+#: src/Exception/FailedToLoadView.php:41
+msgid "Could not load the View URI \"%1$s\". Reason: \"%2$s\"."
+msgstr "Nije moguće učitati prikaz URI \"%1$s\". Razlog: \"%2$s\"."
+
+#. translators: 1: the className, 2: the interface name.
+#: src/Exception/InvalidAutowireDependency.php:40
+msgid "Unable to find \"%1$s\" class that implements %2$s (looking in $filenameIndex)."
+msgstr "Nije moguće pronaći klasu \"%1$s\" koja provodi %2$s (gledajući u $filenameIndex)."
+
+#. translators: 1: The class name, 2: The interface name, 3: The interface name.
+#: src/Exception/InvalidAutowireDependency.php:61
+msgid "Found more than 1 class called \"%1$s\" that implements %2$s interface."
+msgstr "Pronađeno je više od 1 klase pod nazivom \"%1$s\" koja implementira %2$s sučelje."
+
+#. translators: 1: %s is replaced with the className and interfaceName, 2: %s is replaced with the parameter name.
+#: src/Exception/InvalidAutowireDependency.php:83
+msgid "Found a primitive dependency for %1$s with param %2$s. Autowire is unable to figure out what value needs to be injected here."
+msgstr "Pronašao sam primitivnu ovisnost za %1$s s param %2$s. Autowire ne može shvatiti koju vrijednost ovdje treba ubrizgati."
+
+#. translators: 1. the view URI.
+#: src/Exception/InvalidUri.php:38
+msgid "The View URI \"%s\" is not accessible or readable."
+msgstr "Prikaz URI -a \"%s\" nije dostupan ili čitljiv."
+
+#. translators: %s is replaced with the className.
+#: src/Exception/NonPsr4CompliantClass.php:35
+msgid ""
+"Unable to autowire %s. Please check if the namespace is PSR-4 compliant (i.e. it needs to match the folder structure).\n"
+"\t\t\t\tSee: https://www.php-fig.org/psr/psr-4/#3-examples"
+msgstr ""
+"Nije moguće automatski spojiti %s. Provjerite je li prostor naziva usklađen s PSR-4 (tj. mora odgovarati strukturi mape).\n"
+"\t\t\t\tVidi: https://www.php-fig.org/psr/psr-4/#3-examples"
+
+#. translators: %1$s: error message, %2$s: error code.
 #: src/Exception/WpException.php:43
-#, php-format
 msgid "WordPress internal error happened. %1$s. (Error code %2$s)."
-msgstr "Dogodila se interna WordPress greška. %1$s. (Error kod %2$s)."
+msgstr "Dogodila se wordpress interna pogreška. %1$s. (%2$s kod pogreške)."
 
-#: src/Privacy/DataHandling.php:78 src/Privacy/DataHandling.php:177
+#: src/Privacy/DataHandling.php:66
+#: src/Privacy/DataHandling.php:153
 msgid "Woo Solo Api Order Data"
-msgstr "Woo Solo API podaci o narudžbi"
+msgstr "Woo Solo Api podaci o narudžbi"
 
-#: src/Privacy/DataHandling.php:103
+#: src/Privacy/DataHandling.php:91
 msgid "Order Item"
-msgstr "Broj narudžbe"
+msgstr "Stavka naloga"
 
-#: src/Privacy/DataHandling.php:107
+#: src/Privacy/DataHandling.php:95
 msgid "WooCommerce order item ID"
-msgstr "WooCommerce broj narudžbe"
+msgstr "ID stavke narudžbe WooCommerce"
 
-#: src/Privacy/DataHandling.php:111
+#: src/Privacy/DataHandling.php:99
+#: assets/dev/scripts/components/OrderPanel.jsx:70
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3754
 msgid "Solo ID"
 msgstr "Solo ID"
 
-#: src/Privacy/DataHandling.php:115
+#: src/Privacy/DataHandling.php:103
 msgid "Customer email"
-msgstr "E-mail kupca"
+msgstr "E-mail klijenta"
+
+#: src/Privacy/DataHandling.php:107
+msgid "Is sent to API"
+msgstr "Poslano na API"
+
+#: src/Privacy/DataHandling.php:111
+msgid "Is sent to user"
+msgstr "Poslano korisniku"
+
+#: src/Privacy/DataHandling.php:115
+msgid "API request error messages"
+msgstr "Poruke o pogreškama zahtjeva na API"
 
 #: src/Privacy/DataHandling.php:119
-msgid "Is sent to API"
-msgstr "Je li poslan na Solo API"
+#: assets/dev/scripts/components/OrderPanel.jsx:75
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3759
+msgid "Created at"
+msgstr "Izrađeno u"
 
 #: src/Privacy/DataHandling.php:123
-msgid "Is sent to user"
-msgstr "Je li poslan kupcu"
-
-#: src/Privacy/DataHandling.php:127
-msgid "API request error messages"
-msgstr "API greške"
-
-#: src/Privacy/DataHandling.php:131
-msgid "Created at"
-msgstr "Napravljen"
-
-#: src/Privacy/DataHandling.php:135
+#: assets/dev/scripts/components/OrderPanel.jsx:76
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3760
 msgid "Updated at"
-msgstr "Ažuriran"
+msgstr "Ažurirano na"
 
-#: src/Privacy/DataHandling.php:142
+#: src/Privacy/DataHandling.php:130
 msgid "Woo Solo Api Order Items"
-msgstr "Woo Solo Api narudžbe"
+msgstr "Woo Solo Api artikli za narudžbu"
 
-#: src/Request/SoloApiRequest.php:104
+#: src/Request/SoloApiRequest.php:106
 msgid "Due date option needs to be a string"
-msgstr "Opcija datuma dospijeća mora biti niz znakova"
+msgstr "Mogućnost krajnjeg roka mora biti znakovni niz (string)"
 
-#: src/Request/SoloApiRequest.php:108
+#: src/Request/SoloApiRequest.php:110
 msgid "Currency option needs to be a string"
-msgstr "Opcija valute mora biti niz znakova"
+msgstr "Mogućnost valute mora biti znakovni niz (string)"
 
-#: src/Request/SoloApiRequest.php:112
+#: src/Request/SoloApiRequest.php:114
 msgid "Language option needs to be a string"
-msgstr "Opcija jezika mora biti niz znakova"
+msgstr "Jezična mogućnost mora biti znakovni niz (string)"
 
-#: src/Request/SoloApiRequest.php:308
+#: src/Request/SoloApiRequest.php:416
 msgid "Shipping fee"
-msgstr "Naknada za slanje"
+msgstr "Naknada za otpremu"
 
-#: src/Request/SoloApiRequest.php:340
+#: src/Request/SoloApiRequest.php:540
 msgid "Central bank rates API returned an empty result"
-msgstr "API za stope središnje banke vratio je prazan rezultat"
+msgstr "API za kamatne stope središnje banke vratio je prazan rezultat"
 
-#: src/Request/SoloApiRequest.php:475
+#: src/Request/SoloApiRequest.php:689
 msgid "Response details from the API is not of an array type"
-msgstr "Detalji odgovora iz API-ja nisu tipa polja"
+msgstr "Detalji odgovora iz API-ja nije lista (array)"
 
-#: src/Rest/Endpoints/AccountDetails.php:52
+#: src/Rest/Endpoints/AccountDetails.php:55
 msgid "Solo API token must be a string"
-msgstr "Solo API token mora biti niz znakova"
+msgstr "Solo API token mora biti znakovni niz (string)"
 
 #: src/Rest/Endpoints/OrderDetails.php:173
 msgid "Flag that notifies if the PDF bill was sent to customer."
-msgstr "Oznaka koja označava je li PDF račun poslan kupcu."
+msgstr "Označite zastavicom koja obavještava je li račun pdf-a poslan kupcu."
 
-#: src/Settings/PluginSettings.php:63
+#: src/Rest/Endpoints/OrderDetails.php:181
+msgid "URL of the sent PDF. Used to resend the PDF in case there was some failure with the request."
+msgstr "URL poslanog PDF-a. Koristi se za ponovno slanje PDF-a u slučaju da je došlo do kvara sa zahtjevom."
+
+#: src/Rest/Endpoints/ResendApiOrder.php:69
+msgid "Order ID is empty."
+msgstr "ID narudžbe je prazan."
+
+#. translators: %d is the order ID.
+#: src/Rest/Endpoints/ResendApiOrder.php:78
+msgid "Order with the ID %d doesn't exist."
+msgstr "Narudžba s ID-om %d ne postoji."
+
+#: src/Rest/Endpoints/ResendApiOrder.php:86
+msgid "API call to SOLO service executed, please wait a bit for it to execute, then reload this page."
+msgstr "Izvršen je API poziv solo usluzi, pričekajte malo da se izvrši, a zatim ponovno učitajte ovu stranicu."
+
+#: src/Settings/PluginSettings.php:62
+#: assets/dev/scripts/components/Settings/TokenPanel.jsx:35
+#: assets/dev/scripts/components/Settings/TokenPanel.jsx:43
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3075
+#: assets/public/assets/application-b618e585.js:3083
 msgid "Solo API token"
-msgstr "Solo Api token"
+msgstr "Solo API token"
 
-#: src/Settings/PluginSettings.php:75
+#: src/Settings/PluginSettings.php:74
 msgid "Unit measure of the shop (e.g. piece, hour, m³, etc.)"
-msgstr "Jedinična mjera za trgovinu (npr. komad, sat, m³ itd.)"
+msgstr "Jedinična mjera trgovine (npr. komad, sat, m³ i sl.)"
 
-#: src/Settings/PluginSettings.php:87
+#: src/Settings/PluginSettings.php:86
 msgid "Language of the bill or the invoice"
-msgstr "Jezik ponude ili računa"
+msgstr "Jezik računa ili fakture"
 
-#: src/Settings/PluginSettings.php:99
+#: src/Settings/PluginSettings.php:98
 msgid "Currency of the bill or the invoice"
-msgstr "Valuta ponude ili računa"
+msgstr "Valuta računa ili računa"
 
-#: src/Settings/PluginSettings.php:111
+#: src/Settings/PluginSettings.php:110
 msgid "Service type. A unique ID of the service (must be a number)"
-msgstr "Tip usluge. Jedinstven ID usluge (mora biti broj)"
+msgstr "Vrsta usluge. Jedinstveni ID usluge (mora biti broj)"
 
-#: src/Settings/PluginSettings.php:123
+#: src/Settings/PluginSettings.php:122
 msgid "Show taxes option"
-msgstr "Opcija za prikaz poreza"
+msgstr "Pokaži mogućnost poreza"
 
-#: src/Settings/PluginSettings.php:135
+#: src/Settings/PluginSettings.php:134
 msgid "The type of invoice (R, R1, R2, No label or In advance)"
-msgstr "Tip računa (R, R1, R2, Bez oznake ili avansni)"
+msgstr "Vrsta fakture (R, R1, R2, Bez oznake ili Unaprijed)"
 
-#: src/Settings/PluginSettings.php:147
+#: src/Settings/PluginSettings.php:146
 msgid "The title of the invoice email"
-msgstr "Naslov e-maila sa računom"
+msgstr "Naslov e-pošte na računu"
 
-#: src/Settings/PluginSettings.php:159
+#: src/Settings/PluginSettings.php:158
 msgid "The message of the invoice email"
-msgstr "Poruka e-maila sa računom"
+msgstr "Poruka e-pošte na fakturi"
 
-#: src/Settings/PluginSettings.php:171
+#: src/Settings/PluginSettings.php:170
+#: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:70
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3645
 msgid "Change the 'from' name that shows when WordPress sends the mail"
-msgstr "Promijenite 'od' ime koje se pokazuje kada WordPress šalje e-mail"
+msgstr "Promjena naziva \"pošiljatelj\" koje pokazuje kada WordPress šalje poštu"
 
-#: src/Settings/PluginSettings.php:183
+#: src/Settings/PluginSettings.php:182
 msgid "Enable PIN field in the WooCommerce checkout"
-msgstr ""
-"Omogućite OIB polje na formi za plaćanje i dostavu na naplatnoj stranici"
+msgstr "Omogući polje OIB na odjavi WooCommerce"
 
-#: src/Settings/PluginSettings.php:195
+#: src/Settings/PluginSettings.php:194
 msgid "Enable IBAN field in the WooCommerce checkout"
-msgstr ""
-"Omogućite IBAN polje na formi za plaćanje i dostavu na naplatnoj stranici"
+msgstr "Omogući IBAN polje na odjavi WooCommerce"
 
-#: src/Settings/PluginSettings.php:207
+#: src/Settings/PluginSettings.php:206
 msgid "Specify the due date on the bill or the invoice"
-msgstr "Specificirajte datum dospijeća ponude ili računa"
+msgstr "Navedite datum dospijeća na računu ili fakturi"
 
-#: src/Settings/PluginSettings.php:219
-msgid "Array of gateways that the email with the invoice should be sent"
-msgstr ""
-"Lista platnih procesora za koje bi e-mail prema kupcu trebao biti poslan"
+#: src/Settings/PluginSettings.php:218
+msgid "Array of gateways for which the email with the invoice should be sent"
+msgstr "Lista platnih procesora/tipova za koje treba poslati e-poštu s fakturom"
 
-#: src/Settings/PluginSettings.php:231
+#: src/Settings/PluginSettings.php:230
 msgid "Send the email to the client with the PDF of the bill or the invoice"
-msgstr "Pošaljite email kupcu s PDF računom u dodatku"
+msgstr "Pošaljite e-poštu klijentu pomoću PDF-a računa ili računa"
 
-#: src/Settings/PluginSettings.php:243
+#: src/Settings/PluginSettings.php:242
 msgid "When to send the PDF - on checkout or order confirmation"
-msgstr "Kada poslati PDF - na stranici plaćanja ili na potvrdu narudžbe"
+msgstr "Kada poslati PDF - prilikom naplate ili potvrde narudžbe"
 
-#: src/Settings/PluginSettings.php:268
+#: src/Settings/PluginSettings.php:267
 msgid "Available payment gateways"
-msgstr "Dostupni platni procesori"
+msgstr "Dostupni tipovi plaćanja/platni procesori"
 
-#: src/Settings/PluginSettings.php:281
+#: src/Settings/PluginSettings.php:280
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:120
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3339
 msgid "Type of payment document"
-msgstr "Tip plaćanja"
+msgstr "Vrsta dokumenta o plaćanju"
 
-#: src/Settings/PluginSettings.php:293
+#: src/Settings/PluginSettings.php:292
 msgid "Should the invoice be fiscalized or not"
-msgstr "Treba li račun biti fiskaliziran ili ne"
-
-#: src/Settings/PluginSettings.php:305
-msgid ""
-"Type of payment on api gateway (transactional account, cash, cards, etc.)"
-msgstr ""
-"Tip plaćanja na platnom procesoru (transakcijski račun, gotovina, kartice, "
-"itd.)"
-
-#~ msgid "1 day"
-#~ msgstr "1 dan"
-
-#~ msgid "2 days"
-#~ msgstr "2 dana"
-
-#~ msgid "3 days"
-#~ msgstr "3 dana"
-
-#~ msgid "4 days"
-#~ msgstr "4 dana"
-
-#~ msgid "5 days"
-#~ msgstr "5 dana"
-
-#~ msgid "6 days"
-#~ msgstr "6 dana"
-
-#~ msgid "1 week"
-#~ msgstr "1 tjedan"
-
-#~ msgid "2 weeks"
-#~ msgstr "2 tjedna"
-
-#~ msgid "3 weeks"
-#~ msgstr "3 tjedna"
-
-#~ msgid "Croatian"
-#~ msgstr "Hrvatski"
-
-#~ msgid "English"
-#~ msgstr "Engleski"
-
-#~ msgid "German"
-#~ msgstr "Njemački"
-
-#~ msgid "French"
-#~ msgstr "Francuski"
-
-#~ msgid "Italian"
-#~ msgstr "Talijanksi"
-
-#~ msgid "Spanish"
-#~ msgstr "Španjolski"
-
-#~ msgid "Transactional account"
-#~ msgstr "Transakcijski račun"
-
-#~ msgid "Cash"
-#~ msgstr "Gotovina"
-
-#~ msgid "Cards"
-#~ msgstr "Kartice"
-
-#~ msgid "Cheque"
-#~ msgstr "Ček"
-
-#~ msgid "Other"
-#~ msgstr "Ostalo"
-
-#~ msgid "-"
-#~ msgstr "-"
-
-#~ msgid "piece"
-#~ msgstr "komad"
-
-#~ msgid "hour"
-#~ msgstr "sat"
-
-#~ msgid "year"
-#~ msgstr "godina"
-
-#~ msgid "km"
-#~ msgstr "km"
-
-#~ msgid "litre"
-#~ msgstr "litra"
-
-#~ msgid "kg"
-#~ msgstr "kg"
-
-#~ msgid "kWh"
-#~ msgstr "kwh"
-
-#~ msgid "m³"
-#~ msgstr "m³"
-
-#~ msgid "tonne"
-#~ msgstr "tona"
-
-#~ msgid "m²"
-#~ msgstr "m²"
-
-#~ msgid "m"
-#~ msgstr "m"
-
-#~ msgid "day"
-#~ msgstr "dan"
-
-#~ msgid "month"
-#~ msgstr "mjesec"
-
-#~ msgid "night"
-#~ msgstr "noć"
-
-#~ msgid "cart"
-#~ msgstr "kartica"
-
-#~ msgid "account"
-#~ msgstr "račun"
-
-#~ msgid "pair"
-#~ msgstr "par"
-
-#~ msgid "ml"
-#~ msgstr "ml"
-
-#~ msgid "pax"
-#~ msgstr "pax"
-
-#~ msgid "room"
-#~ msgstr "soba"
-
-#~ msgid "apartment"
-#~ msgstr "stan"
-
-#~ msgid "term"
-#~ msgstr "termin"
-
-#~ msgid "set"
-#~ msgstr "set"
-
-#~ msgid "package"
-#~ msgstr "paket"
-
-#~ msgid "point"
-#~ msgstr "bod"
-
-#~ msgid "service"
-#~ msgstr "servis"
-
-#~ msgid "pal"
-#~ msgstr "pal"
-
-#~ msgid "kont"
-#~ msgstr "kont"
-
-#~ msgid "čl"
-#~ msgstr "čl"
-
-#~ msgid "tis"
-#~ msgstr "tis"
-
-#~ msgid "sec"
-#~ msgstr "sek"
-
-#~ msgid "min"
-#~ msgstr "min"
-
-#~ msgid "str"
-#~ msgstr "str"
-
-#~ msgid "kpl"
-#~ msgstr "kpl"
-
-#~ msgid "pšl"
-#~ msgstr "pšl"
-
-#~ msgid "ha"
-#~ msgstr "ha"
-
-#~ msgid "g"
-#~ msgstr "g"
-
-#~ msgid "x"
-#~ msgstr "x"
-
-#~ msgid "Errors happened during saving"
-#~ msgstr "Dogodila se pogreška prilikom spremanja"
-
-#~ msgid "Settings saved"
-#~ msgstr "Opcije su spremljene"
-
-#~ msgid "Validation error: "
-#~ msgstr "Validacijska greška: "
-
-#~ msgid "Empty API token"
-#~ msgstr "Prazan API token"
-
-#~ msgid ""
-#~ "For more details on the options you can read the official SOLO API "
-#~ "documentation here: "
-#~ msgstr ""
-#~ "Za više informacija o opcijama możete pročitati službenu SOLO API "
-#~ "dokumentaciju ovdje: "
-
-#~ msgid "Enter your personal token that you obtained from your SOLO account"
-#~ msgstr "Unesite vaš vlastiti token koji ste dobili sa SOLO računa"
-
-#~ msgid "Solo Api Settings"
-#~ msgstr "Solo Api opcije"
-
-#~ msgid "Unit measure"
-#~ msgstr "Jedinična mjera"
-
-#~ msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
-#~ msgstr "Izaberite zadanu mjeru za vašu trgovinu (npr. komad, sat, m³ itd.)"
-
-#~ msgid "Enter the type of the service"
-#~ msgstr "Unesite tip usluge"
-
-#~ msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
-#~ msgstr "Možete ju naći u postavkama vašeg računa (Usluge -> Tipovi usluga)"
-
-#~ msgid "Invoice Language"
-#~ msgstr "Jezik računa"
-
-#~ msgid "Select the language of the invoice/offer"
-#~ msgstr "Odaberite jezik za račun/ponudu"
-
-#~ msgid "Show taxes"
-#~ msgstr "Prikaz poreza"
-
-#~ msgid "Show tax"
-#~ msgstr "Prikaži porez"
-
-#~ msgid "Don't show tax"
-#~ msgstr "Nemoj prikazati porez"
-
-#~ msgid "Currency"
-#~ msgstr "Valuta"
-
-#~ msgid "Type of invoice"
-#~ msgstr "Tip računa"
-
-#~ msgid "Only works with invoice, not with offer"
-#~ msgstr "Radi samo sa računima, ne sa ponudama"
-
-#~ msgid "Choose the type of payment for each enabled payment gateway"
-#~ msgstr "Izaberite tip plaćanja za svaki odabrani platni procesor"
-
-#~ msgid "Offer"
-#~ msgstr "Ponuda"
-
-#~ msgid "Invoice"
-#~ msgstr "Račun"
-
-#~ msgid "Payment option types"
-#~ msgstr "Načini plaćanja"
-
-#~ msgid "Check if you want the invoice to be fiscalized *"
-#~ msgstr "Izaberite želite li fiskalizirati račun *"
-
-#~ msgid "Fiscalize"
-#~ msgstr "Fiskalizirajte"
-
-#~ msgid "Don't fiscalize"
-#~ msgstr "Nemojte fiskalizirati"
-
-#~ msgid ""
-#~ "* Fiscalization certificate must be added in the SOLO options, and it "
-#~ "only applies to invoices."
-#~ msgstr ""
-#~ "* Fiskalizacijski certifikat mora biti dodan u SOLO opcijama na vašem "
-#~ "korisničkom računu i samo se odnosi na račune."
-
-#~ msgid "Invoice/Offer due date"
-#~ msgstr "Datum isporuke računa/ponude"
-
-#~ msgid "You can check the currency rate at <a>Croatian National Bank</a>."
-#~ msgstr ""
-#~ "Možete provjeriti tečajnu listu na stanicama <a>Hrvatske Nacionalne "
-#~ "Banke</a>."
-
-#~ msgid ""
-#~ "The currency will be automatically added if the selected currency is "
-#~ "different from HRK. Also, a note about conversion rate will be added to "
-#~ "the invoice/offer."
-#~ msgstr ""
-#~ "Valuta će automatski biti dodana, ukoliko se odabrana valuta razlikuje od "
-#~ "HRK. Također, poruka o konverziji će biti dodana na račun/ponudu."
-
-#~ msgid "Additional Settings"
-#~ msgstr "Dodatne opcije"
-
-#~ msgid "WooCommerce checkout settings"
-#~ msgstr "WooCommerce opcije plaćanja"
-
-#~ msgid ""
-#~ "Enable the PIN field on the billing and shipping from in the checkout"
-#~ msgstr ""
-#~ "Omogućite OIB polje na formi za plaćanje i dostavu na naplatnoj stranici"
-
-#~ msgid "Enable"
-#~ msgstr "Omogućite"
-
-#~ msgid "Disable"
-#~ msgstr "Onemogućite"
-
-#~ msgid ""
-#~ "Enable the IBAN field on the billing and shipping from in the checkout"
-#~ msgstr ""
-#~ "Omogućite IBAN polje na formi za plaćanje i dostavu na naplatnoj stranici"
-
-#~ msgid "PDF settings"
-#~ msgstr "Opcije PDFa"
-
-#~ msgid ""
-#~ "Send the email to the client with the PDF of the order or the invoice"
-#~ msgstr "Pošaljite email kupcu s PDF računom u dodatku"
-
-#~ msgid "Send email"
-#~ msgstr "Pošaljite e-mail"
-
-#~ msgid "Don't send email"
-#~ msgstr "Nemojte poslati e-mail"
-
-#~ msgid "Send mail to selected payment gateways"
-#~ msgstr "Pošaljite e-mail za odabrane platne procesore"
-
-#~ msgid "PDF send control"
-#~ msgstr "Opcije slanja PDFa"
-
-#~ msgid ""
-#~ "Decide when to send the PDF of the order or invoice.On customer checkout, "
-#~ "or when you approve the order in the WooCommerce admin.This will "
-#~ "determine when the call to the SOLO API will be made"
-#~ msgstr ""
-#~ "Odaberite kada želite poslati račun ili ponudu. Na stranici plaćanja ili "
-#~ "kada odobrite račun u WooCommerce prikazu u admin sučelju. Ovo će "
-#~ "odrediti kada se API poziv prema SOLO servisu izvršava"
-
-#~ msgid "Send on:"
-#~ msgstr "Poslati na:"
-
-#~ msgid "Checkout"
-#~ msgstr "Naplati"
-
-#~ msgid "Status change to 'completed'"
-#~ msgstr "Promijeni statusa u 'izvršeno'"
-
-#~ msgid "Email Settings"
-#~ msgstr "Postavke e-maila"
-
-#~ msgid "Set the title of the mail that will be send with the PDF invoice"
-#~ msgstr ""
-#~ "Postavite naslov e-maila koji će biti poslan s PDF računom u dodatku"
-
-#~ msgid ""
-#~ "Type the message that will appear on the mail with the invoice PDF "
-#~ "attached"
-#~ msgstr ""
-#~ "Upišite poruku koja će se prikazati uz e-mail koji će biti poslan s PDF "
-#~ "računom u dodatku"
-
-#~ msgid ""
-#~ "<str>CAUTION</str>: This change is global, every mail send from your "
-#~ "WordPress will have this 'from' name"
-#~ msgstr ""
-#~ "OPREZ: Ova promijena je globalna, svaki e-mail koji šaljete sa vaše "
-#~ "stranice će imate ovo 'od' ime"
-
-#~ msgid "Solo Api Test"
-#~ msgstr "Solo API test"
-
-#~ msgid "This serves for testing purposes only"
-#~ msgstr "Ovo služi radi testiranja"
-
-#~ msgid ""
-#~ "Pressing the button will make a request to your Solo API account,and will "
-#~ "list all the invoices you have"
-#~ msgstr ""
-#~ "Pritiskom na gumb napravit ćete poziv na Solo API račun, i izlistat će "
-#~ "vam se svi računi koje imate"
-
-#~ msgid "Make a request"
-#~ msgstr "Napravite upit"
-
-#~ msgid "Save settings"
-#~ msgstr "Spremite postavke"
-
-#~ msgid "Solo API order details"
-#~ msgstr "Solo API detalji narudžbe"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "WooCommerce Order ID"
-#~ msgstr "WooCommerce ID narudžbe"
-
-#~ msgid "Customer Email"
-#~ msgstr "Email kupca"
-
-#~ msgid "Is sent to Solo API"
-#~ msgstr "Je li poslan na Solo API"
-
-#~ msgid "Is pdf sent to customer"
-#~ msgstr "Je li PDF poslan kupcu"
-
-#~ msgid "API response errors"
-#~ msgstr "API greške"
-
-#~ msgid "Woo Solo Api"
-#~ msgstr "Woo Solo Api opcije"
-
-#~ msgid "https://madebydenis.com/woo-solo-api"
-#~ msgstr "https://madebydenis.com/woo-solo-api"
-
-#~ msgid ""
-#~ "This plugin provides integration of the SOLO API service with WooCommerce."
-#~ msgstr ""
-#~ "Ovaj dodatak omogućuje integraciju SOLO servisa sa WooCommerce dodatkom."
-
-#~ msgid "Denis Žoljom"
-#~ msgstr "Denis Žoljom"
-
-#~ msgid "https://madebydenis.com"
-#~ msgstr "https://madebydenis.com"
-
-#~ msgctxt "placeholder"
-#~ msgid "01234567891"
-#~ msgstr "01234567891"
-
-#~ msgctxt "placeholder"
-#~ msgid "HR12345678901234567890"
-#~ msgstr "HR12345678901234567890"
-
-#~ msgctxt "placeholder"
-#~ msgid "Cool company inc."
-#~ msgstr "Ime tvrtke doo."
-
-#~ msgid "Number not only once is invalid."
-#~ msgstr "Sigurnosna provjera nije prošla (invalid nonce)."
-
-#~ msgid "User is not authorized to do this action."
-#~ msgstr "Korisnik nije autoriziran za ovu radnju."
-
-#~ msgid "Error occurred"
-#~ msgstr "Došlo je do pogreške"
-
-#~ msgid "You cannot access this file outside WordPress."
-#~ msgstr "Ne možete pristupiti ovom fileu izvan WordPressa."
+msgstr "Treba li faktura biti fiskalizirana ili ne"
+
+#: src/Settings/PluginSettings.php:304
+msgid "Type of payment on api payment gateways (transactional account, cash, cards, etc.)"
+msgstr "Vrsta plaćanja na api platnim procesorima/tipovima plaćanja (transakcijski račun, gotovina, kartice itd.)"
+
+#: woo-solo-api.php:43
+msgid "You cannot access this file outside WordPress."
+msgstr "Ovoj datoteci ne možete pristupiti izvan WordPressa."
+
+#: assets/dev/scripts/components/App.jsx:127
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:4068
+msgid "Save settings"
+msgstr "Spremi postavke"
+
+#: assets/dev/scripts/components/ErrorNotice.jsx:16
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3034
+msgid "Validation error: "
+msgstr "Pogreška provjere valjanosti: "
+
+#: assets/dev/scripts/components/Notification.jsx:11
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3009
+msgid "For more details on the options you can read the official SOLO API documentation here: "
+msgstr "Za više detalja o opcijama službenu dokumentaciju SOLO API-ja možete pročitati ovdje: "
+
+#: assets/dev/scripts/components/OrderPanel.jsx:62
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3746
+msgid "Solo API order details"
+msgstr "Detalji solo API narudžbe"
+
+#: assets/dev/scripts/components/OrderPanel.jsx:68
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3752
+msgid "ID"
+msgstr "ID naloga WooCommerce"
+
+#: assets/dev/scripts/components/OrderPanel.jsx:69
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3753
+msgid "WooCommerce Order ID"
+msgstr "ID naloga WooCommerce"
+
+#: assets/dev/scripts/components/OrderPanel.jsx:71
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3755
+msgid "Customer Email"
+msgstr "E-mail klijenta"
+
+#: assets/dev/scripts/components/OrderPanel.jsx:72
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3756
+msgid "Is sent to Solo API"
+msgstr "Šalje se solo API-ju"
+
+#: assets/dev/scripts/components/OrderPanel.jsx:73
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3757
+msgid "Is pdf sent to customer"
+msgstr "Šalje se pdf klijentu"
+
+#: assets/dev/scripts/components/OrderPanel.jsx:74
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3758
+msgid "API response errors"
+msgstr "Pogreške u odgovoru API-ja"
+
+#: assets/dev/scripts/components/OrderPanel.jsx:77
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3761
+msgid "Resend to API"
+msgstr "Ponovno slanje u API"
+
+#: assets/dev/scripts/components/OrderPanel.jsx:98
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3782
+msgid "Resend order to API"
+msgstr "Ponovi slanje narudžbe"
+
+#: assets/dev/scripts/components/OrderPanel.jsx:116
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3800
+msgid "Request sent"
+msgstr "Poslani zahtjev"
+
+#: assets/dev/scripts/components/Popup.jsx:21
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3827
+msgid "Errors happened during saving"
+msgstr "Tijekom spremanja došlo je do pogrešaka"
+
+#: assets/dev/scripts/components/Popup.jsx:22
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3828
+msgid "Settings saved"
+msgstr "Postavke spremljene"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:39
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3475
+msgid "Additional Settings"
+msgstr "Dodatne postavke"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:45
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3481
+msgid "WooCommerce checkout settings"
+msgstr "Postavke odjave WooCommerce"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:50
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3486
+msgid "Enable the PIN field on the billing and shipping from in the checkout"
+msgstr "Omogućivanje polja PIN na naplati i otpremi od naplate"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:51
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:62
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3487
+#: assets/public/assets/application-b618e585.js:3498
+msgid "Enable"
+msgstr "Omogući"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:51
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:62
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3487
+#: assets/public/assets/application-b618e585.js:3498
+msgid "Disable"
+msgstr "Onemogući"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:61
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3497
+msgid "Enable the IBAN field on the billing and shipping from in the checkout"
+msgstr "Omogućivanje polja IBAN na naplati i otpremi iz naplate"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:72
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3508
+msgid "PDF settings"
+msgstr "Postavke PDF-a"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:77
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3513
+msgid "Send the email to the client with the PDF of the order or the invoice"
+msgstr "Pošaljite e-poštu klijentu pomoću PDF-a narudžbe ili fakture"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:78
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3514
+msgid "Send email"
+msgstr "Pošalji e-poštu"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:78
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3514
+msgid "Don't send email"
+msgstr "Ne šalji e-poštu"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:88
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3524
+msgid "Send mail to selected payment types"
+msgstr "Slanje pošte odabranim vrstama plaćanja"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:110
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3546
+msgid "PDF send control"
+msgstr "Kontrola slanja PDF-a"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:118
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3554
+msgid "Send on:"
+msgstr "Pošalji dalje:"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:123
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3559
+msgid "Checkout"
+msgstr "Plaćanje"
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:126
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3562
+msgid "Status change to 'completed'"
+msgstr "Promjena statusa u \"dovršeno\""
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:52
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3885
+msgid "Exchange rate transient is cleared."
+msgstr "Prolazni tečaj je očišćen."
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:53
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3886
+msgid "Exchange rate transient wasn't cleared."
+msgstr "Prolazni tečaj nije odobren."
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:67
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3900
+msgid "Solo Api Test"
+msgstr "Solo Api Test"
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:71
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3904
+msgid "This serves for testing purposes only"
+msgstr "To služi samo u svrhu testiranja"
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:73
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3906
+msgid "Pressing the button will make a request to your Solo API account, and will list all the invoices or offers you have"
+msgstr "Pritiskom na gumb zatražit ćete vaš Solo API račun i navesti sve račune ili ponude koje imate"
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:91
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3924
+msgid "Make a request"
+msgstr "Pošalji zahtjev"
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:94
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3927
+msgid "Pressing the button will clear the Croatian Central Bank (HNB) API transient."
+msgstr "Pritiskom na gumb očistit će se prolazni API Hrvatske središnje banke (HNB)."
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:102
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3935
+msgid "Delete exchange rate transient"
+msgstr "Brisanje tečaja iz baze"
+
+#: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:36
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3611
+msgid "Email Settings"
+msgstr "Podešavanje e-maila"
+
+#: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:44
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3619
+msgid "Set the title of the mail that will be send with the PDF invoice"
+msgstr "Postavljanje naslova pošte koja će se slati pomoću PDF fakture"
+
+#: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:57
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3632
+msgid "Type the message that will appear on the mail with the invoice PDF attached"
+msgstr "Upišite poruku koja će se pojaviti na pošti s priloženim PDF-om na fakturi"
+
+#: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:73
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3648
+msgid "<str>CAUTION</str>: This change is global, every mail send from your WordPress will have this 'from' name"
+msgstr "<str>OPREZ</str>: Ova promjena je globalna, svaka pošta poslana s vašeg WordPressa imat će ovo ime \"od\""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:45
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3264
+msgid "Solo Api Settings"
+msgstr "Postavke SOLO API-ja"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:55
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3274
+msgid "Unit measure"
+msgstr "Jedinična mjera"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:56
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3275
+msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
+msgstr "Odaberite zadanu mjeru u svojoj trgovini (npr. komad, sat, m³ itd.)"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:69
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3288
+msgid "Invoice Language"
+msgstr "Jezik fakture"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:70
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3289
+msgid "Select the language of the invoice/offer"
+msgstr "Odaberite jezik fakture/ponude"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:83
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3302
+msgid "Currency"
+msgstr "Valuta"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:92
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3311
+msgid "You can check the currency rate at <a>Croatian National Bank</a>."
+msgstr "Valutni tečaj možete provjeriti u <a>Hrvatskoj narodnoj banci</a>."
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:101
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3320
+msgid "The currency will be automatically added if the selected currency is different from EUR. Also, a note about conversion rate will be added to the invoice/offer."
+msgstr "Valuta će se automatski dodati ako se odabrana valuta razlikuje od EUR. Također, na fakturu/ponudu bit će dodana bilješka o stopi konverzije."
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:107
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3326
+msgid "Choose the type of payment for each enabled payment gateway/type"
+msgstr "Odaberite vrstu plaćanja za svaki omogućeni pristupnik/vrstu uplate"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:125
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3344
+msgid "Offer"
+msgstr "Ponuda"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:126
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3345
+msgid "Invoice"
+msgstr "Faktura"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:134
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3353
+msgid "Payment option types"
+msgstr "Vrste načina plaćanja"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:145
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3364
+msgid "Check if you want the invoice to be fiscalized *"
+msgstr "Provjerite želite li da faktura bude fiskalizirana *"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:146
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3365
+msgid "Fiscalize"
+msgstr "Fiskaliziraj"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:146
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3365
+msgid "Don't fiscalize"
+msgstr "Nemoj fiskalizirati"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:154
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3373
+msgid "* Fiscalization certificate must be added in the SOLO options, and it only applies to invoices."
+msgstr "* Potvrda o fiskalizaciji mora se dodati u SOLO opcije, a odnosi se samo na fakture."
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:163
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3382
+msgid "Enter the type of the service"
+msgstr "Unesite vrstu usluge"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:164
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3383
+msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
+msgstr "Možete ga pronaći u postavkama računa (Usluge -> Tipovi usluga)"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:177
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3396
+msgid "Show taxes"
+msgstr "Pokaži poreze"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:178
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3397
+msgid "Show tax"
+msgstr "Pokaži porez"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:178
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3397
+msgid "Don't show tax"
+msgstr "Ne pokazuj porez"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:190
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3409
+msgid "Type of invoice"
+msgstr "Vrsta fakture"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:191
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3410
+msgid "Only works with invoice, not with offer"
+msgstr "Radi samo s fakturom, a ne s ponudom"
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:204
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3423
+msgid "Invoice/Offer due date"
+msgstr "Datum dospijeća fakture/ponude"
+
+#: assets/dev/scripts/components/Settings/TokenPanel.jsx:44
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3084
+msgid "Enter your personal token that you obtained from your SOLO account"
+msgstr "Unesite svoj osobni token koji ste dobili sa solo računa"

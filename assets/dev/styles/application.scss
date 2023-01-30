@@ -1,12 +1,18 @@
 /* stylelint-disable */
+:root {
+	--woo-black-color: #000000;
+	--woo-white-color: #FFFFFF;
+	--woo-silver-color: #E2E4E7;
+	--woo-dove-color: #F3F4F5;
 
-// Utils
-@import 'utils/colors';
-@import 'utils/functions';
-@import 'utils/shared-variables';
+	--woo-rouge-color: #DA291C;
+	--woo-fern-color: #78BD70;
+	--woo-deep-sapphire-color: #0D3D79;
+}
 
 //Options page
 @import 'options-page';
 @import 'components/base-control';
-@import 'components/details-table';
+@import 'components/order-table';
+@import 'components/order-table-notice';
 @import 'components/panel';

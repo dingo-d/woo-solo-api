@@ -38,20 +38,21 @@ class OrderDetails extends BaseRoute implements RestCallable
 	/**
 	 * @var SoloOrdersTable
 	 */
-	private $database;
+	private SoloOrdersTable $soloOrdersTable;
 
-	public function __construct(SoloOrdersTable $database)
+	public function __construct(SoloOrdersTable $soloOrdersTable)
 	{
-		$this->database = $database;
+		$this->soloOrdersTable = $soloOrdersTable;
 	}
 
 	/**
 	 * Prepare order item for REST response
 	 *
-	 * @param array $order Order details array
-	 * @return array
+	 * @param array<string, mixed> $order Order details array.
+	 *
+	 * @return array<string, mixed> Modified order output.
 	 */
-	public static function prepareItemForOutput(array $order)
+	public static function prepareItemForOutput(array $order): array
 	{
 		$id = $order['id'];
 		$wcOrderId = $order['order_id'];
@@ -100,7 +101,7 @@ class OrderDetails extends BaseRoute implements RestCallable
 
 		$id = (int)$params['id'];
 
-		$orders = $this->database->getOrders($id);
+		$orders = $this->soloOrdersTable->getOrders($id);
 
 		$data = [];
 
@@ -130,7 +131,7 @@ class OrderDetails extends BaseRoute implements RestCallable
 	/**
 	 * Get the route's scheme
 	 *
-	 * @return array Scheme details.
+	 * @return array<string, mixed> Scheme details.
 	 */
 	public function getRouteSchema(): array
 	{
@@ -174,6 +175,14 @@ class OrderDetails extends BaseRoute implements RestCallable
 						'woo-solo-api'
 					),
 					'type' => 'boolean',
+					'context' => ['view'],
+				],
+				'pdf_url' => [
+					'description' => esc_html__(
+						'URL of the sent PDF. Used to resend the PDF in case there was some failure with the request.',
+						'woo-solo-api'
+					),
+					'type' => 'string',
 					'context' => ['view'],
 				],
 				'error_message' => [

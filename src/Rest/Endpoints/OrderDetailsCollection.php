@@ -36,11 +36,11 @@ class OrderDetailsCollection extends BaseRoute implements RestCallable
 	/**
 	 * @var SoloOrdersTable
 	 */
-	private $database;
+	private SoloOrdersTable $soloOrdersTable;
 
-	public function __construct(SoloOrdersTable $database)
+	public function __construct(SoloOrdersTable $soloOrdersTable)
 	{
-		$this->database = $database;
+		$this->soloOrdersTable = $soloOrdersTable;
 	}
 
 	/**
@@ -63,7 +63,7 @@ class OrderDetailsCollection extends BaseRoute implements RestCallable
 	 */
 	public function restCallback(WP_REST_Request $request)
 	{
-		$orders = $this->database->getOrders();
+		$orders = $this->soloOrdersTable->getOrders();
 
 		$data = [];
 
@@ -93,7 +93,7 @@ class OrderDetailsCollection extends BaseRoute implements RestCallable
 	/**
 	 * Get the route's scheme
 	 *
-	 * @return array Scheme details.
+	 * @return array<string, mixed> Scheme details.
 	 */
 	public function getRouteSchema(): array
 	{

@@ -5,8 +5,9 @@
 	"extends": [
 		"plugin:@wordpress/eslint-plugin/esnext"
 	],
+	"parser": "@babel/eslint-parser",
 	"parserOptions": {
-		"ecmaVersion": 2018,
+		"ecmaVersion": "latest",
 		"sourceType": "module",
 		"ecmaFeatures": {
 			"jsx": true
@@ -14,6 +15,8 @@
 	},
 	"rules": {
 		"template-curly-spacing": 0,
+		"object-curly-spacing": 0,
+		"array-bracket-spacing": 0,
 		"space-in-parens": 0,
 		"computed-property-spacing": 0
 	}

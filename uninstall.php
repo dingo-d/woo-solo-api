@@ -30,20 +30,20 @@
 
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
 
-if (! current_user_can('activate_plugins')) {
-    return;
+if ( ! current_user_can('activate_plugins')) {
+	return;
 }
 
 // If uninstall not called from WordPress, then exit.
-if (! defined('WP_UNINSTALL_PLUGIN')) {
-    exit;
+if ( ! defined('WP_UNINSTALL_PLUGIN')) {
+	exit;
 }
 
 /**
-* Include the autoloader so we can dynamically include the rest of the classes.
-*
-* @since 2.0.1
-*/
+ * Include the autoloader so we can dynamically include the rest of the classes.
+ *
+ * @since 2.0.1
+ */
 require_once __DIR__ . '/vendor/autoload.php';
 
 /**
@@ -68,11 +68,11 @@ delete_option('solo_api_due_date');
 delete_option('solo_api_mail_gateway');
 delete_option('solo_api_send_pdf');
 
-$available_woo_gateways = WC()->payment_gateways->get_available_payment_gateways();
+$availableWooGateways = WC()->payment_gateways->get_available_payment_gateways();
 
-foreach ($available_woo_gateways as $gateway_woo_sett => $gateway_woo_val) {
-    delete_option('solo_api_bill_offer-' . esc_attr($gateway_woo_val->id));
-    delete_option('solo_api_fiscalization-' . esc_attr($gateway_woo_val->id));
+foreach ($availableWooGateways as $gatewayWooVal) {
+	delete_option('solo_api_bill_offer-' . esc_attr($gatewayWooVal->id));
+	delete_option('solo_api_fiscalization-' . esc_attr($gatewayWooVal->id));
 }
 
 add_action('wp_mail_from_name', 'solo_api_revert_mail_from_name');
@@ -80,7 +80,8 @@ add_action('wp_mail_from_name', 'solo_api_revert_mail_from_name');
 /**
  * Revert mail from name that is send from WordPress to default
  *
- * @param  string $name Name that is shown.
+ * @param string $name Name that is shown.
+ *
  * @return string       Changed name.
  */
 function solo_api_revert_mail_from_name($name)

@@ -16,3 +16,10 @@ ehthumbs.db
 ehthumbs_vista.db
 
 src/Core/CompiledContainer.php
+
+# Tests
+/wp-content
+/wp
+/tests/coverage
+.phpunit.result.cache
+

@@ -38,13 +38,13 @@ class PluginsPage implements Registrable
 	/**
 	 * Add plugin settings link on plugins page
 	 *
-	 * @param array $links Plugin action links.
+	 * @param array<string, string> $links Plugin action links.
 	 *
-	 * @return array Updated links that will be shown on the plugins install page.
+	 * @return array<string, string> Updated links that will be shown on the plugins install page.
 	 */
 	public function addActionLink(array $links): array
 	{
-		$links[] = '<a href="' . admin_url('admin.php?page=solo_api_options') . '">' . esc_html__('SOLO API Settings', 'woo-solo-api') . '</a>';
+		$links['wooSoloApiSettings'] = '<a href="' . admin_url('admin.php?page=solo_api_options') . '">' . esc_html__('SOLO API Settings', 'woo-solo-api') . '</a>';
 
 		return $links;
 	}

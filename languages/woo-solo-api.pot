@@ -1,538 +1,37 @@
-#, fuzzy
+# Copyright (C) 2023 Denis Žoljom
+# This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: Woo Solo Api\n"
+"Project-Id-Version: Woo Solo Api 3.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-solo-api\n"
-"POT-Creation-Date: 2022-01-09 19:36+0100\n"
-"PO-Revision-Date: 2020-11-21 13:23+0100\n"
-"Last-Translator: \n"
-"Language-Team: Denis Žoljom\n"
-"Language: hr\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: e__;esc_html__;esc_html_e;esc_attr__;esc_attr_e;esc_html_x;__;_n_noop\n"
-"X-Poedit-SearchPath-0: assets\n"
-"X-Poedit-SearchPath-1: src\n"
-"X-Poedit-SearchPathExcluded-0: bin\n"
-"X-Poedit-SearchPathExcluded-1: languages\n"
-"X-Poedit-SearchPathExcluded-2: node_modules\n"
-"X-Poedit-SearchPathExcluded-3: tests\n"
-"X-Poedit-SearchPathExcluded-4: vendor\n"
-"X-Poedit-SearchPathExcluded-5: views\n"
-"X-Poedit-SearchPathExcluded-6: webpack\n"
+"POT-Creation-Date: 2023-01-30T12:20:32+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: woo-solo-api\n"
 
-#: assets/public/application.js:2608
-msgid "1 day"
+#. Plugin Name of the plugin
+msgid "Woo Solo Api"
 msgstr ""
 
-#: assets/public/application.js:2611
-msgid "2 days"
+#. Plugin URI of the plugin
+msgid "https://madebydenis.com/woo-solo-api"
 msgstr ""
 
-#: assets/public/application.js:2614
-msgid "3 days"
+#. Description of the plugin
+msgid "This plugin provides integration of the SOLO API service with WooCommerce."
 msgstr ""
 
-#: assets/public/application.js:2617
-msgid "4 days"
+#. Author of the plugin
+msgid "Denis Žoljom"
 msgstr ""
 
-#: assets/public/application.js:2620
-msgid "5 days"
-msgstr ""
-
-#: assets/public/application.js:2623
-msgid "6 days"
-msgstr ""
-
-#: assets/public/application.js:2626
-msgid "1 week"
-msgstr ""
-
-#: assets/public/application.js:2629
-msgid "2 weeks"
-msgstr ""
-
-#: assets/public/application.js:2632
-msgid "3 weeks"
-msgstr ""
-
-#: assets/public/application.js:2682
-msgid "Croatian"
-msgstr ""
-
-#: assets/public/application.js:2685
-msgid "English"
-msgstr ""
-
-#: assets/public/application.js:2688
-msgid "German"
-msgstr ""
-
-#: assets/public/application.js:2691
-msgid "French"
-msgstr ""
-
-#: assets/public/application.js:2694
-msgid "Italian"
-msgstr ""
-
-#: assets/public/application.js:2697
-msgid "Spanish"
-msgstr ""
-
-#: assets/public/application.js:2716
-msgid "Transactional account"
-msgstr ""
-
-#: assets/public/application.js:2719
-msgid "Cash"
-msgstr ""
-
-#: assets/public/application.js:2722
-msgid "Cards"
-msgstr ""
-
-#: assets/public/application.js:2725
-msgid "Cheque"
-msgstr ""
-
-#: assets/public/application.js:2728
-msgid "Other"
-msgstr ""
-
-#: assets/public/application.js:2747
-msgid "-"
-msgstr ""
-
-#: assets/public/application.js:2750
-msgid "piece"
-msgstr ""
-
-#: assets/public/application.js:2753
-msgid "hour"
-msgstr ""
-
-#: assets/public/application.js:2756
-msgid "year"
-msgstr ""
-
-#: assets/public/application.js:2759
-msgid "km"
-msgstr ""
-
-#: assets/public/application.js:2762
-msgid "litre"
-msgstr ""
-
-#: assets/public/application.js:2765
-msgid "kg"
-msgstr ""
-
-#: assets/public/application.js:2768
-msgid "kWh"
-msgstr ""
-
-#: assets/public/application.js:2771
-msgid "m³"
-msgstr ""
-
-#: assets/public/application.js:2774
-msgid "tonne"
-msgstr ""
-
-#: assets/public/application.js:2777
-msgid "m²"
-msgstr ""
-
-#: assets/public/application.js:2780
-msgid "m"
-msgstr ""
-
-#: assets/public/application.js:2783
-msgid "day"
-msgstr ""
-
-#: assets/public/application.js:2786
-msgid "month"
-msgstr ""
-
-#: assets/public/application.js:2789
-msgid "night"
-msgstr ""
-
-#: assets/public/application.js:2792
-msgid "cart"
-msgstr ""
-
-#: assets/public/application.js:2795
-msgid "account"
-msgstr ""
-
-#: assets/public/application.js:2798
-msgid "pair"
-msgstr ""
-
-#: assets/public/application.js:2801
-msgid "ml"
-msgstr ""
-
-#: assets/public/application.js:2804
-msgid "pax"
-msgstr ""
-
-#: assets/public/application.js:2807
-msgid "room"
-msgstr ""
-
-#: assets/public/application.js:2810
-msgid "apartment"
-msgstr ""
-
-#: assets/public/application.js:2813
-msgid "term"
-msgstr ""
-
-#: assets/public/application.js:2816
-msgid "set"
-msgstr ""
-
-#: assets/public/application.js:2819
-msgid "package"
-msgstr ""
-
-#: assets/public/application.js:2822
-msgid "point"
-msgstr ""
-
-#: assets/public/application.js:2825
-msgid "service"
-msgstr ""
-
-#: assets/public/application.js:2828
-msgid "pal"
-msgstr ""
-
-#: assets/public/application.js:2831
-msgid "kont"
-msgstr ""
-
-#: assets/public/application.js:2834
-msgid "čl"
-msgstr ""
-
-#: assets/public/application.js:2837
-msgid "tis"
-msgstr ""
-
-#: assets/public/application.js:2840
-msgid "sec"
-msgstr ""
-
-#: assets/public/application.js:2843
-msgid "min"
-msgstr ""
-
-#: assets/public/application.js:2846
-msgid "str"
-msgstr ""
-
-#: assets/public/application.js:2849
-msgid "kpl"
-msgstr ""
-
-#: assets/public/application.js:2852
-msgid "pšl"
-msgstr ""
-
-#: assets/public/application.js:2855
-msgid "ha"
-msgstr ""
-
-#: assets/public/application.js:2858
-msgid "g"
-msgstr ""
-
-#: assets/public/application.js:2861
-msgid "x"
-msgstr ""
-
-#: assets/public/application.js:3169
-msgid "Errors happened during saving"
-msgstr ""
-
-#: assets/public/application.js:3169
-msgid "Settings saved"
-msgstr ""
-
-#: assets/public/application.js:3201
-msgid "Validation error: "
-msgstr ""
-
-#: assets/public/application.js:3220
-msgid "Empty API token"
-msgstr ""
-
-#: assets/public/application.js:3238
-msgid "For more details on the options you can read the official SOLO API documentation here: "
-msgstr ""
-
-#: assets/public/application.js:3257 assets/public/application.js:3262
-#: src/Settings/PluginSettings.php:63
-msgid "Solo API token"
-msgstr ""
-
-#: assets/public/application.js:3263
-msgid "Enter your personal token that you obtained from your SOLO account"
-msgstr ""
-
-#: assets/public/application.js:3273
-msgid "Solo Api Settings"
-msgstr ""
-
-#: assets/public/application.js:3280
-msgid "Unit measure"
-msgstr ""
-
-#: assets/public/application.js:3281
-msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
-msgstr ""
-
-#: assets/public/application.js:3293
-msgid "Enter the type of the service"
-msgstr ""
-
-#: assets/public/application.js:3294
-msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
-msgstr ""
-
-#: assets/public/application.js:3306
-msgid "Invoice Language"
-msgstr ""
-
-#: assets/public/application.js:3307
-msgid "Select the language of the invoice/offer"
-msgstr ""
-
-#: assets/public/application.js:3319
-msgid "Show taxes"
-msgstr ""
-
-#: assets/public/application.js:3320
-msgid "Show tax"
-msgstr ""
-
-#: assets/public/application.js:3320
-msgid "Don't show tax"
-msgstr ""
-
-#: assets/public/application.js:3333
-msgid "Currency"
-msgstr ""
-
-#: assets/public/application.js:3345
-msgid "Type of invoice"
-msgstr ""
-
-#: assets/public/application.js:3346
-msgid "Only works with invoice, not with offer"
-msgstr ""
-
-#: assets/public/application.js:3359
-msgid "Choose the type of payment for each enabled payment gateway"
-msgstr ""
-
-#: assets/public/application.js:3369 src/Settings/PluginSettings.php:281
-msgid "Type of payment document"
-msgstr ""
-
-#: assets/public/application.js:3377
-msgid "Offer"
-msgstr ""
-
-#: assets/public/application.js:3380
-msgid "Invoice"
-msgstr ""
-
-#: assets/public/application.js:3385
-msgid "Payment option types"
-msgstr ""
-
-#: assets/public/application.js:3395
-msgid "Check if you want the invoice to be fiscalized *"
-msgstr ""
-
-#: assets/public/application.js:3396
-msgid "Fiscalize"
-msgstr ""
-
-#: assets/public/application.js:3396
-msgid "Don't fiscalize"
-msgstr ""
-
-#: assets/public/application.js:3403
-msgid "* Fiscalization certificate must be added in the SOLO options, and it only applies to invoices."
-msgstr ""
-
-#: assets/public/application.js:3408
-msgid "Invoice/Offer due date"
-msgstr ""
-
-#: assets/public/application.js:3419
-msgid "You can check the currency rate at <a>Croatian National Bank</a>."
-msgstr ""
-
-#: assets/public/application.js:3427
-msgid "The currency will be automatically added if the selected currency is different from HRK. Also, a note about conversion rate will be added to the invoice/offer."
-msgstr ""
-
-#: assets/public/application.js:3428
-msgid "Additional Settings"
-msgstr ""
-
-#: assets/public/application.js:3432
-msgid "WooCommerce checkout settings"
-msgstr ""
-
-#: assets/public/application.js:3435
-msgid "Enable the PIN field on the billing and shipping from in the checkout"
-msgstr ""
-
-#: assets/public/application.js:3436 assets/public/application.js:3450
-msgid "Enable"
-msgstr ""
-
-#: assets/public/application.js:3436 assets/public/application.js:3450
-msgid "Disable"
-msgstr ""
-
-#: assets/public/application.js:3449
-msgid "Enable the IBAN field on the billing and shipping from in the checkout"
-msgstr ""
-
-#: assets/public/application.js:3462
-msgid "PDF settings"
-msgstr ""
-
-#: assets/public/application.js:3465
-msgid "Send the email to the client with the PDF of the order or the invoice"
-msgstr ""
-
-#: assets/public/application.js:3466
-msgid "Send email"
-msgstr ""
-
-#: assets/public/application.js:3466
-msgid "Don't send email"
-msgstr ""
-
-#: assets/public/application.js:3478
-msgid "Send mail to selected payment gateways"
-msgstr ""
-
-#: assets/public/application.js:3492
-msgid "PDF send control"
-msgstr ""
-
-#: assets/public/application.js:3494
-msgid "Decide when to send the PDF of the order or invoice.On customer checkout, or when you approve the order in the WooCommerce admin.This will determine when the call to the SOLO API will be made"
-msgstr ""
-
-#: assets/public/application.js:3497
-msgid "Send on:"
-msgstr ""
-
-#: assets/public/application.js:3507
-msgid "Checkout"
-msgstr ""
-
-#: assets/public/application.js:3510
-msgid "Status change to 'completed'"
-msgstr ""
-
-#: assets/public/application.js:3513
-msgid "Email Settings"
-msgstr ""
-
-#: assets/public/application.js:3518
-msgid "Set the title of the mail that will be send with the PDF invoice"
-msgstr ""
-
-#: assets/public/application.js:3530
-msgid "Type the message that will appear on the mail with the invoice PDF attached"
-msgstr ""
-
-#: assets/public/application.js:3542 src/Settings/PluginSettings.php:171
-msgid "Change the 'from' name that shows when WordPress sends the mail"
-msgstr ""
-
-#: assets/public/application.js:3543
-msgid "<str>CAUTION</str>: This change is global, every mail send from your WordPress will have this 'from' name"
-msgstr ""
-
-#: assets/public/application.js:3555
-msgid "Solo Api Test"
-msgstr ""
-
-#: assets/public/application.js:3559
-msgid "This serves for testing purposes only"
-msgstr ""
-
-#: assets/public/application.js:3561
-msgid "Pressing the button will make a request to your Solo API account,and will list all the invoices you have"
-msgstr ""
-
-#: assets/public/application.js:3568
-msgid "Make a request"
-msgstr ""
-
-#: assets/public/application.js:3575
-msgid "Save settings"
-msgstr ""
-
-#: assets/public/application.js:3578
-msgid "Solo API order details"
-msgstr ""
-
-#: assets/public/application.js:3584
-msgid "ID"
-msgstr ""
-
-#: assets/public/application.js:3586
-msgid "WooCommerce Order ID"
-msgstr ""
-
-#: assets/public/application.js:3588 src/Privacy/DataHandling.php:111
-msgid "Solo ID"
-msgstr ""
-
-#: assets/public/application.js:3590
-msgid "Customer Email"
-msgstr ""
-
-#: assets/public/application.js:3592
-msgid "Is sent to Solo API"
-msgstr ""
-
-#: assets/public/application.js:3594
-msgid "Is pdf sent to customer"
-msgstr ""
-
-#: assets/public/application.js:3596
-msgid "API response errors"
-msgstr ""
-
-#: assets/public/application.js:3598 src/Privacy/DataHandling.php:131
-msgid "Created at"
-msgstr ""
-
-#: assets/public/application.js:3600 src/Privacy/DataHandling.php:135
-msgid "Updated at"
+#. Author URI of the plugin
+msgid "https://madebydenis.com"
 msgstr ""
 
 #: src/Admin/AdminMenus/OptionsSubmenu.php:54
@@ -543,7 +42,7 @@ msgstr ""
 msgid "Solo API Options"
 msgstr ""
 
-#: src/Admin/AdminNotices/DatabaseTableMissingNotice.php:76
+#: src/Admin/AdminNotices/DatabaseTableMissingNotice.php:75
 msgid "Woo Orders table seems to be missing. Please reactivate the plugin (deactivate and activate) to create it."
 msgstr ""
 
@@ -551,58 +50,52 @@ msgstr ""
 msgid "SOLO API Settings"
 msgstr ""
 
-#: src/Assets/EnqueueResources.php:136
-msgid "Options saved."
-msgstr ""
-
 #: src/BackgroundJobs/SendCustomerEmail.php:91
 msgid "PDF invoice/order is missing"
 msgstr ""
 
+#. translators: name of the invoice file, don't use diacritics!
 #: src/BackgroundJobs/SendCustomerEmail.php:99
 msgid "invoice-"
 msgstr ""
 
+#. translators: name of the offer file, don't use diacritics!
 #: src/BackgroundJobs/SendCustomerEmail.php:104
 msgid "offer-"
 msgstr ""
 
-#: src/BackgroundJobs/SendCustomerEmail.php:160
+#: src/BackgroundJobs/SendCustomerEmail.php:165
 msgid "Error in sending customer email. Attachment URL cannot be parsed."
 msgstr ""
 
-#: src/BackgroundJobs/SendCustomerEmail.php:182
+#: src/BackgroundJobs/SendCustomerEmail.php:187
 msgid "Error in sending customer email. Email message must be of string type."
 msgstr ""
 
-#: src/BackgroundJobs/SendCustomerEmail.php:190
+#: src/BackgroundJobs/SendCustomerEmail.php:195
 msgid "invoice"
 msgstr ""
 
-#: src/BackgroundJobs/SendCustomerEmail.php:191
+#: src/BackgroundJobs/SendCustomerEmail.php:196
 msgid "offer"
 msgstr ""
 
-#: src/BackgroundJobs/SendCustomerEmail.php:194
-#, php-format
+#. translators: 1:Bill type
+#: src/BackgroundJobs/SendCustomerEmail.php:199
 msgid "Your %s is in the attachment."
 msgstr ""
 
-#: src/BackgroundJobs/SendCustomerEmail.php:196
-#, php-format
+#. translators: 1:Bill type 2:Your site name
+#: src/BackgroundJobs/SendCustomerEmail.php:201
 msgid "Your %1$s from %2$s"
 msgstr ""
 
-#: src/Core/Plugin.php:77
-msgid "This plugin requires PHP 7.3 or greater to function."
+#: src/Core/Plugin.php:85
+msgid "This plugin requires PHP 7.4 or greater to function."
 msgstr ""
 
-#: src/Core/Plugin.php:86
+#: src/Core/Plugin.php:94
 msgid "This plugin requires WooCommerce plugin to be active."
-msgstr ""
-
-#: src/Core/Plugin.php:192
-msgid "manifest.json is missing. Bundle the plugin before using it."
 msgstr ""
 
 #: src/ECommerce/WooCommerce/AdminOrder.php:57
@@ -626,9 +119,21 @@ msgstr ""
 msgid "PIN number"
 msgstr ""
 
+#: src/ECommerce/WooCommerce/CheckoutFields.php:60
+#: src/ECommerce/WooCommerce/CheckoutFields.php:68
+msgctxt "placeholder"
+msgid "01234567891"
+msgstr ""
+
 #: src/ECommerce/WooCommerce/CheckoutFields.php:95
 #: src/ECommerce/WooCommerce/CheckoutFields.php:103
 msgid "IBAN number"
+msgstr ""
+
+#: src/ECommerce/WooCommerce/CheckoutFields.php:96
+#: src/ECommerce/WooCommerce/CheckoutFields.php:104
+msgctxt "placeholder"
+msgid "HR12345678901234567890"
 msgstr ""
 
 #: src/ECommerce/WooCommerce/CheckoutFields.php:131
@@ -636,73 +141,133 @@ msgstr ""
 msgid "Company name"
 msgstr ""
 
-#: src/Exception/ApiRequestException.php:42
-#, php-format
-msgid "API request error happened. %1$s. (Error code %2$s)."
+#: src/ECommerce/WooCommerce/CheckoutFields.php:132
+#: src/ECommerce/WooCommerce/CheckoutFields.php:140
+msgctxt "placeholder"
+msgid "Cool company inc."
 msgstr ""
 
+#. translators: %1$s: error message, %2$s: error code.
+#: src/Exception/ApiRequestException.php:42
+msgid "(Error code %1$s). API request error happened. %2$s"
+msgstr ""
+
+#. translators: 1. View URI, 2. Reason for not exception.
+#: src/Exception/FailedToLoadView.php:41
+msgid "Could not load the View URI \"%1$s\". Reason: \"%2$s\"."
+msgstr ""
+
+#. translators: 1: the className, 2: the interface name.
+#: src/Exception/InvalidAutowireDependency.php:40
+msgid "Unable to find \"%1$s\" class that implements %2$s (looking in $filenameIndex)."
+msgstr ""
+
+#. translators: 1: The class name, 2: The interface name, 3: The interface name.
+#: src/Exception/InvalidAutowireDependency.php:61
+msgid "Found more than 1 class called \"%1$s\" that implements %2$s interface."
+msgstr ""
+
+#. translators: 1: %s is replaced with the className and interfaceName, 2: %s is replaced with the parameter name.
+#: src/Exception/InvalidAutowireDependency.php:83
+msgid "Found a primitive dependency for %1$s with param %2$s. Autowire is unable to figure out what value needs to be injected here."
+msgstr ""
+
+#. translators: 1. the view URI.
+#: src/Exception/InvalidUri.php:38
+msgid "The View URI \"%s\" is not accessible or readable."
+msgstr ""
+
+#. translators: %s is replaced with the className.
+#: src/Exception/NonPsr4CompliantClass.php:35
+msgid ""
+"Unable to autowire %s. Please check if the namespace is PSR-4 compliant (i.e. it needs to match the folder structure).\n"
+"\t\t\t\tSee: https://www.php-fig.org/psr/psr-4/#3-examples"
+msgstr ""
+
+#. translators: %1$s: error message, %2$s: error code.
 #: src/Exception/WpException.php:43
-#, php-format
 msgid "WordPress internal error happened. %1$s. (Error code %2$s)."
 msgstr ""
 
-#: src/Privacy/DataHandling.php:78 src/Privacy/DataHandling.php:177
+#: src/Privacy/DataHandling.php:66
+#: src/Privacy/DataHandling.php:153
 msgid "Woo Solo Api Order Data"
 msgstr ""
 
-#: src/Privacy/DataHandling.php:103
+#: src/Privacy/DataHandling.php:91
 msgid "Order Item"
 msgstr ""
 
-#: src/Privacy/DataHandling.php:107
+#: src/Privacy/DataHandling.php:95
 msgid "WooCommerce order item ID"
 msgstr ""
 
-#: src/Privacy/DataHandling.php:115
+#: src/Privacy/DataHandling.php:99
+#: assets/dev/scripts/components/OrderPanel.jsx:70
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3754
+msgid "Solo ID"
+msgstr ""
+
+#: src/Privacy/DataHandling.php:103
 msgid "Customer email"
 msgstr ""
 
-#: src/Privacy/DataHandling.php:119
+#: src/Privacy/DataHandling.php:107
 msgid "Is sent to API"
 msgstr ""
 
-#: src/Privacy/DataHandling.php:123
+#: src/Privacy/DataHandling.php:111
 msgid "Is sent to user"
 msgstr ""
 
-#: src/Privacy/DataHandling.php:127
+#: src/Privacy/DataHandling.php:115
 msgid "API request error messages"
 msgstr ""
 
-#: src/Privacy/DataHandling.php:142
+#: src/Privacy/DataHandling.php:119
+#: assets/dev/scripts/components/OrderPanel.jsx:75
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3759
+msgid "Created at"
+msgstr ""
+
+#: src/Privacy/DataHandling.php:123
+#: assets/dev/scripts/components/OrderPanel.jsx:76
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3760
+msgid "Updated at"
+msgstr ""
+
+#: src/Privacy/DataHandling.php:130
 msgid "Woo Solo Api Order Items"
 msgstr ""
 
-#: src/Request/SoloApiRequest.php:104
+#: src/Request/SoloApiRequest.php:106
 msgid "Due date option needs to be a string"
 msgstr ""
 
-#: src/Request/SoloApiRequest.php:108
+#: src/Request/SoloApiRequest.php:110
 msgid "Currency option needs to be a string"
 msgstr ""
 
-#: src/Request/SoloApiRequest.php:112
+#: src/Request/SoloApiRequest.php:114
 msgid "Language option needs to be a string"
 msgstr ""
 
-#: src/Request/SoloApiRequest.php:308
+#: src/Request/SoloApiRequest.php:416
 msgid "Shipping fee"
 msgstr ""
 
-#: src/Request/SoloApiRequest.php:340
+#: src/Request/SoloApiRequest.php:540
 msgid "Central bank rates API returned an empty result"
 msgstr ""
 
-#: src/Request/SoloApiRequest.php:475
+#: src/Request/SoloApiRequest.php:689
 msgid "Response details from the API is not of an array type"
 msgstr ""
 
-#: src/Rest/Endpoints/AccountDetails.php:52
+#: src/Rest/Endpoints/AccountDetails.php:55
 msgid "Solo API token must be a string"
 msgstr ""
 
@@ -710,70 +275,890 @@ msgstr ""
 msgid "Flag that notifies if the PDF bill was sent to customer."
 msgstr ""
 
-#: src/Settings/PluginSettings.php:75
+#: src/Rest/Endpoints/OrderDetails.php:181
+msgid "URL of the sent PDF. Used to resend the PDF in case there was some failure with the request."
+msgstr ""
+
+#: src/Rest/Endpoints/ResendApiOrder.php:69
+msgid "Order ID is empty."
+msgstr ""
+
+#. translators: %d is the order ID.
+#: src/Rest/Endpoints/ResendApiOrder.php:78
+msgid "Order with the ID %d doesn't exist."
+msgstr ""
+
+#: src/Rest/Endpoints/ResendApiOrder.php:86
+msgid "API call to SOLO service executed, please wait a bit for it to execute, then reload this page."
+msgstr ""
+
+#: src/Settings/PluginSettings.php:62
+#: assets/dev/scripts/components/Settings/TokenPanel.jsx:35
+#: assets/dev/scripts/components/Settings/TokenPanel.jsx:43
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3075
+#: assets/public/assets/application-b618e585.js:3083
+msgid "Solo API token"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:74
 msgid "Unit measure of the shop (e.g. piece, hour, m³, etc.)"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:87
+#: src/Settings/PluginSettings.php:86
 msgid "Language of the bill or the invoice"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:99
+#: src/Settings/PluginSettings.php:98
 msgid "Currency of the bill or the invoice"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:111
+#: src/Settings/PluginSettings.php:110
 msgid "Service type. A unique ID of the service (must be a number)"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:123
+#: src/Settings/PluginSettings.php:122
 msgid "Show taxes option"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:135
+#: src/Settings/PluginSettings.php:134
 msgid "The type of invoice (R, R1, R2, No label or In advance)"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:147
+#: src/Settings/PluginSettings.php:146
 msgid "The title of the invoice email"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:159
+#: src/Settings/PluginSettings.php:158
 msgid "The message of the invoice email"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:183
+#: src/Settings/PluginSettings.php:170
+#: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:70
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3645
+msgid "Change the 'from' name that shows when WordPress sends the mail"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:182
 msgid "Enable PIN field in the WooCommerce checkout"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:195
+#: src/Settings/PluginSettings.php:194
 msgid "Enable IBAN field in the WooCommerce checkout"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:207
+#: src/Settings/PluginSettings.php:206
 msgid "Specify the due date on the bill or the invoice"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:219
-msgid "Array of gateways that the email with the invoice should be sent"
+#: src/Settings/PluginSettings.php:218
+msgid "Array of gateways for which the email with the invoice should be sent"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:231
+#: src/Settings/PluginSettings.php:230
 msgid "Send the email to the client with the PDF of the bill or the invoice"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:243
+#: src/Settings/PluginSettings.php:242
 msgid "When to send the PDF - on checkout or order confirmation"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:268
+#: src/Settings/PluginSettings.php:267
 msgid "Available payment gateways"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:293
+#: src/Settings/PluginSettings.php:280
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:120
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3339
+msgid "Type of payment document"
+msgstr ""
+
+#: src/Settings/PluginSettings.php:292
 msgid "Should the invoice be fiscalized or not"
 msgstr ""
 
-#: src/Settings/PluginSettings.php:305
-msgid "Type of payment on api gateway (transactional account, cash, cards, etc.)"
+#: src/Settings/PluginSettings.php:304
+msgid "Type of payment on api payment gateways (transactional account, cash, cards, etc.)"
+msgstr ""
+
+#: woo-solo-api.php:43
+msgid "You cannot access this file outside WordPress."
+msgstr ""
+
+#: assets/dev/scripts/components/App.jsx:127
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:4068
+msgid "Save settings"
+msgstr ""
+
+#: assets/dev/scripts/components/ErrorNotice.jsx:16
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3034
+msgid "Validation error: "
+msgstr ""
+
+#: assets/dev/scripts/components/Notification.jsx:11
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3009
+msgid "For more details on the options you can read the official SOLO API documentation here: "
+msgstr ""
+
+#: assets/dev/scripts/components/OrderPanel.jsx:62
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3746
+msgid "Solo API order details"
+msgstr ""
+
+#: assets/dev/scripts/components/OrderPanel.jsx:68
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3752
+msgid "ID"
+msgstr ""
+
+#: assets/dev/scripts/components/OrderPanel.jsx:69
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3753
+msgid "WooCommerce Order ID"
+msgstr ""
+
+#: assets/dev/scripts/components/OrderPanel.jsx:71
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3755
+msgid "Customer Email"
+msgstr ""
+
+#: assets/dev/scripts/components/OrderPanel.jsx:72
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3756
+msgid "Is sent to Solo API"
+msgstr ""
+
+#: assets/dev/scripts/components/OrderPanel.jsx:73
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3757
+msgid "Is pdf sent to customer"
+msgstr ""
+
+#: assets/dev/scripts/components/OrderPanel.jsx:74
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3758
+msgid "API response errors"
+msgstr ""
+
+#: assets/dev/scripts/components/OrderPanel.jsx:77
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3761
+msgid "Resend to API"
+msgstr ""
+
+#: assets/dev/scripts/components/OrderPanel.jsx:98
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3782
+msgid "Resend order to API"
+msgstr ""
+
+#: assets/dev/scripts/components/OrderPanel.jsx:116
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3800
+msgid "Request sent"
+msgstr ""
+
+#: assets/dev/scripts/components/Popup.jsx:21
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3827
+msgid "Errors happened during saving"
+msgstr ""
+
+#: assets/dev/scripts/components/Popup.jsx:22
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3828
+msgid "Settings saved"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:39
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3475
+msgid "Additional Settings"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:45
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3481
+msgid "WooCommerce checkout settings"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:50
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3486
+msgid "Enable the PIN field on the billing and shipping from in the checkout"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:51
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:62
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3487
+#: assets/public/assets/application-b618e585.js:3498
+msgid "Enable"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:51
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:62
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3487
+#: assets/public/assets/application-b618e585.js:3498
+msgid "Disable"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:61
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3497
+msgid "Enable the IBAN field on the billing and shipping from in the checkout"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:72
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3508
+msgid "PDF settings"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:77
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3513
+msgid "Send the email to the client with the PDF of the order or the invoice"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:78
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3514
+msgid "Send email"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:78
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3514
+msgid "Don't send email"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:88
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3524
+msgid "Send mail to selected payment types"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:110
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3546
+msgid "PDF send control"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:118
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3554
+msgid "Send on:"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:123
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3559
+msgid "Checkout"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/AdditionalSettingsPanel.jsx:126
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3562
+msgid "Status change to 'completed'"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:52
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3885
+msgid "Exchange rate transient is cleared."
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:53
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3886
+msgid "Exchange rate transient wasn't cleared."
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:67
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3900
+msgid "Solo Api Test"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:71
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3904
+msgid "This serves for testing purposes only"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:73
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3906
+msgid "Pressing the button will make a request to your Solo API account, and will list all the invoices or offers you have"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:91
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3924
+msgid "Make a request"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:94
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3927
+msgid "Pressing the button will clear the Croatian Central Bank (HNB) API transient."
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/DebuggingPanel.jsx:102
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3935
+msgid "Delete exchange rate transient"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:36
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3611
+msgid "Email Settings"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:44
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3619
+msgid "Set the title of the mail that will be send with the PDF invoice"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:57
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3632
+msgid "Type the message that will appear on the mail with the invoice PDF attached"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/EmailSettingsPanel.jsx:73
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3648
+msgid "<str>CAUTION</str>: This change is global, every mail send from your WordPress will have this 'from' name"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:45
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3264
+msgid "Solo Api Settings"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:55
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3274
+msgid "Unit measure"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:56
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3275
+msgid "Select the default measure in your shop (e.g. piece, hour, m³ etc.)"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:69
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3288
+msgid "Invoice Language"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:70
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3289
+msgid "Select the language of the invoice/offer"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:83
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3302
+msgid "Currency"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:92
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3311
+msgid "You can check the currency rate at <a>Croatian National Bank</a>."
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:101
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3320
+msgid "The currency will be automatically added if the selected currency is different from EUR. Also, a note about conversion rate will be added to the invoice/offer."
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:107
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3326
+msgid "Choose the type of payment for each enabled payment gateway/type"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:125
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3344
+msgid "Offer"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:126
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3345
+msgid "Invoice"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:134
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3353
+msgid "Payment option types"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:145
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3364
+msgid "Check if you want the invoice to be fiscalized *"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:146
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3365
+msgid "Fiscalize"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:146
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3365
+msgid "Don't fiscalize"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:154
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3373
+msgid "* Fiscalization certificate must be added in the SOLO options, and it only applies to invoices."
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:163
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3382
+msgid "Enter the type of the service"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:164
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3383
+msgid "You can find it in your account settings (Usluge -> Tipovi usluga)"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:177
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3396
+msgid "Show taxes"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:178
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3397
+msgid "Show tax"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:178
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3397
+msgid "Don't show tax"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:190
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3409
+msgid "Type of invoice"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:191
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3410
+msgid "Only works with invoice, not with offer"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/GeneralSettingsPanel.jsx:204
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3423
+msgid "Invoice/Offer due date"
+msgstr ""
+
+#: assets/dev/scripts/components/Settings/TokenPanel.jsx:44
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3084
+msgid "Enter your personal token that you obtained from your SOLO account"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.js:7
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3122
+msgid "1 day"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.js:8
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3123
+msgid "2 days"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.js:9
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3124
+msgid "3 days"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.js:10
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3125
+msgid "4 days"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.js:11
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3126
+msgid "5 days"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.js:12
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3127
+msgid "6 days"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.js:13
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3128
+msgid "1 week"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.js:14
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3129
+msgid "2 weeks"
+msgstr ""
+
+#: assets/dev/scripts/const/dueDate.js:15
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3130
+msgid "3 weeks"
+msgstr ""
+
+#: assets/dev/scripts/const/invoiceType.js:10
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3142
+msgid "No label"
+msgstr ""
+
+#: assets/dev/scripts/const/invoiceType.js:11
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3143
+msgid "In advance"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.js:7
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3152
+msgid "Croatian"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.js:8
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3153
+msgid "English"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.js:9
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3154
+msgid "German"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.js:10
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3155
+msgid "French"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.js:11
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3156
+msgid "Italian"
+msgstr ""
+
+#: assets/dev/scripts/const/languages.js:12
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3157
+msgid "Spanish"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.js:7
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3166
+msgid "Transactional account"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.js:8
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3167
+msgid "Cash"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.js:9
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3168
+msgid "Cards"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.js:10
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3169
+msgid "Cheque"
+msgstr ""
+
+#: assets/dev/scripts/const/paymentTypeOptions.js:11
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3170
+msgid "Other"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:7
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3179
+msgid "-"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:8
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3180
+msgid "piece"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:9
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3181
+msgid "hour"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:10
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3182
+msgid "year"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:11
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3183
+msgid "km"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:12
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3184
+msgid "litre"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:13
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3185
+msgid "kg"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:14
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3186
+msgid "kWh"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:15
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3187
+msgid "m³"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:16
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3188
+msgid "tonne"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:17
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3189
+msgid "m²"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:18
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3190
+msgid "m"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:19
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3191
+msgid "day"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:20
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3192
+msgid "month"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:21
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3193
+msgid "night"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:22
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3194
+msgid "cart"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:23
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3195
+msgid "account"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:24
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3196
+msgid "pair"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:25
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3197
+msgid "ml"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:26
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3198
+msgid "pax"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:27
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3199
+msgid "room"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:28
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3200
+msgid "apartment"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:29
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3201
+msgid "term"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:30
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3202
+msgid "set"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:31
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3203
+msgid "package"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:32
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3204
+msgid "point"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:33
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3205
+msgid "service"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:34
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3206
+msgid "pal"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:35
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3207
+msgid "kont"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:36
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3208
+msgid "čl"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:37
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3209
+msgid "tis"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:38
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3210
+msgid "sec"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:39
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3211
+msgid "min"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:40
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3212
+msgid "str"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:41
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3213
+msgid "kpl"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:42
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3214
+msgid "pšl"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:43
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3215
+msgid "ha"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:44
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3216
+msgid "g"
+msgstr ""
+
+#: assets/dev/scripts/const/unitMeasures.js:45
+#: assets/public/assets/application-b618e585.js:10
+#: assets/public/assets/application-b618e585.js:3217
+msgid "x"
+msgstr ""
+
+#: assets/public/assets/application-b618e585.js:10
+msgid "Decide when to send the PDF of the order or invoice.On customer checkout, or when you approve the order in the WooCommerce admin.This will determine when the call to the SOLO API will be made"
 msgstr ""

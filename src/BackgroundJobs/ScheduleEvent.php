@@ -40,7 +40,7 @@ abstract class ScheduleEvent implements BackgroundProcessManager
 	 * Register the process you wish to run in the background
 	 *
 	 * @param mixed ...$args Arguments to pass to the background job callback.
-	 * @return mixed
+	 * @return void
 	 */
 	abstract public function registerProcess(...$args);
 
