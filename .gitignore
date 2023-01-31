@@ -15,7 +15,7 @@ Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
 
-src/Core/CompiledContainer.php
+src/Core/WooCompiledContainer.php
 
 # Tests
 /wp-content
