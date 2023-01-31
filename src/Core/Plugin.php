@@ -16,10 +16,8 @@ use DI\ContainerBuilder;
 use DI\Definition\Helper\AutowireDefinitionHelper;
 use DI\Definition\Reference;
 use Exception;
-use MadeByDenis\WooSoloApi\BackgroundJobs\MakeSoloApiCall;
 use MadeByDenis\WooSoloApi\Database\PluginActivationCheck;
 use MadeByDenis\WooSoloApi\Database\SoloOrdersTable;
-use MadeByDenis\WooSoloApi\ECommerce\WooCommerce\MakeApiRequest;
 use MadeByDenis\WooSoloApi\Exception\PluginActivationFailure;
 use MadeByDenis\WooSoloApi\Utils\FetchExchangeRate;
 use Tests\Fixtures\MockApiRequest;
@@ -316,7 +314,7 @@ final class Plugin extends Autowiring implements Registrable, HasActivation, Has
 		$builder = new ContainerBuilder();
 
 		if (!$this->isDevelopment()) {
-			$builder->enableCompilation(__DIR__);
+			$builder->enableCompilation(__DIR__, 'WooCompiledContainer');
 		}
 
 		return $builder->addDefinitions($definitions)->build();

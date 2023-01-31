@@ -397,11 +397,15 @@ class Autowiring
 	 */
 	private function validateAndBuildClasses(array $classNames, bool $skipInvalid): array
 	{
+		$classNames = array_filter($classNames, function($className) {
+			return $className !== 'MadeByDenis\WooSoloApi\Core\WooCompiledContainer';
+		});
+
 		$reflectionClasses = [];
 		foreach ($classNames as $className) {
 			try {
-				$reflClass = new ReflectionClass($className);
-				$reflectionClasses[(string)$className] = $reflClass;
+				$reflectionClass = new ReflectionClass($className);
+				$reflectionClasses[(string)$className] = $reflectionClass;
 			} catch (Exception $e) {
 				if ($skipInvalid) {
 					continue;
