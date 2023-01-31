@@ -67,13 +67,12 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 == Changelog ==
 
 = 3.0.1 =
-Release Date: January 31th, 2023
+Release Date: January 31st, 2023
 
+* Fix issue with the compiled container
 
 = 3.0.0 =
 Release Date: January 30th, 2023
-
-* Fix issue with the compiled container
 
 This update was mostly a dev update to make the plugin easier to maintain.
 A lot was changed under the hood (from handling dependency injection to build process, and how settings are handled).
@@ -907,7 +906,7 @@ function my_customer_filter($measure, $itemNo, $order, $itemData) {
 @param int $itemNo Current item in the list.
 @param object|WC_Order $order Current order.
 @param array $itemData Current item data.
-<code>
+</code>
 
 --------------
 
@@ -931,4 +930,4 @@ function my_customer_filter($measure, $itemNo, $order, $itemData) {
 @param int $itemNo Current item in the list.
 @param object|WC_Order $order Current order.
 @param object|null $shippingObject Current shipping item data.
-<code>
+</code>
