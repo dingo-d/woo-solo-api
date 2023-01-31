@@ -16,7 +16,7 @@
 **Requires at least**: 5.9  
 **Requires PHP**: 7.4  
 **Tested up to**: 5.9  
-**Stable tag**: 2.2.0
+**Stable tag**: 3.0.1
 **WC requires at least**: 6.0.0  
 **WC tested up to**: 7.3.0  
 **License**: MIT  
