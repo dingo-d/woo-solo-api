@@ -51,6 +51,6 @@
 		"rollup-plugin-external-globals": "^0.7.1",
 		"sass": "^1.57.1",
 		"stylelint": "^15.10.1",
-		"vite": "^4.0.4"
+		"vite": "^4.0.5"
 	}
 }
