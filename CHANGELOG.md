@@ -16,6 +16,13 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [3.1.0] - 2023-08-09
+
+### Fixed
+
+* Fix issue with fiscalization options
+* Tested with WC 8.0.0 and WP 6.3
+
 ## [3.0.1] - 2023-01-31
 
 ### Fixed
@@ -409,6 +416,7 @@ A lot of issues were fixed. The plugin should be more stable and work better now
 * Initial release
 
 [Unreleased]: https://github.com/dingo-d/woo-solo-api/compare/master...HEAD
+[3.1.0]: https://github.com/dingo-d/woo-solo-api/compare/3.0.1...3.1.0  
 [3.0.1]: https://github.com/dingo-d/woo-solo-api/compare/3.0.0...3.0.1  
 [3.0.0]: https://github.com/dingo-d/woo-solo-api/compare/2.3.0...3.0.0  
 [2.3.0]: https://github.com/dingo-d/woo-solo-api/compare/2.2.0...2.3.0  
