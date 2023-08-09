@@ -574,9 +574,7 @@ class SoloApiRequest implements ApiRequest
 		}
 
 		if ($billType === self::INVOICE) {
-			$requestBody['fiskalizacija'] = '0';
-
-			if (!empty($soloApiFiscalization)) {
+			if ($soloApiFiscalization === '1') {
 				$requestBody['fiskalizacija'] = '1';
 			}
 		}

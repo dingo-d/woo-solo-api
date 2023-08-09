@@ -51,8 +51,8 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 == Requirements ==
 
 * PHP 7.4 or greater
-* WordPress 5.9 or above
-* WooCommerce 6.0.0 or above
+* WordPress 6.0 or above
+* WooCommerce 7.0.0 or above
 * Non IE browser
 
 == Screenshots ==
@@ -65,6 +65,12 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 6. You can check the sent orders, whether the order was sent to API, and if the customer got the PDF or not (or if error happened on the API)
 
 == Changelog ==
+
+= 3.1.0 =
+Release Date: August 9th, 2023
+
+* Fix issue with fiscalization options
+* Tested with WC 8.0.0 and WP 6.3
 
 = 3.0.1 =
 Release Date: January 31st, 2023

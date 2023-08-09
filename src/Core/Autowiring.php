@@ -335,7 +335,7 @@ class Autowiring
 		$classInterfaceIndex = [];
 		foreach ($reflectionClasses as $projectClass => $reflectionClass) {
 			$interfaces = \array_map(
-				function () {
+				static function () {
 					return true;
 				},
 				$reflectionClass->getInterfaces()
@@ -397,7 +397,7 @@ class Autowiring
 	 */
 	private function validateAndBuildClasses(array $classNames, bool $skipInvalid): array
 	{
-		$classNames = array_filter($classNames, function($className) {
+		$classNames = array_filter($classNames, static function ($className) {
 			return $className !== 'MadeByDenis\WooSoloApi\Core\WooCompiledContainer';
 		});
 

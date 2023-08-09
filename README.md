@@ -15,10 +15,10 @@
 **Tags**: woocommerce, api, solo api, solo, api integration, shop, payment, woo  
 **Requires at least**: 5.9  
 **Requires PHP**: 7.4  
-**Tested up to**: 5.9  
-**Stable tag**: 3.0.1
-**WC requires at least**: 6.0.0  
-**WC tested up to**: 7.3.0  
+**Tested up to**: 6.3  
+**Stable tag**: 3.1.0
+**WC requires at least**: 7.0.0  
+**WC tested up to**: 8.0.0  
 **License**: MIT  
 **License URI**: https://opensource.org/licenses/MIT
 
