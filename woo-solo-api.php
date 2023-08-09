@@ -10,7 +10,7 @@
  * Plugin Name:          Woo Solo Api
  * Plugin URI:           https://madebydenis.com/woo-solo-api
  * Description:          This plugin provides integration of the SOLO API service with WooCommerce.
- * Version:              3.1.0
+ * Version:              3.1.1
  * Author:               Denis Žoljom
  * Author URI:           https://madebydenis.com
  * License:              MIT
