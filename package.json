@@ -1,6 +1,6 @@
 {
 	"name": "woo-solo-api",
-	"version": "3.1.0",
+	"version": "3.1.1",
 	"description": "This plugin provides integration of the SOLO API service with WooCommerce.",
 	"authors": [
 		{
@@ -32,25 +32,24 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@wordpress/api-fetch": "^6.22.0",
-		"@wordpress/components": "^23.2.0",
-		"@wordpress/data": "^8.2.0",
-		"@wordpress/element": "^5.2.0",
-		"@wordpress/i18n": "^4.25.0",
+		"@wordpress/api-fetch": "^6.35.0",
+		"@wordpress/components": "^25.4.0",
+		"@wordpress/data": "^9.8.0",
+		"@wordpress/element": "^5.15.0",
+		"@wordpress/i18n": "^4.38.0",
 		"buffer": "^6.0.3",
 		"classnames": "^2.3.2",
 		"form-urlencoded": "^6.1.0",
-		"php-serialize": "^4.0.2"
+		"php-serialize": "^4.1.1"
 	},
 	"devDependencies": {
 		"@kucrut/vite-for-wp": "^0.5.2",
 		"@rollup/plugin-inject": "^5.0.3",
-		"@wordpress/eslint-plugin": "^13.9.0",
-		"@wordpress/stylelint-config": "^21.8.0",
-		"eslint": "^8.33.0",
-		"rollup-plugin-external-globals": "^0.7.1",
-		"sass": "^1.57.1",
-		"stylelint": "^14.2",
-		"vite": "^4.0.5"
+		"@wordpress/eslint-plugin": "^14.11.0",
+		"@wordpress/stylelint-config": "^21.21.0",
+		"eslint": "^8.46.0",
+		"rollup-plugin-external-globals": "^0.8.0",
+		"sass": "^1.64.2",
+		"vite": "^4.4.9"
 	}
 }

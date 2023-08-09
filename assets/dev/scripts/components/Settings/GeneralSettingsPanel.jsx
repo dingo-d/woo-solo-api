@@ -111,6 +111,15 @@ export const GeneralSettingsPanel = () => {
 							const fiscal = `solo_api_fiscalization-${type}`;
 							const payment = `solo_api_payment_type-${type}`;
 
+							let fiscalSettings = settings[fiscal];
+
+							// Fallback for null, or other values.
+							if (fiscalSettings === null || fiscalSettings === false) {
+								fiscalSettings = false;
+							} else {
+								fiscalSettings = true;
+							}
+
 							return <div className='components-panel__item' key={type}>
 								<h4>{paymentGateways[type]}</h4>
 								<SelectControl
@@ -143,10 +152,16 @@ export const GeneralSettingsPanel = () => {
 									className={hasErrorClass(fiscal)}
 									name={fiscal}
 									label={__('Check if you want the invoice to be fiscalized *', 'woo-solo-api')}
-									help={settings[fiscal] ? __('Fiscalize', 'woo-solo-api') : __('Don\'t fiscalize', 'woo-solo-api')}
-									checked={settings[fiscal]}
+									help={fiscalSettings ? __('Fiscalize', 'woo-solo-api') : __('Don\'t fiscalize', 'woo-solo-api')}
+									checked={fiscalSettings}
 									disabled={isActive}
-									onChange={(value) => setSettings({...settings, [fiscal]: value, settingsRefs})}
+									onChange={(value) => {
+										setSettings({
+											...settings,
+											[fiscal]: (value === null || value === false) ? false : true,
+											settingsRefs
+										})
+									}}
 								/>
 								<ErrorNotice errors={errors} type={fiscal} />
 							</div>;
