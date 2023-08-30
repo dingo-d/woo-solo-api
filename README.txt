@@ -1,12 +1,12 @@
 === Woo Solo Api ===
-Contributors: dingo_bastard
+Contributors: dingo_d
 Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 6.3
-Stable tag: 3.1.1
+Tested up to: 6.3.1
+Stable tag: 3.2.0
 WC requires at least: 7.0.0
-WC tested up to: 8.0.0
+WC tested up to: 8.0.3
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -66,14 +66,37 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 == Changelog ==
 
+= 3.2.0 =
+Release Date: August 30th, 2023
+
+### Added
+
+* New filter for the address order field
+* 0 days due date option for the order
+
+### Fixed
+
+* Fix the PIN field casting to integer (would strip the leading zero)
+
+= 3.1.1 =
+Release Date: August 9th, 2023
+
+### Fixed
+
+* Fix issue with saving of the fiscalization options
+
 = 3.1.0 =
 Release Date: August 9th, 2023
+
+### Fixed
 
 * Fix issue with fiscalization options
 * Tested with WC 8.0.0 and WP 6.3
 
 = 3.0.1 =
 Release Date: January 31st, 2023
+
+### Fixed
 
 * Fix issue with the compiled container
 
