@@ -11,14 +11,14 @@
 
 # Woo Solo API
 
-**Contributors**: dingo_bastard  
+**Contributors**: dingo-d  
 **Tags**: woocommerce, api, solo api, solo, api integration, shop, payment, woo  
-**Requires at least**: 5.9  
+**Requires at least**: 6.0  
 **Requires PHP**: 7.4  
-**Tested up to**: 6.3  
-**Stable tag**: 3.1.1
+**Tested up to**: 6.3.1  
+**Stable tag**: 3.2.0
 **WC requires at least**: 7.0.0  
-**WC tested up to**: 8.0.0  
+**WC tested up to**: 8.0.3  
 **License**: MIT  
 **License URI**: https://opensource.org/licenses/MIT
 
@@ -44,8 +44,8 @@ For more information about the SOLO API visit this link: https://solo.com.hr/api
 ### Requirements
 
 * PHP 7.4 or greater
-* WordPress 5.9 or above
-* WooCommerce 6.0 or above
+* WordPress 6.0 or above
+* WooCommerce 7.0 or above
 
 ## Development
 
@@ -151,207 +151,7 @@ Note that some features are not possible to make within this plugin. For instanc
 
 ### Can I modify how the email looks, or customer notice?
 
-Sure you can, besides actually adding things in the settings of the plugin you can modify certain things using these
-hooks:
-
-#### Filters the custom message for customer note
-
-If you need to extend the customer note, you can just hook to this filter
-and modify the existing content
-
-```php
-@param string $customerNote Existing customer note.
-
-apply_filters('woo_solo_api_modify_customer_note', $customerNote);
-```
-
-#### Adds a global discount
-
-WooCommerce will handle counting the discounts for us.
-This is why this is set to 0.
-We can hook into this if we want to change it.
-But this hook will affect every item. So use it with care.
-
-```php
-@param int $globalDiscount The value of the global discount to apply to every item.
-
-apply_filters('woo_solo_api_add_global_discount', $globalDiscount ### 0
-```
-
-#### Filters the email message from the options
-
-Email message can be set in the options and will be outputted here.
-If, for whatever reason we want to modify it some more, we can do that here.
-
-```php
-@param string $emailMessage Email message from options to filter.
-
-apply_filters('woo_solo_api_modify_options_email_message', $emailMessage);
-```
-
-#### Filters the default email message
-
-If you don't set the message in the options, you can still filter the default one.
-
-```php
-@param string $defaultMessage Email message to filter.
-
-apply_filters('woo_solo_api_modify_default_email_message', $defaultMessage);
-```
-
-#### Modify the email title from the options
-
-Email title for the customer can be set in the options,
-but you can modify it further with this filter.
-
-```php
-@param string $emailTitle Email title.
-
-apply_filters('woo_solo_api_modify_options_email_title', $emailTitle);
-```
-
-#### Modify the default email title from the options
-
-If you don't use the title from the options, you can use default one.
-And modify it.
-
-```php
-@param string $emailTitle Email title.
-
-apply_filters('woo_solo_api_modify_default_email_title', $defaultTitle);
-```
-
-#### Modify tax rates
-
-This hook is used to set different tax rates for items based on certain criteria.
-For instance, if you want to modify taxes based on location you can change it here
-(if for some reason it's not working from the default settings).
-
-```php
-@param float $taxRate  The value of the tax rate for the current order item.
-@param array $itemData The data for the current order item.
-@param array $taxRates The value of the tax rates for the current order item.
-
-add_filter('woo_solo_api_modify_tax_rate', 'my_tax_rate', 10, 3);
-```
-
-#### Filter email headers
-
-When email to customer is sent, maybe you want to add something more. In that
-case you'll probably need to modify the headers sent with the email.
-Default ones are
-
-```php
-[
-  'MIME-Version: 1.0',
-  'Content-Type: text/html',
-];
-```
-
-You can add to that list.
-
-```php
-@param array $headers Email headers to pass to wp_mail.
-
-apply_filters('woo_solo_api_email_headers', $headers);
-```
-
-#### Filter the _from_ name set from the options
-
-```php
-@param string $name Name to change in the "From" field.
-
-apply_filters('woo_solo_api_change_email_from_name', $name);
-```
-
-#### Filter the bill type
-
-Filters the bill type
-Use this filter if you need to dynamically change the bill type.
-Usage:
-
-```php
-@param string $billType Existing bill type.
-@param string $paymentMethod Selected payment method for the current order.
-@param object|WC_Order $order Current order.
-
-apply_filters('woo_solo_api_modify_bill_type', $billType, $paymentMethod, $order);
-```
-
-#### Filter the unit measure for the current item
-
-Use this filter if you need to dynamically change measure for the item.
-Unit measure *MUST* be an integer in the following list:
-
-<details>
-  <pre>
-1:  '-',
-2:  'piece',
-3:  'hour',
-4:  'year',
-5:  'km',
-6:  'litre',
-7:  'kg',
-8:  'kWh',
-9:  'm³',
-10: 'tonne',
-11: 'm²',
-12: 'm',
-13: 'day',
-14: 'month',
-15: 'night',
-16: 'cart',
-17: 'account',
-18: 'pair',
-19: 'ml',
-20: 'pax',
-21: 'room',
-22: 'apartment',
-23: 'term',
-24: 'set',
-25: 'package',
-26: 'point',
-27: 'service',
-28: 'pal',
-29: 'kont',
-30: 'čl',
-31: 'tis',
-32: 'sec',
-33: 'min',
-34: 'str',
-35: 'kpl',
-36: 'pšl',
-37: 'ha',
-38: 'g',
-39: 'x',
-  </pre>
-</details>
-
-
-```php
-@param int $measure Current unit measure.
-@param int $itemNo Current item in the list.
-@param object|WC_Order $order Current order.
-@param array $itemData Current item data.
-
-apply_filters('woo_solo_api_modify_item_measure', $measure, $itemNo, $order, $itemData);
-```
-
-#### Filter the unit measure for the current shipping item
-
-Use this filter if you need to dynamically change measure for the shipping item.
-Unit measure *MUST* be an integer corresponding to the above list.
-
-Be careful when changing the measure using the above filter, as the shipping item should probably be a `piece (2)`. 
-		
-```php
-@param int $measure Current shipping unit measure. Will be picked up by whatever is in the default measure.
-@param int $itemNo Current item in the list.
-@param object|WC_Order $order Current order.
-@param object|null $shippingObject Current shipping item data.
-
-$measure = apply_filters('woo_solo_api_modify_shipping_item_measure', $measure, $itemNo, $order, $shippingObject = null);
-```
+You can modify the request towards the Solo service using hooks described in the project's [wiki page](https://github.com/dingo-d/woo-solo-api/wiki/Plugin-filters).
 
 ## License
 
