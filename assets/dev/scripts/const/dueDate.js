@@ -4,6 +4,7 @@
 import {__} from '@wordpress/i18n';
 
 export const dueDate = [
+	{value: '0d', label: __('0 days', 'woo-solo-api')},
 	{value: '1d', label: __('1 day', 'woo-solo-api')},
 	{value: '2d', label: __('2 days', 'woo-solo-api')},
 	{value: '3d', label: __('3 days', 'woo-solo-api')},
