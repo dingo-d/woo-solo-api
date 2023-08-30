@@ -194,6 +194,26 @@ class SoloApiRequest implements ApiRequest
 		$soloApiFiscalization = get_option('solo_api_fiscalization-' . esc_attr($paymentMethod));
 		$paymentType = get_option('solo_api_payment_type-' . esc_attr($paymentMethod));
 
+		/**
+		 * Filters the Order address
+		 *
+		 * Use this filter if you need to change the formatting of the address of the order.
+		 * Usage:
+		 *
+		 * add_filter('woo_solo_api_modify_order_address', 'my_customer_filter');
+		 *
+		 * function my_customer_filter($orderAddress) {
+		 *   return $orderAddress; // Modify it how you wish.
+		 * }
+		 *
+		 * @since 3.2.0
+		 *
+		 * @param string $orderAddress Current order of the address.
+		 *
+		 * @return string Modified order address.
+		 */
+		$orderAddress = apply_filters('woo_solo_api_modify_order_address', $orderAddress);
+
 		$url = self::URL . $billType;
 
 		// Get all data needed for the request.
@@ -201,8 +221,8 @@ class SoloApiRequest implements ApiRequest
 			'token' => $token,
 			'tip_usluge' => $serviceType,
 			'prikazi_porez' => $showTaxes ? 1 : 0,
-			'kupac_naziv' => esc_attr($orderBuyer),
-			'kupac_adresa' => esc_attr($orderAddress),
+			'kupac_naziv' => esc_html($orderBuyer),
+			'kupac_adresa' => esc_html($orderAddress),
 		];
 
 		$requestBody['tip_racuna'] = 4; // Default is no label.
@@ -213,7 +233,7 @@ class SoloApiRequest implements ApiRequest
 
 		// Optional parameter.
 		if (!empty($pinNumber)) {
-			$requestBody['kupac_oib'] = (int)$pinNumber;
+			$requestBody['kupac_oib'] = (string)$pinNumber;
 		}
 
 		// Individual items.
@@ -747,6 +767,9 @@ class SoloApiRequest implements ApiRequest
 	private function getDueDate(string $dueDate): string
 	{
 		switch ($dueDate) {
+			case '0d':
+				$invoiceDueDate = date('Y-m-d', strtotime('now'));
+				break;
 			case '1d':
 				$invoiceDueDate = date('Y-m-d', strtotime('+1 day'));
 				break;
