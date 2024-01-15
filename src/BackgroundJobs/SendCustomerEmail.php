@@ -65,16 +65,20 @@ class SendCustomerEmail extends ScheduleEvent
 		}
 
 		if (empty($checkedGateways)) {
+			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Selected payment gateways are empty', 'woo-solo-api'));
 			return;
 		}
 
 		if (!is_array($checkedGateways)) {
+			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Selected payment gateways are not array', 'woo-solo-api'));
 			return;
 		}
 
 		if (!in_array($paymentMethod, $checkedGateways, true)) {
+			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Selected payment gateways is not in the list of payment gateways', 'woo-solo-api'));
 			return;
 		}
+
 
 		global $wp_filesystem;
 
@@ -104,11 +108,13 @@ class SendCustomerEmail extends ScheduleEvent
 			$pdfName = esc_html__('offer-', 'woo-solo-api') . $pdfName;
 		}
 
-		$pdfGet = wp_remote_get($pdfLink);
+		$pdfGet = wp_remote_get($pdfLink, ['timeout' => 30]);
 
 		if (is_wp_error($pdfGet)) {
-			$errorCode = wp_remote_retrieve_response_code($pdfGet);
-			$errorMessage = wp_remote_retrieve_response_message($pdfGet);
+			$errorCode = $pdfGet->get_error_code();
+			$errorMessage = $pdfGet->get_error_message();
+
+			SoloOrdersTable::addApiResponseError($orderId, "$errorCode: $errorMessage");
 
 			return new WP_Error($errorCode, $errorMessage); // @phpstan-ignore-line
 		}
@@ -119,6 +125,8 @@ class SendCustomerEmail extends ScheduleEvent
 		if (!WP_Filesystem()) {
 			// Our credentials were no good, ask the user for them again.
 			request_filesystem_credentials('', '', true, '', null, false);
+			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Access to WP_Filesystem is denied', 'woo-solo-api'));
+
 			return;
 		}
 
@@ -157,9 +165,7 @@ class SendCustomerEmail extends ScheduleEvent
 			'post_content' => '',
 			'post_status' => 'inherit',
 		];
-
 		$urlParse = wp_parse_url($attachment);
-
 		if ($urlParse === false) {
 			// phpcs:ignore
 			SoloOrdersTable::addApiResponseError($orderId, esc_html__('Error in sending customer email. Attachment URL cannot be parsed.', 'woo-solo-api'));
@@ -173,8 +179,10 @@ class SendCustomerEmail extends ScheduleEvent
 		); // Create attachment in the Media screen.
 
 		if (is_wp_error($attachmentId)) { // @phpstan-ignore-line
-			$errorCode = wp_remote_retrieve_response_code($attachmentId);
-			$errorMessage = wp_remote_retrieve_response_message($attachmentId);
+			$errorCode = $attachmentId->get_error_code();
+			$errorMessage = $attachmentId->get_error_message();
+
+			SoloOrdersTable::addApiResponseError($orderId, "$errorCode: $errorMessage");
 
 			return new WP_Error($errorCode, $errorMessage); // @phpstan-ignore-line
 		}
@@ -325,7 +333,6 @@ class SendCustomerEmail extends ScheduleEvent
 
 		// Now we delete the saved attachment because of GDPR :).
 		$deleted = wp_delete_attachment($attachmentId, true);
-
 		// If for some reason WP won't delete it, try to force deletion.
 		if ($deleted === false || $deleted === null) {
 			if (!file_exists($attachment)) {
