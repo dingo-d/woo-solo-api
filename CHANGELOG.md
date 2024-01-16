@@ -16,6 +16,20 @@ This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a 
 
 _No documentation available about unreleased changes as of yet._
 
+## [3.3.0] - 2024-01-16
+
+### Added
+
+* Additional api response errors in case of an email sending failure, for easier debugging
+
+### Fixed
+
+* Extended the timeout value of fetching PDF from Solo service
+
+### Changed
+
+* Minor package updates
+
 ## [3.2.0] - 2023-08-30
 
 ### Added
@@ -433,6 +447,7 @@ A lot of issues were fixed. The plugin should be more stable and work better now
 * Initial release
 
 [Unreleased]: https://github.com/dingo-d/woo-solo-api/compare/master...HEAD
+[3.3.0]: https://github.com/dingo-d/woo-solo-api/compare/3.2.0...3.3.0  
 [3.2.0]: https://github.com/dingo-d/woo-solo-api/compare/3.1.1...3.2.0  
 [3.1.1]: https://github.com/dingo-d/woo-solo-api/compare/3.1.0...3.1.1  
 [3.1.0]: https://github.com/dingo-d/woo-solo-api/compare/3.0.1...3.1.0  

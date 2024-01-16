@@ -15,10 +15,10 @@
 **Tags**: woocommerce, api, solo api, solo, api integration, shop, payment, woo  
 **Requires at least**: 6.0  
 **Requires PHP**: 7.4  
-**Tested up to**: 6.3.1  
-**Stable tag**: 3.2.0
+**Tested up to**: 6.4.2
+**Stable tag**: 3.3.0
 **WC requires at least**: 7.0.0  
-**WC tested up to**: 8.0.3  
+**WC tested up to**: 8.4.0  
 **License**: MIT  
 **License URI**: https://opensource.org/licenses/MIT
 
@@ -155,5 +155,5 @@ You can modify the request towards the Solo service using hooks described in the
 
 ## License
 
-Copyright ©2023 Denis Žoljom.
+Copyright ©2024 Denis Žoljom.
 This plugin is free software, and may be redistributed under the terms specified in the LICENSE file.
