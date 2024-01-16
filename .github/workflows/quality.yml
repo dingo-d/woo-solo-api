@@ -110,7 +110,6 @@ jobs:
         with:
           php-version: "${{ matrix.php }}"
           coverage: "xdebug"
-          tools: "wp-cli"
 
       - name: "Checkout code"
         uses: "actions/checkout@v4"
@@ -121,11 +120,15 @@ jobs:
           dependency-versions: "${{ matrix.dependencies }}"
           custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
 
+      - name: "Add woocommerce plugin"
+        run:  |
+          wget -o woocommerce.zip https://downloads.wordpress.org/plugin/woocommerce.zip
+          unzip woocommerce.zip
+          mv woocommerceg ../
+
       - name: "Setup test suite"
         run: "./vendor/bin/wp-pest setup plugin --plugin-slug=woo-solo-api --skip-delete"
 
-      - name: "Install woocommerce"
-        run: "wp plugin install woocommerce --allow-root --path=./wp/src"
 
       - name: "Execute integration tests"
         run: "./vendor/bin/pest --group=integration"
