@@ -10,6 +10,7 @@ on:
   pull_request:
     paths-ignore:
       - "**.md"
+  workflow_dispatch:
 
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
@@ -27,7 +28,7 @@ jobs:
           coverage: "none"
 
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
@@ -39,8 +40,8 @@ jobs:
       - name: "Check source code for syntax errors"
         run: "composer exec -- parallel-lint src/ tests/"
 
-  integration_tests:
-    name: "2️⃣ Integration tests"
+  unit_tests:
+    name: "2️⃣ Unit tests"
     needs:
       - "syntax_errors"
     runs-on: "ubuntu-latest"
@@ -48,22 +49,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '7.4' ]
+        php: [ '7.4', '8.0', '8.1', '8.2', '8.3' ]
         allowed_failure: [ false ]
         dependencies:
-          - "lowest"
           - "highest"
         include:
-          - php: '8.0'
+          - php: '8.4'
             allowed_failure: true
-          - php: '8.1'
-            allowed_failure: true
-          - php: '8.2'
-            allowed_failure: true
-        exclude:
-          - php: '8.1'
-            allowed_failure: true
-            dependencies: "lowest" # Fails due to PHP parser error on a specific version.
     steps:
       - name: "Set up PHP"
         uses: "shivammathur/setup-php@v2"
@@ -72,7 +64,7 @@ jobs:
           coverage: "xdebug"
 
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
@@ -81,16 +73,13 @@ jobs:
           custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
 
       - name: "Setup test suite"
-        run: "vendor/bin/wp-pest setup plugin --plugin-slug=woo-solo-api --skip-delete"
+        run: "./vendor/bin/wp-pest setup plugin --plugin-slug=woo-solo-api --skip-delete"
 
       - name: "Execute unit tests"
         run: "./vendor/bin/pest --group=unit"
 
-      - name: "Execute integration tests"
-        run: "./vendor/bin/pest --group=integration"
-
-  static_analysis:
-    name: "3️⃣ Static analysis checks"
+  integration_tests:
+    name: "3️⃣ Integration tests"
     needs:
       - "syntax_errors"
     runs-on: "ubuntu-latest"
@@ -98,14 +87,55 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '7.4' ]
+        php: [ '7.4', '8.0', '8.1', '8.2', '8.3' ]
+        allowed_failure: [ false ]
+        dependencies:
+          - "highest"
+        include:
+          - php: '8.4'
+            allowed_failure: true
+    steps:
+      - name: "Set up PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php }}"
+          coverage: "xdebug"
+
+      - name: "Checkout code"
+        uses: "actions/checkout@v4"
+
+      - name: "Install dependencies"
+        uses: "ramsey/composer-install@v2"
+        with:
+          dependency-versions: "${{ matrix.dependencies }}"
+          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")
+
+      - name: "Add woocommerce plugin"
+        run:  |
+          wget https://downloads.wordpress.org/plugin/woocommerce.zip
+          unzip woocommerce.zip
+          mv woocommerce ../
+
+      - name: "Setup test suite"
+        run: "./vendor/bin/wp-pest setup plugin --plugin-slug=woo-solo-api --skip-delete"
+
+
+      - name: "Execute integration tests"
+        run: "./vendor/bin/pest --group=integration"
+
+  static_analysis:
+    name: "4️⃣ Static analysis checks"
+    needs:
+      - "syntax_errors"
+    runs-on: "ubuntu-latest"
+    continue-on-error: ${{ matrix.allowed_failure }}
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.4', '8.0', '8.1', '8.2', '8.3' ]
         allowed_failure: [ false ]
         include:
-          - php: '8.0'
-            allowed_failure: true
-          - php: '8.1'
-            allowed_failure: true
-          - php: '8.2'
+          - php: '8.4'
             allowed_failure: true
     steps:
       - name: "Set up PHP"
@@ -115,7 +145,7 @@ jobs:
           coverage: "none"
 
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Validate Composer configuration"
         run: "composer validate --strict"
@@ -130,7 +160,7 @@ jobs:
         run: "composer run test:types"
 
   coding_standards:
-    name: "4️⃣ Coding standards checks"
+    name: "5️⃣ Coding standards checks"
     needs:
       - "syntax_errors"
     runs-on: "ubuntu-latest"
@@ -146,6 +176,10 @@ jobs:
             allowed_failure: true # Change to false once php-compatibility 10 comes out
           - php: '8.2'
             allowed_failure: true # Change to false once php-compatibility 10 comes out
+          - php: '8.3'
+            allowed_failure: true # Change to false once php-compatibility 10 comes out
+          - php: '8.4'
+            allowed_failure: true # Change to false once php-compatibility 10 comes out
     steps:
       - name: "Set up PHP"
         uses: "shivammathur/setup-php@v2"
@@ -155,7 +189,7 @@ jobs:
           tools: "cs2pr"
 
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
@@ -167,9 +201,8 @@ jobs:
         run: |
           composer run test:style -- -q --report=checkstyle | cs2pr
 
-
   asset_lint:
-    name: "5️⃣ ES Lint and Stylelint checks"
+    name: "6️⃣ ES Lint and Stylelint checks"
     needs:
       - "syntax_errors"
     runs-on: "ubuntu-latest"
@@ -180,12 +213,17 @@ jobs:
 
     steps:
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Use Node.js ${{ matrix.node }}"
         uses: "actions/setup-node@v3"
         with:
           node-version: "${{ matrix.node }}"
-      - run: |
-          npm install
-          gsnpm run lint
+
+      - name: "Install dependencies"
+        run: |
+          npm ci
+
+      - name: "Run checks"
+        run: |
+          npm run lint

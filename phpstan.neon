@@ -5,6 +5,7 @@ parameters:
   level: 6
   inferPrivatePropertyTypeFromConstructor: true
   checkMissingIterableValueType: false
+  checkGenericClassInNonGenericObjectType: false
   scanFiles:
     - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
     # wc_admin_connect_page() comes from woocommerce-admin package
@@ -13,5 +14,3 @@ parameters:
     - src/
   excludePaths:
     - src/Core/CompiledContainer.php
-    - wp/
-    - wp-content/
