@@ -1,12 +1,12 @@
 === Woo Solo Api ===
 Contributors: dingo_d
 Tags: woocommerce, api, solo api, solo, api integration, shop, payment, woo
-Requires at least: 6.0
+Requires at least: 6.1
 Requires PHP: 7.4
-Tested up to: 6.3.1
-Stable tag: 3.2.0
+Tested up to: 6.4.2
+Stable tag: 3.3.0
 WC requires at least: 7.0.0
-WC tested up to: 8.0.3
+WC tested up to: 8.4.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
@@ -65,6 +65,21 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 6. You can check the sent orders, whether the order was sent to API, and if the customer got the PDF or not (or if error happened on the API)
 
 == Changelog ==
+
+= 3.2.0 =
+Release Date: January 16th, 2024
+
+### Added
+
+* Additional api response errors in case of an email sending failure, for easier debugging
+
+### Fixed
+
+* Extended the timeout value of fetching PDF from Solo service
+
+### Changed
+
+* Minor package updates
 
 = 3.2.0 =
 Release Date: August 30th, 2023
