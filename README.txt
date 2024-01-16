@@ -66,7 +66,7 @@ Be sure you have WooCommerce plugin installed first, otherwise you'll get an err
 
 == Changelog ==
 
-= 3.2.0 =
+= 3.3.0 =
 Release Date: January 16th, 2024
 
 ### Added
