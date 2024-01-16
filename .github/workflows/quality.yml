@@ -27,7 +27,7 @@ jobs:
           coverage: "none"
 
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
@@ -48,17 +48,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '7.4' ]
+        php: [ '7.4', '8.0', '8.1', '8.2', '8.3' ]
         allowed_failure: [ false ]
         dependencies:
           - "lowest"
           - "highest"
         include:
-          - php: '8.0'
-            allowed_failure: true
-          - php: '8.1'
-            allowed_failure: true
-          - php: '8.2'
+          - php: '8.4'
             allowed_failure: true
         exclude:
           - php: '8.1'
@@ -72,7 +68,7 @@ jobs:
           coverage: "xdebug"
 
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
@@ -98,14 +94,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '7.4' ]
+        php: [ '7.4', '8.0', '8.1', '8.2', '8.3' ]
         allowed_failure: [ false ]
         include:
-          - php: '8.0'
-            allowed_failure: true
-          - php: '8.1'
-            allowed_failure: true
-          - php: '8.2'
+          - php: '8.4'
             allowed_failure: true
     steps:
       - name: "Set up PHP"
@@ -115,7 +107,7 @@ jobs:
           coverage: "none"
 
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Validate Composer configuration"
         run: "composer validate --strict"
@@ -146,6 +138,10 @@ jobs:
             allowed_failure: true # Change to false once php-compatibility 10 comes out
           - php: '8.2'
             allowed_failure: true # Change to false once php-compatibility 10 comes out
+          - php: '8.3'
+            allowed_failure: true # Change to false once php-compatibility 10 comes out
+          - php: '8.4'
+            allowed_failure: true # Change to false once php-compatibility 10 comes out
     steps:
       - name: "Set up PHP"
         uses: "shivammathur/setup-php@v2"
@@ -155,7 +151,7 @@ jobs:
           tools: "cs2pr"
 
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
@@ -180,7 +176,7 @@ jobs:
 
     steps:
       - name: "Checkout code"
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
 
       - name: "Use Node.js ${{ matrix.node }}"
         uses: "actions/setup-node@v3"
