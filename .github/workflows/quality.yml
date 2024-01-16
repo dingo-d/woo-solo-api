@@ -52,15 +52,10 @@ jobs:
         php: [ '7.4', '8.0', '8.1', '8.2', '8.3' ]
         allowed_failure: [ false ]
         dependencies:
-          - "lowest"
           - "highest"
         include:
           - php: '8.4'
             allowed_failure: true
-        exclude:
-          - php: '8.1'
-            allowed_failure: true
-            dependencies: "lowest" # Fails due to PHP parser error on a specific version.
     steps:
       - name: "Set up PHP"
         uses: "shivammathur/setup-php@v2"
@@ -95,15 +90,10 @@ jobs:
         php: [ '7.4', '8.0', '8.1', '8.2', '8.3' ]
         allowed_failure: [ false ]
         dependencies:
-          - "lowest"
           - "highest"
         include:
           - php: '8.4'
             allowed_failure: true
-        exclude:
-          - php: '8.1'
-            allowed_failure: true
-            dependencies: "lowest" # Fails due to PHP parser error on a specific version.
     steps:
       - name: "Set up PHP"
         uses: "shivammathur/setup-php@v2"
@@ -122,7 +112,7 @@ jobs:
 
       - name: "Add woocommerce plugin"
         run:  |
-          wget -o woocommerce.zip https://downloads.wordpress.org/plugin/woocommerce.zip
+          wget https://downloads.wordpress.org/plugin/woocommerce.zip
           unzip woocommerce.zip
           mv woocommerceg ../
 
