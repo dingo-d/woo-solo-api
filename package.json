@@ -43,13 +43,13 @@
 		"php-serialize": "^4.1.1"
 	},
 	"devDependencies": {
-		"@kucrut/vite-for-wp": "^0.5.2",
+		"@kucrut/vite-for-wp": "^0.12.0",
 		"@rollup/plugin-inject": "^5.0.3",
 		"@wordpress/eslint-plugin": "^14.11.0",
 		"@wordpress/stylelint-config": "^21.21.0",
 		"eslint": "^8.46.0",
 		"rollup-plugin-external-globals": "^0.8.0",
 		"sass": "^1.64.2",
-		"vite": "^4.5.9"
+		"vite": "^7.1.5"
 	}
 }
