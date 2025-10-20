@@ -50,6 +50,6 @@
 		"eslint": "^8.46.0",
 		"rollup-plugin-external-globals": "^0.8.0",
 		"sass": "^1.64.2",
-		"vite": "^7.1.5"
+		"vite": "^7.1.11"
 	}
 }
